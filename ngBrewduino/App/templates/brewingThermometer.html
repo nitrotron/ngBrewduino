@@ -12,7 +12,8 @@
         <div id="btnTempLowAlarm" class="TemperatureDigitalSmallBottom">
             {{stubData.thermometers[0].lowAlarm}}
         </div>
-        <div ID="pnlRimsButton" runat="server" Visible="false" CssClass="pnlRimsButton">
+        <div id="pnlRimsButton" ng-if="showRimsButton(stubData.thermometers[0])"> hello</div>
+     <!--   <div ID="pnlRimsButton" runat="server" Visible="false" CssClass="pnlRimsButton">
               <div id="btnShowRimsControls" class="Clickable">
                   <div id="pnlRimsControls" style="display: none;" class="RimsSettingContainterXXXXX">
                       <table>
@@ -76,6 +77,6 @@
                       <input type="hidden" id="" hfWhichAlarm" />
                   </div>
               </div>
-          </div> 
+          </div>-->
     </div>
 </div>

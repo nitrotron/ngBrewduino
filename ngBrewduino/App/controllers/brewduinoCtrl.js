@@ -12,6 +12,16 @@
         $scope.temp3 = "13.4";
 
         $scope.stubData = stubData;
+
+        $scope.showRimsButton = showRimsButton;
+
+        function showRimsButton(thermoObj) {
+            if ( angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
+            {
+                return true;
+            }
+            return false;
+        }
     };
 
     angular.module('brewduinoApp')
