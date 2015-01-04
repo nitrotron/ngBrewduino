@@ -12,51 +12,51 @@
         <div id="btnTempLowAlarm" class="TemperatureDigitalSmallBottom">
             {{stubData.thermometers[0].lowAlarm}}
         </div>
-        <div id="pnlRimsButton" ng-if="showRimsButton(stubData.thermometers[0])" ng-click="showRimsSettings()">
-            <i class='icon-beer'></i>RIMS Settings
+        <div id="pnlRimsButton" ng-if="showRimsButton(stubData.thermometers[0])" >
+           <span ng-click="showRimsSettings()" class="Clickable"> <i class='icon-beer'></i>RIMS Settings</span>
             <table ng-show="rimsSettingVisible()">
                 <tr>
                     <td class="RimsSettingLabel">Set Point:
                     </td>
                     <td class="RimsSettingTB">
-                        <input type="text" ID="tbSetPoint"/>
+                        <input type="number" id="tbSetPoint" ng-model="rimsSetPoint"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="RimsSettingLabel">WindowSize:
                     </td>
                     <td class="RimsSettingTB">
-                        <input type="text" ID="tbWindowSize"/>
+                        <input type="number" id="tbWindowSize" ng-model="rimsWindowSize"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="RimsSettingLabel">Kp:
                     </td>
                     <td class="RimsSettingTB">
-                        <input type="text" ID="tbKp"/>
+                        <input type="number" id="tbKp" ng-model="rimsKp"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="RimsSettingLabel">Ki:
                     </td>
                     <td class="RimsSettingTB">
-                        <input type="text" ID="tbKi"/>
+                        <input type="number" id="tbKi" ng-model="rimsKi"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="RimsSettingLabel">Kd:
                     </td>
                     <td class="RimsSettingTB">
-                        <input type="text" ID="tbKd"/>
+                        <input type="number" id="tbKd" ng-model="rimsKd"/>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td class="RimsSettingTB">
-                        <button ID="btnUpdateRims" Text="Set" OnClick="btnUpdateRims_Click"
-                                CssClass="btnUpdateRims"/>
-                        <button ID="btnUpdateRimsCancel" Text="Cancel" OnClick="btnUpdateRimsCancel_Click"
-                                CssClass="btnUpdateRims"/>
+                        <button id="btnUpdateRims" Text="Set" OnClick="btnUpdateRims_Click"
+                                class="btnUpdateRims"/>
+                        <button id="btnUpdateRimsCancel" Text="Cancel" OnClick="btnUpdateRimsCancel_Click"
+                                class="btnUpdateRims"/>
                     </td>
                 </tr>
             </table>

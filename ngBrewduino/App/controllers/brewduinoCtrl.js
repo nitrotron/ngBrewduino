@@ -11,6 +11,11 @@
         $scope.temp1 = "23.4";
         $scope.temp2 = "33.4";
         $scope.temp3 = "13.4";
+        $scope.rimsSetPoint = 2000;
+        $scope.rimsWindowSize = 5000;
+        $scope.rimsKp = 5;
+        $scope.rimsKi = 0.5;
+        $scope.rimsKd = 1;
 
         $scope.stubData = stubData;
 
