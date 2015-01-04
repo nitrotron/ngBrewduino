@@ -12,7 +12,55 @@
         <div id="btnTempLowAlarm" class="TemperatureDigitalSmallBottom">
             {{stubData.thermometers[0].lowAlarm}}
         </div>
-        <div id="pnlRimsButton" ng-if="showRimsButton(stubData.thermometers[0])"> hello</div>
+        <div id="pnlRimsButton" ng-if="showRimsButton(stubData.thermometers[0])" ng-click="showRimsSettings()">
+            <i class='icon-beer'></i>RIMS Settings
+            <table ng-show="rimsSettingVisible()">
+                <tr>
+                    <td class="RimsSettingLabel">Set Point:
+                    </td>
+                    <td class="RimsSettingTB">
+                        <input type="text" ID="tbSetPoint"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="RimsSettingLabel">WindowSize:
+                    </td>
+                    <td class="RimsSettingTB">
+                        <input type="text" ID="tbWindowSize"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="RimsSettingLabel">Kp:
+                    </td>
+                    <td class="RimsSettingTB">
+                        <input type="text" ID="tbKp"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="RimsSettingLabel">Ki:
+                    </td>
+                    <td class="RimsSettingTB">
+                        <input type="text" ID="tbKi"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="RimsSettingLabel">Kd:
+                    </td>
+                    <td class="RimsSettingTB">
+                        <input type="text" ID="tbKd"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="RimsSettingTB">
+                        <button ID="btnUpdateRims" Text="Set" OnClick="btnUpdateRims_Click"
+                                CssClass="btnUpdateRims"/>
+                        <button ID="btnUpdateRimsCancel" Text="Cancel" OnClick="btnUpdateRimsCancel_Click"
+                                CssClass="btnUpdateRims"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
      <!--   <div ID="pnlRimsButton" runat="server" Visible="false" CssClass="pnlRimsButton">
               <div id="btnShowRimsControls" class="Clickable">
                   <div id="pnlRimsControls" style="display: none;" class="RimsSettingContainterXXXXX">

@@ -5,6 +5,7 @@
 
 
     function brewduinoCtrl($scope, stubData) {
+        var makeRimsSettingsVisible = false;
         $scope.message = 'hello world';
         $scope.temp0 = "123.4";
         $scope.temp1 = "23.4";
@@ -14,6 +15,8 @@
         $scope.stubData = stubData;
 
         $scope.showRimsButton = showRimsButton;
+        $scope.showRimsSettings = showRimsSettings;
+        $scope.rimsSettingVisible = rimsSettingVisible;
 
         function showRimsButton(thermoObj) {
             if ( angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
@@ -21,6 +24,14 @@
                 return true;
             }
             return false;
+        }
+
+        function showRimsSettings () {
+            makeRimsSettingsVisible = (makeRimsSettingsVisible == true) ?  false : true;
+        }
+
+        function rimsSettingVisible() {
+            return makeRimsSettingsVisible;
         }
     };
 
