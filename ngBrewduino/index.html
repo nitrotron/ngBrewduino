@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="brewduinoApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link rel="stylesheet" href="3rdParty/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="Style/Site.css"/>
+    <script src="3rdParty/script/angular.js"></script>
+    <script src='App/brewduinoApp.js'></script>
+    <script src="App/controllers/brewduinoCtrl.js"></script>
+    <script src="App/brewduinoStubData.js"></script>
+</head>
+<body ng-controller="brewduinoCtrl">
+<div id="pnlMain">
+    <div id="RimsPanelMain">
+        <div id="RimsThermometers">
+            <div class="RimsThermometer"
+                ng-include="'App/templates/brewingThermometer.html'">
+            </div>
+           <!-- <div class="RimsThermometer">
+                {{temp1}}
+            </div>
+            <div class="RimsThermometer">
+                {{temp2}}
+            </div>
+            <div class="RimsThermometer">
+                {{temp3}}
+            </div> -->
+        </div>
+    </div>
+</div>
+</body>
+</html>
