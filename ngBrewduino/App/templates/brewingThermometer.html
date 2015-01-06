@@ -14,7 +14,7 @@
         </div>
         <div id="pnlRimsButton" ng-if="showRimsButton(stubData.thermometers[0])" >
            <span ng-click="showRimsSettings()" class="Clickable"> <i class='icon-beer'></i>RIMS Settings</span>
-            <table ng-show="rimsSettingVisible()">
+            <table ng-show="rimsSettingVisible()" ng-class="pnlRimsControls">
                 <tr>
                     <td class="RimsSettingLabel">Set Point:
                     </td>

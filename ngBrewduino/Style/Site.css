@@ -48,7 +48,7 @@ div#RimsThermometers .RimsThermometer {
     float: left;
 }
 
-#btnShowNewTimerPanel, #btnShowRimsControls {
+#btnShowNewTimerPanel, #btnShowRimsControls, .pnlRimsControls {
     border: 1px solid #9abb82;
     /*todo  margin: 0px 0px 2px 2px; */
     border-radius: 13px;
@@ -60,7 +60,8 @@ div#RimsThermometers .RimsThermometer {
     box-shadow: 0px 0px 5px 1px rgba(154, 187, 130, 0.5);
 }
 
-.pnlRimsButton {
+#pnlRimsButton  {
+    background-color: #e9e9e9;
     padding-right: 2px;
 }
 
