@@ -15,7 +15,7 @@
     <div id="RimsPanelMain">
         <div id="RimsThermometers">
             <div class="RimsThermometer"
-                ng-include="'App/templates/brewingThermometer.html'">
+                ng-include="'App/templates/brewingThermometer.html'" ng-repeat="thermometers in stubData.thermometers">
             </div>
            <!-- <div class="RimsThermometer">
                 {{temp1}}
