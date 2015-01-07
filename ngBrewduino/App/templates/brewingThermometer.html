@@ -61,70 +61,81 @@
                 </tr>
             </table>
         </div>
-     <!--   <div ID="pnlRimsButton" runat="server" Visible="false" CssClass="pnlRimsButton">
-              <div id="btnShowRimsControls" class="Clickable">
-                  <div id="pnlRimsControls" style="display: none;" class="RimsSettingContainterXXXXX">
-                      <table>
-                          <tr>
-                              <td class="RimsSettingLabel">Set Point:
-                              </td>
-                              <td class="RimsSettingTB">
-                                  <input type="text" ID="tbSetPoint"/>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td class="RimsSettingLabel">WindowSize:
-                              </td>
-                              <td class="RimsSettingTB">
-                                  <input type="text" ID="tbWindowSize"/>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td class="RimsSettingLabel">Kp:
-                              </td>
-                              <td class="RimsSettingTB">
-                                  <input type="text" ID="tbKp"/>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td class="RimsSettingLabel">Ki:
-                              </td>
-                              <td class="RimsSettingTB">
-                                  <input type="text" ID="tbKi"/>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td class="RimsSettingLabel">Kd:
-                              </td>
-                              <td class="RimsSettingTB">
-                                  <input type="text" ID="tbKd"/>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td class="RimsSettingTB">
-                                  <button ID="btnUpdateRims" Text="Set" OnClick="btnUpdateRims_Click"
-                                          CssClass="btnUpdateRims"/>
-                                  <button ID="btnUpdateRimsCancel" Text="Cancel" OnClick="btnUpdateRimsCancel_Click"
-                                          CssClass="btnUpdateRims"/>
-                              </td>
-                          </tr>
-                      </table>
-                  </div>
-                  <i class='icon-beer'></i>RIMS Settings
-              </div>
-              <div>
-                  <div ID="pnlSetAlarm" CssClass="PanelOverlay" runat="server" Visible="false">
-                      <span ID="lblAlarmTitle"/>
-                      <br/>
-                      <input type="text" ID="tbAlarm" Width="33%"/>
-                      <button ID="btnUpdateAlarms" OnClick="btnUpdateAlarms_OnClick"
-                              Text="Update"/>
-                      <button ID="btnCancelAlarms" OnClick="btnCancelAlarms_OnClick"
-                              Text="Cancel"/>
-                      <input type="hidden" id="" hfWhichAlarm" />
-                  </div>
-              </div>
-          </div>-->
+        <div id="pnlSetAlarm" class="PanelOverlay" ng-show="showPnlAlarm()">
+            <span id="lblAlarmTitle" >{{lblAlarmTitle}}</span>
+            <br />
+            <input type="text" id="tbAlarm"  Width="33%" ng-model="tbAlarm">
+            <asp:Button ID="btnUpdateAlarms" runat="server" OnClick=",btnUpdateAlarms_OnClick"
+                        Text="Update" />
+            <asp:Button ID="btnCancelAlarms" runat="server" OnClick="btnCancelAlarms_OnClick"
+                        Text="Cancel" />
+            <asp:HiddenField ID="hfWhichAlarm" runat="server" />
+        </div>
+
+        <!--   <div ID="pnlRimsButton" runat="server" Visible="false" CssClass="pnlRimsButton">
+                 <div id="btnShowRimsControls" class="Clickable">
+                     <div id="pnlRimsControls" style="display: none;" class="RimsSettingContainterXXXXX">
+                         <table>
+                             <tr>
+                                 <td class="RimsSettingLabel">Set Point:
+                                 </td>
+                                 <td class="RimsSettingTB">
+                                     <input type="text" ID="tbSetPoint"/>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td class="RimsSettingLabel">WindowSize:
+                                 </td>
+                                 <td class="RimsSettingTB">
+                                     <input type="text" ID="tbWindowSize"/>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td class="RimsSettingLabel">Kp:
+                                 </td>
+                                 <td class="RimsSettingTB">
+                                     <input type="text" ID="tbKp"/>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td class="RimsSettingLabel">Ki:
+                                 </td>
+                                 <td class="RimsSettingTB">
+                                     <input type="text" ID="tbKi"/>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td class="RimsSettingLabel">Kd:
+                                 </td>
+                                 <td class="RimsSettingTB">
+                                     <input type="text" ID="tbKd"/>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td></td>
+                                 <td class="RimsSettingTB">
+                                     <button ID="btnUpdateRims" Text="Set" OnClick="btnUpdateRims_Click"
+                                             CssClass="btnUpdateRims"/>
+                                     <button ID="btnUpdateRimsCancel" Text="Cancel" OnClick="btnUpdateRimsCancel_Click"
+                                             CssClass="btnUpdateRims"/>
+                                 </td>
+                             </tr>
+                         </table>
+                     </div>
+                     <i class='icon-beer'></i>RIMS Settings
+                 </div>
+                 <div>
+                     <div ID="pnlSetAlarm" CssClass="PanelOverlay" runat="server" Visible="false">
+                         <span ID="lblAlarmTitle"/>
+                         <br/>
+                         <input type="text" ID="tbAlarm" Width="33%"/>
+                         <button ID="btnUpdateAlarms" OnClick="btnUpdateAlarms_OnClick"
+                                 Text="Update"/>
+                         <button ID="btnCancelAlarms" OnClick="btnCancelAlarms_OnClick"
+                                 Text="Cancel"/>
+                         <input type="hidden" id="" hfWhichAlarm" />
+                     </div>
+                 </div>
+             </div>-->
     </div>
 </div>

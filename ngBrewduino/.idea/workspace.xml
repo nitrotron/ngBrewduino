@@ -24,10 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4188406" vertical-offset="0" max-vertical-offset="690">
+            <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="646">
               <caret line="17" column="117" selection-start-line="17" selection-start-column="117" selection-end-line="17" selection-end-column="117" />
               <folding />
             </state>
@@ -59,18 +59,20 @@
       <file leaf-file-name="BrewingThermometer.ascx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Controllers/BrewingThermometer.ascx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.5" vertical-offset="51" max-vertical-offset="1683">
-              <caret line="16" column="40" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="40" />
-              <folding />
+            <state vertical-scroll-proportion="-13.5" vertical-offset="805" max-vertical-offset="1530">
+              <caret line="77" column="4" selection-start-line="67" selection-start-column="6" selection-end-line="77" selection-end-column="4" />
+              <folding>
+                <element signature="n#asp:Panel#1;n#div#0;n#div#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brewingThermometer.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="brewingThermometer.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/templates/brewingThermometer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="2295">
-              <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.16231884" vertical-offset="1027" max-vertical-offset="2482">
+              <caret line="67" column="70" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -110,8 +112,8 @@
         <option value="$PROJECT_DIR$/App/brewduinoStubData.js" />
         <option value="$PROJECT_DIR$/App/controllers/brewduinoCtrl.js" />
         <option value="$PROJECT_DIR$/Style/Site.css" />
-        <option value="$PROJECT_DIR$/App/templates/brewingThermometer.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/App/templates/brewingThermometer.html" />
       </list>
     </option>
   </component>
@@ -303,7 +305,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1552" height="853" extended-state="6" />
+    <frame x="-8" y="-8" width="1552" height="853" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -532,26 +534,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/templates/brewingThermometer.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="2295">
-          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+        <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="646">
+          <caret line="17" column="117" selection-start-line="17" selection-start-column="117" selection-end-line="17" selection-end-column="117" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Controllers/BrewingThermometer.ascx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="51" max-vertical-offset="1683">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="40" />
-          <folding />
+        <state vertical-scroll-proportion="-13.5" vertical-offset="805" max-vertical-offset="1530">
+          <caret line="77" column="4" selection-start-line="67" selection-start-column="6" selection-end-line="77" selection-end-column="4" />
+          <folding>
+            <element signature="n#asp:Panel#1;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/App/templates/brewingThermometer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4188406" vertical-offset="0" max-vertical-offset="690">
-          <caret line="17" column="117" selection-start-line="17" selection-start-column="117" selection-end-line="17" selection-end-column="117" />
+        <state vertical-scroll-proportion="0.16231884" vertical-offset="1027" max-vertical-offset="2482">
+          <caret line="67" column="70" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
           <folding />
         </state>
       </provider>
