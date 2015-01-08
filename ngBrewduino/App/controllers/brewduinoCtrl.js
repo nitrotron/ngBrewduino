@@ -26,11 +26,10 @@
         $scope.rimsSettingVisible = rimsSettingVisible;
 
         $scope.showPnlAlarm = showPnlAlarm;
-        $scope.curPnlAlarm = { temperature: -15, whichAlarm: 'high' };
+        $scope.curPnlAlarm = {temperature: -15, whichAlarm: 'highAlarm', whichAlarmDis:''};
 
         $scope.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
         $scope.btnCancelAlarmsClick = btnCancelAlarmsClick;
-
 
 
         function showRimsButton(thermoObj) {
@@ -46,7 +45,8 @@
         }
 
         var showWhichPnlAlarmId = -1;
-        function showPnlAlarm (thermometer) {
+
+        function showPnlAlarm(thermometer) {
             return (thermometer.id === showWhichPnlAlarmId)
         }
 
@@ -54,15 +54,16 @@
             showWhichPnlAlarmId = id;
             $scope.curPnlAlarm.temperature = alarm;
             $scope.curPnlAlarm.whichAlarm = whichAlarm;
+            $scope.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm","").replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+
         }
 
         function btnUpdateAlarmsClick(thermometer) {
-            if ($scope.curPnlAlarm.whichAlarm === 'low') {
-                thermometer.lowAlarm = $scope.curPnlAlarm.temperature;
-            } else if ($scope.curPnlAlarm.whichAlarm === 'high') {
-                thermometer.highAlarm = $scope.curPnlAlarm.temperature;
-            }
+            if (angular.isDefined(thermometer[$scope.curPnlAlarm.whichAlarm]))
+                thermometer[$scope.curPnlAlarm.whichAlarm] = $scope.curPnlAlarm.temperature;
+
             showWhichPnlAlarmId = -1;
+
         }
 
         function btnCancelAlarmsClick() {
