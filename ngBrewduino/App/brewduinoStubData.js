@@ -4,10 +4,10 @@
 (function () {
     var stubData = {
         thermometers: [
-            {temp: 100, highAlarm: 200, lowAlarm:15, name: 'RIMs', isRIMS: true},
-            {temp: 110, highAlarm: 210, lowAlarm:25, name: 'Mash'},
-            {temp: 120, highAlarm: 220, lowAlarm:35, name: 'HLT'},
-            {temp: 130, highAlarm: 230, lowAlarm:45, name: 'Kettle'}
+            {id: 0, temp: 100, highAlarm: 200, lowAlarm: 15, name: 'RIMs', isRIMS: true},
+            {id: 1, temp: 110, highAlarm: 210, lowAlarm: 25, name: 'Mash'},
+            {id: 2, temp: 120, highAlarm: 220, lowAlarm: 35, name: 'HLT'},
+            {id: 3, temp: 130, highAlarm: 230, lowAlarm: 45, name: 'Kettle'}
         ],
 
         //Thermometer0: 100,

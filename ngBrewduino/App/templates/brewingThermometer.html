@@ -6,10 +6,10 @@
         <div id="lblCurrentTemp" class="TemperatureDigital">
             {{thermometers.temp}}
         </div>
-        <div id="btnTempHighAlarm" class="TemperatureDigitalSmallTop">
+        <div id="btnTempHighAlarm" class="TemperatureDigitalSmallTop"  ng-click="openAlarmPanel(thermometers.highAlarm,'high', thermometers.id)">
             {{thermometers.highAlarm}}
         </div>
-        <div id="btnTempLowAlarm" class="TemperatureDigitalSmallBottom" ng-click="openAlarmPanel(thermometers.lowAlarm, 'low')">
+        <div id="btnTempLowAlarm" class="TemperatureDigitalSmallBottom" ng-click="openAlarmPanel(thermometers.lowAlarm,'low', thermometers.id)">
             {{thermometers.lowAlarm}}
         </div>
         <div id="pnlRimsButton" ng-if="showRimsButton(thermometers)" >
@@ -53,23 +53,18 @@
                 <tr>
                     <td></td>
                     <td class="RimsSettingTB">
-                        <button id="btnUpdateRims" Text="Set" OnClick="btnUpdateRims_Click"
-                                class="btnUpdateRims"/>
-                        <button id="btnUpdateRimsCancel" Text="Cancel" OnClick="btnUpdateRimsCancel_Click"
-                                class="btnUpdateRims"/>
+                        <button id="btnUpdateRims" ng-click="btnUpdateRims_Click()"    class="btnUpdateRims">Submit</button>
+                        <button id="btnUpdateRimsCancel" ng-click="btnUpdateRimsCancel_Click()" class="btnUpdateRims">Cancel</button>
                     </td>
                 </tr>
             </table>
         </div>
-        <div id="pnlSetAlarm" class="PanelOverlay" ng-show="showPnlAlarm()">
-            <!--<span id="lblAlarmTitle" >{{curPnlAlarm.whichAlarm}} Alarm</span>
+        <div id="pnlSetAlarm" class="PanelOverlay" ng-show="showPnlAlarm(thermometers)">
+            <span id="lblAlarmTitle" >{{curPnlAlarm.whichAlarm}} Alarm</span>
             <br />
             <input type="text" id="tbAlarm"  Width="33%" ng-model="curPnlAlarm.temperature">
             <button id="btnUpdateAlarms" ng-click="btnUpdateAlarmsClick(thermometers)">Update</button>
-            <button id="btnCancelAlarms" ng-click="btnCancelAlarmsClick(thermometers)">Cancel</button>
--->
-
-            {{curPnlAlarm.temperature}}
+            <button id="btnCancelAlarms" ng-click="btnCancelAlarmsClick()">Cancel</button>
         </div>
 
         <!--   <div ID="pnlRimsButton" runat="server" Visible="false" CssClass="pnlRimsButton">

@@ -25,16 +25,16 @@
         $scope.showRimsSettings = showRimsSettings;
         $scope.rimsSettingVisible = rimsSettingVisible;
 
-        $scope.showPnlAlarm = false;
+        $scope.showPnlAlarm = showPnlAlarm;
         $scope.curPnlAlarm = { temperature: -15, whichAlarm: 'high' };
+
+        $scope.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
+        $scope.btnCancelAlarmsClick = btnCancelAlarmsClick;
 
 
 
         function showRimsButton(thermoObj) {
-            if (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true) {
-                return true;
-            }
-            return false;
+            return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
         }
 
         function showRimsSettings() {
@@ -45,13 +45,31 @@
             return makeRimsSettingsVisible;
         }
 
-        function openAlarmPanel(alarm, whichAlarm) {
-            $scope.showPnlAlarm = true;
+        var showWhichPnlAlarmId = -1;
+        function showPnlAlarm (thermometer) {
+            return (thermometer.id === showWhichPnlAlarmId)
+        }
+
+        function openAlarmPanel(alarm, whichAlarm, id) {
+            showWhichPnlAlarmId = id;
             $scope.curPnlAlarm.temperature = alarm;
             $scope.curPnlAlarm.whichAlarm = whichAlarm;
-        };
+        }
 
-    };
+        function btnUpdateAlarmsClick(thermometer) {
+            if ($scope.curPnlAlarm.whichAlarm === 'low') {
+                thermometer.lowAlarm = $scope.curPnlAlarm.temperature;
+            } else if ($scope.curPnlAlarm.whichAlarm === 'high') {
+                thermometer.highAlarm = $scope.curPnlAlarm.temperature;
+            }
+            showWhichPnlAlarmId = -1;
+        }
+
+        function btnCancelAlarmsClick() {
+            showWhichPnlAlarmId = -1;
+        }
+
+    }
 
     angular.module('brewduinoApp')
         .controller('brewduinoCtrl', brewduinoCtrl);
