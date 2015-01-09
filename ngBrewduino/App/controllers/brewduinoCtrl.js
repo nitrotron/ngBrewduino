@@ -31,6 +31,8 @@
         $scope.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
         $scope.btnCancelAlarmsClick = btnCancelAlarmsClick;
 
+        $scope.btnUpdateRims_Click = btnUpdateRims_Click;
+        $scope.btnUpdateRimsCancel_Click = btnUpdateRimsCancel_Click;
 
         function showRimsButton(thermoObj) {
             return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
@@ -59,15 +61,24 @@
         }
 
         function btnUpdateAlarmsClick(thermometer) {
-            if (angular.isDefined(thermometer[$scope.curPnlAlarm.whichAlarm]))
-                thermometer[$scope.curPnlAlarm.whichAlarm] = $scope.curPnlAlarm.temperature;
+            if (angular.isNumber($scope.curPnlAlarm.temperature)) {
+                if (angular.isDefined(thermometer[$scope.curPnlAlarm.whichAlarm]))
+                    thermometer[$scope.curPnlAlarm.whichAlarm] = $scope.curPnlAlarm.temperature;
 
-            showWhichPnlAlarmId = -1;
-
+                showWhichPnlAlarmId = -1;
+            }
         }
 
         function btnCancelAlarmsClick() {
             showWhichPnlAlarmId = -1;
+        }
+
+        function btnUpdateRims_Click() {
+            makeRimsSettingsVisible = false;
+        }
+
+        function btnUpdateRimsCancel_Click() {
+            makeRimsSettingsVisible = false;
         }
 
     }

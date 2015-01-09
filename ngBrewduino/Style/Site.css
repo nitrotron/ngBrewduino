@@ -3,6 +3,11 @@
     float: left;
 }
 
+.error {
+    color: red;
+    font-weight: bold;
+}
+
 #RimsAlarm {
     font-size: 18px;
 }
