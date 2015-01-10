@@ -1,0 +1,43 @@
+<div id="btnShowNewTimerPanel" class="Clickable" ng-click="addTimer()">
+    <i class="fa fa-fa fa-clock-o"></i>Click for New Timer
+</div>
+<div style="width: 210px">
+</div>
+<div id="divCountdown" ng-repeat="seconds in timers">
+    <timer countdown="3" interval="1000" finish-callback="callbackTimer.finished()">{{seconds}} second{{secondsS}}</timer>
+</div>
+
+<div id="pnlAddTimer" ng-show="showAddTimerPanel">
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td style="text-align: right;">
+                <span id="dvCancelTimer" class="cancelX" ng-click="cancelNewTimer()">X</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; width: 20%;">
+                Minutes:
+            </td>
+            <td style="text-align: left;">
+                <input type="text" id="tbNewTime" name="tbNewTime" ng-model="tbNewTime">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Title:
+            </td>
+            <td style="text-align: left;">
+                <input type="text" id="tbTimerLabel" name="tbTimerLabel" ng-model="tbTimerLabel">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td style="text-align: right;">
+                <button type="button" id="btnAddNewTimer" ng-click="startNewTimer()">Start</button>
+            </td>
+        </tr>
+    </table>
+</div>

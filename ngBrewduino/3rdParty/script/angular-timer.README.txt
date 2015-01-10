@@ -1,0 +1,2 @@
+This was grabbed from:
+http://siddii.github.io/angular-timer/index.html

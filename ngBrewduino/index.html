@@ -5,27 +5,23 @@
     <title></title>
     <!--<link rel="stylesheet" href="3rdParty/css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="Style/Site.css"/>
+    <link href="Fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css"/>
     <script src="3rdParty/script/angular.js"></script>
     <script src='App/brewduinoApp.js'></script>
     <script src="App/controllers/brewduinoCtrl.js"></script>
     <script src="App/brewduinoStubData.js"></script>
+    <script src="3rdParty/script/angular-timer.min.js"></script>
 </head>
 <body ng-controller="brewduinoCtrl">
 <div id="pnlMain">
     <div id="RimsPanelMain">
         <div id="RimsThermometers">
-            <div class="RimsThermometer"
-                ng-include="'App/templates/brewingThermometer.html'" ng-repeat="thermometers in stubData.thermometers">
+            <div class="RimsThermometer" ng-include="'App/templates/brewingThermometer.html'"
+                 ng-repeat="thermometers in stubData.thermometers"></div>
+            <div class="CountDownTimer">
+                <div ng-include="'App/templates/countDownTimers.html'"></div>
             </div>
-           <!-- <div class="RimsThermometer">
-                {{temp1}}
-            </div>
-            <div class="RimsThermometer">
-                {{temp2}}
-            </div>
-            <div class="RimsThermometer">
-                {{temp3}}
-            </div> -->
         </div>
     </div>
 </div>

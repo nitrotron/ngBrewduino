@@ -34,6 +34,14 @@
         $scope.btnUpdateRims_Click = btnUpdateRims_Click;
         $scope.btnUpdateRimsCancel_Click = btnUpdateRimsCancel_Click;
 
+
+        $scope.showAddTimerPanel = false;
+
+        $scope.addTimer = addTimer;
+        $scope.startNewTimer = startNewTimer;
+        $scope.cancelNewTimer = cancelNewTimer;
+
+
         function showRimsButton(thermoObj) {
             return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
         }
@@ -79,6 +87,19 @@
 
         function btnUpdateRimsCancel_Click() {
             makeRimsSettingsVisible = false;
+        }
+
+
+        function addTimer() {
+            $scope.showAddTimerPanel = true;
+        }
+
+        function startNewTimer() {
+            $scope.showAddTimerPanel = false;
+        }
+
+        function cancelNewTimer() {
+            $scope.showAddTimerPanel = false;
         }
 
     }
