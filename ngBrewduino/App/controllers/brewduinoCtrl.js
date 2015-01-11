@@ -16,6 +16,9 @@
         $scope.rimsKp = 5;
         $scope.rimsKi = 0.5;
         $scope.rimsKd = 1;
+        $scope.timers = [];
+        $scope.newTimer = 0;
+        $scope.newTimerLabel = "";
 
         $scope.stubData = stubData;
 
@@ -94,8 +97,10 @@
             $scope.showAddTimerPanel = true;
         }
 
-        function startNewTimer() {
+        function startNewTimer(newTimer,newTimerLabel) {
             $scope.showAddTimerPanel = false;
+            var myObj = {timer: (newTimer*60), label: newTimerLabel};
+            $scope.timers.push(myObj);
         }
 
         function cancelNewTimer() {

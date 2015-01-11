@@ -1,3 +1,3 @@
 (function () {
-    angular.module('brewduinoApp',[]);
+    angular.module('brewduinoApp',['timer']);
 }());

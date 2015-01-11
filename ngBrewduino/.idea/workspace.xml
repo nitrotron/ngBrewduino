@@ -27,9 +27,21 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="578">
-              <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
+            <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="578">
+              <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="brewduinoStubData.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/brewduinoStubData.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#42#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,11 +78,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="brewingThermometer.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/templates/brewingThermometer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.576923" vertical-offset="255" max-vertical-offset="1411">
+              <caret line="48" column="52" selection-start-line="48" selection-start-column="52" selection-end-line="48" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="brewduinoCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/controllers/brewduinoCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1167" max-vertical-offset="1904">
-              <caret line="93" column="36" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1286" max-vertical-offset="1989">
+              <caret line="101" column="52" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="52" />
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
@@ -81,8 +103,8 @@
       <file leaf-file-name="countDownTimers.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/templates/countDownTimers.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47710487" vertical-offset="0" max-vertical-offset="816">
-              <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.1506647" vertical-offset="17" max-vertical-offset="833">
+              <caret line="7" column="78" selection-start-line="7" selection-start-column="78" selection-end-line="7" selection-end-column="78" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#3;n#!!top" expanded="true" />
@@ -104,12 +126,12 @@
         <option value="$PROJECT_DIR$/app/controllers/brewduinoCtrl.js" />
         <option value="$PROJECT_DIR$/app/brewduinoApp.js" />
         <option value="$PROJECT_DIR$/App/app.js" />
-        <option value="$PROJECT_DIR$/App/brewduinoApp.js" />
         <option value="$PROJECT_DIR$/App/brewduinoStubData.js" />
         <option value="$PROJECT_DIR$/App/templates/brewingThermometer.html" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/App/controllers/brewduinoCtrl.js" />
         <option value="$PROJECT_DIR$/Style/Site.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/App/brewduinoApp.js" />
+        <option value="$PROJECT_DIR$/App/controllers/brewduinoCtrl.js" />
         <option value="$PROJECT_DIR$/App/templates/countDownTimers.html" />
       </list>
     </option>
@@ -588,13 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/brewduinoApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Brewduino/BrewduinoCatalogLib/ArduinoStub.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1292">
@@ -606,14 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1309" max-vertical-offset="1683">
           <caret line="77" column="4" selection-start-line="67" selection-start-column="6" selection-end-line="77" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/templates/brewingThermometer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1411">
-          <caret line="18" column="77" selection-start-line="18" selection-start-column="77" selection-end-line="18" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -634,28 +641,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/brewduinoStubData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/3rdParty/script/angular-timer.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="703">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="578">
-          <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
           <folding />
         </state>
       </provider>
@@ -678,20 +667,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/App/brewduinoStubData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="578">
+          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/brewduinoApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136">
+          <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App/controllers/brewduinoCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1167" max-vertical-offset="1904">
-          <caret line="93" column="36" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1286" max-vertical-offset="1989">
+          <caret line="101" column="52" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="52" />
           <folding>
             <element signature="e#0#44#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/App/templates/brewingThermometer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.576923" vertical-offset="255" max-vertical-offset="1411">
+          <caret line="48" column="52" selection-start-line="48" selection-start-column="52" selection-end-line="48" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App/templates/countDownTimers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47710487" vertical-offset="0" max-vertical-offset="816">
-          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.1506647" vertical-offset="17" max-vertical-offset="833">
+          <caret line="7" column="78" selection-start-line="7" selection-start-column="78" selection-end-line="7" selection-end-column="78" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#3;n#!!top" expanded="true" />

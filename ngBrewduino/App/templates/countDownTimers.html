@@ -3,8 +3,9 @@
 </div>
 <div style="width: 210px">
 </div>
-<div id="divCountdown" ng-repeat="seconds in timers">
-    <timer countdown="3" interval="1000" finish-callback="callbackTimer.finished()">{{seconds}} second{{secondsS}}</timer>
+<div id="divCountdown" ng-repeat="timer in timers">
+    <!--<timer countdown="timer.timer" interval="1000" finish-callback="timer.finished()">{{timer}} second{{timerS}}</timer>-->
+    <timer countdown="timer.timer" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}} </timer> {{timer.label}}
 </div>
 
 <div id="pnlAddTimer" ng-show="showAddTimerPanel">
@@ -21,7 +22,7 @@
                 Minutes:
             </td>
             <td style="text-align: left;">
-                <input type="text" id="tbNewTime" name="tbNewTime" ng-model="tbNewTime">
+                <input type="number" id="tbNewTime" name="tbNewTime" ng-model="newTimer">
             </td>
         </tr>
         <tr>
@@ -29,14 +30,14 @@
                 Title:
             </td>
             <td style="text-align: left;">
-                <input type="text" id="tbTimerLabel" name="tbTimerLabel" ng-model="tbTimerLabel">
+                <input type="text" id="tbTimerLabel" name="tbTimerLabel" ng-model="newTimerLabel">
             </td>
         </tr>
         <tr>
             <td>
             </td>
             <td style="text-align: right;">
-                <button type="button" id="btnAddNewTimer" ng-click="startNewTimer()">Start</button>
+                <button type="button" id="btnAddNewTimer" ng-click="startNewTimer(newTimer, newTimerLabel)">Start</button>
             </td>
         </tr>
     </table>
