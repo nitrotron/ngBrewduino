@@ -49,9 +49,10 @@
       <file leaf-file-name="CountDownTimer.ascx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Controllers/CountDownTimer.ascx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.923077" vertical-offset="445" max-vertical-offset="3570">
-              <caret line="75" column="161" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="161" />
+            <state vertical-scroll-proportion="-8.0" vertical-offset="274" max-vertical-offset="3009">
+              <caret line="75" column="53" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="53" />
               <folding>
+                <element signature="n#div#4;n#!!top" expanded="false" />
                 <element signature="e#3714#3750#0#HTML" expanded="false" />
               </folding>
             </state>
@@ -61,7 +62,7 @@
       <file leaf-file-name="RimsPanel.aspx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Pages/RimsPanel.aspx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923" vertical-offset="170" max-vertical-offset="1751">
+            <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1751">
               <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
               <folding />
             </state>
@@ -71,8 +72,8 @@
       <file leaf-file-name="Site.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Style/Site.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.4827585" vertical-offset="2168" max-vertical-offset="12257">
-              <caret line="142" column="2" selection-start-line="142" selection-start-column="2" selection-end-line="142" selection-end-column="2" />
+            <state vertical-scroll-proportion="-4.4827585" vertical-offset="6517" max-vertical-offset="12325">
+              <caret line="391" column="13" selection-start-line="391" selection-start-column="1" selection-end-line="391" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -88,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="brewduinoCtrl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="brewduinoCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/controllers/brewduinoCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1286" max-vertical-offset="1989">
-              <caret line="101" column="52" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.66593885" vertical-offset="1667" max-vertical-offset="2193">
+              <caret line="118" column="26" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
@@ -100,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="countDownTimers.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="countDownTimers.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/templates/countDownTimers.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1506647" vertical-offset="17" max-vertical-offset="833">
-              <caret line="7" column="78" selection-start-line="7" selection-start-column="78" selection-end-line="7" selection-end-column="78" />
+            <state vertical-scroll-proportion="-3.9230769" vertical-offset="17" max-vertical-offset="833">
+              <caret line="7" column="115" selection-start-line="7" selection-start-column="103" selection-end-line="7" selection-end-column="115" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#3;n#!!top" expanded="true" />
@@ -128,11 +129,11 @@
         <option value="$PROJECT_DIR$/App/app.js" />
         <option value="$PROJECT_DIR$/App/brewduinoStubData.js" />
         <option value="$PROJECT_DIR$/App/templates/brewingThermometer.html" />
-        <option value="$PROJECT_DIR$/Style/Site.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/App/brewduinoApp.js" />
-        <option value="$PROJECT_DIR$/App/controllers/brewduinoCtrl.js" />
         <option value="$PROJECT_DIR$/App/templates/countDownTimers.html" />
+        <option value="$PROJECT_DIR$/Style/Site.css" />
+        <option value="$PROJECT_DIR$/App/controllers/brewduinoCtrl.js" />
       </list>
     </option>
   </component>
@@ -183,6 +184,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ngBrewduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ngBrewduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ngBrewduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Style" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -349,6 +364,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3293011" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22526042" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -359,7 +375,6 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994187" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -633,36 +648,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Pages/RimsPanel.aspx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923" vertical-offset="170" max-vertical-offset="1751">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/3rdParty/script/angular-timer.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="703">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Controllers/CountDownTimer.ascx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.923077" vertical-offset="445" max-vertical-offset="3570">
-          <caret line="75" column="161" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="161" />
-          <folding>
-            <element signature="e#3714#3750#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Style/Site.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.4827585" vertical-offset="2168" max-vertical-offset="12257">
-          <caret line="142" column="2" selection-start-line="142" selection-start-column="2" selection-end-line="142" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -677,14 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="578">
-          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/brewduinoApp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136">
@@ -693,12 +674,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/controllers/brewduinoCtrl.js">
+    <entry file="file://$USER_HOME$/Downloads/ng-demos-master/ng-demos-master/modular/src/client/app/avengers/avengers-spaghetti.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1286" max-vertical-offset="1989">
-          <caret line="101" column="52" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.40642458" vertical-offset="117" max-vertical-offset="884">
+          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
           <folding>
-            <element signature="e#0#44#0" expanded="false" />
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/ng-demos-master/ng-demos-master/cc-bmean/src/client/app/session/sessions-spaghetti.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.328213" vertical-offset="7395" max-vertical-offset="8432">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Pages/RimsPanel.aspx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1751">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Brewduino/Brewduino/Controllers/CountDownTimer.ascx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0" vertical-offset="274" max-vertical-offset="3009">
+          <caret line="75" column="53" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="53" />
+          <folding>
+            <element signature="n#div#4;n#!!top" expanded="false" />
+            <element signature="e#3714#3750#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -711,10 +721,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="578">
+          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App/templates/countDownTimers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1506647" vertical-offset="17" max-vertical-offset="833">
-          <caret line="7" column="78" selection-start-line="7" selection-start-column="78" selection-end-line="7" selection-end-column="78" />
+        <state vertical-scroll-proportion="-3.9230769" vertical-offset="17" max-vertical-offset="833">
+          <caret line="7" column="115" selection-start-line="7" selection-start-column="103" selection-end-line="7" selection-end-column="115" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#3;n#!!top" expanded="true" />
@@ -723,6 +741,24 @@
             <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#div#3;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#2;n#table#0;n#div#3;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#3;n#table#0;n#div#3;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Style/Site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4827585" vertical-offset="6517" max-vertical-offset="12325">
+          <caret line="391" column="13" selection-start-line="391" selection-start-column="1" selection-end-line="391" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/controllers/brewduinoCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66593885" vertical-offset="1667" max-vertical-offset="2193">
+          <caret line="118" column="26" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
           </folding>
         </state>
       </provider>

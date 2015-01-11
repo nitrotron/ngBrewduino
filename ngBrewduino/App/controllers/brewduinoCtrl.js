@@ -43,6 +43,9 @@
         $scope.addTimer = addTimer;
         $scope.startNewTimer = startNewTimer;
         $scope.cancelNewTimer = cancelNewTimer;
+        $scope.timerClass = timerClass;
+        $scope.timerExpired = timerExpired;
+
 
 
         function showRimsButton(thermoObj) {
@@ -99,12 +102,21 @@
 
         function startNewTimer(newTimer,newTimerLabel) {
             $scope.showAddTimerPanel = false;
-            var myObj = {timer: (newTimer*60), label: newTimerLabel};
+            var myObj = {timer: (newTimer*60), label: newTimerLabel, tClass: 'clock' };
             $scope.timers.push(myObj);
         }
 
         function cancelNewTimer() {
             $scope.showAddTimerPanel = false;
+        }
+
+        function timerClass(timer) {
+            return timer.tClass;
+        }
+
+        function timerExpired(timer) {
+            timer.tClass = 'clockExpired';
+            $scope.$apply();
         }
 
     }

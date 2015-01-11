@@ -389,6 +389,10 @@ body {
     font-size: 28px;
     color: #6291d0;
 }
+.clockExpired {
+    font-size:20px;
+    color: #000;
+}
 
 #pnlAddTimer {
     /*position: absolute;     top: 75px;     left: 400px; */

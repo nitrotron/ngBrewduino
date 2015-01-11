@@ -5,7 +5,7 @@
 </div>
 <div id="divCountdown" ng-repeat="timer in timers">
     <!--<timer countdown="timer.timer" interval="1000" finish-callback="timer.finished()">{{timer}} second{{timerS}}</timer>-->
-    <timer countdown="timer.timer" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}} </timer> {{timer.label}}
+    <span ng-class="timerClass(timer)"><timer countdown="timer.timer" interval="1000" finish-callback="timerExpired(timer)">{{hhours}}:{{mminutes}}:{{sseconds}} </timer> {{timer.label}}</span>
 </div>
 
 <div id="pnlAddTimer" ng-show="showAddTimerPanel">
