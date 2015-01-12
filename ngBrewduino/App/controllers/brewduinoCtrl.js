@@ -29,7 +29,7 @@
         $scope.rimsSettingVisible = rimsSettingVisible;
 
         $scope.showPnlAlarm = showPnlAlarm;
-        $scope.curPnlAlarm = {temperature: -15, whichAlarm: 'highAlarm', whichAlarmDis:''};
+        $scope.curPnlAlarm = {temperature: -15, whichAlarm: 'highAlarm', whichAlarmDis: ''};
 
         $scope.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
         $scope.btnCancelAlarmsClick = btnCancelAlarmsClick;
@@ -43,10 +43,10 @@
         $scope.addTimer = addTimer;
         $scope.startNewTimer = startNewTimer;
         $scope.cancelNewTimer = cancelNewTimer;
-        $scope.timerClass = timerClass;
+
         $scope.timerExpired = timerExpired;
 
-
+        var timerIndex = 0;
 
         function showRimsButton(thermoObj) {
             return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
@@ -70,7 +70,9 @@
             showWhichPnlAlarmId = id;
             $scope.curPnlAlarm.temperature = alarm;
             $scope.curPnlAlarm.whichAlarm = whichAlarm;
-            $scope.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm","").replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+            $scope.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm", "").replace(/\w\S*/g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
 
         }
 
@@ -100,9 +102,11 @@
             $scope.showAddTimerPanel = true;
         }
 
-        function startNewTimer(newTimer,newTimerLabel) {
+
+        function startNewTimer(newTimer, newTimerLabel) {
             $scope.showAddTimerPanel = false;
-            var myObj = {timer: (newTimer*60), label: newTimerLabel, tClass: 'clock' };
+            var myObj = {id: timerIndex, timer: (newTimer * 60), label: newTimerLabel, isActive: true};
+            timerIndex++;
             $scope.timers.push(myObj);
         }
 
@@ -110,12 +114,10 @@
             $scope.showAddTimerPanel = false;
         }
 
-        function timerClass(timer) {
-            return timer.tClass;
-        }
 
         function timerExpired(timer) {
-            timer.tClass = 'clockExpired';
+            timer.isActive = false;
+
             $scope.$apply();
         }
 
