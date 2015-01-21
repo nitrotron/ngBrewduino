@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="brewduinoApp">
+<html ng-app="app">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
@@ -8,8 +8,10 @@
     <link href="Fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css"/>
     <script src="3rdParty/script/angular.js"></script>
-    <script src='App/brewduinoApp.js'></script>
-    <script src="App/controllers/brewduinoCtrl.js"></script>
+    <script src='App/app.js'></script>
+    <script src="App/brewduino/brewduinoController.js"></script>
+    <script src="App/brewingThermometer/brewingThermometer.js"></script>
+    <script src="App/countDownTimer/countDownTimerController.js"></script>
     <script src="App/brewduinoStubData.js"></script>
     <script src="3rdParty/script/angular-timer.js"></script>
 </head>
@@ -17,10 +19,10 @@
 <div id="pnlMain">
     <div id="RimsPanelMain">
         <div id="RimsThermometers">
-            <div class="RimsThermometer" ng-include="'App/templates/brewingThermometer.html'"
-                 ng-repeat="thermometers in stubData.thermometers"></div>
+            <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
+                 ng-controller="brewingThermometer" ng-repeat="thermometers in stubData.thermometers"></div>
             <div class="CountDownTimer">
-                <div ng-include="'App/templates/countDownTimers.html'"></div>
+                <div ng-include="'App/countDownTimer/countDownTimer.html'" ng-controller="countDownTimer"></div>
             </div>
         </div>
     </div>

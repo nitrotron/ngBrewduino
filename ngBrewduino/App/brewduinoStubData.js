@@ -29,6 +29,6 @@
 
     };
 
-    angular.module('brewduinoApp')
+    angular.module('app')
         .value('stubData', stubData);
 })();

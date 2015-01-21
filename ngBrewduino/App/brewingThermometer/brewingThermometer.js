@@ -1,26 +1,17 @@
 /**
- * Created by jessica on 12/31/2014.
+ * Created by jessica on 1/20/2015.
  */
 (function () {
+    angular.module('app')
+        .controller('brewingThermometer', brewingThermometer);
 
-
-    function brewduinoCtrl($scope, stubData) {
+    function brewingThermometer($scope) {
         var makeRimsSettingsVisible = false;
-        $scope.message = 'hello world';
-        $scope.temp0 = "123.4";
-        $scope.temp1 = "23.4";
-        $scope.temp2 = "33.4";
-        $scope.temp3 = "13.4";
         $scope.rimsSetPoint = 2000;
         $scope.rimsWindowSize = 5000;
         $scope.rimsKp = 5;
         $scope.rimsKi = 0.5;
         $scope.rimsKd = 1;
-        $scope.timers = [];
-        $scope.newTimer = 0;
-        $scope.newTimerLabel = "";
-
-        $scope.stubData = stubData;
 
         $scope.openAlarmPanel = openAlarmPanel;
 
@@ -37,16 +28,17 @@
         $scope.btnUpdateRims_Click = btnUpdateRims_Click;
         $scope.btnUpdateRimsCancel_Click = btnUpdateRimsCancel_Click;
 
+        var showWhichPnlAlarmId = -1;
 
-        $scope.showAddTimerPanel = false;
+        function openAlarmPanel(alarm, whichAlarm, id) {
+            showWhichPnlAlarmId = id;
+            $scope.curPnlAlarm.temperature = alarm;
+            $scope.curPnlAlarm.whichAlarm = whichAlarm;
+            $scope.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm", "").replace(/\w\S*/g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
 
-        $scope.addTimer = addTimer;
-        $scope.startNewTimer = startNewTimer;
-        $scope.cancelNewTimer = cancelNewTimer;
-
-        $scope.timerExpired = timerExpired;
-
-        var timerIndex = 0;
+        }
 
         function showRimsButton(thermoObj) {
             return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
@@ -60,20 +52,8 @@
             return makeRimsSettingsVisible;
         }
 
-        var showWhichPnlAlarmId = -1;
-
         function showPnlAlarm(thermometer) {
             return (thermometer.id === showWhichPnlAlarmId)
-        }
-
-        function openAlarmPanel(alarm, whichAlarm, id) {
-            showWhichPnlAlarmId = id;
-            $scope.curPnlAlarm.temperature = alarm;
-            $scope.curPnlAlarm.whichAlarm = whichAlarm;
-            $scope.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm", "").replace(/\w\S*/g, function (txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            });
-
         }
 
         function btnUpdateAlarmsClick(thermometer) {
@@ -96,33 +76,5 @@
         function btnUpdateRimsCancel_Click() {
             makeRimsSettingsVisible = false;
         }
-
-
-        function addTimer() {
-            $scope.showAddTimerPanel = true;
-        }
-
-
-        function startNewTimer(newTimer, newTimerLabel) {
-            $scope.showAddTimerPanel = false;
-            var myObj = {id: timerIndex, timer: (newTimer * 60), label: newTimerLabel, isActive: true};
-            timerIndex++;
-            $scope.timers.push(myObj);
-        }
-
-        function cancelNewTimer() {
-            $scope.showAddTimerPanel = false;
-        }
-
-
-        function timerExpired(timer) {
-            timer.isActive = false;
-
-            $scope.$apply();
-        }
-
     }
-
-    angular.module('brewduinoApp')
-        .controller('brewduinoCtrl', brewduinoCtrl);
 })();
