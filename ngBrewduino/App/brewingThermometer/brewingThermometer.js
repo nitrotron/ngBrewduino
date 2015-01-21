@@ -7,7 +7,6 @@
 
     function brewingThermometer() {
         var vm = this;
-        var makeRimsSettingsVisible = false;
         vm.rimsSetPoint = 2000;
         vm.rimsWindowSize = 5000;
         vm.rimsKp = 5;
@@ -18,7 +17,7 @@
 
         vm.showRimsButton = showRimsButton;
         vm.showRimsSettings = showRimsSettings;
-        vm.rimsSettingVisible = rimsSettingVisible;
+        vm.rimsSettingVisible = false;
 
         vm.showPnlAlarm = showPnlAlarm;
         vm.curPnlAlarm = {temperature: -15, whichAlarm: 'highAlarm', whichAlarmDis: ''};
@@ -46,12 +45,9 @@
         }
 
         function showRimsSettings() {
-            makeRimsSettingsVisible = (makeRimsSettingsVisible == true) ? false : true;
+            vm.rimsSettingVisible = (vm.rimsSettingVisible == true) ? false : true;
         }
 
-        function rimsSettingVisible() {
-            return makeRimsSettingsVisible;
-        }
 
         function showPnlAlarm(thermometer) {
             return (thermometer.id === showWhichPnlAlarmId)
@@ -71,11 +67,11 @@
         }
 
         function btnUpdateRims_Click() {
-            makeRimsSettingsVisible = false;
+            vm.rimsSettingVisible = false;
         }
 
         function btnUpdateRimsCancel_Click() {
-            makeRimsSettingsVisible = false;
+            vm.rimsSettingVisible = false;
         }
     }
 })();

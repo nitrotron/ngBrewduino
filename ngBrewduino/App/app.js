@@ -1,3 +1,3 @@
 (function () {
-    angular.module('app',['timer']);
+    angular.module('app', ['timer']);
 }());
