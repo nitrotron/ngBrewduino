@@ -1,20 +1,20 @@
-<div id="btnShowNewTimerPanel" class="Clickable" ng-click="addTimer()">
+<div id="btnShowNewTimerPanel" class="Clickable" ng-click="countDownTimer.addTimer()">
     <i class="fa fa-fa fa-clock-o"></i>Click for New Timer
 </div>
 <div style="width: 210px">
 </div>
-<div id="divCountdown" ng-repeat="timer in timers">
+<div id="divCountdown" ng-repeat="timer in countDownTimer.timers">
     <!--<timer countdown="timer.timer" interval="1000" finish-callback="timer.finished()">{{timer}} second{{timerS}}</timer>-->
-    <span ng-class="{true: 'clock',false: 'clockExpired'}[timer.isActive]"><timer countdown="timer.timer" interval="1000" finish-callback="timerExpired(timer)">{{hhours}}:{{mminutes}}:{{sseconds}} </timer> {{timer.label}}</span>
+    <span ng-class="{true: 'clock',false: 'clockExpired'}[timer.isActive]"><timer countdown="timer.timer" interval="1000" finish-callback="countDownTimer.timerExpired(timer)">{{hhours}}:{{mminutes}}:{{sseconds}} </timer> {{timer.label}}</span>
 </div>
 
-<div id="pnlAddTimer" ng-show="showAddTimerPanel">
+<div id="pnlAddTimer" ng-show="countDownTimer.showAddTimerPanel">
     <table>
         <tr>
             <td>
             </td>
             <td style="text-align: right;">
-                <span id="dvCancelTimer" class="cancelX" ng-click="cancelNewTimer()">X</span>
+                <span id="dvCancelTimer" class="cancelX" ng-click="countDownTimer.cancelNewTimer()">X</span>
             </td>
         </tr>
         <tr>
@@ -37,7 +37,7 @@
             <td>
             </td>
             <td style="text-align: right;">
-                <button type="button" id="btnAddNewTimer" ng-click="startNewTimer(newTimer, newTimerLabel)">Start</button>
+                <button type="button" id="btnAddNewTimer" ng-click="countDownTimer.startNewTimer(newTimer, newTimerLabel)">Start</button>
             </td>
         </tr>
     </table>

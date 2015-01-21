@@ -7,29 +7,30 @@
 
 
     function countDownTimer($scope) {
-        $scope.timers = [];
-        $scope.showAddTimerPanel = false;
-        $scope.addTimer = addTimer;
-        $scope.startNewTimer = startNewTimer;
-        $scope.cancelNewTimer = cancelNewTimer;
-        $scope.timerExpired = timerExpired;
-        $scope.removeExpiredTimers = removeExpiredTimers;
+        var vm = this;
+        vm.timers = [];
+        vm.showAddTimerPanel = false;
+        vm.addTimer = addTimer;
+        vm.startNewTimer = startNewTimer;
+        vm.cancelNewTimer = cancelNewTimer;
+        vm.timerExpired = timerExpired;
+        vm.removeExpiredTimers = removeExpiredTimers;
         var timerIndex = 0;
 
         function addTimer() {
-            $scope.showAddTimerPanel = true;
+            vm.showAddTimerPanel = true;
         }
 
 
         function startNewTimer(newTimer, newTimerLabel) {
-            $scope.showAddTimerPanel = false;
+            vm.showAddTimerPanel = false;
             var myObj = {id: timerIndex, timer: (newTimer * 60), label: newTimerLabel, isActive: true};
             timerIndex++;
-            $scope.timers.push(myObj);
+            vm.timers.push(myObj);
         }
 
         function cancelNewTimer() {
-            $scope.showAddTimerPanel = false;
+            vm.showAddTimerPanel = false;
         }
 
 
@@ -39,7 +40,7 @@
         }
 
         function removeExpiredTimers() {
-            $scope.timers.filter(function (timer) {
+            vm.timers.filter(function (timer) {
                 return timer.isActive;
             });
         }

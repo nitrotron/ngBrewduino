@@ -22,7 +22,7 @@
             <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
                  ng-controller="brewingThermometer" ng-repeat="thermometers in stubData.thermometers"></div>
             <div class="CountDownTimer">
-                <div ng-include="'App/countDownTimer/countDownTimer.html'" ng-controller="countDownTimer"></div>
+                <div ng-include="'App/countDownTimer/countDownTimer.html'" ng-controller="countDownTimer as countDownTimer"></div>
             </div>
         </div>
     </div>
