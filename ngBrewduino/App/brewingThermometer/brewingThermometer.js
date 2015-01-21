@@ -20,7 +20,7 @@
         vm.rimsSettingVisible = false;
 
         vm.showPnlAlarm = showPnlAlarm;
-        vm.curPnlAlarm = {temperature: -15, whichAlarm: 'highAlarm', whichAlarmDis: ''};
+        vm.curPnlAlarm = {};
 
         vm.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
         vm.btnCancelAlarmsClick = btnCancelAlarmsClick;
