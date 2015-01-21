@@ -5,36 +5,37 @@
     angular.module('app')
         .controller('brewingThermometer', brewingThermometer);
 
-    function brewingThermometer($scope) {
+    function brewingThermometer() {
+        var vm = this;
         var makeRimsSettingsVisible = false;
-        $scope.rimsSetPoint = 2000;
-        $scope.rimsWindowSize = 5000;
-        $scope.rimsKp = 5;
-        $scope.rimsKi = 0.5;
-        $scope.rimsKd = 1;
+        vm.rimsSetPoint = 2000;
+        vm.rimsWindowSize = 5000;
+        vm.rimsKp = 5;
+        vm.rimsKi = 0.5;
+        vm.rimsKd = 1;
 
-        $scope.openAlarmPanel = openAlarmPanel;
+        vm.openAlarmPanel = openAlarmPanel;
 
-        $scope.showRimsButton = showRimsButton;
-        $scope.showRimsSettings = showRimsSettings;
-        $scope.rimsSettingVisible = rimsSettingVisible;
+        vm.showRimsButton = showRimsButton;
+        vm.showRimsSettings = showRimsSettings;
+        vm.rimsSettingVisible = rimsSettingVisible;
 
-        $scope.showPnlAlarm = showPnlAlarm;
-        $scope.curPnlAlarm = {temperature: -15, whichAlarm: 'highAlarm', whichAlarmDis: ''};
+        vm.showPnlAlarm = showPnlAlarm;
+        vm.curPnlAlarm = {temperature: -15, whichAlarm: 'highAlarm', whichAlarmDis: ''};
 
-        $scope.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
-        $scope.btnCancelAlarmsClick = btnCancelAlarmsClick;
+        vm.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
+        vm.btnCancelAlarmsClick = btnCancelAlarmsClick;
 
-        $scope.btnUpdateRims_Click = btnUpdateRims_Click;
-        $scope.btnUpdateRimsCancel_Click = btnUpdateRimsCancel_Click;
+        vm.btnUpdateRims_Click = btnUpdateRims_Click;
+        vm.btnUpdateRimsCancel_Click = btnUpdateRimsCancel_Click;
 
         var showWhichPnlAlarmId = -1;
 
         function openAlarmPanel(alarm, whichAlarm, id) {
             showWhichPnlAlarmId = id;
-            $scope.curPnlAlarm.temperature = alarm;
-            $scope.curPnlAlarm.whichAlarm = whichAlarm;
-            $scope.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm", "").replace(/\w\S*/g, function (txt) {
+            vm.curPnlAlarm.temperature = alarm;
+            vm.curPnlAlarm.whichAlarm = whichAlarm;
+            vm.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm", "").replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
 
@@ -57,9 +58,9 @@
         }
 
         function btnUpdateAlarmsClick(thermometer) {
-            if (angular.isNumber($scope.curPnlAlarm.temperature)) {
-                if (angular.isDefined(thermometer[$scope.curPnlAlarm.whichAlarm]))
-                    thermometer[$scope.curPnlAlarm.whichAlarm] = $scope.curPnlAlarm.temperature;
+            if (angular.isNumber(vm.curPnlAlarm.temperature)) {
+                if (angular.isDefined(thermometer[vm.curPnlAlarm.whichAlarm]))
+                    thermometer[vm.curPnlAlarm.whichAlarm] = vm.curPnlAlarm.temperature;
 
                 showWhichPnlAlarmId = -1;
             }
