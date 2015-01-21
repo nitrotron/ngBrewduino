@@ -16,59 +16,69 @@
         </div>
         <div id="pnlRimsButton" ng-if="showRimsButton(thermometers)">
             <span ng-click="showRimsSettings()" class="Clickable"> <i class='icon-beer'></i>RIMS Settings</span>
-            <table ng-show="rimsSettingVisible()" ng-class="pnlRimsControls">
-                <tr>
-                    <td class="RimsSettingLabel">Set Point:
-                    </td>
-                    <td class="RimsSettingTB">
-                        <input type="number" id="tbSetPoint" ng-model="rimsSetPoint"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="RimsSettingLabel">WindowSize:
-                    </td>
-                    <td class="RimsSettingTB">
-                        <input type="number" id="tbWindowSize" ng-model="rimsWindowSize"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="RimsSettingLabel">Kp:
-                    </td>
-                    <td class="RimsSettingTB">
-                        <input type="number" id="tbKp" ng-model="rimsKp"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="RimsSettingLabel">Ki:
-                    </td>
-                    <td class="RimsSettingTB">
-                        <input type="number" id="tbKi" ng-model="rimsKi"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="RimsSettingLabel">Kd:
-                    </td>
-                    <td class="RimsSettingTB">
-                        <input type="number" id="tbKd" ng-model="rimsKd"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="RimsSettingTB">
-                        <button id="btnUpdateRims" ng-click="btnUpdateRims_Click()" class="btnUpdateRims">Submit
-                        </button>
-                        <button id="btnUpdateRimsCancel" ng-click="btnUpdateRimsCancel_Click()" class="btnUpdateRims">
-                            Cancel
-                        </button>
-                    </td>
-                </tr>
-            </table>
+
+            <form name="rimsForm ">
+                <table ng-show="rimsSettingVisible()" class="pnlRimsControls">
+                    <tr>
+                        <td class="RimsSettingLabel">Set Point:
+                        </td>
+                        <td class="RimsSettingTB">
+                            <input type="number" id="tbSetPoint" ng-model="rimsSetPoint"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="RimsSettingLabel">WindowSize:
+                        </td>
+                        <td class="RimsSettingTB">
+                            <input type="number" id="tbWindowSize" ng-model="rimsWindowSize"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="RimsSettingLabel">Kp:
+                        </td>
+                        <td class="RimsSettingTB">
+                            <input type="number" id="tbKp" ng-model="rimsKp"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="RimsSettingLabel">Ki:
+                        </td>
+                        <td class="RimsSettingTB">
+                            <input type="number" id="tbKi" ng-model="rimsKi"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="RimsSettingLabel">Kd:
+                        </td>
+                        <td class="RimsSettingTB">
+                            <input type="number" id="tbKd" ng-model="rimsKd"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <span class="error" ng-show="rimsForm.tbSetPoint.$error.number">ERROR!</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="RimsSettingTB">
+                            <button id="btnUpdateRims" ng-click="btnUpdateRims_Click()" class="btnUpdateRims">Submit
+                            </button>
+                            <button id="btnUpdateRimsCancel" ng-click="btnUpdateRimsCancel_Click()"
+                                    class="btnUpdateRims">
+                                Cancel
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
         <div id="pnlSetAlarm" class="PanelOverlay" ng-show="showPnlAlarm(thermometers)">
             <form name="alarmForm">
                 <span id="lblAlarmTitle">{{curPnlAlarm.whichAlarmDis}} Alarm</span>
                 <br/>
-                <input type="number" id="tbAlarm" name='tbAlarm' Width="33%" min="-67" max="257" ng-model="curPnlAlarm.temperature">
+                <input type="number" id="tbAlarm" name='tbAlarm' Width="33%" min="-67" max="257"
+                       ng-model="curPnlAlarm.temperature">
                 <span class="error" ng-show="alarmForm.tbAlarm.$error.number">ERROR!</span>
                 <button id="btnUpdateAlarms" ng-click="btnUpdateAlarmsClick(thermometers)">Update</button>
                 <button id="btnCancelAlarms" ng-click="btnCancelAlarmsClick()">Cancel</button>
