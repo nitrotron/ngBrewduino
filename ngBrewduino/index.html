@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="app">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
     <!--<link rel="stylesheet" href="3rdParty/css/bootstrap.min.css"/>-->
-    <link rel="stylesheet" href="Style/Site.css"/>
-    <link href="Fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="Style/Site.css" />
+    <link href="Fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css" />
     <script src="3rdParty/script/angular.js"></script>
     <script src='App/app.js'></script>
     <script src="App/brewduino/brewduinoController.js"></script>
@@ -15,48 +15,46 @@
     <script src="App/brewduinoStubData.js"></script>
     <script src="3rdParty/script/angular-timer.js"></script>
 </head>
-<body ng-controller="brewduinoCtrl">
-<div id="pnlMain">
-    <div id="RimsPanelMain">
-        <div id="RimsThermometers">
-            <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
-                 ng-repeat="thermometers in stubData.thermometers"></div>
-            <div class="CountDownTimer">
-                <div ng-include="'App/countDownTimer/countDownTimer.html'"></div>
-            </div>
-        </div>
-        <div id="buttonRow">
-            <div class="SwitchWrapper">
-                <div class="switch" id="switchReset">
-                    <label>
-                        <input type="checkbox" ><i class='icon-attention-alt'></i>Alarm
-                    </label>
-                    <!--<asp:CheckBox ID="btnResetAlarm" runat="server" AutoPostBack="true" OnCheckedChanged="btnResetAlarm_OnClick"-->
-                                  <!--Text="<i class='icon-attention-alt'></i>Alarm" />-->
+<body ng-controller="brewduinoCtrl as brewduino">
+    <div id="pnlMain">
+        <div id="RimsPanelMain">
+            <div id="RimsThermometers">
+                <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
+                     ng-repeat="thermometers in brewduino.stubData.thermometers"></div>
+                <div class="CountDownTimer">
+                    <div ng-include="'App/countDownTimer/countDownTimer.html'"></div>
                 </div>
             </div>
-            <!--<div class="SwitchWrapper">-->
-                <!--<div class="switch" id="switchRimsOn">-->
-                    <!--<asp:CheckBox ID="chkRimsOn" runat="server" AutoPostBack="true" Text="<i class='icon-fire-1'></i>RIMS"-->
-                                  <!--OnCheckedChanged="chkRimsOn_CheckedChanged" />-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="SwitchWrapper">-->
-                <!--<div class="switch" id="switchPumpOn">-->
-                    <!--<asp:CheckBox ID="chPumpOn" runat="server" AutoPostBack="true" Text="<i class='icon-off'></i>Pump"-->
-                                  <!--OnCheckedChanged="chPumpOn_CheckedChanged" />-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="SwitchWrapper">-->
-                <!--<div class="switch" id="switchAuxPower">-->
-                    <!--<asp:CheckBox ID="chAuxPower" runat="server" AutoPostBack="true" Text="<i class='icon-off'></i>Aux"-->
-                                  <!--OnCheckedChanged="chAuxPower_CheckedChanged" />-->
-                <!--</div>-->
-            <!--</div>-->
-            <span class="Stretch" />
+            <div id="buttonRow">
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchReset">
+                        <input type="checkbox" ng-model="brewduino.alarmBtn" ng-click="brewduino.alarmClick(brewduino.alarmBtn)" />
+                        <label><i class='icon-attention-alt'></i>Alarm</label>
+                    </div>
+                </div>
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchRimsOn">
+                        <input type="checkbox" />
+                        <label><i class="icon-fire-1"></i>RIMS</label>
+
+                    </div>
+                </div>
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchPumpOn">
+                        <input type="checkbox" />
+                        <label><i class="icon-off"></i>Pump</label>
+                    </div>
+                </div>
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchAuxPower">
+                        <input type="checkbox" />
+                        <label><i class="icon-off"></i>Aux</label>
+                    </div>
+                </div>
+                <span class="Stretch" />
+            </div>
         </div>
     </div>
-</div>
 
 </body>
 </html>

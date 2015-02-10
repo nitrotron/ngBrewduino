@@ -5,8 +5,16 @@
     angular.module('app')
         .controller('brewduinoCtrl', brewduinoCtrl);
 
-    function brewduinoCtrl($scope, stubData) {
-        $scope.stubData = stubData;
+    function brewduinoCtrl(stubData) {
+        var vm = this;
+        vm.stubData = stubData;
+
+        vm.alarmClick = alarmClick;
+
+
+        function alarmClick(alarm) {
+            console.log('You just clicked alarm = ' + alarm);
+        }
     }
 
 })();
