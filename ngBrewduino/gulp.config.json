@@ -1,0 +1,18 @@
+﻿{  
+   "vendorjs":[  
+      "./3rdParty/script/angular.js",
+	  "./3rdParty/script/angular-timer.min.js"
+   ],
+   "build":"./build/",
+   "js":[  
+      "./App/app.js",
+      "./App/**/*.js"
+      ],
+   "css":[  
+      "./Style/Site.css"
+   ],
+   "vendorcss":[  
+      "./3rdParty/css/bootstrap.min.css",
+      "./3rdParty/css/bootstrap-theme.css"
+   ]
+}

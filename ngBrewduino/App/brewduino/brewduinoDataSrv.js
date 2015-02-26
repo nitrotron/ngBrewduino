@@ -9,14 +9,19 @@
     function brewduionoDataSrv($http, basePortUrl) {
         var currentStatus = {};
         return {
-            getStatus: _getStatus
-        }
+            getStatus:getStatus,
+            sendCmd: sendCmd
+        };
 
-        function _getStatus(statusData) {
-            var statusUrl = basePortUrl + "/GetStatus"
+        function getStatus(statusData) {
+            var statusUrl = basePortUrl + '/GetStatus';
             return $http.get(statusUrl).success(function (data) {
                 statusData = data;
             });
+        }
+        function sendCmd(whichCmd, args) {
+            var cmdUrl = basePortUrl + '/SendCommand/' + whichCmd + '/' + args;
+            return $http.post(cmdUrl);
         }
 
         function parseStatus(data) {

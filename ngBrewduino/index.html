@@ -15,7 +15,7 @@
     <script src="App/brewingThermometer/brewingThermometer.js"></script>
     <script src="App/countDownTimer/countDownTimerController.js"></script>
     <script src="App/brewduinoStubData.js"></script>
-    <script src="App/brewduino/brewduinoCmdsVal.js"></script>
+    <script src="App/brewduino/brewduinoCmdsSrv.js"></script>
     <script src="3rdParty/script/angular-timer.js"></script>
 </head>
 <body ng-controller="brewduinoCtrl as brewduino">
@@ -23,7 +23,8 @@
         <div id="RimsPanelMain">
             <div id="RimsThermometers">
                 <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
-                     ng-repeat="thermometers in brewduino.stubData.thermometers"></div>
+                    ng-repeat="thermometers in brewduino.stubData.thermometers">
+                </div>
                 <div class="CountDownTimer">
                     <div ng-include="'App/countDownTimer/countDownTimer.html'"></div>
                 </div>

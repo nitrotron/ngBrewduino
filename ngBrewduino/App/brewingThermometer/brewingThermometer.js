@@ -25,8 +25,8 @@
         vm.btnUpdateAlarmsClick = btnUpdateAlarmsClick;
         vm.btnCancelAlarmsClick = btnCancelAlarmsClick;
 
-        vm.btnUpdateRims_Click = btnUpdateRims_Click;
-        vm.btnUpdateRimsCancel_Click = btnUpdateRimsCancel_Click;
+        vm.btnUpdateRimsClick = btnUpdateRimsClick;
+        vm.btnUpdateRimsCancelClick = btnUpdateRimsCancelClick;
 
         var showWhichPnlAlarmId = -1;
 
@@ -34,29 +34,30 @@
             showWhichPnlAlarmId = id;
             vm.curPnlAlarm.temperature = alarm;
             vm.curPnlAlarm.whichAlarm = whichAlarm;
-            vm.curPnlAlarm.whichAlarmDis = whichAlarm.replace("Alarm", "").replace(/\w\S*/g, function (txt) {
+            vm.curPnlAlarm.whichAlarmDis = whichAlarm.replace('Alarm', '').replace(/\w\S*/g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             });
 
         }
 
         function showRimsButton(thermoObj) {
-            return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS == true)
+            return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS === true);
         }
 
         function showRimsSettings() {
-            vm.rimsSettingVisible = (vm.rimsSettingVisible == true) ? false : true;
+            vm.rimsSettingVisible = (vm.rimsSettingVisible === true) ? false : true;
         }
 
 
         function showPnlAlarm(thermometer) {
-            return (thermometer.id === showWhichPnlAlarmId)
+            return (thermometer.id === showWhichPnlAlarmId);
         }
 
         function btnUpdateAlarmsClick(thermometer) {
             if (angular.isNumber(vm.curPnlAlarm.temperature)) {
-                if (angular.isDefined(thermometer[vm.curPnlAlarm.whichAlarm]))
+                if (angular.isDefined(thermometer[vm.curPnlAlarm.whichAlarm])) {
                     thermometer[vm.curPnlAlarm.whichAlarm] = vm.curPnlAlarm.temperature;
+                }
 
                 showWhichPnlAlarmId = -1;
             }
@@ -66,11 +67,11 @@
             showWhichPnlAlarmId = -1;
         }
 
-        function btnUpdateRims_Click() {
+        function btnUpdateRimsClick() {
             vm.rimsSettingVisible = false;
         }
 
-        function btnUpdateRimsCancel_Click() {
+        function btnUpdateRimsCancelClick() {
             vm.rimsSettingVisible = false;
         }
     }
