@@ -6,16 +6,22 @@
     angular.module('app')
         .factory('brewduionoDataSrv', brewduionoDataSrv);
 
-    function brewduionoDataSrv($http,basePortUrl) {
+    function brewduionoDataSrv($http, basePortUrl) {
+        var currentStatus = {};
         return {
             getStatus: _getStatus
         }
 
         function _getStatus(statusData) {
             var statusUrl = basePortUrl + "/GetStatus"
-            $http.get(statusUrl).success(function (data) {
+            return $http.get(statusUrl).success(function (data) {
                 statusData = data;
             });
+        }
+
+        function parseStatus(data) {
+            var inData = JSON.deserialize(data);
+            
         }
     }
 }
