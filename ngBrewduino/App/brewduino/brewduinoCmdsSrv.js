@@ -49,7 +49,7 @@
             setPidKd: setPidKd,
             setPumpsPower: setPumpsPower,
             setRimsPower: setRimsPower,
-            setTimer: setTimer
+            setTimer: setTimer 
         };
 
         function clearAlarms(whichThermo) {

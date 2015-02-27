@@ -5,7 +5,7 @@
     angular.module('app')
         .controller('brewingThermometer', brewingThermometer);
 
-    function brewingThermometer() {
+    function brewingThermometer(brewduinoCmdsSrv) {
         var vm = this;
         vm.rimsSetPoint = 2000;
         vm.rimsWindowSize = 5000;
@@ -57,6 +57,12 @@
             if (angular.isNumber(vm.curPnlAlarm.temperature)) {
                 if (angular.isDefined(thermometer[vm.curPnlAlarm.whichAlarm])) {
                     thermometer[vm.curPnlAlarm.whichAlarm] = vm.curPnlAlarm.temperature;
+                    if (vm.curPnlAlarm.whichAlarm === 'highAlarm') {
+                        brewduinoCmdsSrv.setTempAlarmHigh(thermometer.id, vm.curPnlAlarm.temperature);
+                    }
+                    else if (vm.curPnlAlarm.whichAlarm === 'lowAlarm') {
+                        brewduinoCmdsSrv.setTempAlarmLow(thermometer.id, vm.curPnlAlarm.temperature);
+                    }
                 }
 
                 showWhichPnlAlarmId = -1;
@@ -69,6 +75,11 @@
 
         function btnUpdateRimsClick() {
             vm.rimsSettingVisible = false;
+            brewduinoCmdsSrv.setPidSetPoint(vm.rimsSetPoint);
+            brewduinoCmdsSrv.setPidWindowSize(vm.rimsWindowSize);
+            brewduinoCmdsSrv.setPidKp(vm.rimsKp);
+            brewduinoCmdsSrv.setPidKi(vm.rimsKi);
+            brewduinoCmdsSrv.setPidKd(vm.rimsKd);
         }
 
         function btnUpdateRimsCancelClick() {
