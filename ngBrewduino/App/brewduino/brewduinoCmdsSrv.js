@@ -68,10 +68,10 @@
             return brewduionoDataSrv.sendCmd(cmds.setTempAlarmLow, whichThermo + ',' + temp);
         }
         function setPidSetPoint(setPoint) {
-            return brewduionoDataSrv.sendCmd(cmds.setPidSetPoint, setPoint);
+            return brewduionoDataSrv.sendCmd(cmds.setPIDSetPoint, setPoint);
         }
         function setPidWindowSize(windowSize) {
-            return brewduionoDataSrv.sendCmd(cmds.setPidWindowSize, windowSize);
+            return brewduionoDataSrv.sendCmd(cmds.setPIDWindowSize, windowSize);
         }
         function setPidKp(kp) {
             return brewduionoDataSrv.sendCmd(cmds.setPIDKp, kp);

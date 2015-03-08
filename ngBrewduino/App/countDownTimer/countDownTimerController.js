@@ -6,7 +6,7 @@
         .controller('countDownTimer', countDownTimer);
 
 
-    function countDownTimer($scope) {
+    function countDownTimer($scope, brewduinoCmdsSrv) {
         var vm = this;
         vm.timers = [];
         vm.showAddTimerPanel = false;
@@ -27,6 +27,7 @@
             var myObj = {id: timerIndex, timer: (newTimer * 60), label: newTimerLabel, isActive: true};
             timerIndex++;
             vm.timers.push(myObj);
+            brewduinoCmdsSrv.setTimer(newTimer); 
         }
 
         function cancelNewTimer() {
