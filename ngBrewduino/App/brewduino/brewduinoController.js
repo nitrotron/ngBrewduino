@@ -21,7 +21,6 @@
         }
 
         function alarmClick(alarm) {
-            console.log('You just clicked alarm = ' + alarm);
             brewduinoCmdsSrv.resetAlarm();
         }
 

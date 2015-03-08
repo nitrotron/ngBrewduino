@@ -58,10 +58,10 @@
                 if (angular.isDefined(thermometer[vm.curPnlAlarm.whichAlarm])) {
                     thermometer[vm.curPnlAlarm.whichAlarm] = vm.curPnlAlarm.temperature;
                     if (vm.curPnlAlarm.whichAlarm === 'highAlarm') {
-                        brewduinoCmdsSrv.setTempAlarmHigh(thermometer.id, vm.curPnlAlarm.temperature);
+                        brewduinoCmdsSrv.setHighAlarms(thermometer.id, vm.curPnlAlarm.temperature);
                     }
                     else if (vm.curPnlAlarm.whichAlarm === 'lowAlarm') {
-                        brewduinoCmdsSrv.setTempAlarmLow(thermometer.id, vm.curPnlAlarm.temperature);
+                        brewduinoCmdsSrv.setLowAlarms(thermometer.id, vm.curPnlAlarm.temperature);
                     }
                 }
 
