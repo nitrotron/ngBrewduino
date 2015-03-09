@@ -16,10 +16,10 @@
             getTempAlarms: 6,
             setTempAlarmHigh: 7,
             setTempAlarmLow: 8,
-            clearTempAlarms: 9, 
+            clearTempAlarms: 9,
             getTimer: 10,
             setTimer: 11,
-            resetAlarm: 12, 
+            resetAlarm: 12,
             getAlarmStatus: 13,
             startLogging: 14,
             stopLogging: 15,
@@ -49,7 +49,7 @@
             setPidKd: setPidKd,
             setPumpsPower: setPumpsPower,
             setRimsPower: setRimsPower,
-            setTimer: setTimer 
+            setTimer: setTimer
         };
 
         function clearAlarms(whichThermo) {
@@ -59,7 +59,7 @@
             return brewduionoDataSrv.sendCmd(cmds.resetAlarm, '');
         }
         function setAuxPower(isPowerOn) {
-            return brewduionoDataSrv.sendCmd(cmds.turnOnAux, isPowerOn);
+            return brewduionoDataSrv.sendCmd(cmds.turnOnAux, isPowerOn ? 1 : 0);
         }
         function setHighAlarms(whichThermo, temp) {
             return brewduionoDataSrv.sendCmd(cmds.setTempAlarmHigh, whichThermo + ',' + temp);
@@ -83,10 +83,10 @@
             return brewduionoDataSrv.sendCmd(cmds.setPIDKd, kd);
         }
         function setPumpsPower(isPowerOn) {
-            return brewduionoDataSrv.sendCmd(cmds.turnOnPump, isPowerOn);
+            return brewduionoDataSrv.sendCmd(cmds.turnOnPump, isPowerOn ? 1 : 0);
         }
         function setRimsPower(isPowerOn) {
-            return brewduionoDataSrv.sendCmd(cmds.turnOnRims, isPowerOn);
+            return brewduionoDataSrv.sendCmd(cmds.turnOnRims, isPowerOn ? 1 : 0);
         }
         function setTimer(minutes) {
             return brewduionoDataSrv.sendCmd(cmds.setTimer, minutes);
