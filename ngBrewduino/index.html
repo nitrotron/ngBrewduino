@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="Style/Site.css" />
     <link href="Fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body ng-controller="brewduinoCtrl as brewduino">
+    <!--<div ng-include="'App/brewduino/brewduino.html'"></div>-->
+    <div ui-view></div>
+
+
+
     <script src="3rdParty/script/angular.js"></script>
     <script src='App/app.js'></script>
     <script src="App/appCfg.js"></script>
@@ -17,48 +25,8 @@
     <script src="App/brewduinoStubData.js"></script>
     <script src="App/brewduino/brewduinoCmdsSrv.js"></script>
     <script src="3rdParty/script/angular-timer.js"></script>
-</head>
-<body ng-controller="brewduinoCtrl as brewduino">
-    <div id="pnlMain">
-        <div id="RimsPanelMain">
-            <div id="RimsThermometers">
-                <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
-                    ng-repeat="thermometers in brewduino.stubData.thermometers">
-                </div>
-                <div class="CountDownTimer">
-                    <div ng-include="'App/countDownTimer/countDownTimer.html'"></div>
-                </div>
-            </div>
-            <div id="buttonRow">
-                <div class="SwitchWrapper">
-                    <div class="switch" id="switchReset">
-                        <input type="checkbox" ng-model="brewduino.alarmBtn" ng-click="brewduino.alarmClick(brewduino.alarmBtn)" />
-                        <label><i class='icon-attention-alt'></i>Alarm</label>
-                    </div>
-                </div>
-                <div class="SwitchWrapper">
-                    <div class="switch" id="switchRimsOn">
-                        <input type="checkbox" ng-model="brewduino.rimsBtn" ng-click="brewduino.rimsClick(brewduino.rimsBtn)"  />
-                        <label><i class="icon-fire-1"></i>RIMS</label>
-
-                    </div>
-                </div>
-                <div class="SwitchWrapper">
-                    <div class="switch" id="switchPumpOn">
-                        <input type="checkbox" ng-model="brewduino.pumpBtn" ng-click="brewduino.pumpClick(brewduino.pumpBtn)"    />
-                        <label><i class="icon-off"></i>Pump</label>
-                    </div>
-                </div>
-                <div class="SwitchWrapper">
-                    <div class="switch" id="switchAuxPower">
-                        <input type="checkbox" ng-model="brewduino.auxBtn" ng-click="brewduino.auxClick(brewduino.auxBtn)"      />
-                        <label><i class="icon-off"></i>Aux</label>
-                    </div>
-                </div>
-                <span class="Stretch"></span> 
-            </div>
-        </div>
-    </div>
-
+    <script src="3rdParty/script/angular-ui-router.js"></script>
+    <script src="App/appRouter.js"></script>
+    <script src="App/countDownTimer/countDownTimerVal.js"></script>
 </body>
 </html>

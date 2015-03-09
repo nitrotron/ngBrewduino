@@ -4,46 +4,42 @@
     </div>
     <div style="width: 210px">
     </div>
-    <div id="divCountdown" ng-repeat="timer in countDownTimer.timers">
-        <!--<timer countdown="timer.timer" interval="1000" finish-callback="timer.finished()">{{timer}} second{{timerS}}</timer>-->
-        <span ng-class="{true: 'clock',false: 'clockExpired'}[timer.isActive]"><timer countdown="timer.timer"
-                                                                                      interval="1000"
-                                                                                      finish-callback="countDownTimer.timerExpired(timer)">
-            {{hhours}}:{{mminutes}}:{{sseconds}}
-        </timer> {{timer.label}}</span>
+    <div id="divCountdown" ng-repeat="timer in countDownTimer.timers"> {{timer}} 123 {{timer}}
+        <span ng-class="{true: 'clock',false: 'clockExpired'}[timer.isActive]">
+           
+            <timer countdown="countDownTimer.getTimer(timer.timer)" interval="1000" finish-callback="countDownTimer.timerExpired(timer)">
+                {{hhours}}:{{mminutes}}:{{sseconds}}
+            </timer> {{timer.label}} {{timer}}</span>
     </div>
 
     <div id="pnlAddTimer" ng-show="countDownTimer.showAddTimerPanel">
         <table>
             <tr>
-                <td>
-                </td>
+                <td></td>
                 <td style="text-align: right;">
                     <span id="dvCancelTimer" class="cancelX" ng-click="countDownTimer.cancelNewTimer()">X</span>
                 </td>
             </tr>
             <tr>
-                <td style="text-align: right; width: 20%;">
-                    Minutes:
+                <td style="text-align: right; width: 20%;">Minutes:
                 </td>
                 <td style="text-align: left;">
                     <input type="number" id="tbNewTime" name="tbNewTime" ng-model="newTimer">
                 </td>
             </tr>
             <tr>
-                <td style="text-align: right;">
-                    Title:
+                <td style="text-align: right;">Title:
                 </td>
                 <td style="text-align: left;">
                     <input type="text" id="tbTimerLabel" name="tbTimerLabel" ng-model="newTimerLabel">
                 </td>
             </tr>
             <tr>
-                <td>
-                </td>
+                <td></td>
                 <td style="text-align: right;">
                     <button type="button" id="btnAddNewTimer"
-                            ng-click="countDownTimer.startNewTimer(newTimer, newTimerLabel)">Start
+                        ng-click="countDownTimer.startNewTimer(newTimer, newTimerLabel)">
+                        Start
                     </button>
                 </td>
             </tr>

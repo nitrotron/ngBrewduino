@@ -1,1 +1,41 @@
-﻿
+﻿   <div id="pnlMain">
+        <div id="RimsPanelMain">
+            <div id="RimsThermometers">
+                <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
+                    ng-repeat="thermometers in brewduino.stubData.thermometers">
+                </div>
+                <div class="CountDownTimer">
+                    <div ng-include="'App/countDownTimer/countDownTimer.html'"></div>
+                </div>
+            </div>
+            <div id="buttonRow">
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchReset">
+                        <input type="checkbox" ng-model="brewduino.alarmBtn" ng-click="brewduino.alarmClick(brewduino.alarmBtn)" />
+                        <label><i class='icon-attention-alt'></i>Alarm</label>
+                    </div>
+                </div>
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchRimsOn">
+                        <input type="checkbox" ng-model="brewduino.rimsBtn" ng-click="brewduino.rimsClick(brewduino.rimsBtn)"  />
+                        <label><i class="icon-fire-1"></i>RIMS</label>
+
+                    </div>
+                </div>
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchPumpOn">
+                        <input type="checkbox" ng-model="brewduino.pumpBtn" ng-click="brewduino.pumpClick(brewduino.pumpBtn)"    />
+                        <label><i class="icon-off"></i>Pump</label>
+                    </div>
+                </div>
+                <div class="SwitchWrapper">
+                    <div class="switch" id="switchAuxPower">
+                        <input type="checkbox" ng-model="brewduino.auxBtn" ng-click="brewduino.auxClick(brewduino.auxBtn)"      />
+                        <label><i class="icon-off"></i>Aux</label>
+                    </div>
+                </div>
+                <span class="Stretch"></span> 
+            </div>
+        </div>
+    </div>
+<a ui-sref="temperature"> temperature </a>
