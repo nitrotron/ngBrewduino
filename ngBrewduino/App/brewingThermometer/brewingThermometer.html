@@ -3,7 +3,7 @@
     <br/>
 
     <div id="BrewingThermometer_Display">
-        <div id="lblCurrentTemp" class="TemperatureDigital">
+        <div id="lblCurrentTemp" class="TemperatureDigital" ng-click="brewingThermometer.openThermoDashboard(thermometers)">
             {{thermometers.temp}}
         </div>
         <div id="btnTempHighAlarm" class="TemperatureDigitalSmallTop"

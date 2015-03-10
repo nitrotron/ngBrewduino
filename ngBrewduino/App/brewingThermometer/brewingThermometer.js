@@ -28,6 +28,8 @@
         vm.btnUpdateRimsClick = btnUpdateRimsClick;
         vm.btnUpdateRimsCancelClick = btnUpdateRimsCancelClick;
 
+        vm.openThermoDashboard = openThermoDashboard;
+
         var showWhichPnlAlarmId = -1;
 
         function openAlarmPanel(alarm, whichAlarm, id) {
@@ -84,6 +86,10 @@
 
         function btnUpdateRimsCancelClick() {
             vm.rimsSettingVisible = false;
+        }
+
+        function openThermoDashboard(thermometer) {
+            console.log('Going to dashboard');
         }
     }
 })();
