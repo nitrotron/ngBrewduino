@@ -5,7 +5,7 @@
     angular.module('app')
         .controller('brewingThermometer', brewingThermometer);
 
-    function brewingThermometer(brewduinoCmdsSrv) {
+    function brewingThermometer(brewduinoCmdsSrv, $state) {
         var vm = this;
         vm.rimsSetPoint = 2000;
         vm.rimsWindowSize = 5000;
@@ -89,7 +89,7 @@
         }
 
         function openThermoDashboard(thermometer) {
-            console.log('Going to dashboard');
+          $state.go("temperature");
         }
     }
 })();
