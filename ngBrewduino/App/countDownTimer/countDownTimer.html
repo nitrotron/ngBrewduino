@@ -4,12 +4,12 @@
     </div>
     <div style="width: 210px">
     </div>
-    <div id="divCountdown" ng-repeat="timer in countDownTimer.timers"> {{timer}} 123 {{timer}}
+    <div id="divCountdown" ng-repeat="timer in countDownTimer.timers"> 
         <span ng-class="{true: 'clock',false: 'clockExpired'}[timer.isActive]">
            
-            <timer countdown="countDownTimer.getTimer(timer.timer)" interval="1000" finish-callback="countDownTimer.timerExpired(timer)">
+            <timer countdown="countDownTimer.getTimer(timer.timer)" interval="1000" finish-callback="countDownTimer.timerExpired(timer)" >
                 {{hhours}}:{{mminutes}}:{{sseconds}}
-            </timer> {{timer.label}} {{timer}}</span>
+            </timer> {{timer.label}} </span>
     </div>
 
     <div id="pnlAddTimer" ng-show="countDownTimer.showAddTimerPanel">
