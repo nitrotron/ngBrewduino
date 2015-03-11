@@ -1,4 +1,10 @@
-﻿<div>
-Temperature is 120!
+﻿<div id="RimsPanelMain">
+    <div id="RimsThermometers">
+        <div ng-controller="brewingThermoItem as brewingThermoItem">
+            <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
+                ng-repeat="thermometers in brewingThermoItem.thermometersList">
+            </div>
+        </div>
+    </div>
 </div>
 <a ui-sref="main">Main</a>

@@ -11,7 +11,7 @@
                 templateUrl: 'App/brewduino/brewduino.html'
             })
         .state('temperature', {
-            url: '/temperature',
+            url: '/temperature/:id',
             templateUrl: 'App/brewduino/thermoDashBoard.html'
         });
     });

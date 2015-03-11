@@ -89,7 +89,8 @@
         }
 
         function openThermoDashboard(thermometer) {
-          $state.go("temperature");
+            var stateParams = { id: thermometer.id };
+          $state.go('temperature', stateParams);
         }
     }
 })();
