@@ -4,9 +4,10 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, stubData) {
+    function brewingThermoItem($state, stubData, chartData) {
         var vm = this;
 
+        vm.chartData = chartData;
         vm.thermometersList = [stubData.thermometers[$state.params.id]];
 
         activate();

@@ -4,7 +4,9 @@
             <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
                 ng-repeat="thermometers in brewingThermoItem.thermometersList">
             </div>
+            <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}"/>
         </div>
     </div>
 </div>
+
 <a ui-sref="main">Main</a>
