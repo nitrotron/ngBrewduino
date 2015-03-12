@@ -2,12 +2,70 @@
  * Created by jessica on 1/1/2015.
  */
 (function () {
+    var chart1 = {};
+    chart1.type = 'ColumnChart';
+    chart1.cssStyle = 'height:200px; width:300px;';
+    chart1.data = {
+        'cols': [
+            { id: 'month', label: 'Month', type: 'string' },
+            { id: 'laptop-id', label: 'Laptop', type: 'number' },
+            { id: 'desktop-id', label: 'Desktop', type: 'number' },
+            { id: 'server-id', label: 'Server', type: 'number' },
+            { id: 'cost-id', label: 'Shipping', type: 'number' }
+        ], 'rows': [
+            {
+                c: [
+                   { v: 'January' },
+                   { v: 19, f: '42 items' },
+                   { v: 12, f: 'Ony 12 items' },
+                   { v: 7, f: '7 servers' },
+                   { v: 4 }
+                ]
+            },
+            {
+                c: [
+                   { v: 'February' },
+                   { v: 13 },
+                   { v: 1, f: '1 unit (Out of stock this month)' },
+                   { v: 12 },
+                   { v: 2 }
+                ]
+            },
+            {
+                c: [
+                   { v: 'March' },
+                   { v: 24 },
+                   { v: 0 },
+                   { v: 11 },
+                   { v: 6 }
+
+                ]
+            }
+        ]
+    };
+
+    chart1.options = {
+        'title': 'Sales per month',
+        'isStacked': 'true',
+        'fill': 20,
+        'displayExactValues': true,
+        'vAxis': {
+            'title': 'Sales unit', 'gridlines': { 'count': 6 }
+        },
+        'hAxis': {
+            'title': 'Date'
+        }
+    };
+
+    chart1.formatters = {};
+
+
     var stubData = {
         thermometers: [
-            {id: 0, temp: 100, highAlarm: 200, lowAlarm: 15, name: 'RIMs', isRIMS: true},
-            {id: 1, temp: 110, highAlarm: 210, lowAlarm: 25, name: 'Mash'},
-            {id: 2, temp: 120, highAlarm: 220, lowAlarm: 35, name: 'HLT'},
-            {id: 3, temp: 130, highAlarm: 230, lowAlarm: 45, name: 'Kettle'}
+            { id: 0, temp: 100, highAlarm: 200, lowAlarm: 15, name: 'RIMs', isRIMS: true },
+            { id: 1, temp: 110, highAlarm: 210, lowAlarm: 25, name: 'Mash' },
+            { id: 2, temp: 120, highAlarm: 220, lowAlarm: 35, name: 'HLT' },
+            { id: 3, temp: 130, highAlarm: 230, lowAlarm: 45, name: 'Kettle' }
         ],
 
         //Thermometer0: 100,
@@ -30,5 +88,6 @@
     };
 
     angular.module('app')
-        .value('stubData', stubData);
+        .value('stubData', stubData)
+        .value('chartData', chartData);
 })();
