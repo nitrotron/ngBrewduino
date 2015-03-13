@@ -6,157 +6,54 @@
     chartData.type = 'LineChart';
     chartData.cssStyle = 'height:200px; width:300px; float:left;';
     chartData.data = {
-        'cols': [
-          {
-              'id': 'Time',
-              'label': 'Time',
-              'type': 'string',
-              'p': {}
-          },
-          {
-              'id': 't0',
-              'label': 'RIMS',
-              'type': 'number',
-              'p': {}
-          },
-          {
-              'id': 't1',
-              'label': 'Kettle',
-              'type': 'number',
-              'p': {}
-          },
-          {
-              'id': 't2',
-              'label': 'Mash',
-              'type': 'number',
-              'p': {}
-          },
-          {
-              'id': 't3',
-              'label': 'HLT/Kettle2',
-              'type': 'number'
-          }
-        ],
-        'rows': [
-          {
-              'c': [
-                {
-                    'v': '10:30'
-                },
-                {
-                    'v': 115
-                },
-                {
-                    'v': 86
-
-                },
-                {
-                    'v': 100
-                },
-                {
-                    'v': 200
-                }
-              ]
-          },
-          {
-              'c': [
-                {
-                    'v': '10:30'
-                },
-                {
-                    'v': 120
-                },
-                {
-                    'v': 78
-                },
-                {
-                    'v': 100
-                },
-                {
-                    'v': 198
-                }
-              ]
-          },
-          {
-              'c': [
-                {
-                    'v': '10:32'
-                },
-                {
-                    'v': 125
-                },
-                {
-                    'v': 99
-                },
-                {
-                    'v': 103
-                },
-                {
-                    'v': 195
-                }
-              ]
-          },
-
-          {
-              'c': [
-                {
-                    'v': '10:33'
-                },
-                {
-                    'v': 125
-                },
-                {
-                    'v': 70
-                },
-                {
-                    'v': 103
-                },
-                {
-                    'v': 197
-                }
-              ]
-          },
-          {
-              'c': [
-                {
-                    'v': '10:34'
-                },
-                {
-                    'v': 125
-                },
-                {
-                    'v': 70
-                },
-                {
-                    'v': 103
-                },
-                {
-                    'v': 197
-                }
-              ]
-          },
-          {
-              'c': [
-                {
-                    'v': '10:35'
-                },
-                {
-                    'v': 125
-                },
-                {
-                    'v': 70
-                },
-                {
-                    'v': 103
-                },
-                {
-                    'v': 197
-                }
-              ]
-          }
-        ]
+        'cols': [],
+        'rows': []
     };
+       
+    
+    chartData.data.cols.push({
+        'id': 'Time',
+        'label': 'Time',
+        'type': 'string',
+        'p': {}
+    });
+    chartData.data.cols.push({
+        'id': 't0',
+        'label': 'RIMS',
+        'type': 'number',
+        'p': {}
+    });
+    chartData.data.cols.push({
+        'id': 't1',
+        'label': 'Kettle',
+        'type': 'number',
+        'p': {}
+    });
+    chartData.data.cols.push({
+        'id': 't2',
+        'label': 'Mash',
+        'type': 'number',
+        'p': {}
+    });
+    chartData.data.cols.push({
+        'id': 't3',
+        'label': 'HLT/Kettle2',
+        'type': 'number'
+    });
 
+    chartData.data.rows.push(constRowObj('10:30', 115, 86, 100, 200));
+    chartData.data.rows.push(constRowObj('10:31', 117, 86, 110, 200));
+    chartData.data.rows.push(constRowObj('10:32', 118, 86, 120, 200));
+    chartData.data.rows.push(constRowObj('10:33', 115, 86, 130, 200));
+    chartData.data.rows.push(constRowObj('10:34', 120, 85, 145, 200));
+    chartData.data.rows.push(constRowObj('10:35', 123, 84, 150, 200));
+    chartData.data.rows.push(constRowObj('10:36', 123, 83, 155, 200));
+    chartData.data.rows.push(constRowObj('10:37', 125, 86, 156, 200));
+    chartData.data.rows.push(constRowObj('10:38', 125, 85, 158, 200));
+    chartData.data.rows.push(constRowObj('10:39', 126, 86, 159, 200));
+    chartData.data.rows.push(constRowObj('10:40', 128, 85, 160, 200));
+    chartData.data.rows.push(constRowObj('10:41', 128, 86, 160, 200));
+        
 
 
     chartData.options = {
@@ -176,7 +73,23 @@
         }
 };
 
-chartData.formatters = {};
+    chartData.formatters = {};
+
+    function constRowObj(time, t0, t1, t2, t3) {
+        return {
+            'c': [{
+                'v': time
+            }, {
+                'v': t0
+            }, {
+                'v': t1
+            }, {
+                'v': t2
+            }, {
+                'v': t3
+            }]
+        };
+    }
 
 
 var stubData = {
