@@ -1,10 +1,34 @@
-﻿<div id="RimsPanelMain">
+﻿<div id="dashBoardMain">
+    <nav id="dashBoardHeader" class="dashBoardHeader">
+        <ul>
+            <li>
+                <span id="thermo0" class="dashBoardHeadItems">150</span>
+            </li>
+            <li>
+                <span id="thermo1" class="dashBoardHeadItems">200</span>
+            </li>
+            <li>
+                <span id="thermo2" class="dashBoardHeadItems">52</span>
+            </li>
+            <li>
+                <span class="CountDownTimer dashBoardHeadItems">
+                    <div ng-include="'App/countDownTimer/countDownTimer.html'"></div>
+                </span>
+            </li>
+        </ul>
+
+    </nav>
+</div>
+
+
+<div id="RimsPanelMain">
     <div id="RimsThermometers">
         <div ng-controller="brewingThermoItem as brewingThermoItem">
             <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
                 ng-repeat="thermometers in brewingThermoItem.thermometersList">
             </div>
-            <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}"/>
+            <br />
+            <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}" />
         </div>
     </div>
 </div>

@@ -1,19 +1,23 @@
-﻿#content {
+﻿#content
+{
     width: 100%;
     float: left;
 }
 
-.error {
+.error
+{
     color: red;
     font-weight: bold;
 }
 
-#RimsAlarm {
+#RimsAlarm
+{
     font-size: 18px;
 }
 
 /**************************** Brewing Thermometer **************************/
-div#RimsThermometers {
+div#RimsThermometers
+{
     /*TODO padding: 10px 10px 10px 85px;*/
     background-color: white;
     margin-right: auto;
@@ -23,37 +27,39 @@ div#RimsThermometers {
     width: 100%;
 }
 
-div#RimsThermometers .RimsThermometer {
-    /* todo margin: 5px 5px 5px 5px; */
-    background-color: #e9e9e9;
-    background-image: -webkit-linear-gradient(top, #e9e9e9, #f1f1f1);
-    background-image: -moz-linear-gradient(top, #e9e9e9, #f1f1f1);
-    background-image: -ms-linear-gradient(top, #e9e9e9, #f1f1f1);
-    background-image: -o-linear-gradient(top, #e9e9e9, #f1f1f1);
-    background-image: linear-gradient(to bottom, #e9e9e9, #f1f1f1);
-    /*-moz-border-radius: 10px;     -webkit-border-radius: 10px;     border-radius: 10px;*/
-    /*border: 1px solid #4d4d4d;*/
-    /*This is for generic shadow*/
-    /*-moz-box-shadow: 2px 2px 5px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+    div#RimsThermometers .RimsThermometer
+    {
+        /* todo margin: 5px 5px 5px 5px; */
+        background-color: #e9e9e9;
+        background-image: -webkit-linear-gradient(top, #e9e9e9, #f1f1f1);
+        background-image: -moz-linear-gradient(top, #e9e9e9, #f1f1f1);
+        background-image: -ms-linear-gradient(top, #e9e9e9, #f1f1f1);
+        background-image: -o-linear-gradient(top, #e9e9e9, #f1f1f1);
+        background-image: linear-gradient(to bottom, #e9e9e9, #f1f1f1);
+        /*-moz-border-radius: 10px;     -webkit-border-radius: 10px;     border-radius: 10px;*/
+        /*border: 1px solid #4d4d4d;*/
+        /*This is for generic shadow*/
+        /*-moz-box-shadow: 2px 2px 5px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
     -webkit-box-shadow: 2px 2px 5px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
     box-shadow: 2px 2px 5px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);*/
-    webkit-box-shadow: 0px 0px 5px 1px rgba(98, 145, 208, 0.5);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(98, 145, 208, 0.5);
-    box-shadow: 0px 0px 5px 1px rgba(98, 145, 208, 0.5);
-    webkit-box-shadow: 0px 0px 5px 1px rgba(0, 30, 71, 0.5));
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0, 30, 71, 0.5);
-    box-shadow: 0px 0px 5px 1px rgba(0, 30, 71, 0.5);
-    /*width: 320px;*/
-    width: 98%;
-    margin: 10px 1% 0px 1%;
-    padding-bottom: 10px;
-    /*padding: 10px 10px 10px 10px;*/
-    /*TODO padding: 3.125%;*/
-    display: block;
-    float: left;
-}
+        webkit-box-shadow: 0px 0px 5px 1px rgba(98, 145, 208, 0.5);
+        -moz-box-shadow: 0px 0px 5px 1px rgba(98, 145, 208, 0.5);
+        box-shadow: 0px 0px 5px 1px rgba(98, 145, 208, 0.5);
+        webkit-box-shadow: 0px 0px 5px 1px rgba(0, 30, 71, 0.5));
+        -moz-box-shadow: 0px 0px 5px 1px rgba(0, 30, 71, 0.5);
+        box-shadow: 0px 0px 5px 1px rgba(0, 30, 71, 0.5);
+        /*width: 320px;*/
+        width: 98%;
+        margin: 10px 1% 0px 1%;
+        padding-bottom: 10px;
+        /*padding: 10px 10px 10px 10px;*/
+        /*TODO padding: 3.125%;*/
+        display: block;
+        float: left;
+    }
 
-#btnShowNewTimerPanel, #btnShowRimsControls, .pnlRimsControls {
+#btnShowNewTimerPanel, #btnShowRimsControls, .pnlRimsControls
+{
     border: 1px solid #9abb82;
     /*todo  margin: 0px 0px 2px 2px; */
     border-radius: 13px;
@@ -65,17 +71,20 @@ div#RimsThermometers .RimsThermometer {
     box-shadow: 0px 0px 5px 1px rgba(154, 187, 130, 0.5);
 }
 
-.pnlRimsControls {
+.pnlRimsControls
+{
     z-index: 10;
     position: relative;
- }
+}
 
-#pnlRimsButton  {
+#pnlRimsButton
+{
     background-color: #e9e9e9;
     padding-right: 2px;
 }
 
-#btnShowRimsControls {
+#btnShowRimsControls
+{
     float: left;
     /*width: 291px;*/
     width: 100%; /*not 100 because there is a border*/
@@ -86,7 +95,8 @@ div#RimsThermometers .RimsThermometer {
     border-top-right-radius: 0;
 }
 
-.RimsSettingContainter {
+.RimsSettingContainter
+{
     z-index: 99;
     float: left;
     top: -49px;
@@ -113,7 +123,8 @@ div#RimsThermometers .RimsThermometer {
     /*todo padding: 10px 10px 10px 10px; */
 }
 
-.RimsSettingLabel {
+.RimsSettingLabel
+{
     /*float: left;*/
     font-size: 15px;
     /* padding-left: 10px; */
@@ -121,21 +132,25 @@ div#RimsThermometers .RimsThermometer {
     text-align: left;
 }
 
-.RimsSettingTB {
+.RimsSettingTB
+{
     width: 80%;
     text-align: left;
 }
 
-.RimsTb {
+.RimsTb
+{
     width: 100%;
 }
 
-.btnUpdateRims {
+.btnUpdateRims
+{
     width: 75px;
     /* width: 80%;*/
 }
 
-.CountDownTimer {
+.CountDownTimer
+{
     display: block;
     vertical-align: top;
     float: left;
@@ -144,17 +159,20 @@ div#RimsThermometers .RimsThermometer {
     margin: 10px 1% 0px 1%;
 }
 
-#pnlAddTimer {
-      width: 100%;
+#pnlAddTimer
+{
+    width: 100%;
 }
 
-.BrewingThermometer_Title {
+.BrewingThermometer_Title
+{
     font-size: 20px;
     text-align: center;
     font-weight: bold;
 }
 
-.TemperatureDigital {
+.TemperatureDigital
+{
     /*font-size: 65px;     background-color: Black;     color: red;*/
     text-align: center;
     float: left;
@@ -185,13 +203,15 @@ div#RimsThermometers .RimsThermometer {
     text-decoration: none;
 }
 
-.TemperatureDigitalZoom {
+.TemperatureDigitalZoom
+{
     width: 400px;
     height: 161px;
     z-index: 9999;
 }
 
-.TemperatureDigitalSmallTop {
+.TemperatureDigitalSmallTop
+{
     /*font-size: 30px;*/
     font-size: 3em;
     background-color: Black;
@@ -221,12 +241,14 @@ div#RimsThermometers .RimsThermometer {
     background-image: linear-gradient(to bottom, #3c4142, #262a2a);
 }
 
-.TemperatureDigitalSmallZoom {
+.TemperatureDigitalSmallZoom
+{
     width: 200px;
     height: 80px;
 }
 
-.TemperatureDigitalSmallBottom {
+.TemperatureDigitalSmallBottom
+{
     /*font-size: 30px;*/
     font-size: 3em;
     background-color: Black;
@@ -259,7 +281,19 @@ div#RimsThermometers .RimsThermometer {
     text-decoration: none;
 }
 
-.TemperatureDigitalSmallBottom:hover {
+    .TemperatureDigitalSmallBottom:hover
+    {
+        background: #686463;
+        background-image: -webkit-linear-gradient(top, #686463, #423d3c);
+        background-image: -moz-linear-gradient(top, #686463, #423d3c);
+        background-image: -ms-linear-gradient(top, #686463, #423d3c);
+        background-image: -o-linear-gradient(top, #686463, #423d3c);
+        background-image: linear-gradient(to bottom, #686463, #423d3c);
+        text-decoration: none;
+    }
+
+.TemperatureDigitalSmallTop:hover
+{
     background: #686463;
     background-image: -webkit-linear-gradient(top, #686463, #423d3c);
     background-image: -moz-linear-gradient(top, #686463, #423d3c);
@@ -269,17 +303,8 @@ div#RimsThermometers .RimsThermometer {
     text-decoration: none;
 }
 
-.TemperatureDigitalSmallTop:hover {
-    background: #686463;
-    background-image: -webkit-linear-gradient(top, #686463, #423d3c);
-    background-image: -moz-linear-gradient(top, #686463, #423d3c);
-    background-image: -ms-linear-gradient(top, #686463, #423d3c);
-    background-image: -o-linear-gradient(top, #686463, #423d3c);
-    background-image: linear-gradient(to bottom, #686463, #423d3c);
-    text-decoration: none;
-}
-
-div#BrewingThermometer_Display {
+div#BrewingThermometer_Display
+{
     display: inline-block;
     /*width: 304px;
     height: 150px;*/
@@ -288,7 +313,8 @@ div#BrewingThermometer_Display {
     float: none; /* background-color: Lime;     border-color: Black;     border-width: 5px;     border: solid; */
 }
 
-.PanelOverlay {
+.PanelOverlay
+{
     position: relative;
     float: left;
     /*top: -50px;*/
@@ -314,29 +340,34 @@ div#BrewingThermometer_Display {
     text-shadow: 0px -1px 0px rgba(000, 000, 000, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
-.cancelX {
+.cancelX
+{
     font-size: 12px;
     color: red;
     cursor: pointer;
 }
 
-.Clickable {
+.Clickable
+{
     cursor: pointer;
 }
 
 /*************************** master Table ****************************************/
-.DefaultBackGround {
+.DefaultBackGround
+{
     background-color: #084C8C;
 }
 
-.MasterTable {
+.MasterTable
+{
     width: 96%;
     margin-left: 20px;
     margin-right: 20px;
     border-collapse: collapse;
 }
 
-.MasterHeader {
+.MasterHeader
+{
     width: 100%;
     margin-left: 5px;
     margin-right: 5px;
@@ -345,7 +376,8 @@ div#BrewingThermometer_Display {
     border-collapse: collapse;
 }
 
-.MasterBody {
+.MasterBody
+{
     width: 100%;
     margin-left: 5px;
     margin-right: 5px;
@@ -361,11 +393,13 @@ div#BrewingThermometer_Display {
     border-radius: 5px;
 }
 
-.WebPageMainTable {
+.WebPageMainTable
+{
     width: 100%;
 }
 
-.BrewingThermometerMainTable {
+.BrewingThermometerMainTable
+{
     /*background-color: white;*/
     border-radius: 5px;
     border-collapse: separate;
@@ -376,7 +410,8 @@ div#BrewingThermometer_Display {
     text-align: center;
 }
 
-.BrewingThermometer_Temp {
+.BrewingThermometer_Temp
+{
     /*todo   margin-left: 50px; */
     background-color: Black;
     text-align: center;
@@ -384,23 +419,28 @@ div#BrewingThermometer_Display {
 
 /******************************** JQuery *******************************/
 
-body {
+body
+{
     font: 62.5% "Trebuchet MS", sans-serif;
     /*margin: 50px;*/
 }
 
 /********************* Count Down ********************/
-.clock {
+.clock
+{
     font-size: 28px;
     color: #6291d0;
 }
-.clockExpired {
-    font-size:20px;
+
+.clockExpired
+{
+    font-size: 20px;
     color: rgb(114, 181, 255);
     color: rgba(114, 181, 255, 0.71);
 }
 
-#pnlAddTimer {
+#pnlAddTimer
+{
     /*position: absolute;     top: 75px;     left: 400px; */
     background-color: White;
     /*todo  padding: 2px 10px 10px 10px; */
@@ -421,7 +461,8 @@ body {
 }
 
 /***************************** Toggle Buttons***********************************/
-#buttonRow {
+#buttonRow
+{
     text-align: center;
     float: left;
     width: 100%;
@@ -432,7 +473,8 @@ body {
     text-justify: distribute-all-lines;*/
 }
 
-.switch input {
+.switch input
+{
     /* First, we make it as wide as the container */
     position: absolute;
     width: 100%;
@@ -445,13 +487,15 @@ body {
     cursor: pointer;
 }
 
-.SwitchWrapper {
+.SwitchWrapper
+{
     /*width:50%;*/
     padding: 20px 30px 60px 20px;
     display: inline-block;
 }
 
-.switch {
+.switch
+{
     width: 75px;
     height: 75px;
     /* width: 10em;
@@ -467,167 +511,186 @@ body {
     margin-bottom: 30%;*/
 }
 
-.switch label {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    color: #a5a39d;
-    font-size: 70px;
-    font-size: 3.6em;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 115px;
-    line-height: 1.9em;
-    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-    background: #b25244; /* Fallback */
-    background: linear-gradient(#f7f2f6, #b2ac9e);
-    transition: all 0.3s ease-out;
-    z-index: -1;
-    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.3), 0 10px 10px 4px rgba(0, 0, 0, 0.3);
-}
+    .switch label
+    {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        color: #a5a39d;
+        font-size: 70px;
+        font-size: 3.6em;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 115px;
+        line-height: 1.9em;
+        text-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+        background: #b25244; /* Fallback */
+        background: linear-gradient(#f7f2f6, #b2ac9e);
+        transition: all 0.3s ease-out;
+        z-index: -1;
+        box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.3), 0 10px 10px 4px rgba(0, 0, 0, 0.3);
+    }
 
-.switch label:before {
-    content: "";
-    position: absolute;
-    left: -10px;
-    right: -10px;
-    top: -10px;
-    bottom: -10px;
-    z-index: -1;
-    border-radius: inherit;
-    box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.13);
-    -webkit-filter: blur(1px); /* Smooth trick */
-    filter: blur(1px); /* Future-proof */
-}
+        .switch label:before
+        {
+            content: "";
+            position: absolute;
+            left: -10px;
+            right: -10px;
+            top: -10px;
+            bottom: -10px;
+            z-index: -1;
+            border-radius: inherit;
+            box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.13);
+            -webkit-filter: blur(1px); /* Smooth trick */
+            filter: blur(1px); /* Future-proof */
+        }
 
-.switch label:after {
-    content: "";
-    position: absolute;
-    left: -15px;
-    right: -15px;
-    top: -15px;
-    bottom: -15px;
-    z-index: -2;
-    border-radius: inherit;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.15);
-}
+        .switch label:after
+        {
+            content: "";
+            position: absolute;
+            left: -15px;
+            right: -15px;
+            top: -15px;
+            bottom: -15px;
+            z-index: -2;
+            border-radius: inherit;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.15);
+        }
 
-.switch .icon-off:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    left: 50%;
-    top: 50%;
-    z-index: -1;
-    margin: -35% 0 0 -35%;
-    border-radius: 50%;
-    background: #d2cbc3; /* Fallback */
-    background: linear-gradient(#cbc7bc, #d2cbc3);
-    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
-    -webkit-filter: blur(1px); /* Smooth trick */
-    filter: blur(1px); /* Future-proof */
-}
+    .switch .icon-off:after
+    {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        left: 50%;
+        top: 50%;
+        z-index: -1;
+        margin: -35% 0 0 -35%;
+        border-radius: 50%;
+        background: #d2cbc3; /* Fallback */
+        background: linear-gradient(#cbc7bc, #d2cbc3);
+        box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
+        -webkit-filter: blur(1px); /* Smooth trick */
+        filter: blur(1px); /* Future-proof */
+    }
 
-.switch .icon-attention-alt:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    left: 50%;
-    top: 50%;
-    z-index: -1;
-    margin: -35% 0 0 -35%;
-    border-radius: 50%;
-    background: #d2cbc3;
-    background: -moz-linear-gradient(#cbc7bc, #d2cbc3);
-    background: -ms-linear-gradient(#cbc7bc, #d2cbc3);
-    background: -o-linear-gradient(#cbc7bc, #d2cbc3);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#cbc7bc), to(#d2cbc3));
-    background: -webkit-linear-gradient(#cbc7bc, #d2cbc3);
-    background: linear-gradient(#cbc7bc, #d2cbc3);
-    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
-}
+    .switch .icon-attention-alt:after
+    {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        left: 50%;
+        top: 50%;
+        z-index: -1;
+        margin: -35% 0 0 -35%;
+        border-radius: 50%;
+        background: #d2cbc3;
+        background: -moz-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -ms-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -o-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#cbc7bc), to(#d2cbc3));
+        background: -webkit-linear-gradient(#cbc7bc, #d2cbc3);
+        background: linear-gradient(#cbc7bc, #d2cbc3);
+        box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
+    }
 
-.switch .icon-fire-1:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    left: 50%;
-    top: 50%;
-    z-index: -1;
-    margin: -35% 0 0 -35%;
-    border-radius: 50%;
-    background: #d2cbc3;
-    background: -moz-linear-gradient(#cbc7bc, #d2cbc3);
-    background: -ms-linear-gradient(#cbc7bc, #d2cbc3);
-    background: -o-linear-gradient(#cbc7bc, #d2cbc3);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#cbc7bc), to(#d2cbc3));
-    background: -webkit-linear-gradient(#cbc7bc, #d2cbc3);
-    background: linear-gradient(#cbc7bc, #d2cbc3);
-    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
-}
+    .switch .icon-fire-1:after
+    {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        left: 50%;
+        top: 50%;
+        z-index: -1;
+        margin: -35% 0 0 -35%;
+        border-radius: 50%;
+        background: #d2cbc3;
+        background: -moz-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -ms-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -o-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#cbc7bc), to(#d2cbc3));
+        background: -webkit-linear-gradient(#cbc7bc, #d2cbc3);
+        background: linear-gradient(#cbc7bc, #d2cbc3);
+        box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
+    }
 
-.switch input:checked ~ label {
-    /* Button */
-    color: #9abb82;
-    /*color: #6291d0;*/
-    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.35), 0 3px 10px 4px rgba(0, 0, 0, 0.2);
-}
+    .switch input:checked ~ label
+    {
+        /* Button */
+        color: #9abb82;
+        /*color: #6291d0;*/
+        box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.35), 0 3px 10px 4px rgba(0, 0, 0, 0.2);
+    }
 
-@-webkit-keyframes pulse {
-    0% {
+@-webkit-keyframes pulse
+{
+    0%
+    {
         color: #C45050;
     }
 
-    50% {
+    50%
+    {
         color: #FC7E7E;
     }
 
-    100% {
+    100%
+    {
         color: #C45050;
     }
 }
 
-@keyframes pulse {
+@keyframes pulse
+{
 
-    0% {
+    0%
+    {
         color: #C45050;
     }
 
-    50% {
+    50%
+    {
         color: #FC7E7E;
     }
 
-    100% {
+    100%
+    {
         color: #C45050;
     }
 }
 
-#switchReset input:checked ~ label {
+#switchReset input:checked ~ label
+{
     color: #f66565;
     -webkit-animation: pulse 4s infinite;
     animation: pulse 4s infinite;
 }
 
-#switchPumpOn input:checked ~ label, #switchAuxPower input:checked ~ label {
+#switchPumpOn input:checked ~ label, #switchAuxPower input:checked ~ label
+{
     color: #6291d0;
 }
 
-.Stretch {
+.Stretch
+{
     width: 100%;
     display: inline-block;
     font-size: 0;
     line-height: 0;
 }
 
-.pnlTempGraph {
+.pnlTempGraph
+{
     /*display: none;
     position: absolute;
     background-color: gray;
@@ -638,59 +701,69 @@ body {
     height: 100%;
     padding: 5%;
     z-index: 210;*/
-
 }
 
-.TempGraph {
+.TempGraph
+{
     position: relative;
     top: 5px;
     left: 5%;
     z-index: 211;
 }
 
-@media only screen and (min-width: 480px) {
-    .TemperatureDigital {
+@media only screen and (min-width: 480px)
+{
+    .TemperatureDigital
+    {
         width: 66.6667%;
         font-size: 6.4em;
         height: 80px;
     }
 
-    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop {
+    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop
+    {
         font-size: 3em;
         width: 33.3333%;
         height: 40px;
     }
 }
 
-@media only screen and (min-width: 786px) {
-    div#RimsThermometers .RimsThermometer {
+@media only screen and (min-width: 786px)
+{
+    div#RimsThermometers .RimsThermometer
+    {
         width: 45%;
         height: 150px;
     }
 
-    .CountDownTimer {
+    .CountDownTimer
+    {
         width: 90%;
     }
 
-    .switch {
+    .switch
+    {
         width: 100px;
         height: 100px;
     }
 
-    .switch label {
-        font-size: 4.6em;
-        line-height: 1.9em;
-    }
+        .switch label
+        {
+            font-size: 4.6em;
+            line-height: 1.9em;
+        }
 
-    .switch label:after {
-        left: -20px;
-        right: -20px;
-        top: -20px;
-        bottom: -20px;
-    }
+            .switch label:after
+            {
+                left: -20px;
+                right: -20px;
+                top: -20px;
+                bottom: -20px;
+            }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1024px)
+{
     /*    div#RimsThermometers .RimsThermometer
     {
         width: 10%;
@@ -705,21 +778,53 @@ body {
 */
 }
 
-@media only screen and (min-width: 1200px) {
-    div#RimsThermometers .RimsThermometer {
+@media only screen and (min-width: 1200px)
+{
+    div#RimsThermometers .RimsThermometer
+    {
         width: 18.5%;
         margin-left: 1%;
     }
 
-    .CountDownTimer {
+    .CountDownTimer
+    {
         width: 220px;
     }
 
-    .TemperatureDigital {
+    .TemperatureDigital
+    {
         font-size: 5.6em;
     }
 
-    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop {
+    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop
+    {
         font-size: 2.5em;
     }
+}
+
+
+
+/******************************** Dash Board ************************/
+#dashBoardMain
+{
+    background-color: #353e42;
+}
+
+#dashBoardHeader ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+    #dashBoardHeader ul li
+    {
+        width: 25%;
+        float:left;
+        text-align:center;
+    }
+
+.dashBoardHeader
+{
+    color: #19FCFC;
 }
