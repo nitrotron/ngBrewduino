@@ -4,7 +4,7 @@
 (function () {
     var chartData = {};
     chartData.type = 'LineChart';
-    chartData.cssStyle = 'height:200px; width:300px; float:left;';
+    chartData.cssStyle = 'height:200px; width:100%; float:left;';
     chartData.data = {
         'cols': [],
         'rows': []

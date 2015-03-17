@@ -1,36 +1,36 @@
-﻿<div id="dashBoardMain">
-    <nav id="dashBoardHeader" class="dashBoardHeader">
-        <ul>
-            <li>
-                <span id="thermo0" class="dashBoardHeadItems">150</span>
-            </li>
-            <li>
-                <span id="thermo1" class="dashBoardHeadItems">200</span>
-            </li>
-            <li>
-                <span id="thermo2" class="dashBoardHeadItems">52</span>
-            </li>
-            <li>
-                <span class="CountDownTimer dashBoardHeadItems">
-                    <div ng-include="'App/countDownTimer/countDownTimer.html'"></div>
-                </span>
-            </li>
-        </ul>
+﻿<link href="3rdParty/css/bootstrap.nightly.css" rel="stylesheet" />
 
-    </nav>
-</div>
+<div id="dashBoardMain" ng-controller="brewingThermoItem as brewingThermoItem">
+    <div id="dashBoardHeader" class="dashBoardHeader clearfix">
+        <div class="col-md-3 CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
+        </div>
+        <div class="col-md-3" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
+            {{otherThermo.temp}}
+        </div>
 
+    </div>
 
-<div id="RimsPanelMain">
-    <div id="RimsThermometers">
-        <div ng-controller="brewingThermoItem as brewingThermoItem">
-            <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
-                ng-repeat="thermometers in brewingThermoItem.thermometersList">
+    <div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12 h1">{{brewingThermoItem.thermo.temp}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 h6">High:</div>
+                        <div class="col-md-9 h6">{{brewingThermoItem.thermo.highAlarm}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 h6">Low:</div>
+                        <div class="col-md-9 h6">{{brewingThermoItem.thermo.lowAlarm}}</div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}" />
+                </div>
             </div>
-            <br />
-            <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}" />
         </div>
     </div>
-</div>
 
-<a ui-sref="main">Main</a>
+</div>

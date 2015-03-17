@@ -1,23 +1,19 @@
-﻿#content
-{
+﻿#content {
     width: 100%;
     float: left;
 }
 
-.error
-{
+.error {
     color: red;
     font-weight: bold;
 }
 
-#RimsAlarm
-{
+#RimsAlarm {
     font-size: 18px;
 }
 
 /**************************** Brewing Thermometer **************************/
-div#RimsThermometers
-{
+div#RimsThermometers {
     /*TODO padding: 10px 10px 10px 85px;*/
     background-color: white;
     margin-right: auto;
@@ -27,8 +23,7 @@ div#RimsThermometers
     width: 100%;
 }
 
-    div#RimsThermometers .RimsThermometer
-    {
+    div#RimsThermometers .RimsThermometer {
         /* todo margin: 5px 5px 5px 5px; */
         background-color: #e9e9e9;
         background-image: -webkit-linear-gradient(top, #e9e9e9, #f1f1f1);
@@ -58,8 +53,7 @@ div#RimsThermometers
         float: left;
     }
 
-#btnShowNewTimerPanel, #btnShowRimsControls, .pnlRimsControls
-{
+#btnShowNewTimerPanel, #btnShowRimsControls, .pnlRimsControls {
     border: 1px solid #9abb82;
     /*todo  margin: 0px 0px 2px 2px; */
     border-radius: 13px;
@@ -71,20 +65,17 @@ div#RimsThermometers
     box-shadow: 0px 0px 5px 1px rgba(154, 187, 130, 0.5);
 }
 
-.pnlRimsControls
-{
+.pnlRimsControls {
     z-index: 10;
     position: relative;
 }
 
-#pnlRimsButton
-{
+#pnlRimsButton {
     background-color: #e9e9e9;
     padding-right: 2px;
 }
 
-#btnShowRimsControls
-{
+#btnShowRimsControls {
     float: left;
     /*width: 291px;*/
     width: 100%; /*not 100 because there is a border*/
@@ -95,8 +86,7 @@ div#RimsThermometers
     border-top-right-radius: 0;
 }
 
-.RimsSettingContainter
-{
+.RimsSettingContainter {
     z-index: 99;
     float: left;
     top: -49px;
@@ -123,8 +113,7 @@ div#RimsThermometers
     /*todo padding: 10px 10px 10px 10px; */
 }
 
-.RimsSettingLabel
-{
+.RimsSettingLabel {
     /*float: left;*/
     font-size: 15px;
     /* padding-left: 10px; */
@@ -132,25 +121,21 @@ div#RimsThermometers
     text-align: left;
 }
 
-.RimsSettingTB
-{
+.RimsSettingTB {
     width: 80%;
     text-align: left;
 }
 
-.RimsTb
-{
+.RimsTb {
     width: 100%;
 }
 
-.btnUpdateRims
-{
+.btnUpdateRims {
     width: 75px;
     /* width: 80%;*/
 }
 
-.CountDownTimer
-{
+.CountDownTimer {
     display: block;
     vertical-align: top;
     float: left;
@@ -159,20 +144,26 @@ div#RimsThermometers
     margin: 10px 1% 0px 1%;
 }
 
-#pnlAddTimer
-{
+.CountDownTimer2 {
+    display: block;
+    vertical-align: top;
+    float: left;
+    /*width: 100%;
+    width: 98%;
+    margin: 10px 1% 0px 1%;*/
+}
+
+#pnlAddTimer {
     width: 100%;
 }
 
-.BrewingThermometer_Title
-{
+.BrewingThermometer_Title {
     font-size: 20px;
     text-align: center;
     font-weight: bold;
 }
 
-.TemperatureDigital
-{
+.TemperatureDigital {
     /*font-size: 65px;     background-color: Black;     color: red;*/
     text-align: center;
     float: left;
@@ -203,15 +194,13 @@ div#RimsThermometers
     text-decoration: none;
 }
 
-.TemperatureDigitalZoom
-{
+.TemperatureDigitalZoom {
     width: 400px;
     height: 161px;
     z-index: 9999;
 }
 
-.TemperatureDigitalSmallTop
-{
+.TemperatureDigitalSmallTop {
     /*font-size: 30px;*/
     font-size: 3em;
     background-color: Black;
@@ -241,14 +230,12 @@ div#RimsThermometers
     background-image: linear-gradient(to bottom, #3c4142, #262a2a);
 }
 
-.TemperatureDigitalSmallZoom
-{
+.TemperatureDigitalSmallZoom {
     width: 200px;
     height: 80px;
 }
 
-.TemperatureDigitalSmallBottom
-{
+.TemperatureDigitalSmallBottom {
     /*font-size: 30px;*/
     font-size: 3em;
     background-color: Black;
@@ -281,8 +268,7 @@ div#RimsThermometers
     text-decoration: none;
 }
 
-    .TemperatureDigitalSmallBottom:hover
-    {
+    .TemperatureDigitalSmallBottom:hover {
         background: #686463;
         background-image: -webkit-linear-gradient(top, #686463, #423d3c);
         background-image: -moz-linear-gradient(top, #686463, #423d3c);
@@ -292,8 +278,7 @@ div#RimsThermometers
         text-decoration: none;
     }
 
-.TemperatureDigitalSmallTop:hover
-{
+.TemperatureDigitalSmallTop:hover {
     background: #686463;
     background-image: -webkit-linear-gradient(top, #686463, #423d3c);
     background-image: -moz-linear-gradient(top, #686463, #423d3c);
@@ -303,8 +288,7 @@ div#RimsThermometers
     text-decoration: none;
 }
 
-div#BrewingThermometer_Display
-{
+div#BrewingThermometer_Display {
     display: inline-block;
     /*width: 304px;
     height: 150px;*/
@@ -313,8 +297,7 @@ div#BrewingThermometer_Display
     float: none; /* background-color: Lime;     border-color: Black;     border-width: 5px;     border: solid; */
 }
 
-.PanelOverlay
-{
+.PanelOverlay {
     position: relative;
     float: left;
     /*top: -50px;*/
@@ -340,34 +323,29 @@ div#BrewingThermometer_Display
     text-shadow: 0px -1px 0px rgba(000, 000, 000, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
-.cancelX
-{
+.cancelX {
     font-size: 12px;
     color: red;
     cursor: pointer;
 }
 
-.Clickable
-{
+.Clickable {
     cursor: pointer;
 }
 
 /*************************** master Table ****************************************/
-.DefaultBackGround
-{
+.DefaultBackGround {
     background-color: #084C8C;
 }
 
-.MasterTable
-{
+.MasterTable {
     width: 96%;
     margin-left: 20px;
     margin-right: 20px;
     border-collapse: collapse;
 }
 
-.MasterHeader
-{
+.MasterHeader {
     width: 100%;
     margin-left: 5px;
     margin-right: 5px;
@@ -376,8 +354,7 @@ div#BrewingThermometer_Display
     border-collapse: collapse;
 }
 
-.MasterBody
-{
+.MasterBody {
     width: 100%;
     margin-left: 5px;
     margin-right: 5px;
@@ -393,13 +370,11 @@ div#BrewingThermometer_Display
     border-radius: 5px;
 }
 
-.WebPageMainTable
-{
+.WebPageMainTable {
     width: 100%;
 }
 
-.BrewingThermometerMainTable
-{
+.BrewingThermometerMainTable {
     /*background-color: white;*/
     border-radius: 5px;
     border-collapse: separate;
@@ -410,8 +385,7 @@ div#BrewingThermometer_Display
     text-align: center;
 }
 
-.BrewingThermometer_Temp
-{
+.BrewingThermometer_Temp {
     /*todo   margin-left: 50px; */
     background-color: Black;
     text-align: center;
@@ -419,28 +393,24 @@ div#BrewingThermometer_Display
 
 /******************************** JQuery *******************************/
 
-body
-{
+body {
     font: 62.5% "Trebuchet MS", sans-serif;
     /*margin: 50px;*/
 }
 
 /********************* Count Down ********************/
-.clock
-{
+.clock {
     font-size: 28px;
     color: #6291d0;
 }
 
-.clockExpired
-{
+.clockExpired {
     font-size: 20px;
     color: rgb(114, 181, 255);
     color: rgba(114, 181, 255, 0.71);
 }
 
-#pnlAddTimer
-{
+#pnlAddTimer {
     /*position: absolute;     top: 75px;     left: 400px; */
     background-color: White;
     /*todo  padding: 2px 10px 10px 10px; */
@@ -461,8 +431,7 @@ body
 }
 
 /***************************** Toggle Buttons***********************************/
-#buttonRow
-{
+#buttonRow {
     text-align: center;
     float: left;
     width: 100%;
@@ -473,8 +442,7 @@ body
     text-justify: distribute-all-lines;*/
 }
 
-.switch input
-{
+.switch input {
     /* First, we make it as wide as the container */
     position: absolute;
     width: 100%;
@@ -487,15 +455,13 @@ body
     cursor: pointer;
 }
 
-.SwitchWrapper
-{
+.SwitchWrapper {
     /*width:50%;*/
     padding: 20px 30px 60px 20px;
     display: inline-block;
 }
 
-.switch
-{
+.switch {
     width: 75px;
     height: 75px;
     /* width: 10em;
@@ -511,8 +477,7 @@ body
     margin-bottom: 30%;*/
 }
 
-    .switch label
-    {
+    .switch label {
         display: block;
         width: 100%;
         height: 100%;
@@ -533,8 +498,7 @@ body
         box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.3), 0 10px 10px 4px rgba(0, 0, 0, 0.3);
     }
 
-        .switch label:before
-        {
+        .switch label:before {
             content: "";
             position: absolute;
             left: -10px;
@@ -548,8 +512,7 @@ body
             filter: blur(1px); /* Future-proof */
         }
 
-        .switch label:after
-        {
+        .switch label:after {
             content: "";
             position: absolute;
             left: -15px;
@@ -561,8 +524,7 @@ body
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.15);
         }
 
-    .switch .icon-off:after
-    {
+    .switch .icon-off:after {
         content: "";
         display: block;
         position: absolute;
@@ -580,8 +542,7 @@ body
         filter: blur(1px); /* Future-proof */
     }
 
-    .switch .icon-attention-alt:after
-    {
+    .switch .icon-attention-alt:after {
         content: "";
         display: block;
         position: absolute;
@@ -602,8 +563,7 @@ body
         box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
     }
 
-    .switch .icon-fire-1:after
-    {
+    .switch .icon-fire-1:after {
         content: "";
         display: block;
         position: absolute;
@@ -624,73 +584,60 @@ body
         box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
     }
 
-    .switch input:checked ~ label
-    {
+    .switch input:checked ~ label {
         /* Button */
         color: #9abb82;
         /*color: #6291d0;*/
         box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.35), 0 3px 10px 4px rgba(0, 0, 0, 0.2);
     }
 
-@-webkit-keyframes pulse
-{
-    0%
-    {
+@-webkit-keyframes pulse {
+    0% {
         color: #C45050;
     }
 
-    50%
-    {
+    50% {
         color: #FC7E7E;
     }
 
-    100%
-    {
+    100% {
         color: #C45050;
     }
 }
 
-@keyframes pulse
-{
+@keyframes pulse {
 
-    0%
-    {
+    0% {
         color: #C45050;
     }
 
-    50%
-    {
+    50% {
         color: #FC7E7E;
     }
 
-    100%
-    {
+    100% {
         color: #C45050;
     }
 }
 
-#switchReset input:checked ~ label
-{
+#switchReset input:checked ~ label {
     color: #f66565;
     -webkit-animation: pulse 4s infinite;
     animation: pulse 4s infinite;
 }
 
-#switchPumpOn input:checked ~ label, #switchAuxPower input:checked ~ label
-{
+#switchPumpOn input:checked ~ label, #switchAuxPower input:checked ~ label {
     color: #6291d0;
 }
 
-.Stretch
-{
+.Stretch {
     width: 100%;
     display: inline-block;
     font-size: 0;
     line-height: 0;
 }
 
-.pnlTempGraph
-{
+.pnlTempGraph {
     /*display: none;
     position: absolute;
     background-color: gray;
@@ -703,58 +650,48 @@ body
     z-index: 210;*/
 }
 
-.TempGraph
-{
+.TempGraph {
     position: relative;
     top: 5px;
     left: 5%;
     z-index: 211;
 }
 
-@media only screen and (min-width: 480px)
-{
-    .TemperatureDigital
-    {
+@media only screen and (min-width: 480px) {
+    .TemperatureDigital {
         width: 66.6667%;
         font-size: 6.4em;
         height: 80px;
     }
 
-    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop
-    {
+    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop {
         font-size: 3em;
         width: 33.3333%;
         height: 40px;
     }
 }
 
-@media only screen and (min-width: 786px)
-{
-    div#RimsThermometers .RimsThermometer
-    {
+@media only screen and (min-width: 786px) {
+    div#RimsThermometers .RimsThermometer {
         width: 45%;
         height: 150px;
     }
 
-    .CountDownTimer
-    {
+    .CountDownTimer {
         width: 90%;
     }
 
-    .switch
-    {
+    .switch {
         width: 100px;
         height: 100px;
     }
 
-        .switch label
-        {
+        .switch label {
             font-size: 4.6em;
             line-height: 1.9em;
         }
 
-            .switch label:after
-            {
+            .switch label:after {
                 left: -20px;
                 right: -20px;
                 top: -20px;
@@ -762,8 +699,7 @@ body
             }
 }
 
-@media only screen and (min-width: 1024px)
-{
+@media only screen and (min-width: 1024px) {
     /*    div#RimsThermometers .RimsThermometer
     {
         width: 10%;
@@ -778,26 +714,21 @@ body
 */
 }
 
-@media only screen and (min-width: 1200px)
-{
-    div#RimsThermometers .RimsThermometer
-    {
+@media only screen and (min-width: 1200px) {
+    div#RimsThermometers .RimsThermometer {
         width: 18.5%;
         margin-left: 1%;
     }
 
-    .CountDownTimer
-    {
+    .CountDownTimer {
         width: 220px;
     }
 
-    .TemperatureDigital
-    {
+    .TemperatureDigital {
         font-size: 5.6em;
     }
 
-    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop
-    {
+    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop {
         font-size: 2.5em;
     }
 }
@@ -805,26 +736,59 @@ body
 
 
 /******************************** Dash Board ************************/
-#dashBoardMain
-{
-    background-color: #353e42;
+#dashBoardMain {
+    /*background-color: #353e42;*/
 }
 
-#dashBoardHeader ul
-{
+#dashBoardHeader ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-    #dashBoardHeader ul li
-    {
+    #dashBoardHeader ul li {
         width: 25%;
-        float:left;
-        text-align:center;
+        float: left;
+        text-align: center;
     }
 
-.dashBoardHeader
-{
-    color: #19FCFC;
+.dashBoardHeader {
+    /*color: #19FCFC;*/
 }
+
+.dashBoardHeader .CountDownTimer2 {
+    color:black;
+}
+
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*.h1 {
+    font-size: 36px;
+}
+
+.h2 {
+    font-size: 30px;
+}
+
+.h3 {
+    font-size: 24px;
+}
+
+.h4 {
+    font-size: 18px;
+}
+
+.h5 {
+    font-size: 14px;
+}
+
+.h6 {
+    font-size: 12px;
+}
+
+.col-md-3 {}*/
