@@ -9,8 +9,8 @@
         'cols': [],
         'rows': []
     };
-       
-    
+
+
     chartData.data.cols.push({
         'id': 'Time',
         'label': 'Time',
@@ -41,19 +41,19 @@
         'type': 'number'
     });
 
-    chartData.data.rows.push(constRowObj('10:30', 115, 86, 100, 200));
-    chartData.data.rows.push(constRowObj('10:31', 117, 86, 110, 200));
-    chartData.data.rows.push(constRowObj('10:32', 118, 86, 120, 200));
-    chartData.data.rows.push(constRowObj('10:33', 115, 86, 130, 200));
-    chartData.data.rows.push(constRowObj('10:34', 120, 85, 145, 200));
-    chartData.data.rows.push(constRowObj('10:35', 123, 84, 150, 200));
-    chartData.data.rows.push(constRowObj('10:36', 123, 83, 155, 200));
-    chartData.data.rows.push(constRowObj('10:37', 125, 86, 156, 200));
-    chartData.data.rows.push(constRowObj('10:38', 125, 85, 158, 200));
-    chartData.data.rows.push(constRowObj('10:39', 126, 86, 159, 200));
-    chartData.data.rows.push(constRowObj('10:40', 128, 85, 160, 200));
-    chartData.data.rows.push(constRowObj('10:41', 128, 86, 160, 200));
-        
+    chartData.data.rows.push(constRowObj('10:30', 115, 100, 106, 200));
+    chartData.data.rows.push(constRowObj('10:31', 117, 110, 106, 208));
+    chartData.data.rows.push(constRowObj('10:32', 118, 120, 106, 210));
+    chartData.data.rows.push(constRowObj('10:33', 115, 130, 106, 205));
+    chartData.data.rows.push(constRowObj('10:34', 120, 145, 105, 205));
+    chartData.data.rows.push(constRowObj('10:35', 123, 150, 104, 204));
+    chartData.data.rows.push(constRowObj('10:36', 123, 155, 103, 199));
+    chartData.data.rows.push(constRowObj('10:37', 125, 156, 106, 201));
+    chartData.data.rows.push(constRowObj('10:38', 125, 158, 105, 203));
+    chartData.data.rows.push(constRowObj('10:39', 126, 159, 106, 206));
+    chartData.data.rows.push(constRowObj('10:40', 128, 160, 105, 206));
+    chartData.data.rows.push(constRowObj('10:41', 128, 160, 106, 208));
+
 
 
     chartData.options = {
@@ -61,7 +61,7 @@
         'isStacked': 'false',
         'fill': 20,
         'curveType': 'function',
-        'trendlines' : {
+        'trendlines': {
             1: {}
         },
         'displayExactValues': true,
@@ -71,7 +71,7 @@
         'hAxis': {
             'title': 'Date'
         }
-};
+    };
 
     chartData.formatters = {};
 
@@ -92,34 +92,34 @@
     }
 
 
-var stubData = {
-    thermometers: [
-        { id: 0, temp: 100, highAlarm: 200, lowAlarm: 15, name: 'RIMs', isRIMS: true },
-        { id: 1, temp: 110, highAlarm: 210, lowAlarm: 25, name: 'Mash' },
-        { id: 2, temp: 120, highAlarm: 220, lowAlarm: 35, name: 'HLT' },
-        { id: 3, temp: 130, highAlarm: 230, lowAlarm: 45, name: 'Kettle' }
-    ],
+    var stubData = {
+        thermometers: [
+            { id: 0, temp: 100, highAlarm: 200, lowAlarm: 15, name: 'RIMs', isRIMS: true },
+            { id: 1, temp: 110, highAlarm: 210, lowAlarm: 25, name: 'Mash' },
+            { id: 2, temp: 120, highAlarm: 220, lowAlarm: 35, name: 'HLT' },
+            { id: 3, temp: 130, highAlarm: 230, lowAlarm: 45, name: 'Kettle' }
+        ],
 
-    //Thermometer0: 100,
-    //ThermometerHighAlarm0: 200,
-    //ThermometerLowAlarm0: 40,
-    TotalTimers: 12,
-    RimsEnable: false,
-    AuxOn: false,
-    PumpOn: false,
-    WhichThermoAlarm: 'kettle',
-    TimersNotAllocated: 3,
-    Kp: 200,
-    Ki: 1,
-    kd: 1,
-    SetPoint: 100,
-    WindowSize: 5000,
-    TempAlarmActive: false,
-    TimerAlarmActive: false
+        //Thermometer0: 100,
+        //ThermometerHighAlarm0: 200,
+        //ThermometerLowAlarm0: 40,
+        TotalTimers: 12,
+        RimsEnable: false,
+        AuxOn: false,
+        PumpOn: false,
+        WhichThermoAlarm: 'kettle',
+        TimersNotAllocated: 3,
+        Kp: 200,
+        Ki: 1,
+        kd: 1,
+        SetPoint: 100,
+        WindowSize: 5000,
+        TempAlarmActive: false,
+        TimerAlarmActive: false
 
-};
+    };
 
-angular.module('app')
-    .value('stubData', stubData)
-    .value('chartData', chartData);
+    angular.module('app')
+        .value('stubData', stubData)
+        .value('chartData', chartData);
 })();
