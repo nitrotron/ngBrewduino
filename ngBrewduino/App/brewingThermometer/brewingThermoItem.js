@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, stubData, chartData) {
+    function brewingThermoItem($state, stubData, chartData, toastr) {
         var vm = this;
 
         vm.chartData = chartData;
@@ -36,6 +36,8 @@
             });
             vm.chartData.view = { columns: [0, 1, 2, 3, 4] };
             vm.chartData.view = { columns: getChartColumns() };
+            
+            toastr.info('You havve loaded the new template');
         }
 
         function changeChartType(chartType) {
