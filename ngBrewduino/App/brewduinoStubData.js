@@ -3,8 +3,8 @@
  */
 (function () {
     var chartData = {};
-    chartData.type = 'LineChart';
-    chartData.cssStyle = 'height:200px; width:100%; float:left;';
+    chartData.type = 'AreaChart';
+    chartData.cssStyle = 'height:400px; width:100%; float:left;';
     chartData.data = {
         'cols': [],
         'rows': []
@@ -25,19 +25,19 @@
     });
     chartData.data.cols.push({
         'id': 't1',
-        'label': 'Kettle',
-        'type': 'number',
-        'p': {}
-    });
-    chartData.data.cols.push({
-        'id': 't2',
         'label': 'Mash',
         'type': 'number',
         'p': {}
     });
     chartData.data.cols.push({
-        'id': 't3',
+        'id': 't2',
         'label': 'HLT/Kettle2',
+        'type': 'number',
+        'p': {}
+    });
+    chartData.data.cols.push({
+        'id': 't3',
+        'label': 'Kettle',
         'type': 'number'
     });
 
@@ -58,7 +58,7 @@
 
     chartData.options = {
         'title': 'Temperatures',
-        'isStacked': 'true',
+        'isStacked': 'false',
         'fill': 20,
         'curveType': 'function',
         'trendlines' : {
