@@ -5,8 +5,8 @@
     var basePortUrl = 'http://localhost:51887/SerialSwitch';
 
     angular.module('app')
-        .value('basePortUrl', basePortUrl)
-        .value('toastr', toastr);
+        .value('basePortUrl', basePortUrl);
+        
        
 }
 )();

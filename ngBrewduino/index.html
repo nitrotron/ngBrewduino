@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="Style/Site.css" />
     <link href="Fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css" />
-    <link href="3rdParty/css/toastr.css" rel="stylesheet" />
+    <link href="3rdParty/css/toaster.min.css" rel="stylesheet" />
 </head>
 <body ng-controller="brewduinoCtrl as brewduino">
+    Hello world
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
     <!--<div ng-include="'App/brewduino/brewduino.html'"></div>-->
     <div ui-view></div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
     <script src="3rdParty/script/angular.js"></script>
-    <script src="3rdParty/script/toastr.js"></script>
+    <script src="3rdParty/script/angular-animate.js"></script>
+    <script src="3rdParty/script/toaster.js"></script>
     <script src='App/app.js'></script>
     <script src="App/appCfg.js"></script>
     <script src="App/brewduino/brewduinoDataSrv.js"></script>
@@ -32,6 +36,6 @@
     <script src="App/countDownTimer/countDownTimerVal.js"></script>
     <script src="App/brewingThermometer/brewingThermoItem.js"></script>
 
-    
+
 </body>
 </html>

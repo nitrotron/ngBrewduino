@@ -5,7 +5,7 @@
     angular.module('app')
         .controller('brewduinoCtrl', brewduinoCtrl);
 
-    function brewduinoCtrl($interval, stubData, brewduionoDataSrv, brewduinoCmdsSrv) {
+    function brewduinoCtrl($interval, stubData, brewduionoDataSrv, brewduinoCmdsSrv, toaster) {
         var vm = this;
         vm.stubData = stubData;
 
@@ -18,6 +18,7 @@
 
         function activate() {
             getStatus();
+            toaster.pop('success', "title", 'You havve loaded the new template');
         }
 
         function alarmClick(alarm) {
