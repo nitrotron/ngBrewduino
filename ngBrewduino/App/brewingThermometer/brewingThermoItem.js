@@ -12,13 +12,13 @@
         vm.chartTypeLine = false;
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
-        
+
         //vm.getOtherThermos = getOtherThermos; 
         vm.otherThermos = [];
         vm.switchTemps = switchTemps;
         vm.thermometersList = [stubData.thermometers[$state.params.id]];
         vm.thermo = stubData.thermometers[$state.params.id];
-       
+
 
 
 
@@ -34,10 +34,9 @@
                     element.chartEnabled = false;
                 }
             });
-            vm.chartData.view = { columns: [0, 1, 2, 3, 4] };
             vm.chartData.view = { columns: getChartColumns() };
-            
-            toaster.pop('success', "title", 'You havve loaded the new template');
+
+            toaster.pop('success', vm.thermo.name, 'Activated ' + vm.thermo.name + ' Dashboard');
         }
 
         function changeChartType(chartType) {
@@ -50,7 +49,7 @@
         function getChartColumns() {
             var rc = [0];
             stubData.thermometers.forEach(function (element, index, array) {
-                if (element.chartEnabled) { rc.push(element.id +1 ); }
+                if (element.chartEnabled) { rc.push(element.id + 1); }
             });
             return rc;
         }

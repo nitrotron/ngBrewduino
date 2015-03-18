@@ -5,7 +5,7 @@
         <div class="col-md-3 CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
         </div>
         <div class="col-md-3" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
-            {{otherThermo.temp}}
+            {{otherThermo.name}}  {{otherThermo.temp}}
         </div>
 
     </div>
