@@ -2,12 +2,12 @@
 
 <div id="dashBoardMain" ng-controller="brewingThermoItem as brewingThermoItem">
     <div id="dashBoardHeader" class="dashBoardHeader clearfix">
-        <div class="col-md-3 CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
+        <div class="col-md-5 CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
         </div>
-        <div class="col-md-3" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
+        <div class="col-md-2" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
             {{otherThermo.name}}  {{otherThermo.temp}}
         </div>
-
+        <div class="col-md-1"><i class='icon-menu'></i></div>
     </div>
 
     <div>
@@ -38,9 +38,9 @@
                         <br />
                         <br />
                         <h4>Chart Type:</h4>
-                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="AreaChart"  />Area 
+                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="AreaChart" />Area 
                         <br />
-                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="LineChart"  />Line
+                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="LineChart" />Line
                     </div>
                 </div>
             </div>
