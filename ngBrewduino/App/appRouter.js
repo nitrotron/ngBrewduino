@@ -3,11 +3,11 @@
 (function () {
     angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/main');
+        $urlRouterProvider.otherwise('/main/0');
         
         $stateProvider
             .state('main', {
-                url: '/main',
+                url: '/main/:id',
                 templateUrl: 'App/brewduino/brewduino.html'
             })
         .state('temperature', {

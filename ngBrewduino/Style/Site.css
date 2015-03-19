@@ -869,28 +869,35 @@ body
     font-size: 3em;
 }
 
-/*.h1 {
-    font-size: 36px;
+div.dashboard-slide-menu
+{
+    top: 0;
+    width: 100px;
+    height: 100%;
+    background-color: blue;
+    position: fixed;
+    z-index: 20;
+    overflow: hidden;
 }
 
-.h2 {
-    font-size: 30px;
-}
+    div.dashboard-slide-menu li
+    {
+        display: block;
+        text-align: center;
+    }
 
-.h3 {
-    font-size: 24px;
-}
+        div.dashboard-slide-menu li label
+        {
+            font-size: 10px;
+        }
 
-.h4 {
-    font-size: 18px;
-}
+            div.dashboard-slide-menu li label i
+            {
+                font-size: 30px;
+            }
 
-.h5 {
-    font-size: 14px;
+.rimsBtn-dashboard
+{
+    /* Button */
+    color: #9abb82;
 }
-
-.h6 {
-    font-size: 12px;
-}
-
-.col-md-3 {}*/
