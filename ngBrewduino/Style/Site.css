@@ -862,6 +862,13 @@ body
     clear: both;
 }
 
+.menu-bar
+{
+    background-color: blue;
+    text-align: center;
+    font-size: 3em;
+}
+
 /*.h1 {
     font-size: 36px;
 }

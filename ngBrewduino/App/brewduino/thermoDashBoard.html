@@ -1,46 +1,56 @@
 ﻿<link href="3rdParty/css/bootstrap.nightly.css" rel="stylesheet" />
 
 <div id="dashBoardMain" ng-controller="brewingThermoItem as brewingThermoItem">
-    <div id="dashBoardHeader" class="dashBoardHeader clearfix">
-        <div class="col-md-5 CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
-        </div>
-        <div class="col-md-2" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
-            {{otherThermo.name}}  {{otherThermo.temp}}
-        </div>
-        <div class="col-md-1"><i class='icon-menu'></i></div>
+    <div id="leftGutter" class="col-xs-1 menu-bar">
+        <i class='icon-menu'></i>
+        <br />
+        <i class="fa fa-fa fa-clock-o" style="color:white"></i>
     </div>
-
-    <div>
-        <div class="container-fluid ">
-            <div class="row">
-                <div class="col-md-3 ">
-                    <div class="row">
-                        <div class="col-md-12 h1">{{brewingThermoItem.thermo.name}}</div>
-                        <div class="col-md-12 h1">{{brewingThermoItem.thermo.temp}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 h6">High:</div>
-                        <div class="col-md-9 h6">{{brewingThermoItem.thermo.highAlarm}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 h6">Low:</div>
-                        <div class="col-md-9 h6">{{brewingThermoItem.thermo.lowAlarm}}</div>
-                    </div>
+    <div id="allOther" class="col-xs-11">
+        <div id="dashBoardHeader" class="dashBoardHeader clearfix">
+            <div class="col-md-3">
+                <div class="CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
                 </div>
-                <div class="col-md-9">
-                    <div class="col-xs-10">
-                        <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}"></div>
-                    </div>
-                    <div class="col-xs-2 well">
-                        <div ng-repeat="thermo in brewingThermoItem.otherThermos">
-                            <input type="checkbox" name="chBxChart{{thermo.id}}" ng-model="thermo.chartEnabled" ng-click="brewingThermoItem.chBxChartChanged(thermo)" />{{thermo.name}}
+            </div>
+
+            <div class="col-md-3" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
+                {{otherThermo.name}}  {{otherThermo.temp}}
+            </div>
+
+        </div>
+
+        <div>
+            <div class="container-fluid ">
+                <div class="row">
+                    <div class="col-md-3 ">
+                        <div class="row">
+                            <div class="col-md-12 h1">{{brewingThermoItem.thermo.name}}</div>
+                            <div class="col-md-12 h1">{{brewingThermoItem.thermo.temp}}</div>
                         </div>
-                        <br />
-                        <br />
-                        <h4>Chart Type:</h4>
-                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="AreaChart" />Area 
-                        <br />
-                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="LineChart" />Line
+                        <div class="row">
+                            <div class="col-md-3 h6">High:</div>
+                            <div class="col-md-9 h6">{{brewingThermoItem.thermo.highAlarm}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 h6">Low:</div>
+                            <div class="col-md-9 h6">{{brewingThermoItem.thermo.lowAlarm}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="col-xs-10">
+                            <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}"></div>
+                        </div>
+                        <div class="col-xs-2 well">
+                            <div ng-repeat="thermo in brewingThermoItem.otherThermos">
+                                <input type="checkbox" name="chBxChart{{thermo.id}}" ng-model="thermo.chartEnabled" ng-click="brewingThermoItem.chBxChartChanged(thermo)" />{{thermo.name}}
+                            </div>
+                            <br />
+                            <br />
+                            <h4>Chart Type:</h4>
+                            <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="AreaChart" />Area
+                            <br />
+                            <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="LineChart" />Line
+                        </div>
                     </div>
                 </div>
             </div>
