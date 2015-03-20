@@ -7,8 +7,10 @@
     function brewingThermoItem($state, stubData, chartData, toaster) {
         var vm = this;
 
-        vm.rimsBtn = stubData.rimsEnable;
-        vm.backToClassic = backToClassic;
+        vm.addTimer = addTimer;
+
+        vm.auxBtn = stubData.auxOn;
+        vm.auxClick = vm.auxClick;
         vm.chartData = chartData;
         vm.chartTypeArea = true;
         vm.chartTypeLine = false;
@@ -16,6 +18,9 @@
         vm.chBxChartChanged = chBxChartChanged;
         vm.closeMenu = closeMenu;
         vm.openMenu = openMenu;
+        vm.pumpBtn = stubData.pumpOn;
+        vm.pumpClick = pumpClick;
+        vm.rimsBtn = stubData.rimsEnable;
         vm.rimsClick = rimsClick;
         vm.showMenu = false;
 
@@ -45,9 +50,13 @@
             toaster.pop('success', vm.thermo.name, 'Activated ' + vm.thermo.name + ' Dashboard');
         }
 
-        function backToClassic() {
-            var stateParams = { id: 0};
-            $state.go('main');
+        function addTimer() {
+            $state.go('cdtAdd');
+        }
+
+        function auxClick() {
+            vm.auxBtn = !vm.auxBtn;
+            stubData.auxOn = vm.auxBtn;
         }
 
         function changeChartType(chartType) {
@@ -55,7 +64,7 @@
         }
         function chBxChartChanged(thermo) {
             vm.chartData.view = { columns: getChartColumns() };
-        } 
+        }
 
         function closeMenu() {
             vm.showMenu = false;
@@ -64,10 +73,7 @@
         function openMenu() {
             vm.showMenu = true;
         }
-
-
-
-
+        
         function getChartColumns() {
             var rc = [0];
             stubData.thermometers.forEach(function (element, index, array) {
@@ -84,6 +90,11 @@
                 }
             });
             return rc;
+        }
+
+        function pumpClick() {
+            vm.pumpBtn = !vm.pumpBtn;
+            stubData.pumpOn = vm.pumpBtn;
         }
 
         function rimsClick() {

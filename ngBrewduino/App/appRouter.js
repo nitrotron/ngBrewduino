@@ -3,16 +3,20 @@
 (function () {
     angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/main/0');
+        $urlRouterProvider.otherwise('/classic');
         
         $stateProvider
-            .state('main', {
-                url: '/main/:id',
+            .state('classic', {
+                url: '/classic',
                 templateUrl: 'App/brewduino/brewduino.html'
             })
         .state('temperature', {
             url: '/temperature/:id',
             templateUrl: 'App/brewduino/thermoDashBoard.html'
+        })
+        .state('cdtAdd', {
+            url: '/cdtAdd',
+            templateUrl: 'App/countDownTimerForm/countDownTimerForm.html'
         });
-    });
-})();
+        });
+    })();

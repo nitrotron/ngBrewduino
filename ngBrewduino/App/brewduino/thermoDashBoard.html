@@ -13,7 +13,7 @@
                 <label ng-click="brewingThermoItem.setAlarm(brewingThermoItem.btnAlarm)" ng-model="brewingThermoItem.btnAlarm"><i class='icon-attention-alt'></i>Alarm</label>
             </li>
             <li>
-                <label><i class="fa fa-fa fa-clock-o" style="color: white"></i>
+                <label ng-click="brewingThermoItem.addTimer()"><i class="fa fa-fa fa-clock-o" style="color: white"></i>
                     <br />
                     Timer</label>
             </li>
@@ -21,10 +21,10 @@
                 <label ng-click="brewingThermoItem.rimsClick()" ng-class="{'rimsBtn-dashboard': brewingThermoItem.rimsBtn === true }"><i class="icon-fire-1"></i>RIMS</label>
             </li>
             <li>
-                <label><i class="icon-off"></i>Pump</label>
+                <label ng-click="brewingThermoItem.pumpClick()" ng-class="{'pumpBtn-dashboard': brewingThermoItem.pumpBtn === true }"><i class="icon-off"></i>Pump</label>
             </li>
             <li>
-                <label><i class="icon-off"></i>Aux</label>
+                <label ng-click="brewingThermoItem.auxClick()" ng-class="{'auxBtn-dashboard': brewingThermoItem.auxBtn === true }"><i class="icon-off"></i>Aux</label>
             </li>
         </ul>
     </div>
@@ -78,7 +78,6 @@
         </div>
 
     </div>
-    <div ng-click="brewingThermoItem.backToClassic()">back to classic</div>
 </div>
 
-<a ui-sref="main">back to classic</a>
+<a ui-sref="classic">classic theme</a>
