@@ -9,8 +9,9 @@
 
         vm.addTimer = addTimer;
 
+        vm.alarmBtn = false;
         vm.auxBtn = stubData.auxOn;
-        vm.auxClick = vm.auxClick;
+        vm.auxClick = auxClick;
         vm.chartData = chartData;
         vm.chartTypeArea = true;
         vm.chartTypeLine = false;
@@ -22,6 +23,7 @@
         vm.pumpClick = pumpClick;
         vm.rimsBtn = stubData.rimsEnable;
         vm.rimsClick = rimsClick;
+        vm.setAlarm = setAlarm;
         vm.showMenu = false;
 
         //vm.getOtherThermos = getOtherThermos; 
@@ -36,6 +38,9 @@
         activate();
 
         function activate() {
+            
+            vm.auxBtn = stubData.auxOn;
+            vm.pumpBtn = stubData.pumpOn;
             vm.rimsBtn = stubData.rimsEnable;
             vm.otherThermos = getOtherThermos();
             stubData.thermometers.forEach(function (element, index, array) {
@@ -103,6 +108,9 @@
             stubData.rimsEnable = vm.rimsBtn;
         }
 
+        function setAlarm() {
+            vm.alarmBtn = !vm.alarmBtn;
+        }
         function switchTemps(thermometer) {
             var stateParams = { id: thermometer.id };
             $state.go('dashboard', stateParams);

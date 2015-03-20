@@ -3,19 +3,21 @@
 <div id="dashBoardMain" ng-controller="brewingThermoItem as brewingThermoItem">
 
 
-    <div class="dashboard-slide-menu" ng-show="brewingThermoItem.showMenu">
+    <div class="dashboard-slide-menu panel panel-default" ng-show="brewingThermoItem.showMenu">
 
         <ul>
             <li>
                 <label><i class='icon-plus' ng-click="brewingThermoItem.closeMenu()"></i></label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.setAlarm(brewingThermoItem.btnAlarm)" ng-model="brewingThermoItem.btnAlarm"><i class='icon-attention-alt'></i>Alarm</label>
+                <label ng-click="brewingThermoItem.setAlarm()" ng-class="{'alarmBtn-dashboard': brewingThermoItem.alarmBtn === true }"><i class='icon-attention-alt'></i>Alarm</label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.addTimer()"><i class="fa fa-fa fa-clock-o" style="color: white"></i>
+                <label ng-click="brewingThermoItem.addTimer()">
+                    <i class="fa fa-fa fa-clock-o" style="color: white"></i>
                     <br />
-                    Timer</label>
+                    Timer
+                </label>
             </li>
             <li>
                 <label ng-click="brewingThermoItem.rimsClick()" ng-class="{'rimsBtn-dashboard': brewingThermoItem.rimsBtn === true }"><i class="icon-fire-1"></i>RIMS</label>
@@ -62,16 +64,23 @@
                     <div class="col-xs-10">
                         <div google-chart chart="brewingThermoItem.chartData" style="{{brewingThermoItem.chartData.cssStyle}}"></div>
                     </div>
-                    <div class="col-xs-2 well">
-                        <div ng-repeat="thermo in brewingThermoItem.otherThermos">
-                            <input type="checkbox" name="chBxChart{{thermo.id}}" ng-model="thermo.chartEnabled" ng-click="brewingThermoItem.chBxChartChanged(thermo)" />{{thermo.name}}
+                    <div class="col-xs-2 ">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Chart Key
+                            </div>
+                            <div class="panel-body">
+                                <div ng-repeat="thermo in brewingThermoItem.otherThermos">
+                                    <input type="checkbox" name="chBxChart{{thermo.id}}" ng-model="thermo.chartEnabled" ng-click="brewingThermoItem.chBxChartChanged(thermo)" />{{thermo.name}}
+                                </div>
+                                <br />
+                                <br />
+                                <h4>Chart Type:</h4>
+                                <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="AreaChart" />Area
+                                <br />
+                                <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="LineChart" />Line
+                            </div>
                         </div>
-                        <br />
-                        <br />
-                        <h4>Chart Type:</h4>
-                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="AreaChart" />Area
-                            <br />
-                        <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chartData.type" value="LineChart" />Line
                     </div>
                 </div>
             </div>
