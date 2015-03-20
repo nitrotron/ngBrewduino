@@ -1,27 +1,34 @@
-﻿<div ng-controller="countDownTimerFormCtrl as cdtFormCtrl"
-<form name="addTimerForm">
-    <div class="form-group">
-        <div class="col-sm-2">
-            <label for="minutes">Minutes</label>
+﻿<div ng-controller="countDownTimerFormCtrl as cdtFormCtrl">
+    <form name="addTimerForm" class="form-horizontal">
+        <legend>Add Count Down Timer</legend>
+        <div class="form-group">
+            <label for="minutes" class="col-md-2 control-label">Minutes</label>
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control"
+                    id="minutes" placeholder="Minutes"
+                    ng-model="cdtFormCtrl.minutes" />
+            </div>
         </div>
-        <div class="col-sm-10">
-            <input type="number" min="0" class="form-control"
-                   id="minutes" placeholder="Minutes"
-                   ng-model="cdtFormCtrl.minutes" />
+        <div class="form-group">
+            <label for="timerTitle" class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control"
+                    id="timerTitle" placeholder="Title"
+                    ng-model="cdtFormCtrl.title" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-2">
-            <label for="timerTitle">Title</label>
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+
+                <button type="button" class="btn btn-default"
+                    ng-click="cdtFormCtrl.cancelAddTimer()">
+                    Cancel</button>
+
+                <button type="button" class="btn btn-info"
+                    ng-click="cdtFormCtrl.addTimer(cdtFormCtrl.minutes, cdtFormCtrl.title)">
+                    Start
+                </button>
+            </div>
         </div>
-        <div class="col-sm-10">
-            <input type="text" class="form-control"
-                   id="timerTitle" placeholder="Title"
-                   ng-model="cdtFormCtrl.title" />
-        </div>
-    </div>
-    <button type="button" class="btn btn-default"
-            ng-click="cdtFormCtrl.addTimer(cdtFormCtrl.minutes, cdtFormCtrl.title)">
-        Start
-    </button>
-</form>
+    </form>
+</div>

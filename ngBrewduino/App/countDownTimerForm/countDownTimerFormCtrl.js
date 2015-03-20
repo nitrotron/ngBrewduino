@@ -6,6 +6,7 @@
         var vm = this;
 
         vm.addTimer = addTimer;
+        vm.cancelAddTimer = cancelAddTimer;
 
         function addTimer(newTimer, newTimerLabel) {
             var alarmTime = new Date();
@@ -23,5 +24,11 @@
             $state.go('dashboard', stateParams);
 
         }
+
+        function cancelAddTimer() {
+            var stateParams = { id: $state.params.id };
+            $state.go('dashboard', stateParams);
+        }
+        
     }
 })(); 
