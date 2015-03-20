@@ -1,12 +1,19 @@
-﻿<div ng-controller="countDownTimerFormCtrl as countDownTimerFormCtrl"
+﻿<div ng-controller="countDownTimerFormCtrl as cdtFormCtrl"
 <form name="addTimerForm">
     <div class="form-group">
         <label for="minutes">Minutes</label>
-        <input type="number" min="0" class="form-control" id="minutes" placeholder="Minutes" />
+        <input type="number" min="0" class="form-control" 
+               id="minutes" placeholder="Minutes" 
+               ng-model="cdtFormCtrl.minutes"/>
     </div>
     <div class="form-group">
         <label for="timerTitle">Title</label>
-        <input type="text"  class="form-control" id="timerTitle" placeholder="Title" />
+        <input type="text"  class="form-control" 
+               id="timerTitle" placeholder="Title" 
+               ng-model="cdtFormCtrl.title"/>
     </div>
-    <button type="button" class="btn btn-default">Start</button>
+    <button type="button" class="btn btn-default"
+            ng-click="cdtFormCtrl.addTimer(cdtFormCtrl.minutes, cdtFormCtrl.title)">
+        Start
+    </button>
 </form>

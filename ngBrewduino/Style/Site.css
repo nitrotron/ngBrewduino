@@ -428,7 +428,7 @@ div#BrewingThermometer_Display
 
 body
 {
-    font: 62.5% "Trebuchet MS", sans-serif;
+    /*font: 62.5% "Trebuchet MS", sans-serif;*/
     /*margin: 50px;*/
 }
 
@@ -769,7 +769,7 @@ body
 
         .switch label
         {
-            font-size: 4.6em;
+            font-size: 2.875em;
             line-height: 1.9em;
         }
 
@@ -813,12 +813,12 @@ body
 
     .TemperatureDigital
     {
-        font-size: 5.6em;
+        font-size: 3.5em;
     }
 
     .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop
     {
-        font-size: 2.5em;
+        font-size: 1.56em;
     }
 }
 

@@ -10,12 +10,12 @@
                 url: '/classic',
                 templateUrl: 'App/brewduino/brewduino.html'
             })
-        .state('temperature', {
-            url: '/temperature/:id',
+        .state('dashboard', {
+            url: '/dashboard/:id',
             templateUrl: 'App/brewduino/thermoDashBoard.html'
         })
         .state('cdtAdd', {
-            url: '/cdtAdd',
+            url: '/cdtAdd/:id',
             templateUrl: 'App/countDownTimerForm/countDownTimerForm.html'
         });
         });

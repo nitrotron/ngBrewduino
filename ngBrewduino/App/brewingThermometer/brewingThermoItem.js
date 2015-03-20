@@ -51,7 +51,8 @@
         }
 
         function addTimer() {
-            $state.go('cdtAdd');
+            var stateParams = { id: $state.params.id };
+            $state.go('cdtAdd', stateParams);
         }
 
         function auxClick() {
@@ -73,7 +74,7 @@
         function openMenu() {
             vm.showMenu = true;
         }
-        
+
         function getChartColumns() {
             var rc = [0];
             stubData.thermometers.forEach(function (element, index, array) {
@@ -104,7 +105,7 @@
 
         function switchTemps(thermometer) {
             var stateParams = { id: thermometer.id };
-            $state.go('temperature', stateParams);
+            $state.go('dashboard', stateParams);
         }
 
     }
