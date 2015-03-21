@@ -38,17 +38,25 @@
         </div>
 
         <div class="col-md-3" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
-            {{otherThermo.name}}  {{otherThermo.temp}}
-        </div>
+            <span class="dashboard-minor-title">
+                {{otherThermo.name}}
+            </span>
+            <span class="dashboard-minor-temp">
+                {{otherThermo.temp}}
+            </span>
 
+</div>
     </div>
-
     <div>
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-3 ">
                     <div class="row">
-                        <div class="col-md-12 h1">{{brewingThermoItem.thermo.name}}</div>
+                        <div class="col-md-12 h1">
+                            {{
+brewingThermoItem.thermo.name
+                            }}
+                        </div>
                         <div class="col-md-12 h1">{{brewingThermoItem.thermo.temp}}</div>
                     </div>
                     <div class="row">
