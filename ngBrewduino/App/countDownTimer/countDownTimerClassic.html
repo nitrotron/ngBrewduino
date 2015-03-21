@@ -4,16 +4,48 @@
     </div>
     <div style="width: 210px">
     </div>
-    <div id="divCountdown" ng-repeat="timer in countDownTimer.timers"> 
+    <div id="divCountdown" ng-repeat="timer in countDownTimer.timers">
         <span ng-class="{true: 'clock',false: 'clockExpired'}[timer.isActive]">
-           
-            <timer countdown="countDownTimer.getTimer(timer.timer)" interval="1000" finish-callback="countDownTimer.timerExpired(timer)" >
+
+            <timer countdown="countDownTimer.getTimer(timer.timer)" interval="1000" finish-callback="countDownTimer.timerExpired(timer)">
                 {{hhours}}:{{mminutes}}:{{sseconds}}
-            </timer> {{timer.label}} </span>
+            </timer> {{timer.label}}
+        </span>
     </div>
 
     <div id="pnlAddTimer" ng-show="countDownTimer.showAddTimerPanel">
-        <table style="border-collapse:separate; border-spacing:2px">
+        <form name="addTimer" class="form-horizontal">
+            <div class="form-group">
+                <label for="minutes" class="col-xs-12 control-label" style="text-align:left">Minutes</label>
+                <div class="col-xs-12">
+                    <input type="number" min="0.2" class="form-control"
+                           id="minutes" placeholder="Minutes"
+                           ng-model="countDownTimer.minutes" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="timerTitle" class="control-label col-xs-12" style="text-align:left">Title</label>
+                <div class="col-xs-12">
+                    <input type="text" class="form-control"
+                           id="timerTitle" placeholder="Title"
+                           ng-model="countDownTimer.title" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-default"
+                            ng-click="countDownTimer.cancelNewTimer()">
+                        Cancel
+                    </button>
+
+                    <button type="button" class="btn btn-info"
+                            ng-click="countDownTimer.startNewTimer(countDownTimer.minutes, countDownTimer.title)">
+                        Start
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!--<table style="border-collapse:separate; border-spacing:2px">
             <tr>
                 <td></td>
                 <td style="text-align: right;">
@@ -43,6 +75,6 @@
                     </button>
                 </td>
             </tr>
-        </table>
+        </table>-->
     </div>
 </div>
