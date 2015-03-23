@@ -24,6 +24,7 @@
         vm.rimsBtn = stubData.rimsEnable;
         vm.rimsClick = rimsClick;
         vm.setAlarm = setAlarm;
+        vm.settingsClick = settingsClick;
         vm.showMenu = false;
 
         //vm.getOtherThermos = getOtherThermos; 
@@ -110,6 +111,11 @@
 
         function setAlarm() {
             vm.alarmBtn = !vm.alarmBtn;
+        }
+
+        function settingsClick() {
+            var stateParams = { id: $state.params.id };
+            $state.go('settings', stateParams);
         }
         function switchTemps(thermometer) {
             var stateParams = { id: thermometer.id };
