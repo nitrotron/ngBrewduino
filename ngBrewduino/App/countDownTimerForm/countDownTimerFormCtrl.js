@@ -2,7 +2,7 @@
     angular.module('app')
     .controller('countDownTimerFormCtrl', countDownTimerFormCtrl);
 
-    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimersVal) {
+    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimersVal, toaster) {
         var vm = this;
 
         vm.addTimer = addTimer;
