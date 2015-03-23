@@ -18,6 +18,7 @@
             //dateSnapShot = new Date();
             brewduinoCmdsSrv.setTimer(newTimer);
             
+            toaster.pop('success', newTimerLabel, 'Added Timer ' + newTimer + ' Minutes');
 
            //return back to the dashboard
             var stateParams = { id:  $state.params.id };
