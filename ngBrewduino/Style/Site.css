@@ -1,24 +1,29 @@
-﻿#content {
+﻿#content
+{
     width: 100%;
     float: left;
 }
 
-.error {
+.error
+{
     color: red;
     font-weight: bold;
 }
 
-#RimsAlarm {
+#RimsAlarm
+{
     font-size: 18px;
 }
 
-#pnlMain {
+#pnlMain
+{
     background-color: white;
     color: black;
     height: 1px;
 }
 /**************************** Brewing Thermometer **************************/
-div#RimsThermometers {
+div#RimsThermometers
+{
     /*TODO padding: 10px 10px 10px 85px;*/
     background-color: white;
     margin-right: auto;
@@ -28,7 +33,8 @@ div#RimsThermometers {
     width: 100%;
 }
 
-    div#RimsThermometers .RimsThermometer {
+    div#RimsThermometers .RimsThermometer
+    {
         /* todo margin: 5px 5px 5px 5px; */
         background-color: #e9e9e9;
         background-image: -webkit-linear-gradient(top, #e9e9e9, #f1f1f1);
@@ -58,7 +64,8 @@ div#RimsThermometers {
         float: left;
     }
 
-#btnShowNewTimerPanel, #btnShowRimsControls, .pnlRimsControls {
+#btnShowNewTimerPanel, #btnShowRimsControls, .pnlRimsControls
+{
     border: 1px solid #9abb82;
     /*todo  margin: 0px 0px 2px 2px; */
     border-radius: 13px;
@@ -70,17 +77,20 @@ div#RimsThermometers {
     box-shadow: 0px 0px 5px 1px rgba(154, 187, 130, 0.5);
 }
 
-.pnlRimsControls {
+.pnlRimsControls
+{
     z-index: 10;
     position: relative;
 }
 
-#pnlRimsButton {
+#pnlRimsButton
+{
     background-color: #e9e9e9;
     padding-right: 2px;
 }
 
-#btnShowRimsControls {
+#btnShowRimsControls
+{
     float: left;
     /*width: 291px;*/
     width: 100%; /*not 100 because there is a border*/
@@ -91,7 +101,8 @@ div#RimsThermometers {
     border-top-right-radius: 0;
 }
 
-.RimsSettingContainter {
+.RimsSettingContainter
+{
     z-index: 99;
     float: left;
     top: -49px;
@@ -118,7 +129,8 @@ div#RimsThermometers {
     /*todo padding: 10px 10px 10px 10px; */
 }
 
-.RimsSettingLabel {
+.RimsSettingLabel
+{
     /*float: left;*/
     font-size: 15px;
     /* padding-left: 10px; */
@@ -126,21 +138,25 @@ div#RimsThermometers {
     text-align: left;
 }
 
-.RimsSettingTB {
+.RimsSettingTB
+{
     width: 80%;
     text-align: left;
 }
 
-.RimsTb {
+.RimsTb
+{
     width: 100%;
 }
 
-.btnUpdateRims {
+.btnUpdateRims
+{
     width: 75px;
     /* width: 80%;*/
 }
 
-.CountDownTimer {
+.CountDownTimer
+{
     display: block;
     vertical-align: top;
     float: left;
@@ -149,7 +165,8 @@ div#RimsThermometers {
     margin: 10px 1% 0px 1%;
 }
 
-.CountDownTimer2 {
+.CountDownTimer2
+{
     display: block;
     vertical-align: top;
     float: left;
@@ -160,13 +177,15 @@ div#RimsThermometers {
 
 
 
-.BrewingThermometer_Title {
+.BrewingThermometer_Title
+{
     font-size: 20px;
     text-align: center;
     font-weight: bold;
 }
 
-.TemperatureDigital {
+.TemperatureDigital
+{
     /*font-size: 65px;     background-color: Black;     color: red;*/
     text-align: center;
     float: left;
@@ -197,13 +216,15 @@ div#RimsThermometers {
     text-decoration: none;
 }
 
-.TemperatureDigitalZoom {
+.TemperatureDigitalZoom
+{
     width: 400px;
     height: 161px;
     z-index: 9999;
 }
 
-.TemperatureDigitalSmallTop {
+.TemperatureDigitalSmallTop
+{
     /*font-size: 30px;*/
     font-size: 3em;
     /*background-color: Black;
@@ -235,12 +256,14 @@ div#RimsThermometers {
     color: #C45050 !important;
 }
 
-.TemperatureDigitalSmallZoom {
+.TemperatureDigitalSmallZoom
+{
     width: 200px;
     height: 80px;
 }
 
-.TemperatureDigitalSmallBottom {
+.TemperatureDigitalSmallBottom
+{
     /*font-size: 30px;*/
     font-size: 3em;
     background-color: Black;
@@ -276,7 +299,8 @@ div#RimsThermometers {
     color: #C45050 !important;
 }
 
-    .TemperatureDigitalSmallBottom:hover, .TemperatureDigitalSmallTop:hover, .TemperatureDigital:hover {
+    .TemperatureDigitalSmallBottom:hover, .TemperatureDigitalSmallTop:hover, .TemperatureDigital:hover
+    {
         background-color: #343231;
         /*background-image: -webkit-linear-gradient(top, #686463, #423d3c);
         background-image: -moz-linear-gradient(top, #686463, #423d3c);
@@ -287,7 +311,8 @@ div#RimsThermometers {
     }
 
 
-div#BrewingThermometer_Display {
+div#BrewingThermometer_Display
+{
     display: inline-block;
     /*width: 304px;
     height: 150px;*/
@@ -296,7 +321,8 @@ div#BrewingThermometer_Display {
     float: none; /* background-color: Lime;     border-color: Black;     border-width: 5px;     border: solid; */
 }
 
-.PanelOverlay {
+.PanelOverlay
+{
     position: relative;
     float: left;
     /*top: -50px;*/
@@ -322,29 +348,34 @@ div#BrewingThermometer_Display {
     text-shadow: 0px -1px 0px rgba(000, 000, 000, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
-.cancelX {
+.cancelX
+{
     font-size: 12px;
     color: red;
     cursor: pointer;
 }
 
-.Clickable {
+.Clickable
+{
     cursor: pointer;
 }
 
 /*************************** master Table ****************************************/
-.DefaultBackGround {
+.DefaultBackGround
+{
     background-color: #084C8C;
 }
 
-.MasterTable {
+.MasterTable
+{
     width: 96%;
     margin-left: 20px;
     margin-right: 20px;
     border-collapse: collapse;
 }
 
-.MasterHeader {
+.MasterHeader
+{
     width: 100%;
     margin-left: 5px;
     margin-right: 5px;
@@ -353,7 +384,8 @@ div#BrewingThermometer_Display {
     border-collapse: collapse;
 }
 
-.MasterBody {
+.MasterBody
+{
     width: 100%;
     margin-left: 5px;
     margin-right: 5px;
@@ -369,11 +401,13 @@ div#BrewingThermometer_Display {
     border-radius: 5px;
 }
 
-.WebPageMainTable {
+.WebPageMainTable
+{
     width: 100%;
 }
 
-.BrewingThermometerMainTable {
+.BrewingThermometerMainTable
+{
     /*background-color: white;*/
     border-radius: 5px;
     border-collapse: separate;
@@ -384,7 +418,8 @@ div#BrewingThermometer_Display {
     text-align: center;
 }
 
-.BrewingThermometer_Temp {
+.BrewingThermometer_Temp
+{
     /*todo   margin-left: 50px; */
     background-color: Black;
     text-align: center;
@@ -392,24 +427,28 @@ div#BrewingThermometer_Display {
 
 /******************************** JQuery *******************************/
 
-body {
+body
+{
     /*font: 62.5% "Trebuchet MS", sans-serif;*/
     /*margin: 50px;*/
 }
 
 /********************* Count Down ********************/
-.clock {
+.clock
+{
     font-size: 28px;
     color: #6291d0;
 }
 
-.clockExpired {
+.clockExpired
+{
     font-size: 20px;
     color: rgb(114, 181, 255);
     color: rgba(114, 181, 255, 0.71);
 }
 
-#pnlAddTimer {
+#pnlAddTimer
+{
     width: 100%;
     /*position: absolute;     top: 75px;     left: 400px; */
     background-color: White;
@@ -430,18 +469,21 @@ body {
     text-shadow: 0px -1px 0px rgba(000, 000, 000, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
 
-#pnlAddTimer2 {
+#pnlAddTimer2
+{
     background-color: white;
     width: 80%;
     color: #000000;
 }
 
-#pnlAddTimer table {
+#pnlAddTimer table
+{
     width: 100%;
     /*padding: 10px;*/
 }
 /***************************** Toggle Buttons***********************************/
-#buttonRow {
+#buttonRow
+{
     text-align: center;
     float: left;
     width: 100%;
@@ -452,7 +494,8 @@ body {
     text-justify: distribute-all-lines;*/
 }
 
-.switch input {
+.switch input
+{
     /* First, we make it as wide as the container */
     position: absolute;
     width: 100%;
@@ -465,13 +508,15 @@ body {
     cursor: pointer;
 }
 
-.SwitchWrapper {
+.SwitchWrapper
+{
     /*width:50%;*/
     padding: 20px 30px 60px 20px;
     display: inline-block;
 }
 
-.switch {
+.switch
+{
     width: 75px;
     height: 75px;
     /* width: 10em;
@@ -487,7 +532,8 @@ body {
     margin-bottom: 30%;*/
 }
 
-    .switch label {
+    .switch label
+    {
         display: block;
         width: 100%;
         height: 100%;
@@ -510,7 +556,8 @@ body {
         box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.3), 0 10px 10px 4px rgba(0, 0, 0, 0.3);
     }
 
-        .switch label:before {
+        .switch label:before
+        {
             content: "";
             position: absolute;
             left: -10px;
@@ -524,7 +571,8 @@ body {
             filter: blur(1px); /* Future-proof */
         }
 
-        .switch label:after {
+        .switch label:after
+        {
             content: "";
             position: absolute;
             left: -15px;
@@ -536,7 +584,8 @@ body {
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.15);
         }
 
-    .switch .icon-off:after {
+    .switch .icon-off:after
+    {
         content: "";
         display: block;
         position: absolute;
@@ -554,7 +603,8 @@ body {
         filter: blur(1px); /* Future-proof */
     }
 
-    .switch .icon-attention-alt:after {
+    .switch .icon-attention-alt:after
+    {
         content: "";
         display: block;
         position: absolute;
@@ -575,7 +625,8 @@ body {
         box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
     }
 
-    .switch .icon-fire-1:after {
+    .switch .icon-fire-1:after
+    {
         content: "";
         display: block;
         position: absolute;
@@ -596,60 +647,73 @@ body {
         box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
     }
 
-    .switch input:checked ~ label {
+    .switch input:checked ~ label
+    {
         /* Button */
         color: #9abb82;
         /*color: #6291d0;*/
         box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.13), 0 5px 8px rgba(0, 0, 0, 0.35), 0 3px 10px 4px rgba(0, 0, 0, 0.2);
     }
 
-@-webkit-keyframes pulse {
-    0% {
+@-webkit-keyframes pulse
+{
+    0%
+    {
         color: #C45050;
     }
 
-    50% {
+    50%
+    {
         color: #FC7E7E;
     }
 
-    100% {
+    100%
+    {
         color: #C45050;
     }
 }
 
-@keyframes pulse {
+@keyframes pulse
+{
 
-    0% {
+    0%
+    {
         color: #C45050;
     }
 
-    50% {
+    50%
+    {
         color: #FC7E7E;
     }
 
-    100% {
+    100%
+    {
         color: #C45050;
     }
 }
 
-#switchReset input:checked ~ label, .alarmBtn-dashboard {
+#switchReset input:checked ~ label, .alarmBtn-dashboard
+{
     color: #f66565;
     -webkit-animation: pulse 4s infinite;
     animation: pulse 4s infinite;
 }
 
-#switchPumpOn input:checked ~ label, #switchAuxPower input:checked ~ label, .pumpBtn-dashboard, .auxBtn-dashboard {
+#switchPumpOn input:checked ~ label, #switchAuxPower input:checked ~ label, .pumpBtn-dashboard, .auxBtn-dashboard
+{
     color: #6291d0;
 }
 
-.Stretch {
+.Stretch
+{
     width: 100%;
     display: inline-block;
     font-size: 0;
     line-height: 0;
 }
 
-.pnlTempGraph {
+.pnlTempGraph
+{
     /*display: none;
     position: absolute;
     background-color: gray;
@@ -662,7 +726,8 @@ body {
     z-index: 210;*/
 }
 
-.TempGraph {
+.TempGraph
+{
     position: relative;
     top: 5px;
     left: 5%;
@@ -671,44 +736,52 @@ body {
 
 
 /******************************** Dash Board ************************/
-#dashBoardMain {
+#dashBoardMain
+{
     /*background-color: #353e42;*/
 }
 
-#dashBoardHeader ul {
+#dashBoardHeader ul
+{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-    #dashBoardHeader ul li {
+    #dashBoardHeader ul li
+    {
         width: 25%;
         float: left;
         text-align: center;
     }
 
-.dashBoardHeader {
+.dashBoardHeader
+{
     /*color: #19FCFC;*/
 }
 
-    .dashBoardHeader .CountDownTimer2 {
+    .dashBoardHeader .CountDownTimer2
+    {
         color: black;
     }
 
 
-.clearfix:after {
+.clearfix:after
+{
     content: "";
     display: table;
     clear: both;
 }
 
-.menu-bar {
+.menu-bar
+{
     background-color: blue;
     text-align: center;
     font-size: 3em;
 }
 
-div.dashboard-slide-menu {
+div.dashboard-slide-menu
+{
     top: 0;
     width: 100px;
     height: 100%;
@@ -717,35 +790,41 @@ div.dashboard-slide-menu {
     overflow: hidden;
 }
 
-    div.dashboard-slide-menu li {
+    div.dashboard-slide-menu li
+    {
         display: block;
         text-align: center;
     }
 
-        div.dashboard-slide-menu li label {
+        div.dashboard-slide-menu li label
+        {
             font-size: 10px;
         }
 
-            div.dashboard-slide-menu li label i {
+            div.dashboard-slide-menu li label i
+            {
                 font-size: 30px;
             }
 
-.rimsBtn-dashboard {
+.rimsBtn-dashboard
+{
     /* Button */
     color: #9abb82;
 }
 
-.dashboard-minor-title {
-    font-size: 12px;
-    color: #9abb82;
-}
-
-.dashboard-minor-temp {
+.dashboard-minor-title
+{
     font-size: 12px;
 }
 
+.dashboard-minor-temp
+{
+    font-size: 12px;
+}
 
-.dashBoardHeader .clock {
+
+.dashBoardHeader .clock
+{
     font-size: 12px;
 }
 
@@ -754,6 +833,35 @@ div.dashboard-slide-menu {
     font-size: 10px;
 }
 
+.text-color0
+{
+    color: #353E42 !important;
+}
+
+.text-color1
+{
+    color: #7A9F90 !important;
+}
+
+.text-color2
+{
+    color: #67DC2D !important;
+}
+
+.text-color3
+{
+    color: #19fcfc !important;
+}
+
+.text-color4
+{
+    color: #D3D3D4 !important;
+}
+
+.text-color5
+{
+    color: #83BABD !important;
+}
 
 
 
@@ -765,43 +873,50 @@ div.dashboard-slide-menu {
 
 
 
-
-
-@media only screen and (min-width: 480px) {
-    .TemperatureDigital {
+@media only screen and (min-width: 480px)
+{
+    .TemperatureDigital
+    {
         width: 66.6667%;
         font-size: 4em;
         height: 80px;
     }
 
-    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop {
+    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop
+    {
         font-size: 1.875em;
         width: 33.3333%;
         height: 40px;
     }
 }
 
-@media only screen and (min-width: 786px) {
-    div#RimsThermometers .RimsThermometer {
+@media only screen and (min-width: 786px)
+{
+    div#RimsThermometers .RimsThermometer
+    {
         width: 45%;
         height: 150px;
     }
 
-    .CountDownTimer {
+    .CountDownTimer
+    {
         width: 90%;
     }
 
-    .switch {
+    .switch
+    {
         width: 100px;
         height: 100px;
     }
 
-        .switch label {
+        .switch label
+        {
             font-size: 2.875em;
             line-height: 1.9em;
         }
 
-            .switch label:after {
+            .switch label:after
+            {
                 left: -20px;
                 right: -20px;
                 top: -20px;
@@ -809,7 +924,8 @@ div.dashboard-slide-menu {
             }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1024px)
+{
     /*    div#RimsThermometers .RimsThermometer
     {
         width: 10%;
@@ -824,21 +940,26 @@ div.dashboard-slide-menu {
 */
 }
 
-@media only screen and (min-width: 1200px) {
-    div#RimsThermometers .RimsThermometer {
+@media only screen and (min-width: 1200px)
+{
+    div#RimsThermometers .RimsThermometer
+    {
         width: 18.5%;
         margin-left: 1%;
     }
 
-    .CountDownTimer {
+    .CountDownTimer
+    {
         width: 220px;
     }
 
-    .TemperatureDigital {
+    .TemperatureDigital
+    {
         font-size: 3.5em;
     }
 
-    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop {
+    .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop
+    {
         font-size: 1.56em;
     }
 }

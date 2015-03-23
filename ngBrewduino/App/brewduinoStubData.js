@@ -58,19 +58,43 @@
 
     chartData.options = {
         'title': 'Temperatures',
+        'titleTextStyle': { 'color': '#D3D3D4' },
         'isStacked': 'false',
         'fill': 20,
         'curveType': 'function',
         'trendlines': {
-            1: {}
+            '0': {
+                'type': 'linear',
+                'color': 'green',
+                'lineWidth': 3,
+                'opacity': 0.3,
+                'showR2': true,
+                'visibleInLegend': true
+            },
+            '1': {
+                'type': 'linear',
+                'color': 'green',
+                'lineWidth': '3',
+                'opacity': '0.3',
+                'showR2': 'true',
+                'visibleInLegend': 'true'
+            }
         },
         'displayExactValues': true,
         'vAxis': {
-            'title': 'Temperature unit', 'gridlines': { 'count': 6 }
+            'title': 'Temperature unit', 'gridlines': { 'count': 6, 'color': '#D3D3D4' },
+            'titleTextStyle': { 'color': '#D3D3D4' }
         },
         'hAxis': {
-            'title': 'Date'
-        }
+            'title': 'Date',
+            'gridlines': {'color': '#D3D3D4' },
+            'titleTextStyle': { 'color': '#D3D3D4' },
+            'textStyle': { 'color': '#D3D3D4' }
+        },
+        'legend': { 'textStyle': { 'color': '#D3D3D4' }},
+
+        'backgroundColor': '#353E42',
+        'colors': ['#67DC2D', '#19fcfc', '#FC1919', '#FC8B19']
     };
 
     chartData.formatters = {};
