@@ -864,7 +864,11 @@ div.dashboard-slide-menu
 }
 
 
-
+#dashBoardMain .statusLog
+{
+    background-color: #303030;
+    color: #D3D3D4;
+}
 
 
 

@@ -38,6 +38,7 @@
             cmds: cmds,
 
             clearAlarms: clearAlarms,
+            getStatus: getStatus,
             resetAlarm: resetAlarm,
             setAuxPower: setAuxPower,
             setHighAlarms: setHighAlarms,
@@ -54,6 +55,9 @@
 
         function clearAlarms(whichThermo) {
             return brewduionoDataSrv.sendCmd(cmds.clearTempAlarms, whichThermo);
+        }
+        function getStatus(status) {
+            return brewduionoDataSrv.getStatus(status);
         }
         function resetAlarm() {
             return brewduionoDataSrv.sendCmd(cmds.resetAlarm, '');

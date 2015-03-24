@@ -8,5 +8,6 @@
 
     settingsSrv.useStubData = true;
     settingsSrv.useMockServer = false;
+    settingsSrv.showStatusLog = false;
     settingsSrv.brewduinoUrlAndPort = 'http://localhost:51887/SerialSwitch';
 })();

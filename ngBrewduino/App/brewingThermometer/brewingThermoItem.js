@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, stubData, chartData, toaster) {
+    function brewingThermoItem($state, stubData, chartData, toaster, settingsSrv) {
         var vm = this;
 
         vm.addTimer = addTimer;
@@ -26,6 +26,7 @@
         vm.setAlarm = setAlarm;
         vm.settingsClick = settingsClick;
         vm.showMenu = false;
+        vm.showStatusLog = settingsSrv.showStatusLog;
 
         //vm.getOtherThermos = getOtherThermos; 
         vm.otherThermos = [];
@@ -39,7 +40,7 @@
         activate();
 
         function activate() {
-            
+
             vm.auxBtn = stubData.auxOn;
             vm.pumpBtn = stubData.pumpOn;
             vm.rimsBtn = stubData.rimsEnable;
@@ -54,6 +55,7 @@
             vm.chartData.view = { columns: getChartColumns() };
 
             toaster.pop('success', vm.thermo.name, 'Activated ' + vm.thermo.name + ' Dashboard');
+            //toaster.pop('info', 'settingsSrv.showStatusLog', settingsSrv.showStatusLog);
         }
 
         function addTimer() {
@@ -117,6 +119,7 @@
             var stateParams = { id: $state.params.id };
             $state.go('settings', stateParams);
         }
+
         function switchTemps(thermometer) {
             var stateParams = { id: thermometer.id };
             $state.go('dashboard', stateParams);

@@ -22,12 +22,24 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="settingsFormCtrl.settings.showStatusLog">
+                        Show Status Log
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
             <label for="brewduinoUrlAndPort" class="col-md-2 control-label">BrewDuino URL and Port</label>
             <div class="col-md-10">
                 <input type="text" class="form-control" id="brewduinoUrlAndPort" name="brewduinoUrlAndPort"
                     placeholder="{{settingsFormCtrl.currentSrvUrl}}" ng-model="settingsFormCtrl.settings.url" />
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
 
