@@ -6,7 +6,7 @@
     angular.module('app')
         .factory('brewduionoDataSrv', brewduionoDataSrv);
 
-    function brewduionoDataSrv($http, settingsSrv) {
+    function brewduionoDataSrv($http, settingsSrv, mockRestSrv) {
         var currentStatus = {};
         return {
             getStatus:getStatus,
@@ -14,12 +14,18 @@
         };
 
         function getStatus(statusData) {
+            if (settingsSrv.useMockServer === true) {
+                return mockRestSrv.getStatus(statusData);
+            }
             var statusUrl = settingsSrv.brewduinoUrlAndPort + '/GetStatus';
             return $http.get(statusUrl).success(function (data) {
                 statusData = data;
             });
         }
         function sendCmd(whichCmd, args) {
+            if (settingsSrv.useMockServer === true) {
+                return mockRestSrv.sendCmd(whichCmd,args);
+            }
             var cmdUrl = settingsSrv.brewduinoUrlAndPort + '/SendCommand/' + whichCmd + '/' + args;
             return $http.post(cmdUrl);
         }
