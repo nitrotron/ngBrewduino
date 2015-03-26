@@ -5,9 +5,9 @@
     angular.module('app')
         .controller('brewduinoCtrl', brewduinoCtrl);
 
-    function brewduinoCtrl($interval, stubData, brewduionoDataSrv, brewduinoCmdsSrv, toaster, settingsSrv) {
+    function brewduinoCtrl($interval, stubData, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv) {
         var vm = this;
-        vm.stubData = stubData;
+        vm.stubData = {};
 
         vm.alarmClick = alarmClick;
         vm.auxClick = auxClick;
@@ -20,15 +20,18 @@
         activate();
 
         function activate() {
-            vm.auxBtn = stubData.auxOn;
-            vm.pumpBtn = stubData.pumpOn;
-            vm.rimsBtn = stubData.rimsEnable;
+            getStatus();
+            //vm.stubData = stubData;
+            vm.auxBtn = vm.stubData.auxOn;
+            vm.pumpBtn = vm.stubData.pumpOn;
+            vm.rimsBtn = vm.stubData.rimsEnable;
             vm.showStatusLog = settingsSrv.showStatusLog;
 
 
             //console.log('you are here');
-            getStatus();
-            toaster.pop('success', 'title', 'You havve loaded the new template');
+            
+            logger.info('Now viewing Classic theme');
+            
         }
 
         function alarmClick(alarm) {
@@ -41,7 +44,11 @@
         }
 
         function getStatus() {
-            brewduinoCmdsSrv.getStatus(stubData);
+            brewduinoCmdsSrv.getStatus(vm.stubData)
+            .then(function (data) {
+                vm.stubData = data;
+                logger.info('Resolved Data', vm.stubData);
+            });
         }
 
         function pumpClick(pump) {

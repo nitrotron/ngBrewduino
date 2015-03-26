@@ -7,7 +7,15 @@
     .value('settingsSrv', settingsSrv);
 
     settingsSrv.useStubData = true;
-    settingsSrv.useMockServer = false;
+    settingsSrv.useMockServer = true;
     settingsSrv.showStatusLog = false;
     settingsSrv.brewduinoUrlAndPort = 'http://localhost:51887/SerialSwitch';
+    settingsSrv.showToast = {
+        error: true,
+        info: true,
+        success: true,
+        warning: true
+
+    };
+
 })();

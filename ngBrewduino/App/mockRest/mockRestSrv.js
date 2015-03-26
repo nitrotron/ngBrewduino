@@ -16,10 +16,10 @@
             statusData = stubData;
 
             $timeout(function () {
-                deferred.resolve(stubData)
+                deferred.resolve(stubData);
             }, 2000);
 
-            return deferred;
+            return deferred.promise;
         }
 
         function sendCmd(whichCmd, args) {

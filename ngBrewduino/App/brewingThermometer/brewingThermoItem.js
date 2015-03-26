@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, stubData, chartData, toaster, settingsSrv) {
+    function brewingThermoItem($state, stubData, chartData, logger, settingsSrv) {
         var vm = this;
 
         vm.addTimer = addTimer;
@@ -54,8 +54,8 @@
             });
             vm.chartData.view = { columns: getChartColumns() };
 
-            toaster.pop('success', vm.thermo.name, 'Activated ' + vm.thermo.name + ' Dashboard');
-            //toaster.pop('info', 'settingsSrv.showStatusLog', settingsSrv.showStatusLog);
+
+            logger.info('Activated ' + vm.thermo.name + ' Dashboard');
         }
 
         function addTimer() {

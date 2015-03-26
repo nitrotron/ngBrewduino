@@ -22,7 +22,8 @@
                 useStubData: settingsSrv.useStubData,
                 useMockServer: settingsSrv.useMockServer,
                 url: settingsSrv.brewduinoUrlAndPort,
-                showStatusLog: settingsSrv.showStatusLog
+                showStatusLog: settingsSrv.showStatusLog,
+                showToast: settingsSrv.showToast
             };
         }
 
@@ -42,6 +43,7 @@
             settingsSrv.useMockServer = settings.useMockServer;
             settingsSrv.brewduinoUrlAndPort = settings.url;
             settingsSrv.showStatusLog = settings.showStatusLog;
+            settingsSrv.showToast = settings.showToast;
         }
     }
 
