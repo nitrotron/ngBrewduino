@@ -1,0 +1,26 @@
+﻿{  
+   "vendorjs":[  
+      "./ngBrewduino/3rdParty/script/angular.js",
+	  "./ngBrewduino/3rdParty/script/angular-timer.min.js",
+	  "./ngBrewduino/3rdParty/script/angular-ui-router.min.js",
+	  "./ngBrewduino/3rdParty/script/ng-google-chart.js",
+	  "./ngBrewduino/3rdParty/script/toaster.min.js",
+	  "./ngBrewduino/3rdParty/script/angular-animate.js"
+   ],
+   "build":"./build/",
+   "js":[  
+      "./ngBrewduino/App/app.js",
+      "./ngBrewduino/App/**/*.js"
+      ],
+   "css":[  
+      "./ngBrewduino/Style/Site.css"
+   ],
+   "vendorcss":[  
+      "./ngBrewduino/3rdParty/css/bootstrap.nightly.css",
+	  "./ngBrewduino/3rdParty/css/toaster.min.css",
+	  "./ngBrewduino/Fonts/font-awesome-4.1.0/css/font-awesome.min.css",
+	  "./ngBrewduino/Fonts/fontello-cbda6283/css/fontello2.css"
+   ],
+   "client": "./ngBrewduino/",
+   "server": "./server"
+}
