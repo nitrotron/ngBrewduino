@@ -83,7 +83,8 @@
         'displayExactValues': true,
         'vAxis': {
             'title': 'Temperature unit', 'gridlines': { 'count': 6, 'color': '#D3D3D4' },
-            'titleTextStyle': { 'color': '#D3D3D4' }
+            'titleTextStyle': { 'color': '#D3D3D4' },
+            'textStyle': { 'color': '#D3D3D4' }
         },
         'hAxis': {
             'title': 'Date',
