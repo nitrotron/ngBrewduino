@@ -12,6 +12,28 @@ var log = plug.util.log;
 gulp.task('help', plug.taskListing);
 
 
+/**
+ * Create $templateCache from the html templates
+ * @return {Stream}
+ */
+gulp.task('templatecache', function () {
+    log('Creating an AngularJS $templateCache');
+
+    return gulp
+        .src(paths.htmltemplates)
+         .pipe(plug.bytediff.start())
+        .pipe(plug.minifyHtml({
+            empty: true
+        }))
+        .pipe(plug.bytediff.stop())
+        .pipe(plug.angularTemplatecache('templates.js', {
+            module: 'app',
+            standalone: false,
+            root: 'App/'
+        }))
+        .pipe(gulp.dest(paths.build));
+});
+
 gulp.task('css', function () {
     log('Bundling, minifying, and copying the app\'s CSS');
 
