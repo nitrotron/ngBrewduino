@@ -21,7 +21,7 @@ app = express();                        // a local instance of it
 //sermyPort.on('error', showError);
 
 // Tell the server where files to serve are located:
-app.use(express.static('public'));
+app.use(express.static('../build'));
 
 // start the server:
 var server = app.listen(8080);

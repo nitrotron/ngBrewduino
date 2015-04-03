@@ -21,17 +21,17 @@ gulp.task('templatecache', function () {
 
     return gulp
         .src(paths.htmltemplates)
-         .pipe(plug.bytediff.start())
+        .pipe(plug.bytediff.start())
         .pipe(plug.minifyHtml({
-            empty: true
-        }))
-        .pipe(plug.bytediff.stop())
+          empty: true
+         }))
         .pipe(plug.angularTemplatecache('templates.js', {
             module: 'app',
             standalone: false,
             root: 'App/'
         }))
-        .pipe(gulp.dest(paths.build));
+       .pipe(plug.bytediff.stop())
+       .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('css', function () {
@@ -70,10 +70,12 @@ gulp.task('lint', function () {
 });
 
 
-gulp.task('js', ['lint'], function () {
+
+gulp.task('js', ['lint', 'templatecache'], function () {
     log('Bundling, Minifying, and copying MatterClosing JavaScript');
+    var source = [].concat(paths.js, paths.build + 'templates.js');
     return gulp
-        .src(paths.js)
+        .src(source)
         .pipe(plug.concat('all.min.js'))
         .pipe(plug.ngAnnotate({
             add: true
@@ -99,18 +101,6 @@ gulp.task('vendorjs', function () {
         .pipe(gulp.dest(paths.build));
 });
 
-
-
-
-var tasksToRun = ['lint'];
-
-if (process.env.NODE_ENV === 'Release') {
-    tasksToRun.push('rev-and-inject');
-} else {
-    tasksToRun.push('justInject');
-}
-
-gulp.task('VSbuild', tasksToRun);
 
 
 gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function () {
@@ -180,7 +170,7 @@ gulp.task('justInject', function () {
         var pathGlob = path;
         var options = {
             read: false,
-            addPrefix: '../ngBrewduino',
+            addPrefix: '../src/client',
             relative: true
         };
         if (name) {
