@@ -2,8 +2,8 @@
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
-1 verbose cli   '--savedev',
-1 verbose cli   'gulp-angularTemplatecache' ]
+1 verbose cli   'gulp-browser-sync',
+1 verbose cli   '--save-dev' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.36
 4 verbose node symlink C:\Program Files\nodejs\\node.exe
@@ -11,8 +11,8 @@
 6 warn package.json @ No repository field.
 7 warn package.json @ No README data
 8 verbose readDependencies using package.json deps
-9 verbose cache add [ 'gulp-angularTemplatecache', null ]
-10 verbose cache add name=undefined spec="gulp-angularTemplatecache" args=["gulp-angularTemplatecache",null]
+9 verbose cache add [ 'gulp-browser-sync', null ]
+10 verbose cache add name=undefined spec="gulp-browser-sync" args=["gulp-browser-sync",null]
 11 verbose parsed url { protocol: null,
 11 verbose parsed url   slashes: null,
 11 verbose parsed url   auth: null,
@@ -22,29 +22,29 @@
 11 verbose parsed url   hash: null,
 11 verbose parsed url   search: null,
 11 verbose parsed url   query: null,
-11 verbose parsed url   pathname: 'gulp-angularTemplatecache',
-11 verbose parsed url   path: 'gulp-angularTemplatecache',
-11 verbose parsed url   href: 'gulp-angularTemplatecache' }
-12 silly lockFile 7eb6839b-gulp-angularTemplatecache gulp-angularTemplatecache
-13 verbose lock gulp-angularTemplatecache C:\Users\tmetcalf\AppData\Roaming\npm-cache\7eb6839b-gulp-angularTemplatecache.lock
-14 silly lockFile 7eb6839b-gulp-angularTemplatecache gulp-angularTemplatecache
-15 silly lockFile 7eb6839b-gulp-angularTemplatecache gulp-angularTemplatecache
-16 verbose addNamed [ 'gulp-angularTemplatecache', '' ]
+11 verbose parsed url   pathname: 'gulp-browser-sync',
+11 verbose parsed url   path: 'gulp-browser-sync',
+11 verbose parsed url   href: 'gulp-browser-sync' }
+12 silly lockFile b33bd72e-gulp-browser-sync gulp-browser-sync
+13 verbose lock gulp-browser-sync C:\Users\jessica\AppData\Roaming\npm-cache\b33bd72e-gulp-browser-sync.lock
+14 silly lockFile b33bd72e-gulp-browser-sync gulp-browser-sync
+15 silly lockFile b33bd72e-gulp-browser-sync gulp-browser-sync
+16 verbose addNamed [ 'gulp-browser-sync', '' ]
 17 verbose addNamed [ null, '*' ]
-18 silly lockFile 69c14a48-gulp-angularTemplatecache gulp-angularTemplatecache@
-19 verbose lock gulp-angularTemplatecache@ C:\Users\tmetcalf\AppData\Roaming\npm-cache\69c14a48-gulp-angularTemplatecache.lock
-20 silly addNameRange { name: 'gulp-angularTemplatecache', range: '*', hasData: false }
-21 verbose request where is /gulp-angularTemplatecache
+18 silly lockFile 4c305f9a-gulp-browser-sync gulp-browser-sync@
+19 verbose lock gulp-browser-sync@ C:\Users\jessica\AppData\Roaming\npm-cache\4c305f9a-gulp-browser-sync.lock
+20 silly addNameRange { name: 'gulp-browser-sync', range: '*', hasData: false }
+21 verbose request where is /gulp-browser-sync
 22 verbose request registry https://registry.npmjs.org/
-23 verbose request id 060e9af655e88906
-24 verbose url raw /gulp-angularTemplatecache
-25 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-angularTemplatecache' ]
-26 verbose url resolved https://registry.npmjs.org/gulp-angularTemplatecache
-27 verbose request where is https://registry.npmjs.org/gulp-angularTemplatecache
-28 info trying registry request attempt 1 at 16:13:05
-29 http GET https://registry.npmjs.org/gulp-angularTemplatecache
-30 http 404 https://registry.npmjs.org/gulp-angularTemplatecache
-31 verbose headers { date: 'Thu, 02 Apr 2015 20:10:01 GMT',
+23 verbose request id ab7dbde8d4a36f67
+24 verbose url raw /gulp-browser-sync
+25 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-browser-sync' ]
+26 verbose url resolved https://registry.npmjs.org/gulp-browser-sync
+27 verbose request where is https://registry.npmjs.org/gulp-browser-sync
+28 info trying registry request attempt 1 at 08:00:20
+29 http GET https://registry.npmjs.org/gulp-browser-sync
+30 http 404 https://registry.npmjs.org/gulp-browser-sync
+31 verbose headers { date: 'Fri, 03 Apr 2015 12:00:20 GMT',
 31 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 31 verbose headers   'content-type': 'application/json',
 31 verbose headers   'cache-control': 'max-age=0',
@@ -52,14 +52,14 @@
 31 verbose headers   'accept-ranges': 'bytes',
 31 verbose headers   via: '1.1 varnish',
 31 verbose headers   age: '0',
-31 verbose headers   'x-served-by': 'cache-iad2136-IAD',
+31 verbose headers   'x-served-by': 'cache-atl6232-ATL',
 31 verbose headers   'x-cache': 'MISS',
 31 verbose headers   'x-cache-hits': '0',
-31 verbose headers   'x-timer': 'S1428005401.385374,VS0,VE91',
+31 verbose headers   'x-timer': 'S1428062420.471494,VS0,VE28',
 31 verbose headers   'keep-alive': 'timeout=10, max=50',
 31 verbose headers   connection: 'Keep-Alive' }
 32 silly registry.get cb [ 404,
-32 silly registry.get   { date: 'Thu, 02 Apr 2015 20:10:01 GMT',
+32 silly registry.get   { date: 'Fri, 03 Apr 2015 12:00:20 GMT',
 32 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 32 silly registry.get     'content-type': 'application/json',
 32 silly registry.get     'cache-control': 'max-age=0',
@@ -67,24 +67,24 @@
 32 silly registry.get     'accept-ranges': 'bytes',
 32 silly registry.get     via: '1.1 varnish',
 32 silly registry.get     age: '0',
-32 silly registry.get     'x-served-by': 'cache-iad2136-IAD',
+32 silly registry.get     'x-served-by': 'cache-atl6232-ATL',
 32 silly registry.get     'x-cache': 'MISS',
 32 silly registry.get     'x-cache-hits': '0',
-32 silly registry.get     'x-timer': 'S1428005401.385374,VS0,VE91',
+32 silly registry.get     'x-timer': 'S1428062420.471494,VS0,VE28',
 32 silly registry.get     'keep-alive': 'timeout=10, max=50',
 32 silly registry.get     connection: 'Keep-Alive' } ]
-33 silly lockFile 69c14a48-gulp-angularTemplatecache gulp-angularTemplatecache@
-34 silly lockFile 69c14a48-gulp-angularTemplatecache gulp-angularTemplatecache@
-35 error 404 404 Not Found: gulp-angularTemplatecache
+33 silly lockFile 4c305f9a-gulp-browser-sync gulp-browser-sync@
+34 silly lockFile 4c305f9a-gulp-browser-sync gulp-browser-sync@
+35 error 404 404 Not Found: gulp-browser-sync
 35 error 404
-35 error 404 'gulp-angularTemplatecache' is not in the npm registry.
+35 error 404 'gulp-browser-sync' is not in the npm registry.
 35 error 404 You should bug the author to publish it
 35 error 404
 35 error 404 Note that you can also install from a
 35 error 404 tarball, folder, or http url, or git url.
-36 error System Windows_NT 6.1.7601
-37 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--savedev" "gulp-angularTemplatecache"
-38 error cwd C:\Users\tmetcalf\Documents\GitHub\ngBrewduino\ngBrewduino
+36 error System Windows_NT 6.2.9200
+37 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "gulp-browser-sync" "--save-dev"
+38 error cwd C:\Users\jessica\Documents\GitHub\ngBrewduino
 39 error node -v v0.10.36
 40 error npm -v 1.4.28
 41 error code E404
