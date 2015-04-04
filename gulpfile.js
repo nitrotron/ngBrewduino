@@ -2,6 +2,7 @@
 var plug = require('gulp-load-plugins')();
 var paths = require('./gulp.config.json');
 var log = plug.util.log;
+var port = process.env.PORT || 7203;
 
 //var source = [
 //'./Scripts/App/*module*.js',
@@ -188,3 +189,45 @@ gulp.task('justInject', function () {
 gulp.task('watch', function () {
     gulp.watch(paths.js, ['lint']);
 });
+
+/**
+ * serve the dev environment
+ */
+gulp.task('serve-dev', function () {
+    serve({
+        mode: 'dev'
+    });
+});
+
+
+function serve(args) {
+    var options = {
+        script: paths.server + 'server.js',
+        delayTime: 1,
+        env: {
+            'NODE_ENV': args.mode,
+            'PORT': port
+        },
+        watch: [paths.server]
+    };
+
+    var exec;
+    //if (args.debug) {
+    //    log('Running node-inspector. Browse to http://localhost:8080/debug?port=5858');
+    //    exec = require('child_process').exec;
+    //    exec('node-inspector');
+    //    options.nodeArgs = [args.debug + '=5858'];
+    //}
+
+    return plug.nodemon(options);
+        //.on('start', function() {
+        //    startBrowserSync();
+        //})
+        ////.on('change', tasks)
+        //.on('restart', function() {
+        //    log('restarted!');
+        //    setTimeout(function () {
+        //        browserSync.reload({ stream: false });
+        //    }, 1000);
+        //});
+}

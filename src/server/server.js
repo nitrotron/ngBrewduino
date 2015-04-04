@@ -16,15 +16,15 @@ var routes;
 
 var environment = process.env.NODE_ENV;
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(compress());            // Compress response data with gzip
-app.use(logger('dev'));
-app.use(favicon(__dirname + '/favicon.ico'));
-app.use(cors());                // enable ALL CORS requests
-app.use(errorHandler.init);
+//app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.json());
+//app.use(compress());            // Compress response data with gzip
+//app.use(logger('dev'));
+//app.use(favicon(__dirname + '/favicon.ico'));
+//app.use(cors());                // enable ALL CORS requests
+//app.use(errorHandler.init);
 
-routes = require('./routes/index')(app);
+//routes = require('./routes/index')(app);
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
