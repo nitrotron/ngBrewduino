@@ -45,8 +45,8 @@
 
         function getStatus() {
             brewduinoCmdsSrv.getStatus(vm.stubData)
-            .then(function (data) {
-                vm.stubData = data;
+            .then(function (response) {
+                vm.stubData = response.data;
                 logger.info('Resolved Data', vm.stubData);
             });
         }

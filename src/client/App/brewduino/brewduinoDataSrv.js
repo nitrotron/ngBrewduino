@@ -22,9 +22,10 @@
                 .then(getStatusSuccess, getStatusFailed)
                 .catch(getStatusFailed);
             }
-            var statusUrl = settingsSrv.brewduinoUrlAndPort + '/GetStatus';
-            return $http.get(statusUrl).success(function (data) {
-                statusData = data;
+            var statusUrl = settingsSrv.brewduinoUrlAndPort + '/getStatus';
+            statusUrl = '/getStatus';
+            return $http.get(statusUrl).success(function (response) {
+                statusData = response;
             });
         }
         function getStatusFailed(error) {

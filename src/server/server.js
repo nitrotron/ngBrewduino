@@ -32,6 +32,32 @@ console.log('NODE_ENV=' + environment);
 
 var source = '';
 
+var stubData = {
+    thermometers: [
+        { id: 0, temp: 100, highAlarm: 200, lowAlarm: 15, name: 'RIMs', isRIMS: true },
+        { id: 1, temp: 110, highAlarm: 210, lowAlarm: 25, name: 'Mash' },
+        { id: 2, temp: 120, highAlarm: 220, lowAlarm: 35, name: 'HLT' },
+        { id: 3, temp: 130, highAlarm: 230, lowAlarm: 45, name: 'Kettle' }
+    ],
+
+    //Thermometer0: 100,
+    //ThermometerHighAlarm0: 200,
+    //ThermometerLowAlarm0: 40,
+    TotalTimers: 12,
+    rimsEnable: false,
+    auxOn: false,
+    pumpOn: false,
+    WhichThermoAlarm: 'kettle',
+    TimersNotAllocated: 3,
+    Kp: 200,
+    Ki: 1,
+    kd: 1,
+    SetPoint: 100,
+    WindowSize: 5000,
+    TempAlarmActive: false,
+    TimerAlarmActive: false
+};
+
 app.get('/ping', function(req, res, next) {
     console.log(req.body);
     res.send('pong');
@@ -93,7 +119,12 @@ app.listen(port, function() {
 //// start the server:
 //var server = app.listen(8080);
 //// start the listener for client requests:
-//app.get('/data', sendData);        // handler for /date
+app.get('/getStatus', getStubData);        // handler for /date
+
+function getStubData(request, response) {
+    response.send(stubData);
+    response.end;
+};
 //
 //// ------------------------ Serial event functions:
 //// this is called when the serial port is opened:
@@ -118,3 +149,6 @@ app.listen(port, function() {
 //    response.send(serialData);
 //    response.end();
 //};
+
+
+
