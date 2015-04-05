@@ -4,13 +4,14 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, stubData, chartData, logger, settingsSrv) {
+    function brewingThermoItem($state, brewduinoCmdsSrv, stubData, chartData, logger, settingsSrv) {
         var vm = this;
 
         vm.addTimer = addTimer;
+        vm.mcData = {};
 
         vm.alarmBtn = false;
-        vm.auxBtn = stubData.auxOn;
+        vm.mcData.auxBtn = stubData.auxOn;
         vm.auxClick = auxClick;
         vm.chartData = chartData;
         vm.chartTypeArea = true;
@@ -19,9 +20,9 @@
         vm.chBxChartChanged = chBxChartChanged;
         vm.closeMenu = closeMenu;
         vm.openMenu = openMenu;
-        vm.pumpBtn = stubData.pumpOn;
+        vm.mcData.pumpBtn = stubData.pumpOn;
         vm.pumpClick = pumpClick;
-        vm.rimsBtn = stubData.rimsEnable;
+        vm.mcData.rimsBtn = stubData.rimsEnable;
         vm.rimsClick = rimsClick;
         vm.setAlarm = setAlarm;
         vm.settingsClick = settingsClick;
@@ -41,9 +42,12 @@
 
         function activate() {
 
-            vm.auxBtn = stubData.auxOn;
-            vm.pumpBtn = stubData.pumpOn;
-            vm.rimsBtn = stubData.rimsEnable;
+            getStatus();
+
+            
+            vm.mcData.auxBtn = stubData.auxOn;
+            vm.mcData.pumpBtn = stubData.pumpOn;
+            vm.mcData.rimsBtn = stubData.rimsEnable;
             vm.otherThermos = getOtherThermos();
             stubData.thermometers.forEach(function (element, index, array) {
                 if (index === Number($state.params.id)) {
@@ -64,8 +68,8 @@
         }
 
         function auxClick() {
-            vm.auxBtn = !vm.auxBtn;
-            stubData.auxOn = vm.auxBtn;
+            vm.mcData.auxBtn = !vm.mcData.auxBtn;
+            stubData.auxOn = vm.mcData.auxBtn;
         }
 
         function changeChartType(chartType) {
@@ -77,6 +81,14 @@
 
         function closeMenu() {
             vm.showMenu = false;
+        }
+
+        function getStatus() {
+            brewduinoCmdsSrv.getStatus(vm.stubData)
+            .then(function (response) {
+                vm.stubData = response.data;
+                logger.info('Resolved Data', vm.stubData);
+            });
         }
 
         function openMenu() {
@@ -102,13 +114,13 @@
         }
 
         function pumpClick() {
-            vm.pumpBtn = !vm.pumpBtn;
-            stubData.pumpOn = vm.pumpBtn;
+            vm.mcData.pumpBtn = !vm.mcData.pumpBtn;
+            stubData.pumpOn = vm.mcData.pumpBtn;
         }
 
         function rimsClick() {
-            vm.rimsBtn = !vm.rimsBtn;
-            stubData.rimsEnable = vm.rimsBtn;
+            vm.mcData.rimsBtn = !vm.mcData.rimsBtn;
+            stubData.rimsEnable = vm.mcData.rimsBtn;
         }
 
         function setAlarm() {

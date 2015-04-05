@@ -5,9 +5,9 @@
     angular.module('app')
         .controller('brewduinoCtrl', brewduinoCtrl);
 
-    function brewduinoCtrl($interval, stubData, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv) {
+    function brewduinoCtrl($interval, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv) {
         var vm = this;
-        vm.stubData = {};
+        vm.mcData = {};
 
         vm.alarmClick = alarmClick;
         vm.auxClick = auxClick;
@@ -20,18 +20,19 @@
         activate();
 
         function activate() {
+            vm.mcData = brewduionoDataSrv.currentStatus;
             getStatus();
             //vm.stubData = stubData;
-            vm.auxBtn = vm.stubData.auxOn;
-            vm.pumpBtn = vm.stubData.pumpOn;
-            vm.rimsBtn = vm.stubData.rimsEnable;
+            //vm.auxBtn = vm.mcData.auxOn;
+            //vm.pumpBtn = vm.mcData.pumpOn;
+            //vm.rimsBtn = vm.mcData.rimsEnable;
             vm.showStatusLog = settingsSrv.showStatusLog;
 
 
             //console.log('you are here');
-            
+
             logger.info('Now viewing Classic theme');
-            
+
         }
 
         function alarmClick(alarm) {
@@ -39,24 +40,24 @@
         }
 
         function auxClick(aux) {
-            stubData.auxOn = vm.auxBtn;
+            brewduionoDataSrv.currentStatus.auxOn = aux;
             brewduinoCmdsSrv.setAuxPower(aux);
         }
 
         function getStatus() {
             brewduinoCmdsSrv.getStatus(vm.stubData)
             .then(function (response) {
-                vm.stubData = response.data;
+                vm.mcData = response.data;
                 logger.info('Resolved Data', vm.stubData);
             });
         }
 
         function pumpClick(pump) {
-            stubData.pumpOn = pump;
+            brewduionoDataSrv.currentStatus.pumpOn = pump;
             brewduinoCmdsSrv.setPumpsPower(pump);
         }
         function rimsClick(rims) {
-            stubData.rimsEnable = rims;
+            brewduionoDataSrv.currentStatus.rimsEnable = rims;
             brewduinoCmdsSrv.setRimsPower(rims);
 
         }

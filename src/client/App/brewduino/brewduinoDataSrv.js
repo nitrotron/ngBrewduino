@@ -6,9 +6,10 @@
     angular.module('app')
         .factory('brewduionoDataSrv', brewduionoDataSrv);
 
-    function brewduionoDataSrv($http, settingsSrv, mockRestSrv, logger) {
+    function brewduionoDataSrv($http, logger, settingsSrv) {
         var currentStatus = {};
         return {
+            currentStatus: currentStatus,
             getStatus: getStatus,
             sendCmd: sendCmd
         };
@@ -17,15 +18,14 @@
 
 
         function getStatus(statusData) {
-            if (settingsSrv.useMockServer === true) {
-                return mockRestSrv.getStatus(statusData)
-                .then(getStatusSuccess, getStatusFailed)
-                .catch(getStatusFailed);
-            }
-            var statusUrl = settingsSrv.brewduinoUrlAndPort + '/getStatus';
-            statusUrl = '/getStatus';
-            return $http.get(statusUrl).success(function (response) {
-                statusData = response;
+            var statusUrl = '/getStatus';
+            return $http.get(statusUrl).success(function (data) {
+                data.thermometers.forEach(function (element, index, array) {
+                    element.name = settingsSrv.thermoNames[index];
+                });
+
+                statusData = data;
+                currentStatus = data;
             });
         }
         function getStatusFailed(error) {
@@ -38,10 +38,7 @@
 
 
         function sendCmd(whichCmd, args) {
-            if (settingsSrv.useMockServer === true) {
-                return mockRestSrv.sendCmd(whichCmd, args);
-            }
-            var cmdUrl = settingsSrv.brewduinoUrlAndPort + '/SendCommand/' + whichCmd + '/' + args;
+            var cmdUrl =  '/sendCommand/' + whichCmd + '/' + args;
             return $http.post(cmdUrl);
         }
 

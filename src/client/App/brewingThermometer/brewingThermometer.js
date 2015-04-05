@@ -43,7 +43,7 @@
         }
 
         function showRimsButton(thermoObj) {
-            return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRIMS) && thermoObj.isRIMS === true);
+            return (angular.isObject(thermoObj) && angular.isDefined(thermoObj.isRims) && thermoObj.isRims === 1);
         }
 
         function showRimsSettings() {

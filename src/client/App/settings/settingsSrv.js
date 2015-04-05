@@ -17,5 +17,6 @@
         warning: true
 
     };
+    settingsSrv.thermoNames = ['RIMS', 'MashTun', 'Kettle', 'HLT/Kettle2'];
 
 })();

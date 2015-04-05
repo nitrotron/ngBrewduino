@@ -33,31 +33,61 @@ console.log('NODE_ENV=' + environment);
 var source = '';
 
 var stubData = {
-    thermometers: [
-        { id: 0, temp: 100, highAlarm: 200, lowAlarm: 15, name: 'RIMs', isRIMS: true },
-        { id: 1, temp: 110, highAlarm: 210, lowAlarm: 25, name: 'Mash' },
-        { id: 2, temp: 120, highAlarm: 220, lowAlarm: 35, name: 'HLT' },
-        { id: 3, temp: 130, highAlarm: 230, lowAlarm: 45, name: 'Kettle' }
+    "thermometers": [
+       {
+           "id": 0,
+           "temp": 62.04,
+           "highAlarm": 215.0000000000,
+           "lowAlarm": 32.0000000000,
+           "sensor": 4032169102500196
+       },
+       {
+           "id": 1,
+           "temp": 62.82,
+           "highAlarm": 215.0000000000,
+           "lowAlarm": 32.0000000000,
+           "sensor": 40118328050033
+       },
+       {
+           "id": 2,
+           "temp": 61.47,
+           "highAlarm": 215.0000000000,
+           "lowAlarm": 32.0000000000,
+           "sensor": 401711538050019
+       },
+       {
+           "id": 3,
+           "temp": 62.38,
+           "highAlarm": 215.0000000000,
+           "lowAlarm": 32.0000000000,
+           "sensor": 4023116618150056,
+           "isRims": 1
+       }
     ],
+    "tempAlarmActive": 1,
+    "timerAlarmActive": 0,
+    "whichThermoAlarm": 3,
+    "clearTimers": 1,
+    "timers": [
 
-    //Thermometer0: 100,
-    //ThermometerHighAlarm0: 200,
-    //ThermometerLowAlarm0: 40,
-    TotalTimers: 12,
-    rimsEnable: false,
-    auxOn: false,
-    pumpOn: false,
-    WhichThermoAlarm: 'kettle',
-    TimersNotAllocated: 3,
-    Kp: 200,
-    Ki: 1,
-    kd: 1,
-    SetPoint: 100,
-    WindowSize: 5000,
-    TempAlarmActive: false,
-    TimerAlarmActive: false
+    ],
+    "timersNotAllocated": 8,
+    "totalTimers": 12,
+    "pumpOn": 0,
+    "auxOn": 0,
+    "rimsEnable": 0,
+    "arduinoTime": 61,
+    "arduinoTimeLong": "0:01:01 1/1/1970",
+    "setPoint": 100.00,
+    "windowSize": 0,
+    "kp": 2.00,
+    "ki": 5.00,
+    "kd": 1.00,
+    "output": 0.00,
+    "millis": 61792,
+    "windowStartTime": 1395,
+    "outputTime": 60442
 };
-
 app.get('/ping', function(req, res, next) {
     console.log(req.body);
     res.send('pong');
