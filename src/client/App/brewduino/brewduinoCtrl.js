@@ -13,26 +13,17 @@
         vm.auxClick = auxClick;
         vm.pumpClick = pumpClick;
         vm.rimsClick = rimsClick;
-        //vm.rimsBtn = stubData.rimsEnable;
-        //vm.pumpBtn = stubData.pumpOn;
-        //vm.auxBtn = stubData.auxOn;
-
+        
         activate();
 
         function activate() {
             vm.mcData = brewduionoDataSrv.currentStatus;
-            getStatus();
-            //vm.stubData = stubData;
-            //vm.auxBtn = vm.mcData.auxOn;
-            //vm.pumpBtn = vm.mcData.pumpOn;
-            //vm.rimsBtn = vm.mcData.rimsEnable;
-            vm.showStatusLog = settingsSrv.showStatusLog;
+            getStatus()
+            .then(function (response) {
+                vm.showStatusLog = settingsSrv.showStatusLog;
 
-
-            //console.log('you are here');
-
-            logger.info('Now viewing Classic theme');
-
+                logger.info('Now viewing Classic theme');
+            });
         }
 
         function alarmClick(alarm) {
@@ -40,24 +31,27 @@
         }
 
         function auxClick(aux) {
-            brewduionoDataSrv.currentStatus.auxOn = aux;
+
+            //brewduionoDataSrv.currentStatus.auxOn = aux;
             brewduinoCmdsSrv.setAuxPower(aux);
         }
 
         function getStatus() {
-            brewduinoCmdsSrv.getStatus(vm.mcData)
+           return brewduinoCmdsSrv.getStatus(vm.mcData)
             .then(function (response) {
                 vm.mcData = response.data;
                 logger.info('Resolved Data', vm.mcData);
+                return response;
             });
         }
 
         function pumpClick(pump) {
-            brewduionoDataSrv.currentStatus.pumpOn = pump;
+            //brewduionoDataSrv.currentStatus.pumpOn = pump;
+            //vm.mcData.pumpOn = pump;
             brewduinoCmdsSrv.setPumpsPower(pump);
         }
         function rimsClick(rims) {
-            brewduionoDataSrv.currentStatus.rimsEnable = rims;
+            //brewduionoDataSrv.currentStatus.rimsEnable = rims;
             brewduinoCmdsSrv.setRimsPower(rims);
 
         }

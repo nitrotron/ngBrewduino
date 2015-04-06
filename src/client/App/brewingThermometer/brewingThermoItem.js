@@ -34,7 +34,7 @@
             vm.mcData = brewduionoDataSrv.currentStatus;
             getStatus()
             .then(function (response) {
-               
+
                 vm.otherThermos = getOtherThermos();
                 if (vm.mcData.hasOwnProperty('thermometers')) {
                     vm.mcData.thermometers.forEach(function (element, index, array) {
@@ -67,7 +67,6 @@
         function auxClick() {
             vm.mcData.auxOn = !vm.mcData.auxOn;
             brewduinoCmdsSrv.setAuxPower(vm.mcData.auxOn);
-            brewduionoDataSrv.currentStatus.auxOn = vm.mcData.auxOn;
         }
 
         function changeChartType(chartType) {
@@ -83,7 +82,7 @@
 
         function getStatus() {
             return brewduinoCmdsSrv.getStatus(vm.mcData)
-            .then(function (response) { 
+            .then(function (response) {
                 vm.mcData = response.data;
                 vm.thermo = response.data.thermometers[$state.params.id];
                 //$scope.$apply();
