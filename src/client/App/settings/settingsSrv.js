@@ -17,6 +17,6 @@
         warning: true
 
     };
-    settingsSrv.thermoNames = ['RIMS', 'MashTun', 'Kettle', 'HLT/Kettle2'];
+    settingsSrv.thermoNames = ['RIMS', 'Mash', 'Kettle', 'HLT / Kettle2'];
 
 })();

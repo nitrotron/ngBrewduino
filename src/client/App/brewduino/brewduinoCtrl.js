@@ -45,10 +45,10 @@
         }
 
         function getStatus() {
-            brewduinoCmdsSrv.getStatus(vm.stubData)
+            brewduinoCmdsSrv.getStatus(vm.mcData)
             .then(function (response) {
                 vm.mcData = response.data;
-                logger.info('Resolved Data', vm.stubData);
+                logger.info('Resolved Data', vm.mcData);
             });
         }
 
