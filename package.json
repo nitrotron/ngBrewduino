@@ -7,11 +7,9 @@
     "gulp-bytediff": "^0.2.1",
     "gulp-concat": "^2.5.2",
     "gulp-debug": "^2.0.1",
-    "gulp-express": "^0.3.5",
     "gulp-filter": "^2.0.2",
     "gulp-inject": "^1.2.0",
     "gulp-jshint": "^1.9.2",
-    "gulp-live-server": "0.0.8",
     "gulp-load-plugins": "^0.8.1",
     "gulp-minify-css": "^1.0.0",
     "gulp-minify-html": "^1.0.2",
@@ -25,5 +23,8 @@
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.1.1",
     "jshint-stylish": "^1.0.1"
+  },
+  "dependencies": {
+    "express": "^4.12.3"
   }
 }
