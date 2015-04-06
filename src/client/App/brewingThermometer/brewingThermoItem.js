@@ -41,14 +41,10 @@
             vm.mcData = brewduionoDataSrv.getCurrentStatus();
             getStatus()
             .then(function (response) {
-                //logger.info('Activated ' + vm.thermo.name + ' Dashboard');
+                
             });
 
             brewduionoDataSrv.setAutoUpdates(true);
-
-
-
-
         }
 
         function addTimer() {
@@ -111,13 +107,11 @@
 
         function pumpClick() {
             vm.mcData.pumpOn = !vm.mcData.pumpOn;
-            brewduionoDataSrv.currentStatus.pumpOn = vm.mcData.pumpOn;
             brewduinoCmdsSrv.setPumpsPower(vm.mcData.pumpOn);
         }
-
+        
         function rimsClick() {
             vm.mcData.rimsEnable = !vm.mcData.rimsEnable;
-            brewduionoDataSrv.currentStatus.rimsEnable = vm.mcData.rimsEnable;
             brewduinoCmdsSrv.setRimsPower(vm.mcData.rimsEnable);
         }
 
