@@ -4,7 +4,8 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, brewduinoCmdsSrv, brewduionoDataSrv, chartData, logger, settingsSrv) {
+    function brewingThermoItem($state, brewduinoCmdsSrv, brewduionoDataSrv,
+                                chartData, logger, settingsSrv, $interval) {
         var vm = this;
 
         vm.addTimer = addTimer;
@@ -57,6 +58,9 @@
                 }
             }
             );
+
+            brewduionoDataSrv.setAutoUpdates(true);
+
         }
 
         function addTimer() {

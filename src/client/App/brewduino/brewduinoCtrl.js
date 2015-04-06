@@ -49,6 +49,7 @@
             //brewduionoDataSrv.currentStatus.pumpOn = pump;
             //vm.mcData.pumpOn = pump;
             brewduinoCmdsSrv.setPumpsPower(pump);
+            
         }
         function rimsClick(rims) {
             //brewduionoDataSrv.currentStatus.rimsEnable = rims;
