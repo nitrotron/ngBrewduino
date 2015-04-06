@@ -24,6 +24,7 @@
 
                 logger.info('Now viewing Classic theme');
             });
+            brewduionoDataSrv.setAutoUpdates(true);
         }
 
         function alarmClick(alarm) {
@@ -43,6 +44,7 @@
                 logger.info('Resolved Data', vm.mcData);
                 return response;
             });
+
         }
 
         function pumpClick(pump) {

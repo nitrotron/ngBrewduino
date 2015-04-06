@@ -2,9 +2,9 @@
     angular.module('app')
     .controller('statusLogCtrl', statusLogCtrl);
 
-    function statusLogCtrl(stubData) {
+    function statusLogCtrl(brewduionoDataSrv) {
         var vm = this;
 
-        vm.statusInfo = stubData;
+        vm.statusInfo = brewduionoDataSrv.getCurrentStatus();
     }
 })();
