@@ -5,7 +5,7 @@
         .controller('brewingThermoItem', brewingThermoItem);
 
     function brewingThermoItem($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
-                                chartData, logger, settingsSrv ) {
+                                chartData, logger, settingsSrv) {
         var vm = this;
 
         vm.addTimer = addTimer;
@@ -33,38 +33,21 @@
 
         $scope.$watch(brewduionoDataSrv.getCurrentStatus,
             function (newValue, oldValue) {
-                vm.mcData = newValue;
-                vm.thermo = vm.mcData.thermometers[$state.params.id];
+                updateVM(newValue);
             });
+
+
         function activate() {
             vm.mcData = brewduionoDataSrv.getCurrentStatus();
             getStatus()
             .then(function (response) {
-
-                vm.otherThermos = getOtherThermos();
-                if (vm.mcData.hasOwnProperty('thermometers')) {
-                    vm.mcData.thermometers.forEach(function (element, index, array) {
-                        if (index === Number($state.params.id)) {
-                            element.chartEnabled = true;
-                        } else {
-                            element.chartEnabled = false;
-                        }
-                    });
-                    vm.thermometersList = [vm.mcData.thermometers[$state.params.id]];
-                    vm.thermo = vm.mcData.thermometers[$state.params.id];
-                }
-                vm.chartData.view = { columns: getChartColumns() };
-
-                if (vm.hasOwnProperty('thermo') && vm.thermo.hasOwnProperty('name')) {
-                    logger.info('Activated ' + vm.thermo.name + ' Dashboard');
-                }
-                else {
-                    logger.error('Activated Dashboard... but waiting for data');
-                }
-            }
-            );
+                //logger.info('Activated ' + vm.thermo.name + ' Dashboard');
+            });
 
             brewduionoDataSrv.setAutoUpdates(true);
+
+
+
 
         }
 
@@ -92,9 +75,9 @@
         function getStatus() {
             return brewduinoCmdsSrv.getStatus(vm.mcData)
             .then(function (response) {
-                vm.mcData = response.data;
-                vm.thermo = response.data.thermometers[$state.params.id];
-                //$scope.$apply();
+
+                updateVM(response.Data);
+
                 logger.info('Resolved Data', vm.mcData);
                 return response;
             });
@@ -106,7 +89,7 @@
 
         function getChartColumns() {
             var rc = [0];
-            if (vm.mcData.hasOwnProperty('thermometers')) {
+            if (vm.hasOwnProperty('mcData') && vm.mcData && vm.mcData.hasOwnProperty('thermometers')) {
                 vm.mcData.thermometers.forEach(function (element, index, array) {
                     if (element.chartEnabled) { rc.push(element.id + 1); }
                 });
@@ -116,7 +99,7 @@
 
         function getOtherThermos() {
             var rc = [];
-            if (vm.mcData.hasOwnProperty('thermometers')) {
+            if (vm.hasOwnProperty('mcData') && vm.mcData && vm.mcData.hasOwnProperty('thermometers')) {
                 vm.mcData.thermometers.forEach(function (element, index, array) {
                     if (index !== Number($state.params.id)) {
                         rc.push(element);
@@ -153,5 +136,25 @@
             $state.go('dashboard', stateParams);
         }
 
+
+        function updateVM(responseData) {
+            vm.mcData = responseData;
+
+            vm.otherThermos = getOtherThermos();
+            if (vm.hasOwnProperty('mcData') && vm.mcData && vm.mcData.hasOwnProperty('thermometers')) {
+                vm.mcData.thermometers.forEach(function (element, index, array) {
+                    if (index === Number($state.params.id)) {
+                        element.chartEnabled = true;
+                    } else {
+                        element.chartEnabled = false;
+                    }
+                });
+                vm.thermometersList = [vm.mcData.thermometers[$state.params.id]];
+                vm.thermo = vm.mcData.thermometers[$state.params.id];
+            }
+            vm.chartData.view = { columns: getChartColumns() };
+
+
+        }
     }
 })();

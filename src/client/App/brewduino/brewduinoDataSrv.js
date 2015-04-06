@@ -6,16 +6,29 @@
     angular.module('app')
         .factory('brewduionoDataSrv', brewduionoDataSrv);
 
-    function brewduionoDataSrv($http, logger, settingsSrv) {
-        var currentStatus = {};
+    function brewduionoDataSrv($http, logger, settingsSrv, $interval) {
+        var myCurrentStatus = {};
+        var autoUpdatesEnabled = false;
+
+        autoUpdates();
         return {
-            currentStatus: currentStatus,
+            getCurrentStatus: getCurrentStatus,
             getStatus: getStatus,
-            sendCmd: sendCmd
+            sendCmd: sendCmd,
+            setAutoUpdates: setAutoUpdates
         };
 
+        function autoUpdates() {
+            $interval(function () {
+                if (autoUpdatesEnabled === true) {
+                    getStatus();
+                }
+            }, 10000);
+        }
 
-
+        function getCurrentStatus() {
+            return myCurrentStatus;
+        }
 
         function getStatus(statusData) {
             var statusUrl = '/getStatus';
@@ -25,7 +38,7 @@
                 });
 
                 statusData = data;
-                currentStatus = data;
+                myCurrentStatus = data;
             });
         }
         function getStatusFailed(error) {
@@ -38,13 +51,17 @@
 
 
         function sendCmd(whichCmd, args) {
-            var cmdUrl =  '/sendCommand/' + whichCmd + '/' + args;
+            var cmdUrl = '/sendCommand/' + whichCmd + '/' + args;
             return $http.post(cmdUrl);
         }
 
         function parseStatus(data) {
             var inData = JSON.deserialize(data);
 
+        }
+
+        function setAutoUpdates(enableUpdates) {
+            autoUpdatesEnabled = enableUpdates;
         }
     }
 }

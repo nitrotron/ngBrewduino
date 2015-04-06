@@ -151,8 +151,10 @@ app.listen(port, function() {
 //// start the listener for client requests:
 app.get('/getStatus', getStubData);        // handler for /date
 
+setInterval(updateChart, 60000);
+setInterval(randomizeStubData, 10000);
 function getStubData(request, response) {
-    randomizeStubData();
+    
     response.send(stubData);
     response.end;
 };
@@ -161,6 +163,10 @@ function randomizeStubData() {
     stubData.thermometers.forEach(function (element, index, array) {
         element.temp = element.temp + Math.random();
     });
+}
+
+function updateChart() {
+
 }
 //
 //// ------------------------ Serial event functions:
