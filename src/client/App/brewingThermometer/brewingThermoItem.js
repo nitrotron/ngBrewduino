@@ -34,9 +34,7 @@
             vm.mcData = brewduionoDataSrv.currentStatus;
             getStatus()
             .then(function (response) {
-                //vm.mcData.auxBtn = brewduionoDataSrv.currentStatus.auxOn;
-                //vm.mcData.pumpBtn = brewduionoDataSrv.currentStatus.pumpOn;
-                //vm.mcData.rimsBtn = brewduionoDataSrv.currentStatus.rimsEnable;
+               
                 vm.otherThermos = getOtherThermos();
                 if (vm.mcData.hasOwnProperty('thermometers')) {
                     vm.mcData.thermometers.forEach(function (element, index, array) {
@@ -55,7 +53,7 @@
                     logger.info('Activated ' + vm.thermo.name + ' Dashboard');
                 }
                 else {
-                    logger.warning('Activated Dashboard... but waiting for data');
+                    logger.error('Activated Dashboard... but waiting for data');
                 }
             }
             );
@@ -67,9 +65,9 @@
         }
 
         function auxClick() {
-            vm.mcData.auxBtn = !vm.mcData.auxBtn;
-            brewduinoCmdsSrv.setAuxPower(vm.mcData.auxBtn);
-            brewduionoDataSrv.currentStatus.auxOn = vm.mcData.auxBtn;
+            vm.mcData.auxOn = !vm.mcData.auxOn;
+            brewduinoCmdsSrv.setAuxPower(vm.mcData.auxOn);
+            brewduionoDataSrv.currentStatus.auxOn = vm.mcData.auxOn;
         }
 
         function changeChartType(chartType) {
@@ -121,15 +119,15 @@
         }
 
         function pumpClick() {
-            vm.mcData.pumpBtn = !vm.mcData.pumpBtn;
-            brewduionoDataSrv.currentStatus.pumpOn = vm.mcData.pumpBtn;
-            brewduinoCmdsSrv.setPumpsPower(vm.mcData.pumpBtn);
+            vm.mcData.pumpOn = !vm.mcData.pumpOn;
+            brewduionoDataSrv.currentStatus.pumpOn = vm.mcData.pumpOn;
+            brewduinoCmdsSrv.setPumpsPower(vm.mcData.pumpOn);
         }
 
         function rimsClick() {
-            vm.mcData.rimsBtn = !vm.mcData.rimsBtn;
-            brewduionoDataSrv.currentStatus.rimsEnable = vm.mcData.rimsBtn;
-            brewduinoCmdsSrv.setRimsPower(vm.mcData.rimsBtn);
+            vm.mcData.rimsEnable = !vm.mcData.rimsEnable;
+            brewduionoDataSrv.currentStatus.rimsEnable = vm.mcData.rimsEnable;
+            brewduinoCmdsSrv.setRimsPower(vm.mcData.rimsEnable);
         }
 
         function setAlarm() {
