@@ -152,9 +152,16 @@ app.listen(port, function() {
 app.get('/getStatus', getStubData);        // handler for /date
 
 function getStubData(request, response) {
+    randomizeStubData();
     response.send(stubData);
     response.end;
 };
+
+function randomizeStubData() {
+    stubData.thermometers.forEach(function (element, index, array) {
+        element.temp = element.temp + Math.random();
+    });
+}
 //
 //// ------------------------ Serial event functions:
 //// this is called when the serial port is opened:
