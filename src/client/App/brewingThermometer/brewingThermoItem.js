@@ -4,9 +4,10 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
+    function brewingThermoItem($state, $interval, brewduinoCmdsSrv, brewduionoDataSrv,
                                 chartData, logger, settingsSrv) {
         var vm = this;
+        var firstUpdate = false;
 
         vm.addTimer = addTimer;
         vm.mcData = {};
@@ -31,20 +32,24 @@
 
         activate();
 
-        $scope.$watch(brewduionoDataSrv.getCurrentStatus,
-            function (newValue, oldValue) {
-                updateVM(newValue);
-            });
+        //$scope.$watch(brewduionoDataSrv.getCurrentStatus,
+        //    function (newValue, oldValue) {
+        //        updateVM(newValue);
+        //    });
+
 
 
         function activate() {
             vm.mcData = brewduionoDataSrv.getCurrentStatus();
             getStatus()
             .then(function (response) {
-                
+                //every 10 seconds get a status update
+                $interval(getStatus, 10000);
+                //every 60 seconds see if there is more chart data
+                $interval(getChartData, 60000);
             });
 
-            brewduionoDataSrv.setAutoUpdates(true);
+            //brewduionoDataSrv.setAutoUpdates(true);
         }
 
         function addTimer() {
@@ -68,13 +73,17 @@
             vm.showMenu = false;
         }
 
+        function getChartData() {
+            logger.success('Updated chart', vm.mcData);
+        }
+
         function getStatus() {
             return brewduinoCmdsSrv.getStatus(vm.mcData)
             .then(function (response) {
 
-                updateVM(response.Data);
+                updateVM(response.data);
 
-                logger.info('Resolved Data', vm.mcData);
+                logger.success('Updated status', vm.mcData);
                 return response;
             });
         }
@@ -109,7 +118,7 @@
             vm.mcData.pumpOn = !vm.mcData.pumpOn;
             brewduinoCmdsSrv.setPumpsPower(vm.mcData.pumpOn);
         }
-        
+
         function rimsClick() {
             vm.mcData.rimsEnable = !vm.mcData.rimsEnable;
             brewduinoCmdsSrv.setRimsPower(vm.mcData.rimsEnable);
@@ -136,17 +145,21 @@
 
             vm.otherThermos = getOtherThermos();
             if (vm.hasOwnProperty('mcData') && vm.mcData && vm.mcData.hasOwnProperty('thermometers')) {
-                vm.mcData.thermometers.forEach(function (element, index, array) {
-                    if (index === Number($state.params.id)) {
-                        element.chartEnabled = true;
-                    } else {
-                        element.chartEnabled = false;
-                    }
-                });
+                if (firstUpdate === false) {
+                    vm.mcData.thermometers.forEach(function (element, index, array) {
+                        if (index === Number($state.params.id)) {
+                            element.chartEnabled = true;
+                        } else {
+                            element.chartEnabled = false;
+                        }
+                    });
+                    firstUpdate = true;
+                    vm.chartData.view = { columns: getChartColumns() };
+                }
                 vm.thermometersList = [vm.mcData.thermometers[$state.params.id]];
                 vm.thermo = vm.mcData.thermometers[$state.params.id];
             }
-            vm.chartData.view = { columns: getChartColumns() };
+            
 
 
         }
