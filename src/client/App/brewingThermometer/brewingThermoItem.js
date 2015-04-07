@@ -32,10 +32,10 @@
 
         activate();
 
-        //$scope.$watch(brewduionoDataSrv.getCurrentStatus,
-        //    function (newValue, oldValue) {
-        //        updateVM(newValue);
-        //    });
+        $scope.$watch(brewduionoDataSrv.getCurrentStatus,
+            function (newValue, oldValue) {
+                updateVM(newValue);
+            });
 
 
 
@@ -44,12 +44,12 @@
             getStatus()
             .then(function (response) {
                 //every 10 seconds get a status update
-                $interval(getStatus, 10000);
+             //   $interval(getStatus, 10000);
                 //every 60 seconds see if there is more chart data
-                $interval(getChartData, 60000);
+            //    $interval(getChartData, 60000);
             });
 
-            //brewduionoDataSrv.setAutoUpdates(true);
+            brewduionoDataSrv.setAutoUpdates(true);
         }
 
         function addTimer() {

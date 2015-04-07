@@ -4,58 +4,53 @@
 
     <div id="BrewingThermometer_Display">
         <div id="lblCurrentTemp" class="TemperatureDigital" ng-click="brewingThermometer.openThermoDashboard(thermometers)">
-            {{thermometers.temp}}
+            {{thermometers.temp  | number:1}}
         </div>
         <div id="btnTempHighAlarm" class="TemperatureDigitalSmallTop"
-             ng-click="brewingThermometer.openAlarmPanel(thermometers.highAlarm,'highAlarm', thermometers.id)">
-            {{thermometers.highAlarm}}
+            ng-click="brewingThermometer.openAlarmPanel(thermometers.highAlarm,'highAlarm', thermometers.id)">
+            {{thermometers.highAlarm  | number:1}}
         </div>
         <div id="btnTempLowAlarm" class="TemperatureDigitalSmallBottom"
-             ng-click="brewingThermometer.openAlarmPanel(thermometers.lowAlarm,'lowAlarm', thermometers.id)">
-            {{thermometers.lowAlarm}}
+            ng-click="brewingThermometer.openAlarmPanel(thermometers.lowAlarm,'lowAlarm', thermometers.id)">
+            {{thermometers.lowAlarm  | number:1}}
         </div>
         <div id="pnlRimsButton" ng-if="brewingThermometer.showRimsButton(thermometers)">
-            <span ng-click="brewingThermometer.showRimsSettings()" class="Clickable"> <i class='icon-beer'></i>RIMS Settings</span>
+            <span ng-click="brewingThermometer.showRimsSettings()" class="Clickable"><i class='icon-beer'></i>RIMS Settings</span>
 
             <form name="rimsForm" class="form-horizontal">
 
                 <table ng-show="brewingThermometer.rimsSettingVisible"
-                       class="pnlRimsControls" style="border-collapse:separate; border-spacing:5px;">
+                    class="pnlRimsControls" style="border-collapse: separate; border-spacing: 5px;">
                     <tr>
-                        <td class="RimsSettingLabel">
-                            Set Point:
+                        <td class="RimsSettingLabel">Set Point:
                         </td>
                         <td class="RimsSettingTB">
                             <input type="number" id="tbSetPoint" ng-model="brewingThermometer.rimsSetPoint" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="RimsSettingLabel">
-                            WindowSize:
+                        <td class="RimsSettingLabel">WindowSize:
                         </td>
                         <td class="RimsSettingTB">
                             <input type="number" id="tbWindowSize" ng-model="brewingThermometer.rimsWindowSize" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="RimsSettingLabel">
-                            Kp:
+                        <td class="RimsSettingLabel">Kp:
                         </td>
                         <td class="RimsSettingTB">
                             <input type="number" id="tbKp" ng-model="brewingThermometer.rimsKp" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="RimsSettingLabel">
-                            Ki:
+                        <td class="RimsSettingLabel">Ki:
                         </td>
                         <td class="RimsSettingTB">
                             <input type="number" id="tbKi" ng-model="brewingThermometer.rimsKi" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="RimsSettingLabel">
-                            Kd:
+                        <td class="RimsSettingLabel">Kd:
                         </td>
                         <td class="RimsSettingTB">
                             <input type="number" id="tbKd" ng-model="brewingThermometer.rimsKd" />
@@ -70,11 +65,11 @@
                         <td></td>
                         <td class="RimsSettingTB">
                             <button id="btnUpdateRims" ng-click="brewingThermometer.btnUpdateRimsClick()"
-                                    class="btnUpdateRims">
+                                class="btnUpdateRims">
                                 Submit
                             </button>
                             <button id="btnUpdateRimsCancel" ng-click="brewingThermometer.btnUpdateRimsCancelClick()"
-                                    class="btnUpdateRims">
+                                class="btnUpdateRims">
                                 Cancel
                             </button>
                         </td>
@@ -84,23 +79,23 @@
         </div>
         <div id="pnlSetAlarm" class="PanelOverlay" ng-show="brewingThermometer.showPnlAlarm(thermometers)">
             <form name="alarmForm" class="form-horizontal">
-                <legend style="color:black">{{brewingThermometer.curPnlAlarm.whichAlarmDis}} Alarm</legend>
+                <legend style="color: black">{{brewingThermometer.curPnlAlarm.whichAlarmDis}} Alarm</legend>
                 <div class="form-group">
                     <div class="col-xs-12">
                         <input type="number" id="tbAlarm" name='tbAlarm' class="form-control"
-                               min="-67" max="257"
-                               placeholder="{{brewingThermometer.curPnlAlarm.temperature}}"
-                               ng-model="brewingThermometer.curPnlAlarm.temperature">
+                            min="-67" max="257"
+                            placeholder="{{brewingThermometer.curPnlAlarm.temperature  | number:1}}"
+                            ng-model="brewingThermometer.curPnlAlarm.temperature">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">
                         <button id="btnCancelAlarms" class="btn btn-default"
-                                ng-click="brewingThermometer.btnCancelAlarmsClick()">
+                            ng-click="brewingThermometer.btnCancelAlarmsClick()">
                             Cancel
                         </button>
                         <button id="btnUpdateAlarms" class="btn btn-info"
-                                ng-click="brewingThermometer.btnUpdateAlarmsClick(thermometers)">
+                            ng-click="brewingThermometer.btnUpdateAlarmsClick(thermometers)">
                             Update
                         </button>
                     </div>
