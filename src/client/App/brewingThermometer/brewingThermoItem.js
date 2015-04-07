@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('brewingThermoItem', brewingThermoItem);
 
-    function brewingThermoItem($state, $interval, brewduinoCmdsSrv, brewduionoDataSrv,
+    function brewingThermoItem($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
                                 chartData, logger, settingsSrv) {
         var vm = this;
         var firstUpdate = false;
@@ -35,6 +35,7 @@
         $scope.$watch(brewduionoDataSrv.getCurrentStatus,
             function (newValue, oldValue) {
                 updateVM(newValue);
+                logger.success('Updated status', vm.mcData);
             });
 
 
