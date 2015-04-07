@@ -2,7 +2,7 @@
     angular.module('app')
       .factory('chartSrv', chartSrv);
 
-    function chartSrv($http, $interval, settingsSrv) {
+    function chartSrv($http, $interval, $q, settingsSrv) {
         var myCurrentChart = {};
         var autoUpdatesEnabled = false;
 
@@ -10,17 +10,20 @@
 
         return {
             getChartConfig: getChartConfig,
-            getCurrentChart: getCurrentChart,
+            getChartData: getChartData,
+            getCurrentData: getCurrentData,
             setAutoUpdates: setAutoUpdates
         };
 
 
         function autoUpdates() {
+            myCurrentChart = getChartConfig();
+            myCurrentChart.data.rows = getChartData();
             $interval(function () {
                 if (autoUpdatesEnabled === true) {
-                    getCurrentChart();
+                   getChartData();
                 }
-            }, 30000);
+            }, 3000);
         }
 
         function getChartConfig() {
@@ -108,15 +111,58 @@
 
             chartConfig.formatters = {};
 
+            return chartConfig;
         }
 
-        function getCurrentChart() {
+        function getChartData() {
             var statusUrl = '/getChartData';
-            return $http.get(statusUrl).success(function (data) {
-                myCurrentChart = data;
+
+            var deferred = new $q.defer();
+            
+            
+            $http.get(statusUrl).success(function (data) {
+                var rows = [];
+                rows.push(constRowObj('10:30', 115, 100, 106, 200));
+                rows.push(constRowObj('10:31', 117, 110, 106, 208));
+                rows.push(constRowObj('10:32', 118, 120, 106, 210)); 
+                rows.push(constRowObj('10:33', 115, 130, 106, 205));
+                rows.push(constRowObj('10:34', 120, 145, 105, 205));
+                rows.push(constRowObj('10:35', 123, 150, 104, 204));
+                rows.push(constRowObj('10:36', 123, 155, 103, 199));
+                rows.push(constRowObj('10:37', 125, 156, 106, 201));
+                rows.push(constRowObj('10:38', 125, 158, 105, 203));
+                rows.push(constRowObj('10:39', 126, 159, 106, 206));
+                rows.push(constRowObj('10:40', 128, 160, 105, 206));
+                rows.push(constRowObj('10:41', 128, 160, 106, 208));
+                myCurrentChart.data.rows = rows;
+                
+                data = rows;
+                deferred.resolve(data);
             });
+
+            return deferred.promise;
+
         }
 
+        function getCurrentData() {
+            return myCurrentChart;
+        }
+
+        function constRowObj(time, t0, t1, t2, t3) {
+            return {
+                'c': [{
+                    'v': time
+                }, {
+                    'v': t0
+                }, {
+                    'v': t1
+                }, {
+                    'v': t2
+                }, {
+                    'v': t3
+                }]
+            };
+        }
         function setAutoUpdates(enableUpdates) {
             autoUpdatesEnabled = enableUpdates;
         }

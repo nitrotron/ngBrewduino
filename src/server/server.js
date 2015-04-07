@@ -165,9 +165,21 @@ function randomizeStubData() {
     });
 }
 
-function updateChart() {
 
+app.get('/getChartData', getChartData);
+
+function getChartData(request, response) {
+    var foo = {};
+    response.send(foo);
+    response.end;
 }
+
+function updateChart() {
+     
+}
+
+
+
 //
 //// ------------------------ Serial event functions:
 //// this is called when the serial port is opened:

@@ -30,14 +30,13 @@
             return myCurrentStatus;
         }
 
-        function getStatus(statusData) {
+        function getStatus() {
             var statusUrl = '/getStatus';
             return $http.get(statusUrl).success(function (data) {
                 data.thermometers.forEach(function (element, index, array) {
                     element.name = settingsSrv.thermoNames[index];
                 });
 
-                statusData = data;
                 myCurrentStatus = data;
             });
         }

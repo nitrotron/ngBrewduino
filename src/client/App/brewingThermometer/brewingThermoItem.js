@@ -5,7 +5,7 @@
         .controller('brewingThermoItem', brewingThermoItem);
 
     function brewingThermoItem($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
-                                chartData, logger, settingsSrv) {
+                                 logger, settingsSrv, chartSrv) {
         var vm = this;
         var firstUpdate = false;
 
@@ -14,7 +14,8 @@
 
         vm.alarmBtn = false;
         vm.auxClick = auxClick;
-        vm.chartData = chartData;
+        //vm.chartData = chartData;
+        //vm.chart = {};
         vm.chartTypeArea = true;
         vm.chartTypeLine = false;
         vm.changeChartType = changeChartType;
@@ -32,26 +33,45 @@
 
         activate();
 
-        $scope.$watch(brewduionoDataSrv.getCurrentStatus,
-            function (newValue, oldValue) {
-                updateVM(newValue);
-                logger.success('Updated status', vm.mcData);
-            });
 
 
 
         function activate() {
             //vm.mcData = brewduionoDataSrv.getCurrentStatus();
             updateVM(brewduionoDataSrv.getCurrentStatus());
-            getStatus()
-            .then(function (response) {
-                //every 10 seconds get a status update
-                //   $interval(getStatus, 10000);
-                //every 60 seconds see if there is more chart data
-                //    $interval(getChartData, 60000);
-            });
+            getStatus();
+            getChartData();
+
+            //.then(function (response) {
+            //    //every 10 seconds get a status update
+            //    //   $interval(getStatus, 10000);
+            //    //every 60 seconds see if there is more chart data
+            //    //    $interval(getChartData, 60000);
+            //});
 
             brewduionoDataSrv.setAutoUpdates(true);
+            chartSrv.setAutoUpdates(true);
+
+
+            $scope.$watch(brewduionoDataSrv.getCurrentStatus,
+                function (newValue, oldValue) {
+                    updateVM(newValue);
+                    logger.success('Updated status', newValue);
+                });
+            $scope.$watch(chartSrv.getCurrentData,
+                function (newValue, oldValue) {
+                    var view;
+                    
+                    if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('view')) {
+                        view = vm.chart.view;
+                    }
+                    
+                    vm.chart = newValue;
+                    if (view) {
+                        vm.chart.view = view;
+                    }
+                    logger.success('Updated chart', newValue);
+                });
         }
 
         function addTimer() {
@@ -65,10 +85,10 @@
         }
 
         function changeChartType(chartType) {
-            vm.chartData.type = chartType;
+            vm.chart.type = chartType;
         }
         function chBxChartChanged(thermo) {
-            vm.chartData.view = { columns: getChartColumns() };
+            vm.chart.view = { columns: getChartColumns() };
         }
 
         function closeMenu() {
@@ -76,19 +96,30 @@
         }
 
         function getChartData() {
-            logger.success('Updated chart', brewduionoDataSrv.getCurrentStatus());
+            if (firstUpdate === true) {
+               
+                chartSrv.getChartData()
+                .then(function (data) {
+                    vm.chart.data.rows = data;
+                    logger.success('Updated chart', brewduionoDataSrv.getCurrentStatus());
+                });
+            }
         }
 
         function getStatus() {
-            var foo;
-            return brewduinoCmdsSrv.getStatus(foo)
-            .then(function (response) {
+            return brewduinoCmdsSrv.getStatus()
+             .then(function (response) {
 
-                updateVM(response.data);
+                 updateVM(response.data);
 
-                logger.success('Updated status', response.data);
-                return response;
-            });
+                 vm.chart = chartSrv.getChartConfig();
+                 vm.chart.view = { columns: getChartColumns() };
+                 getChartData();
+
+
+                 logger.success('Updated status', response.data);
+                 return response;
+             });
         }
 
         function openMenu() {
@@ -100,8 +131,8 @@
             var currentStatus = brewduionoDataSrv.getCurrentStatus();
             if (currentStatus.hasOwnProperty('thermometers')) {
                 currentStatus.thermometers.forEach(function (element, index, array) {
-                    if (element.chartEnabled || index === Number($state.params.id)) { 
-                        rc.push(element.id + 1); 
+                    if (element.chartEnabled || index === Number($state.params.id)) {
+                        rc.push(element.id + 1);
                     }
                 });
             }
@@ -164,14 +195,16 @@
                         }
                     });
                     firstUpdate = true;
-                    vm.chartData.view = { columns: getChartColumns() };
+                    
                 }
                 vm.thermometersList = [responseData.thermometers[$state.params.id]];
                 vm.thermo = responseData.thermometers[$state.params.id];
             }
-            
+
 
 
         }
+
+
     }
 })();
