@@ -10,7 +10,7 @@
         var firstUpdate = false;
 
         vm.addTimer = addTimer;
-        vm.mcData = {};
+        //vm.mcData = {};
 
         vm.alarmBtn = false;
         vm.auxClick = auxClick;
@@ -41,13 +41,14 @@
 
 
         function activate() {
-            vm.mcData = brewduionoDataSrv.getCurrentStatus();
+            //vm.mcData = brewduionoDataSrv.getCurrentStatus();
+            updateVM(brewduionoDataSrv.getCurrentStatus());
             getStatus()
             .then(function (response) {
                 //every 10 seconds get a status update
-             //   $interval(getStatus, 10000);
+                //   $interval(getStatus, 10000);
                 //every 60 seconds see if there is more chart data
-            //    $interval(getChartData, 60000);
+                //    $interval(getChartData, 60000);
             });
 
             brewduionoDataSrv.setAutoUpdates(true);
@@ -59,8 +60,8 @@
         }
 
         function auxClick() {
-            vm.mcData.auxOn = !vm.mcData.auxOn;
-            brewduinoCmdsSrv.setAuxPower(vm.mcData.auxOn);
+            vm.auxOn = !vm.auxOn;
+            brewduinoCmdsSrv.setAuxPower(vm.auxOn);
         }
 
         function changeChartType(chartType) {
@@ -75,16 +76,17 @@
         }
 
         function getChartData() {
-            logger.success('Updated chart', vm.mcData);
+            logger.success('Updated chart', brewduionoDataSrv.getCurrentStatus());
         }
 
         function getStatus() {
-            return brewduinoCmdsSrv.getStatus(vm.mcData)
+            var foo;
+            return brewduinoCmdsSrv.getStatus(foo)
             .then(function (response) {
 
                 updateVM(response.data);
 
-                logger.success('Updated status', vm.mcData);
+                logger.success('Updated status', response.data);
                 return response;
             });
         }
@@ -95,9 +97,12 @@
 
         function getChartColumns() {
             var rc = [0];
-            if (vm.hasOwnProperty('mcData') && vm.mcData && vm.mcData.hasOwnProperty('thermometers')) {
-                vm.mcData.thermometers.forEach(function (element, index, array) {
-                    if (element.chartEnabled) { rc.push(element.id + 1); }
+            var currentStatus = brewduionoDataSrv.getCurrentStatus();
+            if (currentStatus.hasOwnProperty('thermometers')) {
+                currentStatus.thermometers.forEach(function (element, index, array) {
+                    if (element.chartEnabled || index === Number($state.params.id)) { 
+                        rc.push(element.id + 1); 
+                    }
                 });
             }
             return rc;
@@ -105,8 +110,9 @@
 
         function getOtherThermos() {
             var rc = [];
-            if (vm.hasOwnProperty('mcData') && vm.mcData && vm.mcData.hasOwnProperty('thermometers')) {
-                vm.mcData.thermometers.forEach(function (element, index, array) {
+            var currentStatus = brewduionoDataSrv.getCurrentStatus();
+            if (currentStatus.hasOwnProperty('thermometers')) {
+                currentStatus.thermometers.forEach(function (element, index, array) {
                     if (index !== Number($state.params.id)) {
                         rc.push(element);
                     }
@@ -116,13 +122,13 @@
         }
 
         function pumpClick() {
-            vm.mcData.pumpOn = !vm.mcData.pumpOn;
-            brewduinoCmdsSrv.setPumpsPower(vm.mcData.pumpOn);
+            vm.pumpOn = !vm.pumpOn;
+            brewduinoCmdsSrv.setPumpsPower(vm.pumpOn);
         }
 
         function rimsClick() {
-            vm.mcData.rimsEnable = !vm.mcData.rimsEnable;
-            brewduinoCmdsSrv.setRimsPower(vm.mcData.rimsEnable);
+            vm.rimsEnable = !vm.rimsEnable;
+            brewduinoCmdsSrv.setRimsPower(vm.rimsEnable);
         }
 
         function setAlarm() {
@@ -142,12 +148,15 @@
 
 
         function updateVM(responseData) {
-            vm.mcData = responseData;
+            //vm.mcData = responseData;
+            vm.rimsEnable = responseData.rimsEnable;
+            vm.pumpOn = responseData.pumpOn;
+            vm.auxOn = responseData.auxOn;
 
             vm.otherThermos = getOtherThermos();
-            if (vm.hasOwnProperty('mcData') && vm.mcData && vm.mcData.hasOwnProperty('thermometers')) {
+            if (responseData.hasOwnProperty('thermometers')) {
                 if (firstUpdate === false) {
-                    vm.mcData.thermometers.forEach(function (element, index, array) {
+                    responseData.thermometers.forEach(function (element, index, array) {
                         if (index === Number($state.params.id)) {
                             element.chartEnabled = true;
                         } else {
@@ -157,8 +166,8 @@
                     firstUpdate = true;
                     vm.chartData.view = { columns: getChartColumns() };
                 }
-                vm.thermometersList = [vm.mcData.thermometers[$state.params.id]];
-                vm.thermo = vm.mcData.thermometers[$state.params.id];
+                vm.thermometersList = [responseData.thermometers[$state.params.id]];
+                vm.thermo = responseData.thermometers[$state.params.id];
             }
             
 

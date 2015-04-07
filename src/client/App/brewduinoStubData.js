@@ -31,13 +31,13 @@
     });
     chartData.data.cols.push({
         'id': 't2',
-        'label': 'HLT/Kettle2',
+        'label': 'Kettle',
         'type': 'number',
         'p': {}
     });
     chartData.data.cols.push({
         'id': 't3',
-        'label': 'Kettle',
+        'label': 'HLT / Kettle2',
         'type': 'number'
     });
 
