@@ -25,8 +25,8 @@ db.serialize(function () {
     }
 
     stmt.finalize();
-    db.each("SELECT rowid AS id, thing, datetime(dt, 'localtime') as dt FROM Stuff", function (err, row) {
-        console.log(row.id + ": " + row.thing + " " + row.dt);
+    db.each("SELECT rowid AS id, thing, datetime(dt, 'localtime') as date, time(dt, 'localtime') time FROM Stuff", function (err, row) {
+        console.log(row.id + ": " + row.thing + " ," + row.date + " ," + row.time);
     });
 });
 
