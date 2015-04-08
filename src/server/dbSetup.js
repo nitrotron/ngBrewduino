@@ -35,6 +35,9 @@ db.serialize(function () {
 
   //  stmt.finalize();
     db.each("SELECT rowid AS id, temp0, temp1, temp2, temp3, datetime(dt, 'localtime') as date, time(dt, 'localtime') time FROM TemperatureHistories", function (err, row) {
+        var dt = new Date(row.date);
+        row.date = dt;
+        
         console.log(row.id + ': ' + row.temp0 + ' ,' + row.temp1 + ' ,' + row.temp2 + ' ,' + row.temp3 + ' ,' + row.date + ' ,' + row.time);
         var str = JSON.stringify(row);
         console.log(str);

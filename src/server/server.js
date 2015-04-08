@@ -188,9 +188,25 @@ function randomizeStubData() {
 app.get('/getChartData', getChartData);
 
 function getChartData(request, response) {
-    db.all("SELECT time(dt, 'localtime') time,  temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, rows) {
-        response.json(rows);
+    db.all("SELECT datetime(dt, 'localtime') as date,  temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, rows) {
+            response.json(rows);
     });
+
+    // never got this to work
+    //db.serialize(function () {
+    //    var rows = [];
+        
+    //    db.each("SELECT datetime(dt, 'localtime') as date,  temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, row) {
+    //        var dt = new Date(row.date);
+    //        row.date = dt;
+    //        rows.push(row);
+    //        console.log("getChartData.1: Row count " + rows.length);
+    //        //console.log(JSON.stringify(rows));
+    //        response.json(rows);
+    //    });
+    //    console.log("getChartData: Row count " + rows.length);
+        
+    //});
     //response.send(getAllTemperatureHistories());
     //response.end;
 }
@@ -204,16 +220,25 @@ function insertTemperatureHistories(t0, t1, t2, t3) {
         db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3) VALUES (?,?,?,?)', t0, t1, t2, t3);
        
     });
-    console.log(getAllTemperatureHistories() + t0);
+    //console.log(getAllTemperatureHistories() + t0);
+
 }
 
 function getAllTemperatureHistories() {
     var table;
-    db.all("SELECT rowid AS id, temp0, temp1, temp2, temp3, datetime(dt, 'localtime') as date, time(dt, 'localtime') time FROM TemperatureHistories", function (err, rows) {
-        return JSON.stringify(rows);
-    });
-
-
+    //db.all("SELECT rowid AS id, temp0, temp1, temp2, temp3, datetime(dt, 'localtime') as date, time(dt, 'localtime') time FROM TemperatureHistories", function (err, rows) {
+    //    return JSON.stringify(rows);
+    //});
+    //db.serialize(function () {
+    //    var rows = [];
+    //    db.each("SELECT rowid AS id, temp0, temp1, temp2, temp3, datetime(dt, 'localtime') as date, time(dt, 'localtime') time FROM TemperatureHistories", function (err, row) {
+    //        var dt = new Date(row.date);
+    //        row.date = dt;
+    //        rows.push(row);
+    //        console.log(row.id + ': ' + row.temp0 + ' ,' + row.temp1 + ' ,' + row.temp2 + ' ,' + row.temp3 + ' ,' + row.date + ' ,' + row.time);
+    //    });
+    //    return JSON.stringify(rows);
+    //});
 }
 
 

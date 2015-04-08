@@ -22,7 +22,7 @@
             myCurrentChart.data.rows = getChartData();
             $interval(function () {
                 if (autoUpdatesEnabled === true) {
-                   getChartData();
+                    getChartData();
                 }
             }, 3000);
         }
@@ -40,7 +40,7 @@
             chartConfig.data.cols.push({
                 'id': 'Time',
                 'label': 'Time',
-                'type': 'string',
+                'type': 'datetime',
                 'p': {}
             });
             chartConfig.data.cols.push({
@@ -67,7 +67,7 @@
                 'type': 'number'
             });
 
-            
+
             chartConfig.options = {
                 'title': 'Temperatures',
                 'titleTextStyle': { 'color': '#D3D3D4' },
@@ -77,19 +77,35 @@
                 'trendlines': {
                     '0': {
                         'type': 'linear',
-                        'color': 'green',
+                        'color': '#67DC2D',
                         'lineWidth': 3,
                         'opacity': 0.3,
                         'showR2': true,
-                        'visibleInLegend': true
+                        'visibleInLegend': 'false'
                     },
                     '1': {
                         'type': 'linear',
-                        'color': 'green',
+                        'color': '#19fcfc',
                         'lineWidth': '3',
                         'opacity': '0.3',
                         'showR2': 'true',
-                        'visibleInLegend': 'true'
+                        'visibleInLegend': 'false'
+                    },
+                    '2': {
+                        'type': 'linear',
+                        'color': '#FC1919',
+                        'lineWidth': '3',
+                        'opacity': '0.3',
+                        'showR2': 'true',
+                        'visibleInLegend': 'false'
+                    },
+                    '3': {
+                        'type': 'linear',
+                        'color': '#FC8B19',
+                        'lineWidth': '3',
+                        'opacity': '0.3',
+                        'showR2': 'true',
+                        'visibleInLegend': 'false'
                     }
                 },
                 'displayExactValues': true,
@@ -119,8 +135,8 @@
             var statusUrl = '/getChartData';
 
             var deferred = new $q.defer();
-            
-            
+
+
             $http.get(statusUrl).success(function (data) {
                 var rows = [];
                 //rows.push(constRowObj('10:30', 115, 100, 106, 200));
@@ -136,10 +152,11 @@
                 //rows.push(constRowObj('10:40', 128, 160, 105, 206));
                 //rows.push(constRowObj('10:41', 128, 160, 106, 208));
                 data.forEach(function (element, index, array) {
-                    rows.push(constRowObj(element.time, element.temp0, element.temp1, element.temp2, element.temp3));
+                    var dt = new Date(element.date);
+                    rows.push(constRowObj(new Date(element.date), element.temp0, element.temp1, element.temp2, element.temp3));
                 });
                 myCurrentChart.data.rows = rows;
-                
+
                 //data = rows;
                 deferred.resolve(data);
             });
