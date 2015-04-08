@@ -2,7 +2,7 @@
     angular.module('app')
     .controller('countDownTimerFormCtrl', countDownTimerFormCtrl);
 
-    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimersVal, toaster) {
+    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimersVal, logger) {
         var vm = this;
 
         vm.addTimer = addTimer;
@@ -18,7 +18,8 @@
             //dateSnapShot = new Date();
             brewduinoCmdsSrv.setTimer(newTimer);
             
-            toaster.pop('success', newTimerLabel, 'Added Timer ' + newTimer + ' Minutes');
+            
+            logger.success('Added Timer ' + newTimer + ' Minutes', newTimer);
 
            //return back to the dashboard
             var stateParams = { id:  $state.params.id };

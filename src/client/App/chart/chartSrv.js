@@ -74,40 +74,40 @@
                 'isStacked': 'false',
                 'fill': 20,
                 'curveType': 'function',
-                'trendlines': {
-                    '0': {
-                        'type': 'linear',
-                        'color': '#67DC2D',
-                        'lineWidth': 3,
-                        'opacity': 0.3,
-                        'showR2': true,
-                        'visibleInLegend': 'false'
-                    },
-                    '1': {
-                        'type': 'linear',
-                        'color': '#19fcfc',
-                        'lineWidth': '3',
-                        'opacity': '0.3',
-                        'showR2': 'true',
-                        'visibleInLegend': 'false'
-                    },
-                    '2': {
-                        'type': 'linear',
-                        'color': '#FC1919',
-                        'lineWidth': '3',
-                        'opacity': '0.3',
-                        'showR2': 'true',
-                        'visibleInLegend': 'false'
-                    },
-                    '3': {
-                        'type': 'linear',
-                        'color': '#FC8B19',
-                        'lineWidth': '3',
-                        'opacity': '0.3',
-                        'showR2': 'true',
-                        'visibleInLegend': 'false'
-                    }
-                },
+                //'trendlines': {
+                //    '0': {
+                //        'type': 'linear',
+                //        'color': '#67DC2D',
+                //        'lineWidth': 3,
+                //        'opacity': 0.3,
+                //        'showR2': true,
+                //        'visibleInLegend': 'false'
+                //    },
+                //    '1': {
+                //        'type': 'linear',
+                //        'color': '#19fcfc',
+                //        'lineWidth': '3',
+                //        'opacity': '0.3',
+                //        'showR2': 'true',
+                //        'visibleInLegend': 'false'
+                //    },
+                //    '2': {
+                //        'type': 'linear',
+                //        'color': '#FC1919',
+                //        'lineWidth': '3',
+                //        'opacity': '0.3',
+                //        'showR2': 'true',
+                //        'visibleInLegend': 'false'
+                //    },
+                //    '3': {
+                //        'type': 'linear',
+                //        'color': '#FC8B19',
+                //        'lineWidth': '3',
+                //        'opacity': '0.3',
+                //        'showR2': 'true',
+                //        'visibleInLegend': 'false'
+                //    }
+                //},
                 'displayExactValues': true,
                 'vAxis': {
                     'title': 'Temperature unit', 'gridlines': { 'count': 6, 'color': '#D3D3D4' },
