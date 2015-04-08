@@ -79,10 +79,12 @@
                     //if (view) {
                     //    vm.chart.view = view;
                     //}
-                    vm.chart.data.rows = chartSrv.getCurrentData();
-                    //vm.chart.view = vm.chartView;
-                    vm.lastChartUpdate = new Date();
-                    logger.success('Updated chart', newValue);
+                    if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
+                        vm.chart.data.rows = chartSrv.getCurrentData();
+                        //vm.chart.view = vm.chartView;
+                        vm.lastChartUpdate = new Date();
+                        logger.success('Updated chart', newValue);
+                    }
                 });
         }
 
@@ -113,7 +115,7 @@
                 chartSrv.getChartData()
                 .then(function (data) {
                     vm.chart.data.rows = data;
-                    logger.success('Updated chart', brewduionoDataSrv.getCurrentStatus());
+                    //logger.success('Updated chart', brewduionoDataSrv.getCurrentStatus());
                 });
             }
         }

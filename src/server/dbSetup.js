@@ -49,6 +49,7 @@ db.serialize(function () {
         console.log('*****************************');
         var str = JSON.stringify(rows);
         console.log(str);
+        console.log("row count" + rows.length);
     });
 });
 
