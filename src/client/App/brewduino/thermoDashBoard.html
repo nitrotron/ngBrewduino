@@ -80,7 +80,7 @@
                             Chart Key
                         </div>
                         <div class="panel-body">
-                            <div ng-repeat="thermo in brewingThermoItem.otherThermos">
+                            <div ng-repeat="thermo in brewingThermoItem.chartOtherThermos">
                                 <input type="checkbox" name="chBxChart{{thermo.id}}" ng-model="thermo.chartEnabled" ng-click="brewingThermoItem.chBxChartChanged(thermo)" />{{thermo.name}}
                             </div>
                             <br />
@@ -88,7 +88,7 @@
                             <h4>Chart Type:</h4>
                             <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chart.type" value="AreaChart" />Area
                             <br />
-                            <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chart.type" value="LineChart" />Line
+                            <input type="radio" name="chartRadio" ng-model="brewingThermoItem.chart.type" value="LineChart" />Line 
                         </div>
                     </div>
                 </div>

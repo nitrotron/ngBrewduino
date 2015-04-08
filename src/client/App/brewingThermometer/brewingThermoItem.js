@@ -18,7 +18,7 @@
         //vm.chart = {};
         vm.chartTypeArea = true;
         vm.chartTypeLine = false;
-        vm.chartView = [];
+        //vm.chartView = [];
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
         vm.closeMenu = closeMenu;
@@ -40,8 +40,12 @@
 
 
         function activate() {
+            vm.chartOtherThermos = getOtherTheromosChart();
+            settingsSrv.thermos.forEach(function (element, index, array) {
+                element.chartEnabled = false;
+            });
             settingsSrv.thermos[Number($state.params.id)].chartEnabled = true;
-            vm.chartView = { columns: getChartColumns()};
+            //vm.chartView = { columns: getChartColumns() };
             //vm.mcData = brewduionoDataSrv.getCurrentStatus();
             updateVM(brewduionoDataSrv.getCurrentStatus());
             getStatus();
@@ -70,13 +74,13 @@
                     //if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('view')) {
                     //    view = vm.chart.view;
                     //}
-
+                     
                     //vm.chart = newValue;
                     //if (view) {
                     //    vm.chart.view = view;
                     //}
                     vm.chart.data.rows = chartSrv.getCurrentData();
-                    vm.chart.view = vm.chartView;
+                    //vm.chart.view = vm.chartView;
                     vm.lastChartUpdate = new Date();
                     logger.success('Updated chart', newValue);
                 });
@@ -138,18 +142,9 @@
             var rc = [0];
             settingsSrv.thermos.forEach(function (element, index, array) {
                 if (element.chartEnabled || index === Number($state.params.id)) {
-                    rc.push(element.id + 1);
+                    rc.push(index + 1);
                 }
             });
-            //var currentStatus = brewduionoDataSrv.getCurrentStatus();
-            //if (currentStatus.hasOwnProperty('thermometers')) {
-            //    currentStatus.thermometers.forEach(function (element, index, array) {
-            //        if (element.chartEnabled || index === Number($state.params.id)) {
-            //            rc.push(element.id + 1);
-            //        }
-            //    });
-            //}
-
             return rc;
         }
 
@@ -163,6 +158,17 @@
                     }
                 });
             }
+            return rc;
+        }
+
+        function getOtherTheromosChart() {
+            var rc = [];
+            settingsSrv.thermos.forEach(function (element, index, array) {
+                if (index !== Number($state.params.id)) {
+                    rc.push(element);
+                }
+            });
+
             return rc;
         }
 
