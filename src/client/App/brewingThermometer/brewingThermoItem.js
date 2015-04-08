@@ -18,6 +18,7 @@
         //vm.chart = {};
         vm.chartTypeArea = true;
         vm.chartTypeLine = false;
+        vm.chartView = [];
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
         vm.closeMenu = closeMenu;
@@ -39,6 +40,8 @@
 
 
         function activate() {
+            settingsSrv.thermos[Number($state.params.id)].chartEnabled = true;
+            vm.chartView = { columns: getChartColumns()};
             //vm.mcData = brewduionoDataSrv.getCurrentStatus();
             updateVM(brewduionoDataSrv.getCurrentStatus());
             getStatus();
@@ -63,16 +66,17 @@
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
                     //var view;
-                    
+
                     //if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('view')) {
                     //    view = vm.chart.view;
                     //}
-                    
+
                     //vm.chart = newValue;
                     //if (view) {
                     //    vm.chart.view = view;
                     //}
                     vm.chart.data.rows = chartSrv.getCurrentData();
+                    vm.chart.view = vm.chartView;
                     vm.lastChartUpdate = new Date();
                     logger.success('Updated chart', newValue);
                 });
@@ -101,7 +105,7 @@
 
         function getChartData() {
             if (firstUpdate === true) {
-               
+
                 chartSrv.getChartData()
                 .then(function (data) {
                     vm.chart.data.rows = data;
@@ -132,14 +136,20 @@
 
         function getChartColumns() {
             var rc = [0];
-            var currentStatus = brewduionoDataSrv.getCurrentStatus();
-            if (currentStatus.hasOwnProperty('thermometers')) {
-                currentStatus.thermometers.forEach(function (element, index, array) {
-                    if (element.chartEnabled || index === Number($state.params.id)) {
-                        rc.push(element.id + 1);
-                    }
-                });
-            }
+            settingsSrv.thermos.forEach(function (element, index, array) {
+                if (element.chartEnabled || index === Number($state.params.id)) {
+                    rc.push(element.id + 1);
+                }
+            });
+            //var currentStatus = brewduionoDataSrv.getCurrentStatus();
+            //if (currentStatus.hasOwnProperty('thermometers')) {
+            //    currentStatus.thermometers.forEach(function (element, index, array) {
+            //        if (element.chartEnabled || index === Number($state.params.id)) {
+            //            rc.push(element.id + 1);
+            //        }
+            //    });
+            //}
+
             return rc;
         }
 
@@ -199,7 +209,7 @@
                         }
                     });
                     firstUpdate = true;
-                    
+
                 }
                 vm.thermometersList = [responseData.thermometers[$state.params.id]];
                 vm.thermo = responseData.thermometers[$state.params.id];
