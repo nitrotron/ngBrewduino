@@ -32,6 +32,24 @@ console.log('NODE_ENV=' + environment);
 
 var source = '';
 
+// ******************** SQL setup *******************************
+var fs = require('fs');
+var file = './data/' + 'brewduino.db';
+var exists = fs.existsSync(file);
+
+if (!exists) {
+    console.log('Creating DB file.');
+    fs.openSync(file, 'w');
+   
+}
+
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(file);
+if (!exists) {
+    db.run('CREATE TABLE TemperatureHistories (temp0 DECIMAL(5,2), temp1 DECIMAL(5,2), temp2 DECIMAL(5,2), temp3 DECIMAL(5,2),dt datetime default current_timestamp)');
+}
+// ******************** SQL setup - END **************************
+
 var stubData = {
     "thermometers": [
        {
@@ -88,12 +106,12 @@ var stubData = {
     "windowStartTime": 1395,
     "outputTime": 60442
 };
-app.get('/ping', function(req, res, next) {
+app.get('/ping', function (req, res, next) {
     console.log(req.body);
     res.send('pong');
 });
 
-switch (environment){
+switch (environment) {
     case 'production':
         console.log('** PRODUCTION ON AZURE **');
         console.log('serving from ' + './build/');
@@ -114,10 +132,10 @@ switch (environment){
         break;
 }
 
-app.listen(port, function() {
+app.listen(port, function () {
     console.log('Express server listening on port ' + port);
     console.log('env = ' + app.get('env') +
-    '\n__dirname = ' + __dirname  +
+    '\n__dirname = ' + __dirname +
     '\nprocess.cwd = ' + process.cwd());
 });
 
@@ -154,29 +172,50 @@ app.get('/getStatus', getStubData);        // handler for /date
 setInterval(updateChart, 60000);
 setInterval(randomizeStubData, 10000);
 function getStubData(request, response) {
-    
+
     response.send(stubData);
     response.end;
 };
 
 function randomizeStubData() {
     stubData.thermometers.forEach(function (element, index, array) {
-        element.temp = element.temp + Math.random();
+        element.temp = element.temp + (Math.random() - 0.2);
     });
+    insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp);
 }
 
 
 app.get('/getChartData', getChartData);
 
 function getChartData(request, response) {
-    var foo = {};
-    response.send(foo);
-    response.end;
+    db.all("SELECT time(dt, 'localtime') time,  temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, rows) {
+        response.json(rows);
+    });
+    //response.send(getAllTemperatureHistories());
+    //response.end;
 }
 
 function updateChart() {
-     
+
 }
+
+function insertTemperatureHistories(t0, t1, t2, t3) {
+    db.serialize(function () {
+        db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3) VALUES (?,?,?,?)', t0, t1, t2, t3);
+       
+    });
+    console.log(getAllTemperatureHistories() + t0);
+}
+
+function getAllTemperatureHistories() {
+    var table;
+    db.all("SELECT rowid AS id, temp0, temp1, temp2, temp3, datetime(dt, 'localtime') as date, time(dt, 'localtime') time FROM TemperatureHistories", function (err, rows) {
+        return JSON.stringify(rows);
+    });
+
+
+}
+
 
 
 

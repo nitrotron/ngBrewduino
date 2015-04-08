@@ -21,6 +21,8 @@
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
         vm.closeMenu = closeMenu;
+        vm.lastChartUpdate = new Date();
+        vm.lastTempUpdate = new Date();
         vm.openMenu = openMenu;
         vm.pumpClick = pumpClick;
         vm.rimsClick = rimsClick;
@@ -60,16 +62,18 @@
                 });
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
-                    var view;
+                    //var view;
                     
-                    if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('view')) {
-                        view = vm.chart.view;
-                    }
+                    //if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('view')) {
+                    //    view = vm.chart.view;
+                    //}
                     
-                    vm.chart = newValue;
-                    if (view) {
-                        vm.chart.view = view;
-                    }
+                    //vm.chart = newValue;
+                    //if (view) {
+                    //    vm.chart.view = view;
+                    //}
+                    vm.chart.data.rows = chartSrv.getCurrentData();
+                    vm.lastChartUpdate = new Date();
                     logger.success('Updated chart', newValue);
                 });
         }
@@ -199,8 +203,9 @@
                 }
                 vm.thermometersList = [responseData.thermometers[$state.params.id]];
                 vm.thermo = responseData.thermometers[$state.params.id];
-            }
 
+            }
+            vm.lastTempUpdate = new Date();
 
 
         }

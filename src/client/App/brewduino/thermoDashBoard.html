@@ -44,9 +44,11 @@
             </div>
 
             <div class="col-sm-3 col-xs-6" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
-                <span class="dashboard-minor-title text-color5">{{otherThermo.name}}
+                <span class="dashboard-minor-title text-color5">
+                    {{otherThermo.name}}
                 </span>
-                <span class="dashboard-minor-temp text-color5">{{otherThermo.temp | number:1}}
+                <span class="dashboard-minor-temp text-color5">
+                    {{otherThermo.temp | number:1}}
                 </span>
             </div>
         </div>
@@ -93,11 +95,18 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-6">
+        <a ui-sref="classic" class="text-color2">classic theme</a>
+    </div>
+    <div class="col-sm-6 text-right">
+        <div class="text-color1 h6">Last temperature update: {{brewingThermoItem.lastTempUpdate | date:'mediumTime'}}</div>
+        <div class="text-color1 h6">Last chart update: {{brewingThermoItem.lastChartUpdate | date:'mediumTime'}}</div>
+    </div>
     <div ng-if="brewingThermoItem.showStatusLog" ng-include="'App/statusLog/statusLog.html'">
     </div>
 </div>
 
 
 
-<a ui-sref="classic" class="text-color2">classic theme</a>
+
 
