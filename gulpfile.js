@@ -24,8 +24,8 @@ gulp.task('templatecache', function () {
         .src(paths.htmltemplates)
         .pipe(plug.bytediff.start())
         .pipe(plug.minifyHtml({
-          empty: true
-         }))
+            empty: true
+        }))
         .pipe(plug.angularTemplatecache('templates.js', {
             module: 'app',
             standalone: false,
@@ -198,6 +198,12 @@ gulp.task('serve-dev', function () {
         mode: 'dev'
     });
 });
+gulp.task('serve-dev-mock', function () {
+    serve({
+        mode: 'dev',
+        useMock: 'enabled'
+    });
+});
 
 
 function serve(args) {
@@ -206,6 +212,7 @@ function serve(args) {
         delayTime: 1,
         env: {
             'NODE_ENV': args.mode,
+            'USE_MOCK': args.useMock,
             'PORT': port
         },
         watch: [paths.server]
@@ -220,14 +227,14 @@ function serve(args) {
     //}
 
     return plug.nodemon(options);
-        //.on('start', function() {
-        //    startBrowserSync();
-        //})
-        ////.on('change', tasks)
-        //.on('restart', function() {
-        //    log('restarted!');
-        //    setTimeout(function () {
-        //        browserSync.reload({ stream: false });
-        //    }, 1000);
-        //});
+    //.on('start', function() {
+    //    startBrowserSync();
+    //})
+    ////.on('change', tasks)
+    //.on('restart', function() {
+    //    log('restarted!');
+    //    setTimeout(function () {
+    //        browserSync.reload({ stream: false });
+    //    }, 1000);
+    //});
 }
