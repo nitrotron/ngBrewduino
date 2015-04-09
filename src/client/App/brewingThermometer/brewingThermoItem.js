@@ -133,6 +133,8 @@
 
                  logger.success('Updated status', response.data);
                  return response;
+             }, function (reason) {
+                 logger.error('Unsuccessful with getting status', reason);
              });
         }
 

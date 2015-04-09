@@ -38,10 +38,11 @@
                 });
 
                 myCurrentStatus = data;
-            });
+            })
+            .error(getStatusFailed);
         }
-        function getStatusFailed(error) {
-            logger.error('XHR Failed for getStatus.' + error.data);
+        function getStatusFailed(data) {
+            logger.error('XHR Failed for getStatus.');
         }
         function getStatusSuccess(response) {
             logger.info('Successful getStatus');
@@ -51,7 +52,11 @@
 
         function sendCmd(whichCmd, args) {
             var cmdUrl = '/sendCommand/' + whichCmd + '/' + args;
-            return $http.post(cmdUrl);
+            return $http.post(cmdUrl).error(sendCmdFail);;
+        }
+
+        function sendCmdFail(data) {
+            logger.error('XHR Failed for sendCommand.' + data);
         }
 
         function parseStatus(data) {

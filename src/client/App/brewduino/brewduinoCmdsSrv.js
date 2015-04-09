@@ -54,7 +54,10 @@
         };
 
         function clearAlarms(whichThermo) {
-            return brewduionoDataSrv.sendCmd(cmds.clearTempAlarms, whichThermo);
+            return brewduionoDataSrv.sendCmd(cmds.clearTempAlarms, whichThermo)
+                    .error(function () {
+                        sendCommandFailed('clearAlarms', '');
+                    });
         }
         function getStatus(status) {
             return brewduionoDataSrv.getStatus(status);
@@ -94,6 +97,10 @@
         }
         function setTimer(minutes) {
             return brewduionoDataSrv.sendCmd(cmds.setTimer, minutes);
+        }
+
+        function sendCommandFailed(command, args) {
+            logger.error('XHR Failed for send command:' + command + ' ' + args  );
         }
     }
 })();
