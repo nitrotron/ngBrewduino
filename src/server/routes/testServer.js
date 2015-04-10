@@ -67,7 +67,7 @@
     };
 
     function getChartData(request, response, next) {
-        db.all("SELECT datetime(dt, 'localtime') as date,  temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, rows) {
+        db.all("SELECT  datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, rows) {
             response.json(rows);
         });
     }

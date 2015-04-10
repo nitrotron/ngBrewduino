@@ -1,15 +1,16 @@
-﻿ <link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css" />  
+﻿<link href="Fonts/fontello-374a6348/css/misc.css" rel="stylesheet" type="text/css" />
 <style>
-    body {
+    body
+    {
         background-color: white;
     }
 </style>
- <div id="pnlMain" ng-controller="brewduinoCtrl as brewduino">
+<div id="pnlMain" ng-controller="brewduinoCtrl as brewduino">
     <div id="RimsPanelMain">
         <div id="RimsThermometers">
 
             <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
-                 ng-repeat="thermometers in brewduino.mcData.thermometers">
+                ng-repeat="thermometers in brewduino.mcData.thermometers">
             </div>
             <div class="CountDownTimer">
                 <div ng-include="'App/countDownTimer/countDownTimerClassic.html'"></div>
@@ -44,7 +45,12 @@
             <span class="Stretch"></span>
         </div>
     </div>
-     <div ng-if="brewduino.showStatusLog" ng-include="'App/statusLog/statusLog.html'">
+
+    <div class="col-sm-12 text-right">
+        <div class="text-color1 h6">Last temperature update: {{brewduino.lastTempUpdate | date:'mediumTime'}}</div>
     </div>
+    <div ng-if="brewingThermoItem.showStatusLog" ng-include="'App/statusLog/statusLog.html'">
+    </div>
+
 </div>
 
