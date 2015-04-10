@@ -4,7 +4,7 @@
     // configure the serial port:
     var SerialPort = serialport.SerialPort;     // make a local instance of serialport
     //portName = process.argv[2],             // get serial port name from the command line
-    var portName = 'COM3';
+    var portName = '/dev/ttyAMC0';
     serialOptions = {                       // serial communication options
         baudRate: 9600,                       // data rate: 9600 bits per second
         parser: serialport.parsers.readline('\r\n') // return and newline generate data event
