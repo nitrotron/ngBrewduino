@@ -5,7 +5,7 @@
     angular.module('app')
         .controller('brewduinoCtrl', brewduinoCtrl);
 
-    function brewduinoCtrl($interval, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv) {
+    function brewduinoCtrl($scope, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv) {
         var vm = this;
         vm.mcData = {};
 
@@ -25,6 +25,11 @@
                 logger.info('Now viewing Classic theme');
             });
             brewduionoDataSrv.setAutoUpdates(true);
+            $scope.$watch(brewduionoDataSrv.getCurrentStatus,
+               function (newValue, oldValue) {
+                   updateVM(newValue);
+                   logger.success('Updated status', newValue);
+               });
         }
 
         function alarmClick(alarm) {
@@ -56,6 +61,35 @@
         function rimsClick(rims) {
             //brewduionoDataSrv.currentStatus.rimsEnable = rims;
             brewduinoCmdsSrv.setRimsPower(rims);
+
+        }
+
+
+        function updateVM(responseData) {
+            vm.mcData = responseData;
+            //vm.rimsEnable = responseData.rimsEnable;
+            //vm.pumpOn = responseData.pumpOn;
+            //vm.auxOn = responseData.auxOn;
+
+            //vm.otherThermos = getOtherThermos();
+            //if (responseData.hasOwnProperty('thermometers')) {
+            //    if (firstUpdate === false) {
+            //        responseData.thermometers.forEach(function (element, index, array) {
+            //            if (index === Number($state.params.id)) {
+            //                element.chartEnabled = true;
+            //            } else {
+            //                element.chartEnabled = false;
+            //            }
+            //        });
+            //        firstUpdate = true;
+
+            //    }
+            //    vm.thermometersList = [responseData.thermometers[$state.params.id]];
+            //    vm.thermo = responseData.thermometers[$state.params.id];
+
+            //}
+            vm.lastTempUpdate = new Date();
+
 
         }
     }

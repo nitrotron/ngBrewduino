@@ -52,7 +52,7 @@
 
         function sendCmd(whichCmd, args) {
             var cmdUrl = '/sendCommand/' + whichCmd + '/' + args;
-            return $http.post(cmdUrl).error(sendCmdFail);;
+            return $http.post(cmdUrl).error(sendCmdFail);
         }
 
         function sendCmdFail(data) {

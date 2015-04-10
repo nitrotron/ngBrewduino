@@ -5,7 +5,7 @@
 
     angular.module('app').factory('brewduinoCmdsSrv', brewduinoCmdsSrv);
 
-    function brewduinoCmdsSrv(brewduionoDataSrv) {
+    function brewduinoCmdsSrv(brewduionoDataSrv, logger) {
         var cmds = {
             returnUnknownCmd: 0,
             returnStatus: 1,
