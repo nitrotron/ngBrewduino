@@ -27,6 +27,7 @@
         vm.openMenu = openMenu;
         vm.pumpClick = pumpClick;
         vm.rimsClick = rimsClick;
+        vm.rimsSettingsClick = rimsSettingsClick;
         vm.setAlarm = setAlarm;
         vm.settingsClick = settingsClick;
         vm.showMenu = false;
@@ -184,6 +185,11 @@
         function rimsClick() {
             vm.rimsEnable = !vm.rimsEnable;
             brewduinoCmdsSrv.setRimsPower(vm.rimsEnable);
+        }
+
+        function rimsSettingsClick() {
+            var stateParams = { id: $state.params.id };
+            $state.go('settings', stateParams);
         }
 
         function setAlarm() {
