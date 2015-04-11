@@ -4,8 +4,8 @@
     // configure the serial port:
     var SerialPort = serialport.SerialPort;     // make a local instance of serialport
     //portName = process.argv[2],             // get serial port name from the command line
-    var portName = '/dev/ttyAMCO';
-    serialOptions = {                       // serial communication options
+    var portName = '/dev/ttyACM0';
+    var serialOptions = {                       // serial communication options
         baudRate: 9600,                       // data rate: 9600 bits per second
         parser: serialport.parsers.readline('\r\n') // return and newline generate data event
     };
@@ -27,16 +27,24 @@
 
     // this is called when new data comes into the serial port:
     function saveLatestData(data) {
-console.log('just recieved: ' + data);
+        
+        console.log('just recieved: ' + data);
         // save the incoming serial data in serialData variable
-//        var jData = JSON.parse(data);
-//
-//        if (jData.hasOwnProperty('DATALOGGING')) {
-//            insertTemperatureHistories(jData.DATALOGGING.temp0, jData.DATALOGGING.temp1, jData.DATALOGGING.temp2, jData.DATALOGGING.temp3);
-//        }
-//        else {
-//            serialData = jData;
-//        }
+        var jData = {};
+	try {
+		jData = JSON.parse(data);
+	} catch (e) {
+		console.log('JSON Error:' + e);
+ 	}
+
+
+
+        if (jData.hasOwnProperty('DATALOGGING')) {
+            insertTemperatureHistories(jData.DATALOGGING.temp0, jData.DATALOGGING.temp1, jData.DATALOGGING.temp2, jData.DATALOGGING.temp3);
+        }
+        else {
+            serialData = jData;
+        }
         
     }
 
