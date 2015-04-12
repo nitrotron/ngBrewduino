@@ -59,6 +59,7 @@
 
     app.get('/getStatus', getStubData);        // handler for /date
     app.get('/getChartData', getChartData);
+    app.get('/sendCommand/:whichCmd/:val', sendCommand);
 
     function getStubData(request, response, next) {
 
@@ -72,7 +73,14 @@
         });
     }
 
-  
+    function sendCommand(request, response, next) {
+        console.log('you just got a get');
+        console.log('request.params.whichCmd = ' + request.params.whichCmd);
+        console.log('request.params.val = ' + request.params.val);
+        response.send('success');
+        response.end;
+    }
+
     setInterval(randomizeStubData, 10000);
     
     function randomizeStubData() {

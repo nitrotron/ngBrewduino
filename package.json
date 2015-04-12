@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "body-parser": "^1.12.2",
     "browser-sync": "^2.5.2",
     "gulp": "^3.8.11",
     "gulp-angular-templatecache": "^1.6.0",

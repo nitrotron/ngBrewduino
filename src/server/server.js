@@ -5,7 +5,7 @@
 
 var express = require('express');
 var app = express();
-//var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 //var compress = require('compression');
 //var cors = require('cors');
 //var errorHandler = require('./routes/utils/errorHandler')();
@@ -18,8 +18,8 @@ var environment = process.env.NODE_ENV;
 var useMock = process.env.USE_MOCK;
 
 
-//app.use(bodyParser.urlencoded({extended: true}));
-//app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 //app.use(compress());            // Compress response data with gzip
 //app.use(logger('dev'));
 //app.use(favicon(__dirname + '/favicon.ico'));

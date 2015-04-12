@@ -23,7 +23,7 @@
                 if (autoUpdatesEnabled === true) {
                     getStatus();
                 }
-            }, 10000);
+            }, 100000000000);
         }
 
         function getCurrentStatus() {
@@ -52,7 +52,7 @@
 
         function sendCmd(whichCmd, args) {
             var cmdUrl = '/sendCommand/' + whichCmd + '/' + args;
-            return $http.post(cmdUrl).error(sendCmdFail);
+            return $http.get(cmdUrl).error(sendCmdFail);
         }
 
         function sendCmdFail(data) {

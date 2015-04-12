@@ -9,30 +9,22 @@
         var cmds = {
             returnUnknownCmd: 0,
             returnStatus: 1,
-            getTemps: 2,
-            getTemp: 3,
-            getSensors: 4,
-            getSensor: 5,
-            getTempAlarms: 6,
-            setTempAlarmHigh: 7,
-            setTempAlarmLow: 8,
-            clearTempAlarms: 9,
-            getTimer: 10,
-            setTimer: 11,
-            resetAlarm: 12,
-            getAlarmStatus: 13,
-            startLogging: 14,
-            stopLogging: 15,
-            setPIDSetPoint: 16,
-            setPIDWindowSize: 17,
-            setPIDKp: 18,
-            setPIDKi: 19,
-            setPIDKd: 20,
-            turnOnRims: 21,
-            turnOnPump: 22,
-            turnOnAux: 23,
-            setInitialClock: 24,
-            setDebugModeOn: 25
+            setTempAlarmHigh: 2,
+            setTempAlarmLow: 3,
+            clearTempAlarms: 4,
+            setTimer: 5,
+            resetAlarm: 6,
+            startLogging: 7,
+            stopLogging: 8,
+            setPIDSetPoint: 9,
+            setPIDWindowSize: 10,
+            setPIDKp: 11,
+            setPIDKi: 12,
+            setPIDKd: 13,
+            turnOnRims: 14,
+            turnOnPump: 15,
+            turnOnAux: 16,
+            setInitialClock: 17
         };
         return {
             cmds: cmds,
@@ -63,7 +55,7 @@
             return brewduionoDataSrv.getStatus(status);
         }
         function resetAlarm() {
-            return brewduionoDataSrv.sendCmd(cmds.resetAlarm, '');
+            return brewduionoDataSrv.sendCmd(cmds.resetAlarm, 1);
         }
         function setAuxPower(isPowerOn) {
             return brewduionoDataSrv.sendCmd(cmds.turnOnAux, isPowerOn ? 1 : 0);
@@ -100,7 +92,7 @@
         }
 
         function sendCommandFailed(command, args) {
-            logger.error('XHR Failed for send command:' + command + ' ' + args  );
+            logger.error('XHR Failed for send command:' + command + ' ' + args);
         }
     }
 })();

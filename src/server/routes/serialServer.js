@@ -56,6 +56,7 @@
 
     app.get('/getStatus', getStatus);        // handler for /date
     app.get('/getChartData', getChartData);
+    app.get('/sendCommand/:whichCmd/:val', sendCommand);
 
     function getStatus(request, response, next) {
 
@@ -69,6 +70,15 @@
         });
     }
 
+    function sendCommand(request, response, next) {
+        console.log('you just got a get');
+        console.log('request.params.whichCmd = ' + request.params.whichCmd);
+        console.log('request.params.val = ' + request.params.val);
+        var fullCmd = request.params.whichCmd + ',' + request.params.val + ';';
+        myPort.write(fullCmd);
+        response.send('success');
+        response.end;
+    }
 
 
 
