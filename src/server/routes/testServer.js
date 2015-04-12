@@ -42,7 +42,7 @@
         "timersNotAllocated": 8,
         "totalTimers": 12,
         "pumpOn": 0,
-        "auxOn": 0,
+        "auxOn": 1,
         "rimsEnable": 0,
         "arduinoTime": 61,
         "arduinoTimeLong": "0:01:01 1/1/1970",
