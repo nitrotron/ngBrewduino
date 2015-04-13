@@ -152,8 +152,10 @@
                 //rows.push(constRowObj('10:40', 128, 160, 105, 206));
                 //rows.push(constRowObj('10:41', 128, 160, 106, 208));
                 data.forEach(function (element, index, array) {
-                    var dt = new Date(element.date);
-                    rows.push(constRowObj(new Date(element.date), element.temp0,
+                    var dt = new Date(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
+                    //rows.push(constRowObj(new Date(element.date), element.temp0,
+                    //    element.temp1, element.temp2, element.temp3));
+                    rows.push(constRowObj(dt, element.temp0,
                         element.temp1, element.temp2, element.temp3));
                 });
                 myCurrentChart.data.rows = rows;

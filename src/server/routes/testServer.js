@@ -68,7 +68,9 @@
     };
 
     function getChartData(request, response, next) {
-        db.all("SELECT  datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, rows) {
+        db.all("SELECT  strftime('%Y',dt) as year, strftime('%m',dt) as month, strftime('%d',dt) as day, strftime('%H',dt) as hour, strftime('%M',dt) as minute, strftime('%S',dt) as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories", function (err, rows) {
+        //    console.log('you requested data' + rows);
+            console.log('error is:', err);
             response.json(rows);
         });
     }
