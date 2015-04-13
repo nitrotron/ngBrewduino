@@ -8,6 +8,7 @@
                                  logger, settingsSrv, chartSrv) {
         var vm = this;
         var firstUpdate = false;
+        var firstChartUpdate = false;
 
         vm.addTimer = addTimer;
         //vm.mcData = {};
@@ -46,18 +47,10 @@
                 element.chartEnabled = false;
             });
             settingsSrv.thermos[Number($state.params.id)].chartEnabled = true;
-            //vm.chartView = { columns: getChartColumns() };
-            //vm.mcData = brewduionoDataSrv.getCurrentStatus();
+         
             updateVM(brewduionoDataSrv.getCurrentStatus());
             getStatus();
             getChartData();
-
-            //.then(function (response) {
-            //    //every 10 seconds get a status update
-            //    //   $interval(getStatus, 10000);
-            //    //every 60 seconds see if there is more chart data
-            //    //    $interval(getChartData, 60000);
-            //});
 
             brewduionoDataSrv.setAutoUpdates(true);
             chartSrv.setAutoUpdates(true);
@@ -70,19 +63,9 @@
                 });
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
-                    //var view;
-
-                    //if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('view')) {
-                    //    view = vm.chart.view;
-                    //}
-                     
-                    //vm.chart = newValue;
-                    //if (view) {
-                    //    vm.chart.view = view;
-                    //}
                     if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
+                        var foo = chartSrv.getCurrentData();
                         vm.chart.data.rows = chartSrv.getCurrentData();
-                        //vm.chart.view = vm.chartView;
                         vm.lastChartUpdate = new Date();
                         logger.success('Updated chart', newValue);
                     }
@@ -111,8 +94,8 @@
         }
 
         function getChartData() {
-            if (firstUpdate === true) {
-
+            if (firstChartUpdate === false) {
+                firstChartUpdate = true;
                 chartSrv.getChartData()
                 .then(function (data) {
                     vm.chart.data.rows = data;
@@ -189,7 +172,7 @@
 
         function rimsSettingsClick() {
             var stateParams = { id: $state.params.id };
-            $state.go('settings', stateParams);
+            $state.go('rimsSettings', stateParams);
         }
 
         function setAlarm() {

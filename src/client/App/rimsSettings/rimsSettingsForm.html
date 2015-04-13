@@ -1,0 +1,59 @@
+﻿<div ng-controller="rimsSettingsCtrl as rimsSettingsCtrl" class="container">
+  <form name="rimsForm" class="form-horizontal">
+        <legend>RIMs settings</legend>
+        <div class="form-group">
+            <label for="setPoint" class="col-md-2 control-label">setPoint</label>
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control"
+                    id="minutes" placeholder="setPoint"
+                    ng-model="rimsSettingsCtrl.settings.setPoint" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="windowSize" class="col-md-2 control-label">Minutes</label>
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control"
+                    id="windowSize" placeholder="windowSize"
+                    ng-model="rimsSettingsCtrl.settings.windowSize" />
+            </div>
+        </div>
+       <div class="form-group">
+            <label for="kp" class="col-md-2 control-label">Minutes</label>
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control"
+                    id="kp" placeholder="kp"
+                    ng-model="rimsSettingsCtrl.settings.kp" />
+            </div>
+        </div>
+       <div class="form-group">
+            <label for="ki" class="col-md-2 control-label">Minutes</label>
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control"
+                    id="ki" placeholder="ki"
+                    ng-model="rimsSettingsCtrl.settings.ki" />
+            </div>
+        </div>
+       <div class="form-group">
+            <label for="kd" class="col-md-2 control-label">Minutes</label>
+            <div class="col-md-10">
+                <input type="number" min="0" class="form-control"
+                    id="kd" placeholder="kd"
+                    ng-model="rimsSettingsCtrl.settings.kd" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+
+                <button type="button" class="btn btn-default"
+                    ng-click="rimsSettingsCtrl.cancel()">
+                    Cancel</button>
+
+                <button type="button" class="btn btn-info"
+                    ng-click="rimsSettingsCtrl.submit(rimsSettingsCtrl.settings)">
+                    Start
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

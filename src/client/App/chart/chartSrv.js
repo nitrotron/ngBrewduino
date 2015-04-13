@@ -24,7 +24,7 @@
                 if (autoUpdatesEnabled === true) {
                     getChartData();
                 }
-            }, 300000000);
+            }, 3000);
         }
 
         function getChartConfig() {
@@ -139,22 +139,10 @@
 
             $http.get(statusUrl).success(function (data) {
                 var rows = [];
-                //rows.push(constRowObj('10:30', 115, 100, 106, 200));
-                //rows.push(constRowObj('10:31', 117, 110, 106, 208));
-                //rows.push(constRowObj('10:32', 118, 120, 106, 210)); 
-                //rows.push(constRowObj('10:33', 115, 130, 106, 205));
-                //rows.push(constRowObj('10:34', 120, 145, 105, 205));
-                //rows.push(constRowObj('10:35', 123, 150, 104, 204));
-                //rows.push(constRowObj('10:36', 123, 155, 103, 199));
-                //rows.push(constRowObj('10:37', 125, 156, 106, 201));
-                //rows.push(constRowObj('10:38', 125, 158, 105, 203));
-                //rows.push(constRowObj('10:39', 126, 159, 106, 206));
-                //rows.push(constRowObj('10:40', 128, 160, 105, 206));
-                //rows.push(constRowObj('10:41', 128, 160, 106, 208));
+              
                 data.forEach(function (element, index, array) {
                     var dt = new Date(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
-                    //rows.push(constRowObj(new Date(element.date), element.temp0,
-                    //    element.temp1, element.temp2, element.temp3));
+              
                     rows.push(constRowObj(dt, element.temp0,
                         element.temp1, element.temp2, element.temp3));
                 });

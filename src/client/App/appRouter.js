@@ -21,6 +21,11 @@
         .state('cdtAdd', {
             url: '/cdtAdd/:id',
             templateUrl: 'App/countDownTimerForm/countDownTimerForm.html'
+        })
+        .state('rimsSettings', {
+            url: '/rimsSettings/:id',
+            templateUrl: 'App/rimsSettings/rimsSettingsForm.html'
+            
         });
     });
 })();

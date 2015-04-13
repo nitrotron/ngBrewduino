@@ -2,7 +2,7 @@
     angular.module('app')
     .controller('rimsSettingsCtrl', rimsSettingsCtrl);
 
-    function rimsSettingsCtrl($state, rimsSettingsSrv) {
+    function rimsSettingsCtrl($state, brewduionoDataSrv, brewduinoCmdsSrv) {
         var vm = this;
         //rimsSettingsSrv.setPoint = 150;
         //rimsSettingsSrv.windowSize = 5000;
@@ -18,7 +18,7 @@
         activate();
 
         function activate() {
-            vm.settings = rimsSettingsSrv.settings;
+            vm.settings = brewduionoDataSrv.getCurrentStatus();
         }
 
         function cancel() {
@@ -33,7 +33,11 @@
         }
 
         function updateRimsSettingsSrv(settings) {
-            rimsSettingsSrv.updateSettings(settings);
+            brewduinoCmdsSrv.setPidSetPoint(settings.setPoint);
+            brewduinoCmdsSrv.setPidWindowSize(settings.windowSize);
+            brewduinoCmdsSrv.setPidKp(settings.kp);
+            brewduinoCmdsSrv.setPidKi(settings.ki);
+            brewduinoCmdsSrv.setPidKd(settings.kd);
         }
     }
 })();
