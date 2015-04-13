@@ -63,15 +63,23 @@
             <div class="col-md-10 col-md-offset-2">
 
                 <button type="button" class="btn btn-default"
-                        ng-click="settingsFormCtrl.cancel()">
+                    ng-click="settingsFormCtrl.cancel()">
                     Cancel
                 </button>
 
                 <button type="button" class="btn btn-info"
-                        ng-click="settingsFormCtrl.submit(settingsFormCtrl.settings)">
+                    ng-click="settingsFormCtrl.submit(settingsFormCtrl.settings)">
                     Submit
                 </button>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-danger btn-block" ng-click="settingsFormCtrl.clearSessionData()">
+                    Clear Session Data
+                </button>
+            </div>
+        </div>
     </form>
+
 </div>

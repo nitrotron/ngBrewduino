@@ -4,7 +4,7 @@
     angular.module('app')
     .controller('settingsFormCtrl', settingsFormCtrl);
 
-    function settingsFormCtrl($state, settingsSrv) {
+    function settingsFormCtrl($state, settingsSrv, brewduionoDataSrv, logger) {
         var vm = this;
 
         // properties
@@ -12,6 +12,7 @@
 
         // methods
         vm.cancel = cancel;
+        vm.clearSessionData = clearSessionData;
         vm.submit = submit;
 
         activate();
@@ -27,6 +28,12 @@
         function cancel() {
             var stateParams = { id: $state.params.id };
             $state.go('dashboard', stateParams);
+        }
+
+        function clearSessionData() {
+            brewduionoDataSrv.clearSessionData().success(function (response) {
+                logger.warning('You just cleared your database');
+            });
         }
 
         function submit(settings) {

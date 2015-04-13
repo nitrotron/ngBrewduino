@@ -1,5 +1,5 @@
 ﻿module.exports = function (app, db) {
-    
+
     var stubData = {
         "thermometers": [
            {
@@ -59,6 +59,7 @@
 
     app.get('/getStatus', getStubData);        // handler for /date
     app.get('/getChartData', getChartData);
+    app.get('/clearSessionData', clearSessionData);
     app.get('/sendCommand/:whichCmd/:val', sendCommand);
 
     function getStubData(request, response, next) {
@@ -69,10 +70,16 @@
 
     function getChartData(request, response, next) {
         db.all("SELECT strftime('%Y',dt) as year, strftime('%m',dt) as month, strftime('%d',dt) as day, strftime('%H',dt) as hour, strftime('%M',dt) as minute, strftime('%S',dt) as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories limit 300", function (err, rows) {
-        //    console.log('you requested data' + rows);
+            //    console.log('you requested data' + rows);
             console.log('error is:', err);
             console.log(rows.length);
             response.json(rows);
+        });
+    }
+
+    function clearSessionData(req, res, next) {
+        db.serialize(function () {
+            db.run('Delete from TemperatureHistories');
         });
     }
 
@@ -85,14 +92,14 @@
     }
 
     setInterval(randomizeStubData, 10000);
-    
+
     function randomizeStubData() {
         stubData.thermometers.forEach(function (element, index, array) {
             element.temp = element.temp + (Math.random() - 0.2);
         });
         insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp);
     }
-    
+
     function insertTemperatureHistories(t0, t1, t2, t3) {
         db.serialize(function () {
             db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3) VALUES (?,?,?,?)', t0, t1, t2, t3);

@@ -12,6 +12,7 @@
 
         autoUpdates();
         return {
+            clearSessionData: clearSessionData,
             getCurrentStatus: getCurrentStatus,
             getStatus: getStatus,
             sendCmd: sendCmd,
@@ -41,6 +42,12 @@
             })
             .error(getStatusFailed);
         }
+
+        function clearSessionData() {
+            var cmdUrl = '/clearSessionData';
+            return $http.get(cmdUrl).error(sendCmdFail);
+        }
+
         function getStatusFailed(data) {
             logger.error('XHR Failed for getStatus.');
         }
