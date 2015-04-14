@@ -5,7 +5,7 @@
     angular.module('app')
         .controller('brewduinoCtrl', brewduinoCtrl);
 
-    function brewduinoCtrl($scope, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv) {
+    function brewduinoCtrl($scope, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv, countDownTimerSrv) {
         var vm = this;
         vm.mcData = {};
 
@@ -34,7 +34,18 @@
 
         function alarmClick(alarm) {
             brewduinoCmdsSrv.resetAlarm();
-            
+            if (vm.alarm.tempA === 1) {
+                var thermo = vm.thermometers[vm.alarm.whichTemp];
+                if (thermo.highAlarm < thermo.temp) {
+                    brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
+                }
+                else {
+                    brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
+                }
+            }
+            else {
+                countDownTimerSrv.clearExpired();
+            }
         }
 
         function auxClick(aux) {
@@ -44,12 +55,12 @@
         }
 
         function getStatus() {
-           return brewduinoCmdsSrv.getStatus(vm.mcData)
-            .then(function (response) {
-                vm.mcData = response.data;
-                logger.info('Resolved Data', vm.mcData);
-                return response;
-            });
+            return brewduinoCmdsSrv.getStatus(vm.mcData)
+             .then(function (response) {
+                 vm.mcData = response.data;
+                 logger.info('Resolved Data', vm.mcData);
+                 return response;
+             });
 
         }
 
@@ -68,31 +79,17 @@
 
         function updateVM(responseData) {
             vm.mcData = responseData;
-            vm.auxOn = (responseData.auxOn == 1) ? true : false;
-            //vm.rimsEnable = responseData.rimsEnable;
-            //vm.pumpOn = responseData.pumpOn;
-            //vm.auxOn = responseData.auxOn;
-
-            //vm.otherThermos = getOtherThermos();
-            //if (responseData.hasOwnProperty('thermometers')) {
-            //    if (firstUpdate === false) {
-            //        responseData.thermometers.forEach(function (element, index, array) {
-            //            if (index === Number($state.params.id)) {
-            //                element.chartEnabled = true;
-            //            } else {
-            //                element.chartEnabled = false;
-            //            }
-            //        });
-            //        firstUpdate = true;
-
-            //    }
-            //    vm.thermometersList = [responseData.thermometers[$state.params.id]];
-            //    vm.thermo = responseData.thermometers[$state.params.id];
-
-            //}
+            vm.alarmBtn = (responseData.tempAlarmActive === 1|| responseData.timerAlarmActive === 1 ) ? true : false;
+            vm.mcData.auxOn = (responseData.auxOn === 1) ? true : false;
+            vm.mcData.rimsEnable = (responseData.rimsEnable === 1) ? true : false;
+            vm.mcData.pumpOn = (responseData.pumpOn === 1) ? true : false;
             vm.lastTempUpdate = new Date();
 
-
+            vm.alarm = {
+                tempA: responseData.tempAlarmActive,
+                timeA: responseData.timerAlarmActive,
+                whichTemp: responseData.whichThermoAlarm
+            };
         }
     }
 

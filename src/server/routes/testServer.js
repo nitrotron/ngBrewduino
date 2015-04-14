@@ -32,8 +32,8 @@
                "isRims": 1
            }
         ],
-        "tempAlarmActive": 0,
-        "timerAlarmActive": 1,
+        "tempAlarmActive": 1,
+        "timerAlarmActive": 0,
         "whichThermoAlarm": 2,
         "clearTimers": 1,
         "timers": [
@@ -41,9 +41,9 @@
         ],
         "timersNotAllocated": 8,
         "totalTimers": 12,
-        "pumpOn": 0,
-        "auxOn": 1,
-        "rimsEnable": 0,
+        "pumpOn": 1,
+        "auxOn": 0,
+        "rimsEnable": 1,
         "arduinoTime": 61,
         "arduinoTimeLong": "0:01:01 1/1/1970",
         "setPoint": 100.00,
