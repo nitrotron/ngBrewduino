@@ -11,6 +11,7 @@
         var firstChartUpdate = false;
 
         vm.addTimer = addTimer;
+        vm.alarm = {};
         //vm.mcData = {};
 
         vm.alarmBtn = false;
@@ -35,6 +36,8 @@
         vm.showStatusLog = settingsSrv.showStatusLog;
         vm.otherThermos = [];
         vm.switchTemps = switchTemps;
+        vm.thermometers = [];
+       
 
         activate();
 
@@ -47,7 +50,7 @@
                 element.chartEnabled = false;
             });
             settingsSrv.thermos[Number($state.params.id)].chartEnabled = true;
-         
+
             updateVM(brewduionoDataSrv.getCurrentStatus());
             getStatus();
             getChartData();
@@ -176,8 +179,20 @@
         }
 
         function setAlarm() {
-            vm.alarmBtn = !vm.alarmBtn;
+            vm.alarmBtn = false;
             brewduinoCmdsSrv.resetAlarm();
+            if (vm.alarm.tempA === 1) {
+                var thermo = vm.thermometers[vm.alarm.whichTemp];
+                if (thermo.highAlarm < thermo.temp) {
+                    brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
+                }
+                else {
+                    brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
+                }
+            }
+            else {
+
+            }
         }
 
         function settingsClick() {
@@ -197,6 +212,7 @@
             vm.pumpOn = responseData.pumpOn;
             vm.auxOn = responseData.auxOn;
 
+            vm.thermometers = responseData.thermometers;
             vm.otherThermos = getOtherThermos();
             if (responseData.hasOwnProperty('thermometers')) {
                 if (firstUpdate === false) {
@@ -216,6 +232,16 @@
             }
             vm.lastTempUpdate = new Date();
 
+
+            if (responseData.tempAlarmActive === 1 || responseData.timerAlarmActive === 1) {
+                vm.alarmBtn = true;
+            }
+
+            vm.alarm = {
+                tempA: responseData.tempAlarmActive,
+                timeA: responseData.timerAlarmActive,
+                whichTemp: responseDatawhichThermoAlarm
+            };
 
         }
 
