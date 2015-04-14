@@ -6,10 +6,10 @@
         .controller('countDownTimer', countDownTimer);
 
 
-    function countDownTimer($scope, brewduinoCmdsSrv, countDownTimersVal) {
+    function countDownTimer($scope, brewduinoCmdsSrv, countDownTimerSrv) {
         var vm = this;
         var dateSnapShot = new Date();
-        vm.timers = countDownTimersVal;
+        vm.timers = countDownTimerSrv.getTimers();
         vm.showAddTimerPanel = false;
         vm.addTimer = addTimer;
         vm.startNewTimer = startNewTimer;
@@ -36,7 +36,7 @@
             alarmTime.setSeconds(alarmTime.getSeconds() + (newTimer*60));
             var myObj = { id: timerIndex, timer: alarmTime, label: newTimerLabel, isActive: true };
             timerIndex++;
-            countDownTimersVal.push(myObj);
+            countDownTimerSrv.addTimer(myObj);
             dateSnapShot = new Date();
             brewduinoCmdsSrv.setTimer(newTimer);
         }

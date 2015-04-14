@@ -1,34 +1,37 @@
 ﻿<div ng-controller="countDownTimerFormCtrl as cdtFormCtrl">
-    <form name="addTimerForm" class="form-horizontal">
-        <legend>Add Count Down Timer</legend>
-        <div class="form-group">
-            <label for="minutes" class="col-md-2 control-label">Minutes</label>
-            <div class="col-md-10">
-                <input type="number" min="0.5" class="form-control"
-                    id="minutes" placeholder="Minutes"
-                    ng-model="cdtFormCtrl.minutes" />
+    <div class="container-fluid">
+        <form name="addTimerForm" class="form-horizontal">
+            <legend>Add Count Down Timer</legend>
+            <div class="form-group">
+                <label for="minutes" class="col-md-2 control-label">Minutes</label>
+                <div class="col-md-10">
+                    <input type="number" min="0.5" class="form-control"
+                        id="minutes" placeholder="Minutes"
+                        ng-model="cdtFormCtrl.minutes" />
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="timerTitle" class="col-md-2 control-label">Title</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control"
-                    id="timerTitle" placeholder="Title"
-                    ng-model="cdtFormCtrl.title" />
+            <div class="form-group">
+                <label for="timerTitle" class="col-md-2 control-label">Title</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control"
+                        id="timerTitle" placeholder="Title"
+                        ng-model="cdtFormCtrl.title" />
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10 col-md-offset-2">
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
 
-                <button type="button" class="btn btn-default"
-                    ng-click="cdtFormCtrl.cancelAddTimer()">
-                    Cancel</button>
+                    <button type="button" class="btn btn-default"
+                        ng-click="cdtFormCtrl.cancelAddTimer()">
+                        Cancel</button>
 
-                <button type="button" class="btn btn-info"
-                    ng-click="cdtFormCtrl.addTimer(cdtFormCtrl.minutes, cdtFormCtrl.title)">
-                    Start
-                </button>
+                    <button type="button" class="btn btn-info"
+                        ng-click="cdtFormCtrl.addTimer(cdtFormCtrl.minutes, cdtFormCtrl.title)">
+                        Start
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </div>

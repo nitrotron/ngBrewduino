@@ -2,7 +2,7 @@
     angular.module('app')
     .controller('countDownTimerFormCtrl', countDownTimerFormCtrl);
 
-    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimersVal, logger) {
+    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimerSrv, logger) {
         var vm = this;
 
         vm.addTimer = addTimer;
@@ -11,10 +11,10 @@
         function addTimer(newTimer, newTimerLabel) {
             var alarmTime = new Date();
             alarmTime.setSeconds(alarmTime.getSeconds() + (newTimer * 60));
-            var timerIndex = countDownTimersVal.length + 1;
+            var timerIndex = countDownTimerSrv.getTimers().length + 1;
             var myObj = { id: timerIndex, timer: alarmTime, label: newTimerLabel, isActive: true };
             timerIndex++;
-            countDownTimersVal.push(myObj);
+            countDownTimerSrv.addTimer(myObj);
             //dateSnapShot = new Date();
             brewduinoCmdsSrv.setTimer(newTimer);
             

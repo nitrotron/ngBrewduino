@@ -24,7 +24,7 @@
                 if (autoUpdatesEnabled === true) {
                     getChartData();
                 }
-            }, 3000);
+            }, 3000000);
         }
 
         function getChartConfig() {

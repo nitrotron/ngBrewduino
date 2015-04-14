@@ -32,9 +32,9 @@
                "isRims": 1
            }
         ],
-        "tempAlarmActive": 1,
-        "timerAlarmActive": 0,
-        "whichThermoAlarm": 3,
+        "tempAlarmActive": 0,
+        "timerAlarmActive": 1,
+        "whichThermoAlarm": 2,
         "clearTimers": 1,
         "timers": [
 

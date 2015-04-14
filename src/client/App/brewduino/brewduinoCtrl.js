@@ -34,6 +34,7 @@
 
         function alarmClick(alarm) {
             brewduinoCmdsSrv.resetAlarm();
+            
         }
 
         function auxClick(aux) {

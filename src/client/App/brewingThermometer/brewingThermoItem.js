@@ -5,10 +5,11 @@
         .controller('brewingThermoItem', brewingThermoItem);
 
     function brewingThermoItem($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
-                                 logger, settingsSrv, chartSrv) {
+                                 logger, settingsSrv, chartSrv, countDownTimerSrv) {
         var vm = this;
         var firstUpdate = false;
         var firstChartUpdate = false;
+        var dataChecks = false;
 
         vm.addTimer = addTimer;
         vm.alarm = {};
@@ -37,7 +38,7 @@
         vm.otherThermos = [];
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
-       
+
 
         activate();
 
@@ -101,8 +102,9 @@
                 firstChartUpdate = true;
                 chartSrv.getChartData()
                 .then(function (data) {
-                    vm.chart.data.rows = data;
-                    //logger.success('Updated chart', brewduionoDataSrv.getCurrentStatus());
+                    if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
+                        vm.chart.data.rows = data;
+                    }
                 });
             }
         }
@@ -191,7 +193,7 @@
                 }
             }
             else {
-
+                countDownTimerSrv.clearExpired();
             }
         }
 
@@ -214,24 +216,38 @@
 
             vm.thermometers = responseData.thermometers;
             vm.otherThermos = getOtherThermos();
-            if (responseData.hasOwnProperty('thermometers')) {
-                if (firstUpdate === false) {
-                    responseData.thermometers.forEach(function (element, index, array) {
-                        if (index === Number($state.params.id)) {
-                            element.chartEnabled = true;
-                        } else {
-                            element.chartEnabled = false;
-                        }
-                    });
-                    firstUpdate = true;
 
+
+            if (dataChecks === false) {
+                if (responseData.hasOwnProperty('thermometers') &&
+                    responseData.hasOwnProperty('tempAlarmActive') &&
+                    responseData.hasOwnProperty('timerAlarmActive') &&
+                    responseData.hasOwnProperty('whichThermoAlarm')) {
+                    dataChecks = true;
                 }
-                vm.thermometersList = [responseData.thermometers[$state.params.id]];
-                vm.thermo = responseData.thermometers[$state.params.id];
+                else {
+                    return; // no need to go further
+                }
 
             }
-            vm.lastTempUpdate = new Date();
 
+
+            if (firstUpdate === false) {
+                responseData.thermometers.forEach(function (element, index, array) {
+                    if (index === Number($state.params.id)) {
+                        element.chartEnabled = true;
+                    } else {
+                        element.chartEnabled = false;
+                    }
+                });
+                firstUpdate = true;
+
+            }
+            vm.thermometersList = [responseData.thermometers[$state.params.id]];
+            vm.thermo = responseData.thermometers[$state.params.id];
+
+
+            vm.lastTempUpdate = new Date();
 
             if (responseData.tempAlarmActive === 1 || responseData.timerAlarmActive === 1) {
                 vm.alarmBtn = true;
@@ -240,7 +256,7 @@
             vm.alarm = {
                 tempA: responseData.tempAlarmActive,
                 timeA: responseData.timerAlarmActive,
-                whichTemp: responseDatawhichThermoAlarm
+                whichTemp: responseData.whichThermoAlarm
             };
 
         }
