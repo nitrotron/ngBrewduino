@@ -25,6 +25,7 @@
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
         vm.closeMenu = closeMenu;
+        vm.dbSettingsClick = dbSettingsClick;
         vm.lastChartUpdate = new Date();
         vm.lastTempUpdate = new Date();
         vm.openMenu = openMenu;
@@ -97,6 +98,10 @@
             vm.showMenu = false;
         }
 
+        function dbSettingsClick() {
+            var stateParams = { id: $state.params.id };
+            $state.go('dbSettings', stateParams);
+        }
         function getChartData() {
             if (firstChartUpdate === false) {
                 firstChartUpdate = true;

@@ -1,0 +1,67 @@
+﻿<div ng-controller="dbSettingsCtrl as dbSettingsCtrl" class="container">
+    <form name="dbSettings" class="form-horizontal">
+        <legend>Database Settings</legend>
+        <div class="form-group" ng-hide="dbSettingsCtrl.createNewSession">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="dbSettingsCtrl.createNewSession">
+                        Create New Session
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-show="dbSettingsCtrl.createNewSession">
+            <label for="setPoint" class="col-md-2 control-label">New Session Name:</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control"
+                       id="newSessionName" placeholder="newSessionName"
+                       ng-model="dbSettingsCtrl.newSessionName" />
+            </div>
+        </div>
+        <div class="form-group" ng-show="dbSettingsCtrl.createNewSession">
+            <div class="col-md-10 col-md-offset-2">
+
+                <button type="button" class="btn btn-default"
+                        ng-click="dbSettingsCtrl.cancel()">
+                    Cancel
+                </button>
+
+                <button type="button" class="btn btn-info"
+                        ng-click="dbSettingsCtrl.submit(dbSettingsCtrl.newSessionName)">
+                    Submit
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="dbSettingsCtrl.enableDataLogging" ng-click="dbSettingsCtrl.dataLogClick(dbSettingsCtrl.enableDataLogging)">
+                        Enable Data Logging
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-danger btn-block" ng-click="dbSettingsCtrl.done()">
+                    DONE
+                </button>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-danger btn-block" ng-click="dbSettingsCtrl.clearSessionData()">
+                    Clear Session Data
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,5 +1,6 @@
 ﻿/// <reference path="../3rdParty/script/angular.js" />
 /// <reference path="../3rdParty/script/angular-ui-router.min.js" />
+/// <reference path="databaseSettings/dbSettingsForm.html" />
 (function () {
     angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -26,6 +27,11 @@
             url: '/rimsSettings/:id',
             templateUrl: 'App/rimsSettings/rimsSettingsForm.html'
             
+        })
+        .state('dbSettings', {
+            url: '/dbSettings/:id',
+            templateUrl: 'App/dbSettings/dbSettingsForm.html'
+
         });
     });
 })();

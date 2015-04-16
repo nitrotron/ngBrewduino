@@ -32,6 +32,8 @@
             clearAlarms: clearAlarms,
             getStatus: getStatus,
             resetAlarm: resetAlarm,
+            startLogging: startLogging,
+            stopLogging: stopLogging,
             setAuxPower: setAuxPower,
             setHighAlarms: setHighAlarms,
             setLowAlarms: setLowAlarms,
@@ -89,6 +91,12 @@
         }
         function setTimer(minutes) {
             return brewduionoDataSrv.sendCmd(cmds.setTimer, minutes);
+        }
+        function startLogging() {
+            return brewduionoDataSrv.sendCmd(cmds.startLogging, 1);
+        }
+        function stopLogging() {
+            return brewduionoDataSrv.sendCmd(cmds.stopLogging,1);
         }
 
         function sendCommandFailed(command, args) {
