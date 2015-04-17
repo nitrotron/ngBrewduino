@@ -20,12 +20,12 @@
         function clearExpired() {
             var time = new Date();
 
-            angular.forEach(function(value,key, obj) {
-                var timer = Date.parse(value.timer) ;
-                if (timer !==NaN || timer < Date.now()) {
-                    obj.pull(timer)
+            angular.forEach(timerAry, function (value, key, timers) {
+                var timer = Date.parse(value.timer);
+                if (isNaN(timer) || timer < Date.now()) {
+                    timers.splice(key, 1);
                 }
-            }
+            });
             
         }
 
