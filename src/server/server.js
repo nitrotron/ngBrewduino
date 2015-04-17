@@ -49,7 +49,7 @@ if (!exists) {
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(file);
 if (!exists) {
-    db.run('CREATE TABLE TemperatureHistories (temp0 DECIMAL(5,2), temp1 DECIMAL(5,2), temp2 DECIMAL(5,2), temp3 DECIMAL(5,2),dt datetime default current_timestamp)');
+    db.run('CREATE TABLE TemperatureHistories (id integer primary key autoincrement, temp0 DECIMAL(5,2), temp1 DECIMAL(5,2), temp2 DECIMAL(5,2), temp3 DECIMAL(5,2),dt datetime default current_timestamp, SessionID integer)');
     db.run('CREATE TABLE Sessions (id integer primary key autoincrement, dt datetime default current_timestamp, sessionName NVARCHAR(100) )');
 }
 // ******************** SQL setup - END **************************

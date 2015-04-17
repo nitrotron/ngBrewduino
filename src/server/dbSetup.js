@@ -36,7 +36,7 @@ db.serialize(function () {
 
     //  stmt.finalize();
 
-    //   db.run('INSERT INTO Sessions (sessionName) VALUES (?)', 'initialSession');
+      // db.run('INSERT INTO Sessions (sessionName) VALUES (?)', 'initialSession');
 
 
     var currentSessionID = 0;

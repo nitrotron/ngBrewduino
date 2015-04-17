@@ -57,6 +57,7 @@
     app.get('/getStatus', getStatus);        // handler for /date
     app.get('/getChartData', getChartData);
     app.get('/clearSessionData', clearSessionData);
+    app.post('/createNewSession', createNewSession);
     app.get('/sendCommand/:whichCmd/:val', sendCommand);
 
     function getStatus(request, response, next) {
@@ -82,6 +83,14 @@
         db.serialize(function () {
             db.run('Deleted from TemperatureHistories');
         });
+    }
+
+    function createNewSession(req, res, next) {
+        var sessionName = req.body.sessionName;
+        db.run('INSERT INTO Sessions (sessionName) VALUES (?)', sessionName);
+
+        console.log('just received sessionName:' + sessionName);
+        res.send('Created Session Name: ' + sessionName);
     }
 
     function sendCommand(request, response, next) {

@@ -32,8 +32,8 @@
                "isRims": 1
            }
         ],
-        "tempAlarmActive": 1,
-        "timerAlarmActive": 0,
+        "tempAlarmActive": 0,
+        "timerAlarmActive": 1,
         "whichThermoAlarm": 2,
         "clearTimers": 1,
         "timers": [
@@ -86,6 +86,8 @@
 
     function createNewSession(req, res, next) {
         var sessionName = req.body.sessionName;
+        db.run('INSERT INTO Sessions (sessionName) VALUES (?)', sessionName);
+
         console.log('just received sessionName:' + sessionName);
         res.send('Created Session Name: ' + sessionName);
     }
