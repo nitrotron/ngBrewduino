@@ -11,7 +11,7 @@
             getTimers: getTimers
         };
 
-       
+
 
         function addTimer(timer) {
             timerAry.push(timer);
@@ -20,13 +20,12 @@
         function clearExpired() {
             var time = new Date();
 
-            angular.forEach(timerAry, function (value, key, timers) {
-                var timer = Date.parse(value.timer);
+            for (var i = timerAry.length - 1; i >= 0; i--) {
+                var timer = Date.parse(timerAry[i].timer);
                 if (isNaN(timer) || timer < Date.now()) {
-                    timers.splice(key, 1);
+                    timerAry.splice(i, 1);
                 }
-            });
-            
+            }
         }
 
         function getTimers() {
