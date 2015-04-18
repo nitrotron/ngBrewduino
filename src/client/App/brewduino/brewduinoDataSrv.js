@@ -24,7 +24,7 @@
                 if (autoUpdatesEnabled === true) {
                     getStatus();
                 }
-            }, 100000000000);
+            }, 15000);
         }
 
         function getCurrentStatus() {
