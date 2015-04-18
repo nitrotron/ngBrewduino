@@ -15,12 +15,12 @@
 
     };
     settingsSrv.thermos = [
-        { name: 'RIMS', order: 0, chartEnabled: false },
+        { name: 'HLT / Kettle2', order: 0, chartEnabled: false },
         { name: 'Mash', order: 1, chartEnabled: false },
         { name: 'Kettle', order: 2, chartEnabled: false },
-        { name: 'HLT / Kettle2', order: 3, chartEnabled: false },
+        { name: 'RIMS', order: 3, chartEnabled: false },
 
     ];
-    settingsSrv.thermoNames = ['RIMS', 'Mash', 'Kettle', 'HLT / Kettle2'];
+    settingsSrv.thermoNames = ['HLT / Kettle2', 'Mash', 'Kettle', 'RIMS'];
 
 })();
