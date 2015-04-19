@@ -81,7 +81,7 @@
 
     function clearSessionData(req, res, next) {
         db.serialize(function () {
-            db.run('Deleted from TemperatureHistories');
+            db.run('Delete from TemperatureHistories');
         });
     }
 
