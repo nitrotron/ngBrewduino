@@ -72,9 +72,10 @@
     //    });
     //}
     function getChartData(request, response, next) {
-        db.all("SELECT strftime('%Y',dt) as year, strftime('%m',dt) as month, strftime('%d',dt) as day, strftime('%H',dt) as hour, strftime('%M',dt) as minute, strftime('%S',dt) as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories limit 300", function (err, rows) {
+        db.all("SELECT strftime('%Y',dt,  'localtime') as year, strftime('%m',dt, 'localtime') as month, strftime('%d',dt, 'localtime') as day, strftime('%H',dt, 'localtime') as hour, strftime('%M',dt, 'localtime') as minute, strftime('%S',dt, 'localtime') as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories limit 300", function (err, rows) {
             //    console.log('you requested data' + rows);
-            console.log('error is:', err);
+            //    console.log('error is:', err);
+            console.log('number of chart rows: ' + rows.length);
             response.json(rows);
         });
     }
