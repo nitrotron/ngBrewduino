@@ -1,9 +1,9 @@
 ﻿<!--<link href="3rdParty/css/bootstrap.nightly.css" rel="stylesheet" />-->
 
-<div id="dashBoardMain" ng-controller="brewingThermoItem as brewingThermoItem" class="container-fluid">
+<div id="dashBoardMain" ng-controller="brewingThermoItem as brewingThermoItem" class="container-fluid" ng-animate>
 
 
-    <div class="dashboard-slide-menu panel panel-default" ng-show="brewingThermoItem.showMenu" style="margin-left: -15px">
+    <div class="dashboard-slide-menu panel panel-default fxFade" ng-show="brewingThermoItem.showMenu" style="margin-left: -15px">
 
         <ul>
             <li>
@@ -50,11 +50,9 @@
             </div>
 
             <div class="col-sm-3 col-xs-6" ng-repeat="otherThermo in brewingThermoItem.otherThermos" ng-click="brewingThermoItem.switchTemps(otherThermo)">
-                <span class="dashboard-minor-title text-color5">
-                    {{otherThermo.name}}
+                <span class="dashboard-minor-title text-color5">{{otherThermo.name}}
                 </span>
-                <span class="dashboard-minor-temp text-color5">
-                    {{otherThermo.temp | number:1}}
+                <span class="dashboard-minor-temp text-color5">{{otherThermo.temp | number:1}}
                 </span>
             </div>
         </div>
@@ -68,10 +66,16 @@
                 <div class="col-xs-6 h1 text-color1">{{brewingThermoItem.thermo.temp | number:1}}</div>
             </div>
             <div class="row">
-                <div class="col-xs-2 h5 text-color4">High:</div>
+                <div class="col-xs-2 h5 text-color4" ng-click="brewingThermoItem.toggleAlarm('highAlarm')">High:</div>
                 <div class="col-xs-4 h5 text-color4" ng-click="brewingThermoItem.clickAlarm('highAlarm')" ng-hide="brewingThermoItem.showAlarmForm['highAlarm']">{{brewingThermoItem.thermo.highAlarm | number:1}}</div>
-                <div class="col-xs-2 h5 text-color4">Low:</div>
+                <div class="col-xs-4 h5 text-color4" ng-show="brewingThermoItem.showAlarmForm['highAlarm']">
+                    <input type="number" min="0" class="form-control input-sm" id="highAlarm" ng-model="brewingThermoItem.thermo.highAlarm" ng-blur="brewingThermoItem.exitAlarm('highAlarm', brewingThermoItem.thermo)"/>
+                </div>
+                <div class="col-xs-2 h5 text-color4" ng-click="brewingThermoItem.toggleAlarm('lowAlarm')">Low:</div>
                 <div class="col-xs-4 h5 text-color4" ng-click="brewingThermoItem.clickAlarm('lowAlarm')" ng-hide="brewingThermoItem.showAlarmForm['lowAlarm']">{{brewingThermoItem.thermo.lowAlarm | number:1}}</div>
+                <div class="col-xs-4 h5 text-color4" ng-show="brewingThermoItem.showAlarmForm['lowAlarm']">
+                    <input type="number" min="0" class="form-control input-sm" id="lowAlarm" ng-model="brewingThermoItem.thermo.lowAlarm" ng-blur="brewingThermoItem.exitAlarm('lowAlarm', brewingThermoItem.thermo)"/>
+                </div>
             </div>
         </div>
         <div class="col-md-9">

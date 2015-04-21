@@ -27,6 +27,7 @@
         vm.clickAlarm = clickAlarm;
         vm.closeMenu = closeMenu;
         vm.dbSettingsClick = dbSettingsClick;
+        vm.exitAlarm = exitAlarm;
         vm.lastChartUpdate = new Date();
         vm.lastTempUpdate = new Date();
         vm.openMenu = openMenu;
@@ -40,11 +41,12 @@
         //vm.showAlarmForm['highAlarm'] = false;
         //vm.showAlarmForm['lowAlarm'] = false;
 
-        vm.showMenu = false;
+                vm.showMenu = false;
         vm.showStatusLog = settingsSrv.showStatusLog;
         vm.otherThermos = [];
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
+        vm.toggleAlarm = toggleAlarm;
 
 
         activate();
@@ -112,6 +114,17 @@
             var stateParams = { id: $state.params.id };
             $state.go('dbSettings', stateParams);
         }
+
+        function exitAlarm(whichAlarm,thermo) {
+            vm.showAlarmForm[whichAlarm] = false;
+            if (whichAlarm === 'highAlarm') {
+                brewduinoCmdsSrv.setHighAlarms(thermo.id, thermo.highAlarm);
+            }
+            else {
+                brewduinoCmdsSrv.setLowAlarms(thermo.id, thermo.lowAlarm);
+            }
+        }
+
         function getChartData() {
             if (firstChartUpdate === false) {
                 firstChartUpdate = true;
@@ -227,6 +240,10 @@
             $state.go('dashboard', stateParams);
         }
 
+
+        function toggleAlarm(whichAlarm) {
+            vm.showAlarmForm[whichAlarm] = !vm.showAlarmForm[whichAlarm];
+        }
 
         function updateVM(responseData) {
             //vm.mcData = responseData;

@@ -872,9 +872,40 @@ div.dashboard-slide-menu
 
 
 
+/* ********************     animations **************************************/
+/* The starting CSS styles for the enter animation */
+.fxFade
+{
+    /*opacity: 1;*/
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    line-height: 20px;
+    opacity: 1;
+    padding: 10px;
+    /*border: 1px solid black;
+    background: white;*/
+    position: absolute;
+    left: 0;
+}
 
+    .fxFade.ng-hide-add.ng-hide-add-active,
+    .fxFade.ng-hide-remove.ng-hide-remove-active
+    {
+        /*-webkit-transition: all linear 0.5s;
+        transition: all linear 0.5s;*/
+    }
 
+    .fxFade.ng-hide
+    {
+        /*opacity: 0;*/
+        left: -100%;
+        opacity: 0;
+        padding: 0 10px;
+    }
 
+/* ********************     animations end **********************************/
 
 
 @media only screen and (min-width: 480px)

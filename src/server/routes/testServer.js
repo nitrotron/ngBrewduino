@@ -11,8 +11,8 @@
            },
            {
                "id": 1,
-               "temp": 62.82,
-               "highAlarm": 215.0000000000,
+               "temp": 150.82,
+               "highAlarm": 148.0000000000,
                "lowAlarm": 32.0000000000,
                "sensor": 40118328050033
            },
@@ -32,9 +32,9 @@
                "isRims": 1
            }
         ],
-        "tempAlarmActive": 0,
-        "timerAlarmActive": 1,
-        "whichThermoAlarm": 2,
+        "tempAlarmActive": 1,
+        "timerAlarmActive": 0,
+        "whichThermoAlarm": 1,
         "clearTimers": 1,
         "timers": [
 
@@ -69,8 +69,8 @@
         response.end;
     };
 
-    function getChartData(request, response, next) {
-        db.all("SELECT strftime('%Y',dt,  'localtime') as year, strftime('%m',dt, 'localtime') as month, strftime('%d',dt, 'localtime') as day, strftime('%H',dt, 'localtime') as hour, strftime('%M',dt, 'localtime') as minute, strftime('%S',dt, 'localtime') as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories limit 300", function (err, rows) {
+    function getChartData(request, response, next) { 
+        db.all("SELECT  * from (select ROWID, strftime('%Y',dt,  'localtime') as year, strftime('%m',dt, 'localtime') as month, strftime('%d',dt, 'localtime') as day, strftime('%H',dt, 'localtime') as hour, strftime('%M',dt, 'localtime') as minute, strftime('%S',dt, 'localtime') as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories order by ROWID desc limit 300) order by ROWID asc", function (err, rows) {
             //    console.log('you requested data' + rows);
             //console.log('error is:', err);
             console.log('number of chart rows: ' + rows.length);
