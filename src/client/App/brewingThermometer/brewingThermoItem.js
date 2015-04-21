@@ -24,6 +24,7 @@
         //vm.chartView = [];
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
+        vm.clickAlarm = clickAlarm;
         vm.closeMenu = closeMenu;
         vm.dbSettingsClick = dbSettingsClick;
         vm.lastChartUpdate = new Date();
@@ -34,6 +35,11 @@
         vm.rimsSettingsClick = rimsSettingsClick;
         vm.setAlarm = setAlarm;
         vm.settingsClick = settingsClick;
+        //vm.showAlarmForm = showAlarmForm;
+        vm.showAlarmForm = { highAlarm: false, lowAlarm: false };
+        //vm.showAlarmForm['highAlarm'] = false;
+        //vm.showAlarmForm['lowAlarm'] = false;
+
         vm.showMenu = false;
         vm.showStatusLog = settingsSrv.showStatusLog;
         vm.otherThermos = [];
@@ -92,6 +98,10 @@
         }
         function chBxChartChanged(thermo) {
             vm.chart.view = { columns: getChartColumns() };
+        }
+
+        function clickAlarm(whichAlarm) {
+            vm.showAlarmForm[whichAlarm] = true;
         }
 
         function closeMenu() {
@@ -206,6 +216,11 @@
             var stateParams = { id: $state.params.id };
             $state.go('settings', stateParams);
         }
+
+        //function showAlarmForm(whichAlarm) {
+        //    var you = 'arehere';
+        //    return (vm.showAlarmFormState[whichAlarm] === true) ;
+        //}
 
         function switchTemps(thermometer) {
             var stateParams = { id: thermometer.id };
