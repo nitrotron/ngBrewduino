@@ -41,12 +41,15 @@
         //vm.showAlarmForm['highAlarm'] = false;
         //vm.showAlarmForm['lowAlarm'] = false;
 
-                vm.showMenu = false;
+        vm.showMenu = false;
         vm.showStatusLog = settingsSrv.showStatusLog;
         vm.otherThermos = [];
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
         vm.toggleAlarm = toggleAlarm;
+
+        vm.highAlarm = '';
+        vm.lowAlarm = '';
 
 
         activate();
@@ -103,6 +106,7 @@
         }
 
         function clickAlarm(whichAlarm) {
+            vm[whichAlarm] = vm.thermo[whichAlarm];
             vm.showAlarmForm[whichAlarm] = true;
         }
 
@@ -115,7 +119,7 @@
             $state.go('dbSettings', stateParams);
         }
 
-        function exitAlarm(whichAlarm,thermo) {
+        function exitAlarm(whichAlarm, thermo) {
             vm.showAlarmForm[whichAlarm] = false;
             if (whichAlarm === 'highAlarm') {
                 brewduinoCmdsSrv.setHighAlarms(thermo.id, thermo.highAlarm);
