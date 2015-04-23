@@ -9,10 +9,16 @@
 
         // properties
         vm.settings = {};
+        vm.showThermoName = [];
+        vm.showThermoOrder = [];
 
         // methods
         vm.cancel = cancel;
         vm.clearSessionData = clearSessionData;
+        vm.clickThermoName = clickThermoName;
+        vm.clickThermoOrder = clickThermoOrder;
+        vm.exitThermoName = exitThermoName;
+        vm.exitThermoOrder = exitThermoOrder;
         vm.submit = submit;
 
         activate();
@@ -21,8 +27,15 @@
         function activate() {
             vm.settings = {
                 showStatusLog: settingsSrv.showStatusLog,
-                showToast: settingsSrv.showToast
+                showToast: settingsSrv.showToast,
+                thermos: settingsSrv.thermos
             };
+
+            vm.settings.thermos.forEach(function (val,index, array) {
+                vm.showThermoName.push(false);
+                vm.showThermoOrder.push(false);
+            });
+            
         }
 
         function cancel() {
@@ -34,6 +47,20 @@
             brewduionoDataSrv.clearSessionData().success(function (response) {
                 logger.warning('You just cleared your database');
             });
+        }
+
+        function clickThermoName(thermo) {
+            vm.showThermoName[thermo.id] = true;
+        }
+        function clickThermoOrder(thermo) {
+            vm.showThermoOrder[thermo.id] = true;
+        }
+
+        function exitThermoName(thermo) {
+            vm.showThermoName[thermo.id] = false;
+        }
+        function exitThermoOrder(thermo) {
+            vm.showThermoOrder[thermo.id] = false;
         }
 
         function submit(settings) {

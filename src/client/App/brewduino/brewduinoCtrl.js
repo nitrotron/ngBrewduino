@@ -12,7 +12,9 @@
         vm.alarmClick = alarmClick;
         vm.auxClick = auxClick;
         vm.pumpClick = pumpClick;
+        vm.predicate = 'order';
         vm.rimsClick = rimsClick;
+        
         
         activate();
 
@@ -75,6 +77,9 @@
             brewduinoCmdsSrv.setRimsPower(rims);
 
         }
+
+
+     
 
 
         function updateVM(responseData) {

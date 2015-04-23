@@ -45,25 +45,25 @@
             });
             chartConfig.data.cols.push({
                 'id': 't0',
-                'label': settingsSrv.thermoNames[0],
+                'label': settingsSrv.thermos[0].name,
                 'type': 'number',
                 'p': {}
             });
             chartConfig.data.cols.push({
                 'id': 't1',
-                'label': settingsSrv.thermoNames[1],
+                'label': settingsSrv.thermos[1].name,
                 'type': 'number',
                 'p': {}
             });
             chartConfig.data.cols.push({
                 'id': 't2',
-                'label': settingsSrv.thermoNames[2],
+                'label': settingsSrv.thermos[2].name,
                 'type': 'number',
                 'p': {}
             });
             chartConfig.data.cols.push({
                 'id': 't3',
-                'label': settingsSrv.thermoNames[3],
+                'label': settingsSrv.thermos[3].name,
                 'type': 'number'
             });
 

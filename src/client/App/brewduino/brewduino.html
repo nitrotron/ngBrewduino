@@ -11,7 +11,7 @@
         <div id="RimsThermometers">
 
             <div class="RimsThermometer" ng-include="'App/brewingThermometer/brewingThermometer.html'"
-                ng-repeat="thermometers in brewduino.mcData.thermometers">
+                ng-repeat="thermometers in brewduino.mcData.thermometers| orderBy:brewduino.predicate">
             </div>
             <div class="CountDownTimer">
                 <div ng-include="'App/countDownTimer/countDownTimerClassic.html'"></div>

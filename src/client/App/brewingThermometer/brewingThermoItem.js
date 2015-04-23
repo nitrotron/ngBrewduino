@@ -119,13 +119,14 @@
             $state.go('dbSettings', stateParams);
         }
 
-        function exitAlarm(whichAlarm, thermo) {
+        function exitAlarm(whichAlarm, id, alarmValue) {
             vm.showAlarmForm[whichAlarm] = false;
+            vm.thermo[whichAlarm] = alarmValue;
             if (whichAlarm === 'highAlarm') {
-                brewduinoCmdsSrv.setHighAlarms(thermo.id, thermo.highAlarm);
+                brewduinoCmdsSrv.setHighAlarms(id, alarmValue);
             }
             else {
-                brewduinoCmdsSrv.setLowAlarms(thermo.id, thermo.lowAlarm);
+                brewduinoCmdsSrv.setLowAlarms(id, alarmValue);
             }
         }
 
@@ -246,6 +247,7 @@
 
 
         function toggleAlarm(whichAlarm) {
+            vm[whichAlarm] = vm.thermo[whichAlarm];
             vm.showAlarmForm[whichAlarm] = !vm.showAlarmForm[whichAlarm];
         }
 

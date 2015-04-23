@@ -35,7 +35,8 @@
             var statusUrl = '/getStatus';
             return $http.get(statusUrl).success(function (data) {
                 data.thermometers.forEach(function (element, index, array) {
-                    element.name = settingsSrv.thermoNames[index];
+                    element.name = settingsSrv.thermos[index].name;
+                    element.order = settingsSrv.thermos[index].order;
                 });
 
                 myCurrentStatus = data;
