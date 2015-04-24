@@ -37,7 +37,8 @@
         function alarmClick(alarm) {
             brewduinoCmdsSrv.resetAlarm();
             if (vm.alarm.tempA == 1) {
-                var thermo = vm.thermometers[vm.alarm.whichTemp];
+                //var thermo = vm.thermometers[vm.alarm.whichTemp];
+                var thermo = vm.mcData.thermometers[vm.alarm.whichTemp];
                 if (thermo.highAlarm < thermo.temp) {
                     brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
                 }
