@@ -169,7 +169,17 @@
 
         }
         function getTempSpeed(whichThermo) {
-
+            if (myCurrentChart.data.rows.length >= 2) {
+                var whichT = Number(whichThermo);
+                var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
+                var secondLastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 2];
+                var tempDiff = lastRow.c[whichT + 1].v - secondLastRow.c[whichT + 1].v;
+                var timeDiff = new Date(lastRow.c[0]) - new Date(secondLastRow.c[0]);
+                return Number(tempDiff) / Number(timeDiff);
+            }
+            else {
+                return 0;
+            }
         }
 
         function constRowObj(time, t0, t1, t2, t3) {

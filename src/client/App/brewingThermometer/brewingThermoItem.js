@@ -47,8 +47,8 @@
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
         vm.toggleAlarm = toggleAlarm;
-        
-        
+
+
         vm.tempSpeed = 0;
         vm.etaAlarm = 0;
 
@@ -87,6 +87,7 @@
                         var foo = chartSrv.getCurrentData();
                         vm.chart.data.rows = chartSrv.getCurrentData();
                         vm.lastChartUpdate = new Date();
+                        vm.tempSpeed = chartSrv.getTempSpeed($state.params.id);
                         logger.success('Updated chart', newValue);
                     }
                 });
