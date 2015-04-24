@@ -47,6 +47,10 @@
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
         vm.toggleAlarm = toggleAlarm;
+        
+        
+        vm.tempSpeed = 0;
+        vm.etaAlarm = 0;
 
         vm.highAlarm = '';
         vm.lowAlarm = '';

@@ -13,6 +13,8 @@
             getChartData: getChartData,
             getCurrentData: getCurrentData,
             getCurrentChart: getCurrentChart,
+            getEtaToAlarm: getEtaToAlarm,
+            getTempSpeed: getTempSpeed,
             setAutoUpdates: setAutoUpdates
         };
 
@@ -161,6 +163,13 @@
         }
         function getCurrentChart() {
             return myCurrentChart;
+        }
+
+        function getEtaToAlarm(whichThermo, highAlarm, lowAlarm) {
+
+        }
+        function getTempSpeed(whichThermo) {
+
         }
 
         function constRowObj(time, t0, t1, t2, t3) {
