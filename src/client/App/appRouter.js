@@ -1,6 +1,7 @@
 ﻿/// <reference path="../3rdParty/script/angular.js" />
 /// <reference path="../3rdParty/script/angular-ui-router.min.js" />
 /// <reference path="databaseSettings/dbSettingsForm.html" />
+/// <reference path="dashboard/dashboard.html" />
 (function () {
     angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -13,7 +14,7 @@
             })
         .state('dashboard', {
             url: '/dashboard/:id',
-            templateUrl: 'App/brewduino/thermoDashBoard.html'
+            templateUrl: 'App/dashboard/dashboard.html'
         })
             .state('settings', {
                 url: '/settings/:id',

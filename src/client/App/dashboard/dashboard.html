@@ -1,0 +1,126 @@
+﻿<!--<link href="3rdParty/css/bootstrap.nightly.css" rel="stylesheet" />-->
+
+<div id="dashBoardMain" ng-controller="dashboardCtrl as dboardCtrl" class="container-fluid" ng-animate>
+
+
+    <div class="dashboard-slide-menu panel panel-default fxFade" ng-show="dboardCtrl.showMenu" style="margin-left: -15px">
+
+        <ul>
+            <li>
+                <label  class="dashboardButton"><i class='icon-level-up' ng-click="dboardCtrl.closeMenu()" ></i></label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.setAlarm()" style="cursor:pointer" ng-class="{'alarmBtn-dashboard': dboardCtrl.alarmBtn === true }"><i class='icon-attention-alt'></i>Alarm</label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.addTimer()"  style="cursor:pointer" >
+                    <i class="icon-clock" style="color: white"></i>
+                    <br />
+                    Timer
+                </label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.rimsClick()  style="cursor:pointer" " ng-class="{'rimsBtn-dashboard': dboardCtrl.rimsEnable == 1 }"><i class="icon-fire-1"></i>RIMS</label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.pumpClick()"  style="cursor:pointer"  ng-class="{'pumpBtn-dashboard': dboardCtrl.pumpOn == 1  }"><i class="icon-off"></i>Pump</label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.auxClick()"  style="cursor:pointer"  ng-class="{'auxBtn-dashboard': dboardCtrl.auxOn == 1 }"><i class="icon-off"></i>Aux</label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.rimsSettingsClick()"  class="dashboardButton"><i class="icon-sliders"></i>RIMs-Settings</label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.dbSettingsClick()"  class="dashboardButton"><i class="icon-database"></i>Database</label>
+            </li>
+            <li>
+                <label ng-click="dboardCtrl.settingsClick()" class="dashboardButton"><i class="icon-cog-alt"></i>Settings</label>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-xs-12"><i class='icon-menu' ng-click="dboardCtrl.openMenu()"></i></div>
+    </div>
+    <div id="dashBoardHeader" class="dashBoardHeader clearfix">
+        <div class="row">
+            <div class="col-sm-3 col-xs-6">
+                <div class="CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-xs-6" ng-repeat="otherThermo in dboardCtrl.otherThermos | orderBy:'order' " ng-click="dboardCtrl.switchTemps(otherThermo)">
+                <span class="dashboard-minor-title text-color5">{{otherThermo.name}}
+                </span>
+                <span class="dashboard-minor-temp text-color5">{{otherThermo.temp | number:1}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 ">
+            <div class="row">
+                <div class="col-xs-6 h1 text-color1">
+                    {{dboardCtrl.thermo.name}}
+                </div>
+                <div class="col-xs-6 h1 text-color1">{{dboardCtrl.thermo.temp | number:1}}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2 h5 text-color4" ng-click="dboardCtrl.toggleAlarm('highAlarm')">High:</div>
+                <div class="col-xs-4 h5 text-color4" ng-click="dboardCtrl.clickAlarm('highAlarm')" ng-hide="dboardCtrl.showAlarmForm['highAlarm']">{{dboardCtrl.thermo.highAlarm | number:1}}</div>
+                <div class="col-xs-4 h5 text-color4" ng-show="dboardCtrl.showAlarmForm['highAlarm']">
+                    <input type="number" min="0" class="form-control input-sm" id="highAlarm" ng-model="dboardCtrl.highAlarm" ng-blur="dboardCtrl.exitAlarm('highAlarm', dboardCtrl.thermo.id, dboardCtrl.highAlarm)" />
+                </div>
+                <div class="col-xs-2 h5 text-color4" ng-click="dboardCtrl.toggleAlarm('lowAlarm')">Low:</div>
+                <div class="col-xs-4 h5 text-color4" ng-click="dboardCtrl.clickAlarm('lowAlarm')" ng-hide="dboardCtrl.showAlarmForm['lowAlarm']">{{dboardCtrl.thermo.lowAlarm | number:1}}</div>
+                <div class="col-xs-4 h5 text-color4" ng-show="dboardCtrl.showAlarmForm['lowAlarm']">
+                    <input type="number" min="0" class="form-control input-sm" id="lowAlarm" ng-model="dboardCtrl.lowAlarm" ng-blur="dboardCtrl.exitAlarm('lowAlarm', dboardCtrl.thermo.id, dboardCtrl.lowAlarm)" />
+                </div>
+                <div class="col-xs-2 h5 text-color1">Temp. Velocity</div>
+                <div class="col-xs-4 h5 text-color1">{{dboardCtrl.tempSpeed | number:1}} F/min</div>
+                <div class="col-xs-2 h5 text-color1">ETA to Alarm:</div>
+                <div class="col-xs-4 h5 text-color1">{{dboardCtrl.etaAlarm  | number:1}} minutes</div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div google-chart chart="dboardCtrl.chart" style="{{dboardCtrl.chart.cssStyle}}"></div>
+                    &nbsp;
+                </div>
+                <div class="col-sm-2 ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Chart Key
+                        </div>
+                        <div class="panel-body">
+                            <div ng-repeat="thermo in dboardCtrl.chartOtherThermos">
+                                <input type="checkbox" name="chBxChart{{thermo.id}}" ng-model="thermo.chartEnabled" ng-click="dboardCtrl.chBxChartChanged(thermo)" />{{thermo.name}}
+                            </div>
+                            <br />
+                            <br />
+                            <h4>Chart Type:</h4>
+                            <input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="AreaChart" />Area
+                            <br />
+                            <input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="LineChart" />Line
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <a ui-sref="classic" class="text-color2">classic theme</a>
+    </div>
+    <div class="col-sm-6 text-right">
+        <div class="text-color1 h6">Last temperature update: {{dboardCtrl.lastTempUpdate | date:'mediumTime'}}</div>
+        <div class="text-color1 h6">Last chart update: {{dboardCtrl.lastChartUpdate | date:'mediumTime'}}</div>
+    </div>
+    <div ng-if="dboardCtrl.showStatusLog" ng-include="'App/statusLog/statusLog.html'">
+    </div>
+</div>
+
+
+
+
+

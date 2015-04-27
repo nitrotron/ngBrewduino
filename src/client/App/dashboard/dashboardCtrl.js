@@ -2,9 +2,9 @@
 /// <reference path="../3rdParty/script/angular-ui-router.min.js" />
 (function () {
     angular.module('app')
-        .controller('brewingThermoItem', brewingThermoItem);
+        .controller('dashboardCtrl', dashboardCtrl);
 
-    function brewingThermoItem($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
+    function dashboardCtrl($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
                                  logger, settingsSrv, chartSrv, countDownTimerSrv) {
         var vm = this;
         var firstUpdate = false;
