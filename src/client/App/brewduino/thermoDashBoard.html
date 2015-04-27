@@ -7,35 +7,35 @@
 
         <ul>
             <li>
-                <label><i class='icon-plus' ng-click="brewingThermoItem.closeMenu()"></i></label>
+                <label  class="dashboardButton"><i class='icon-level-up' ng-click="brewingThermoItem.closeMenu()" ></i></label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.setAlarm()" ng-class="{'alarmBtn-dashboard': brewingThermoItem.alarmBtn === true }"><i class='icon-attention-alt'></i>Alarm</label>
+                <label ng-click="brewingThermoItem.setAlarm()" style="cursor:pointer" ng-class="{'alarmBtn-dashboard': brewingThermoItem.alarmBtn === true }"><i class='icon-attention-alt'></i>Alarm</label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.addTimer()">
-                    <i class="fa fa-fa fa-clock-o" style="color: white"></i>
+                <label ng-click="brewingThermoItem.addTimer()"  style="cursor:pointer" >
+                    <i class="icon-clock" style="color: white"></i>
                     <br />
                     Timer
                 </label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.rimsClick()" ng-class="{'rimsBtn-dashboard': brewingThermoItem.rimsEnable == 1 }"><i class="icon-fire-1"></i>RIMS</label>
+                <label ng-click="brewingThermoItem.rimsClick()  style="cursor:pointer" " ng-class="{'rimsBtn-dashboard': brewingThermoItem.rimsEnable == 1 }"><i class="icon-fire-1"></i>RIMS</label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.pumpClick()" ng-class="{'pumpBtn-dashboard': brewingThermoItem.pumpOn == 1  }"><i class="icon-off"></i>Pump</label>
+                <label ng-click="brewingThermoItem.pumpClick()"  style="cursor:pointer"  ng-class="{'pumpBtn-dashboard': brewingThermoItem.pumpOn == 1  }"><i class="icon-off"></i>Pump</label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.auxClick()" ng-class="{'auxBtn-dashboard': brewingThermoItem.auxOn == 1 }"><i class="icon-off"></i>Aux</label>
+                <label ng-click="brewingThermoItem.auxClick()"  style="cursor:pointer"  ng-class="{'auxBtn-dashboard': brewingThermoItem.auxOn == 1 }"><i class="icon-off"></i>Aux</label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.rimsSettingsClick()"><i class="icon-dot-circled"></i>RIMs Settings</label>
+                <label ng-click="brewingThermoItem.rimsSettingsClick()"  class="dashboardButton"><i class="icon-sliders"></i>RIMs-Settings</label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.settingsClick()"><i class="icon-dot-circled"></i>Settings</label>
+                <label ng-click="brewingThermoItem.dbSettingsClick()"  class="dashboardButton"><i class="icon-database"></i>Database</label>
             </li>
             <li>
-                <label ng-click="brewingThermoItem.dbSettingsClick()"><i class="icon-dot-circled"></i>Database Settings</label>
+                <label ng-click="brewingThermoItem.settingsClick()" class="dashboardButton"><i class="icon-cog-alt"></i>Settings</label>
             </li>
         </ul>
     </div>
@@ -76,10 +76,10 @@
                 <div class="col-xs-4 h5 text-color4" ng-show="brewingThermoItem.showAlarmForm['lowAlarm']">
                     <input type="number" min="0" class="form-control input-sm" id="lowAlarm" ng-model="brewingThermoItem.lowAlarm" ng-blur="brewingThermoItem.exitAlarm('lowAlarm', brewingThermoItem.thermo.id, brewingThermoItem.lowAlarm)" />
                 </div>
-                <div class="col-xs-2 h5 text-color1">Temperature Velocity</div>
-                <div class="col-xs-4 h5 text-color1">{{brewingThermoItem.tempSpeed}}</div>
-                <div class="col-xs-2 h5 text-color1">Time to Reach Alarm:</div>
-                <div class="col-xs-4 h5 text-color1">{{brewingThermoItem.etaAlarm}}</div>
+                <div class="col-xs-2 h5 text-color1">Temp. Velocity</div>
+                <div class="col-xs-4 h5 text-color1">{{brewingThermoItem.tempSpeed | number:1}} F/min</div>
+                <div class="col-xs-2 h5 text-color1">ETA to Alarm:</div>
+                <div class="col-xs-4 h5 text-color1">{{brewingThermoItem.etaAlarm  | number:1}} minutes</div>
             </div>
         </div>
         <div class="col-md-9">

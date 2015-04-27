@@ -166,7 +166,16 @@
         }
 
         function getEtaToAlarm(whichThermo, highAlarm, lowAlarm) {
+            var speed = getTempSpeed(whichThermo);
+            var whichT = Number(whichThermo);
+            // currently assuming highAlarm
 
+            var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
+            var lastTemp = lastRow.c[whichT + 1].v;
+
+            var tempDiff = Number(highAlarm) - lastTemp;
+
+            return tempDiff / speed;
         }
         function getTempSpeed(whichThermo) {
             if (myCurrentChart.data.rows.length >= 2) {
@@ -174,7 +183,7 @@
                 var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
                 var secondLastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 2];
                 var tempDiff = lastRow.c[whichT + 1].v - secondLastRow.c[whichT + 1].v;
-                var timeDiff = new Date(lastRow.c[0]) - new Date(secondLastRow.c[0]);
+                var timeDiff = (new Date(lastRow.c[0].v) - new Date(secondLastRow.c[0].v)) / 60000;
                 return Number(tempDiff) / Number(timeDiff);
             }
             else {

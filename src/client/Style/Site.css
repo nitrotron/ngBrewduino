@@ -833,6 +833,16 @@ div.dashboard-slide-menu
     font-size: 15px;
 }
 
+.dashboardButton
+{
+    cursor: pointer !important;
+}
+.dashboardButton:hover
+{
+    color: #7A9F90 !important;
+}
+
+
 .text-color0
 {
     color: #353E42 !important;

@@ -88,6 +88,7 @@
                         vm.chart.data.rows = chartSrv.getCurrentData();
                         vm.lastChartUpdate = new Date();
                         vm.tempSpeed = chartSrv.getTempSpeed($state.params.id);
+                        vm.etaAlarm = chartSrv.getEtaToAlarm($state.params.id, vm.thermo.highAlarm, vm.thermo.lowAlarm);
                         logger.success('Updated chart', newValue);
                     }
                 });
