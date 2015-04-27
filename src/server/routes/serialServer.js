@@ -1,5 +1,6 @@
 ﻿module.exports = function (app, db) {
 
+    var sleep = require('sleep');
     var serialport = require('serialport');
     // configure the serial port:
     var SerialPort = serialport.SerialPort;     // make a local instance of serialport
@@ -41,6 +42,19 @@
 
         if (jData.hasOwnProperty('DATALOGGING')) {
             insertTemperatureHistories(jData.DATALOGGING.temp0, jData.DATALOGGING.temp1, jData.DATALOGGING.temp2, jData.DATALOGGING.temp3);
+        }
+        else if (jData.hasOwnProperty('noSensors')) {
+            console.log('just closing port');
+            myPort.close(function (error) {
+                consol.log('port should now be closed');
+                sleep.sleep(1);
+                // lets reopen a port
+                myPort = new SerialPort(portName, serialOptions);
+                // set up event listeners for the serial events:
+                myPort.on('open', showPortOpen);
+                myPort.on('data', saveLatestData);
+                myPort.on('error', showError);
+            });
         }
         else {
             serialData = jData;
