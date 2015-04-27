@@ -2,8 +2,8 @@
     angular.module('app.logger')
     .factory('logger', logger);
 
-    logger.$inject = ['$log', 'toaster', 'settingsSrv'];
-
+    
+    /* @ngInject */
     function logger($log, toaster, settingsSrv) {
         var service = {
             showToasts: true,

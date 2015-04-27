@@ -5,6 +5,7 @@
     angular.module('app')
         .controller('brewduinoCtrl', brewduinoCtrl);
 
+    /* @ngInject */
     function brewduinoCtrl($scope, brewduionoDataSrv, brewduinoCmdsSrv, logger, settingsSrv, countDownTimerSrv) {
         var vm = this;
         vm.mcData = {};

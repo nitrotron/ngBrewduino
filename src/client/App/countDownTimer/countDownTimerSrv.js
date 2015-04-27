@@ -3,6 +3,7 @@
     angular.module('app')
         .factory('countDownTimerSrv', countDownTimerSrv);
 
+    /* @ngInject */
     function countDownTimerSrv() {
         var timerAry = [];
         return {

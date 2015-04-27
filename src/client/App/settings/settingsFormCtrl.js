@@ -4,6 +4,7 @@
     angular.module('app')
     .controller('settingsFormCtrl', settingsFormCtrl);
 
+    /* @ngInject */
     function settingsFormCtrl($state, settingsSrv, brewduionoDataSrv, logger) {
         var vm = this;
 

@@ -5,7 +5,7 @@
     angular.module('app')
         .controller('countDownTimer', countDownTimer);
 
-
+    /* @ngInject */
     function countDownTimer($scope, brewduinoCmdsSrv, countDownTimerSrv) {
         var vm = this;
         var dateSnapShot = new Date();

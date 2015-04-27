@@ -18,10 +18,12 @@
     ],
     "vendorcss": [
         "./src/client/3rdParty/css/bootstrap.nightly.css",
-        "./src/client/3rdParty/css/toaster.min.css",
-        "./src/client/Fonts/font-awesome-4.1.0/css/font-awesome.min.css",
-        "./src/client/Fonts/fontello-cbda6283/css/fontello2.css"
+        "./src/client/3rdParty/css/toaster.min.css"
     ],
+	"fonts": [
+		"./src/client/Fonts/fontello-9f2eb6cd/css/fontello.css",
+	    "./src/client/Fonts/fontello-374a6348/css/misc.css"
+	],
     "client": "./src/client/",
     "server": "./src/server/"
 }

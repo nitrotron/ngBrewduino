@@ -5,6 +5,7 @@
     angular.module('app')
         .controller('brewingThermometer', brewingThermometer);
 
+    /* @ngInject */
     function brewingThermometer(brewduinoCmdsSrv, $state) {
         var vm = this;
         vm.rimsSetPoint = 2000;

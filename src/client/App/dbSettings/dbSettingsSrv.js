@@ -4,7 +4,7 @@
     angular.module('app')
         .factory('dbSettingsSrv', dbSettingsSrv);
 
-
+    /* @ngInject */
     function dbSettingsSrv($http, $q) {
         var dataLoggingEnabled = false;
         return {

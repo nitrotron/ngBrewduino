@@ -47,6 +47,8 @@ gulp.task('css', function () {
         //        .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(gulp.dest(paths.build + 'content'));
 });
+
+
 gulp.task('vendorcss', function () {
     log('Compressing, bundling, copying vendor CSS');
 
@@ -59,6 +61,18 @@ gulp.task('vendorcss', function () {
         .pipe(plug.minifyCss({}))
         .pipe(plug.bytediff.stop())
         .pipe(gulp.dest(paths.build + 'content'));
+});
+
+/**
+ * Copy fonts
+ * @return {Stream}
+ */
+gulp.task('fonts', function () {
+    var dest = paths.build + 'fonts';
+    log('Copying fonts');
+    return gulp
+        .src(paths.fonts)
+        .pipe(gulp.dest(dest));
 });
 
 gulp.task('lint', function () {
@@ -183,7 +197,18 @@ gulp.task('justInject', function () {
 
 //gulp.task('vendorInject')
 
+/**
+ * Build the optimized app
+ * @return {Stream}
+ */
+gulp.task('build', ['rev-and-inject', 'fonts'], function () {
+    log('Building the optimized app');
 
+    return gulp.src('').pipe(plug.notify({
+        onLast: true,
+        message: 'Deployed code!'
+    }));
+});
 
 
 gulp.task('watch', function () {
@@ -201,6 +226,17 @@ gulp.task('serve-dev', function () {
 gulp.task('serve-dev-mock', function () {
     serve({
         mode: 'dev',
+        useMock: 'enabled'
+    });
+});
+gulp.task('serve-prod', function () {
+    serve({
+        mode: 'build'
+    });
+});
+gulp.task('serve-prod-mock', function () {
+    serve({
+        mode: 'build',
         useMock: 'enabled'
     });
 });

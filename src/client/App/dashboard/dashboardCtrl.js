@@ -4,6 +4,7 @@
     angular.module('app')
         .controller('dashboardCtrl', dashboardCtrl);
 
+    /* @ngInject */
     function dashboardCtrl($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
                                  logger, settingsSrv, chartSrv, countDownTimerSrv) {
         var vm = this;
@@ -13,15 +14,13 @@
 
         vm.addTimer = addTimer;
         vm.alarm = {};
-        //vm.mcData = {};
 
         vm.alarmBtn = false;
         vm.auxClick = auxClick;
-        //vm.chartData = chartData;
-        //vm.chart = {};
+
         vm.chartTypeArea = true;
         vm.chartTypeLine = false;
-        //vm.chartView = [];
+
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
         vm.clickAlarm = clickAlarm;
@@ -36,10 +35,8 @@
         vm.rimsSettingsClick = rimsSettingsClick;
         vm.setAlarm = setAlarm;
         vm.settingsClick = settingsClick;
-        //vm.showAlarmForm = showAlarmForm;
+
         vm.showAlarmForm = { highAlarm: false, lowAlarm: false };
-        //vm.showAlarmForm['highAlarm'] = false;
-        //vm.showAlarmForm['lowAlarm'] = false;
 
         vm.showMenu = false;
         vm.showStatusLog = settingsSrv.showStatusLog;
@@ -47,7 +44,6 @@
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
         vm.toggleAlarm = toggleAlarm;
-
 
         vm.tempSpeed = 0;
         vm.etaAlarm = 0;
@@ -151,13 +147,11 @@
         function getStatus() {
             return brewduinoCmdsSrv.getStatus()
              .then(function (response) {
-
                  updateVM(response.data);
 
                  vm.chart = chartSrv.getChartConfig();
                  vm.chart.view = { columns: getChartColumns() };
                  getChartData();
-
 
                  logger.success('Updated status', response.data);
                  return response;
@@ -241,10 +235,6 @@
             $state.go('settings', stateParams);
         }
 
-        //function showAlarmForm(whichAlarm) {
-        //    var you = 'arehere';
-        //    return (vm.showAlarmFormState[whichAlarm] === true) ;
-        //}
 
         function switchTemps(thermometer) {
             var stateParams = { id: thermometer.id };
@@ -309,7 +299,6 @@
             };
 
         }
-
 
     }
 })();

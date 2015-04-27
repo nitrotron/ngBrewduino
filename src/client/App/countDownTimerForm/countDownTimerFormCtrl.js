@@ -2,6 +2,7 @@
     angular.module('app')
     .controller('countDownTimerFormCtrl', countDownTimerFormCtrl);
 
+    /* @ngInject */
     function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimerSrv, logger) {
         var vm = this;
 

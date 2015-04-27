@@ -2,6 +2,7 @@
     angular.module('app')
     .controller('rimsSettingsCtrl', rimsSettingsCtrl);
 
+    /* @ngInject */
     function rimsSettingsCtrl($state, brewduionoDataSrv, brewduinoCmdsSrv) {
         var vm = this;
         //rimsSettingsSrv.setPoint = 150;

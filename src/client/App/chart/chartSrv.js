@@ -2,6 +2,7 @@
     angular.module('app')
       .factory('chartSrv', chartSrv);
 
+    /* @ngInject */
     function chartSrv($http, $interval, $q, settingsSrv) {
         var myCurrentChart = {};
         var autoUpdatesEnabled = false;

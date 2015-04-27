@@ -2,6 +2,7 @@
     angular.module('app')
     .controller('dbSettingsCtrl', dbSettingsCtrl);
 
+    /* @ngInject */
     function dbSettingsCtrl($state, brewduionoDataSrv, brewduinoCmdsSrv, dbSettingsSrv, logger) {
         var vm = this;
 
