@@ -46,10 +46,12 @@
         else if (jData.hasOwnProperty('noSensors')) {
             console.log('just closing port');
             myPort.close(function (error) {
-                consol.log('port should now be closed');
+                console.log('port should now be closed');
                 sleep.sleep(1);
+                console.log('done sleeping');
                 // lets reopen a port
-                myPort = new SerialPort(portName, serialOptions);
+                myPort.open(); // = new SerialPort(portName, serialOptions);
+                console.log('done creating new port');
                 // set up event listeners for the serial events:
                 myPort.on('open', showPortOpen);
                 myPort.on('data', saveLatestData);
