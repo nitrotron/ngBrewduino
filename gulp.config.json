@@ -14,15 +14,18 @@
         "./src/client/App/**/*.js"
     ],
     "css": [
-        "./src/client/Style/Site.css"
+		"./src/client/Style/Site.css"
     ],
     "vendorcss": [
         "./src/client/3rdParty/css/bootstrap.nightly.css",
-        "./src/client/3rdParty/css/toaster.min.css"
+        "./src/client/3rdParty/css/toaster.min.css",
+	
+		"./src/client/Fonts/fontello-9f2eb6cd/css/fontello.css"
+	   
     ],
 	"fonts": [
-		"./src/client/Fonts/fontello-9f2eb6cd/css/fontello.css",
-	    "./src/client/Fonts/fontello-374a6348/css/misc.css"
+	
+		"./src/client/Fonts/fontello-9f2eb6cd/font/**.*"
 	],
     "client": "./src/client/",
     "server": "./src/server/"

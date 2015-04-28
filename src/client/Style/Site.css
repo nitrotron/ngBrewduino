@@ -741,6 +741,7 @@ body
     /*background-color: #353e42;*/
 }
 
+
 #dashBoardHeader ul
 {
     list-style-type: none;
@@ -758,6 +759,7 @@ body
 .dashBoardHeader
 {
     /*color: #19FCFC;*/
+    margin-top: 5px;
 }
 
     .dashBoardHeader .CountDownTimer2
@@ -873,6 +875,19 @@ div.dashboard-slide-menu
     color: #83BABD !important;
 }
 
+.text-color1-hover:hover {
+    color: #67DC2D !important;
+}
+
+.text-color4-hover:hover {
+    color: #FFFFFF !important;
+}
+
+
+.text-color5-hover:hover {
+    color: #19fcfc !important;
+}
+
 
 #dashBoardMain .statusLog
 {
@@ -957,7 +972,7 @@ div.dashboard-slide-menu
         .switch label
         {
             font-size: 2.875em;
-            line-height: 1.9em;
+            line-height: 2.2em;
         }
 
             .switch label:after

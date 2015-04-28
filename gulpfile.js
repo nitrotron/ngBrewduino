@@ -42,7 +42,7 @@ gulp.task('css', function () {
         .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(plug.autoprefixer('last 2 version', '> 5%', 'ie 9'))
         .pipe(plug.bytediff.start())
-    .pipe(plug.minifyCss({}))
+//    .pipe(plug.minifyCss({}))
     .pipe(plug.bytediff.stop())
         //        .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(gulp.dest(paths.build + 'content'));
@@ -68,7 +68,7 @@ gulp.task('vendorcss', function () {
  * @return {Stream}
  */
 gulp.task('fonts', function () {
-    var dest = paths.build + 'fonts';
+    var dest = paths.build + 'font';
     log('Copying fonts');
     return gulp
         .src(paths.fonts)
@@ -155,7 +155,8 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function () 
     function inject(path, name) {
         var pathGlob = paths.build + path;
         var options = {
-            read: false
+            read: false,
+            ignorePath: paths.build.substring(1)
         };
         if (name) {
             options.name = name;
