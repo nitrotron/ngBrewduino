@@ -42,8 +42,8 @@ gulp.task('css', function () {
         .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(plug.autoprefixer('last 2 version', '> 5%', 'ie 9'))
         .pipe(plug.bytediff.start())
-//    .pipe(plug.minifyCss({}))
-    .pipe(plug.bytediff.stop())
+        .pipe(plug.minifyCss({}))
+        .pipe(plug.bytediff.stop())
         //        .pipe(plug.concat('all.min.css')) // Before bytediff or after
         .pipe(gulp.dest(paths.build + 'content'));
 });
