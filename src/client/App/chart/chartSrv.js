@@ -142,13 +142,14 @@
 
             $http.get(statusUrl).success(function (data) {
                 var rows = [];
-              
-                data.forEach(function (element, index, array) {
-                    var dt = new Date(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
-              
-                    rows.push(constRowObj(dt, element.temp0,
-                        element.temp1, element.temp2, element.temp3));
-                });
+                if (data.length > 0) {
+                    data.forEach(function (element, index, array) {
+                        var dt = new Date(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
+
+                        rows.push(constRowObj(dt, element.temp0,
+                            element.temp1, element.temp2, element.temp3));
+                    });
+                }
                 myCurrentChart.data.rows = rows;
 
                 //data = rows;
@@ -171,12 +172,17 @@
             var whichT = Number(whichThermo);
             // currently assuming highAlarm
 
-            var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
-            var lastTemp = lastRow.c[whichT + 1].v;
+            if (myCurrentChart.data.rows.length >= 2) {
+                var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
+                var lastTemp = lastRow.c[whichT + 1].v;
 
-            var tempDiff = Number(highAlarm) - lastTemp;
+                var tempDiff = Number(highAlarm) - lastTemp;
 
-            return tempDiff / speed;
+                return tempDiff / speed;
+            }
+            else {
+                return 0;
+            }
         }
         function getTempSpeed(whichThermo) {
             if (myCurrentChart.data.rows.length >= 2) {

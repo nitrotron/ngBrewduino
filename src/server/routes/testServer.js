@@ -69,12 +69,53 @@
         response.end;
     };
 
-    function getChartData(request, response, next) { 
-        db.all("SELECT  * from (select ROWID, strftime('%Y',dt,  'localtime') as year, strftime('%m',dt, 'localtime') as month, strftime('%d',dt, 'localtime') as day, strftime('%H',dt, 'localtime') as hour, strftime('%M',dt, 'localtime') as minute, strftime('%S',dt, 'localtime') as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories order by ROWID desc limit 300) order by ROWID asc", function (err, rows) {
-            //    console.log('you requested data' + rows);
-            //console.log('error is:', err);
-            console.log('number of chart rows: ' + rows.length);
-            response.json(rows);
+    function getChartData(request, response, next) {
+        db.serialize(function () {
+            var currentSession = 0;
+            db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+                if (rows.length > 0) {
+                    currentSession = rows[0].id;
+                }
+
+
+                if (currentSession > 0) {
+                    //db.all("SELECT  * from (select th.ROWID, strftime('%Y',th.dt,  'localtime') as year, strftime('%m',th.dt, 'localtime') as month, strftime('%d',th.dt, 'localtime') as day, strftime('%H',th.dt, 'localtime') as hour, strftime('%M',th.dt, 'localtime') as minute, strftime('%S',th.dt, 'localtime') as second, datetime(th.dt, 'localtime') as dt, th.temp0, th.temp1, th.temp2, th.temp3, s.sessionName FROM TemperatureHistories th join Sesions s on s.id = th.SessionID where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
+                    db.all("SELECT *                                                       " +
+                           "FROM   (SELECT rowid,                                       " +
+                           "               Strftime('%Y', dt, 'localtime') AS year,     " +
+                           "               Strftime('%m', dt, 'localtime') AS month,    " +
+                           "               Strftime('%d', dt, 'localtime') AS day,      " +
+                           "               Strftime('%H', dt, 'localtime') AS hour,     " +
+                           "               Strftime('%M', dt, 'localtime') AS minute,   " +
+                           "               Strftime('%S', dt, 'localtime') AS second,   " +
+                           "               Datetime(dt, 'localtime')       AS dt,       " +
+                           "               temp0 AS temp0,                              " +
+                           "               temp1 AS temp1,                              " +
+                           "               temp2 AS temp2,                              " +
+                           "               temp3 AS temp3                              " +
+                           
+                           "                        FROM   temperaturehistories      " +
+                           
+                           
+                           "                        WHERE  sessionid = $sessionID          " +
+                           "                        ORDER  BY rowid DESC                   " +
+                           "                        LIMIT  300)                            " +
+                           "                        ORDER  BY rowid ASC                    ",
+                           { $sessionID: currentSession },
+                           function (err, rows) {
+                               //    console.log('you requested data' + rows);
+                               //    console.log('error is:', err);
+                               console.error(err);
+                               console.log('number of chart rows: ' + rows.length);
+                               response.json(rows);
+                           });
+                }
+                else {
+                    response.json([]);
+                }
+            });
+
+
         });
     }
 
@@ -111,7 +152,21 @@
 
     function insertTemperatureHistories(t0, t1, t2, t3) {
         db.serialize(function () {
-            db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3) VALUES (?,?,?,?)', t0, t1, t2, t3);
+            var currentSession = 0;
+
+            db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+                if (rows.length > 0) {
+                    currentSession = rows[0].id;
+                }
+
+                if (currentSession > 0) {
+                    db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID) VALUES (?,?,?,?,?)', t0, t1, t2, t3, currentSession);
+                }
+                else {
+                    console.log('not updating temperatures histories because no current session');
+                }
+            });
+
 
         });
     }

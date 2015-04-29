@@ -28,17 +28,14 @@
 
     // this is called when new data comes into the serial port:
     function saveLatestData(data) {
-        
         console.log('just recieved: ' + data);
         // save the incoming serial data in serialData variable
         var jData = {};
-	try {
-		jData = JSON.parse(data);
-	} catch (e) {
-		console.log('JSON Error:' + e);
- 	}
-
-
+        try {
+            jData = JSON.parse(data);
+        } catch (e) {
+            console.log('JSON Error:' + e);
+        }
 
         if (jData.hasOwnProperty('DATALOGGING')) {
             insertTemperatureHistories(jData.DATALOGGING.temp0, jData.DATALOGGING.temp1, jData.DATALOGGING.temp2, jData.DATALOGGING.temp3);
@@ -61,7 +58,7 @@
         else {
             serialData = jData;
         }
-        
+
     }
 
     // this is called when the serial port has an error:
@@ -88,11 +85,25 @@
     //    });
     //}
     function getChartData(request, response, next) {
-        db.all("SELECT  * from (select ROWID, strftime('%Y',dt,  'localtime') as year, strftime('%m',dt, 'localtime') as month, strftime('%d',dt, 'localtime') as day, strftime('%H',dt, 'localtime') as hour, strftime('%M',dt, 'localtime') as minute, strftime('%S',dt, 'localtime') as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories order by ROWID desc limit 300) order by ROWID asc", function (err, rows) {
-            //    console.log('you requested data' + rows);
-            //    console.log('error is:', err);
-            console.log('number of chart rows: ' + rows.length);
-            response.json(rows);
+        db.serialize(function () {
+            var currentSession = 0;
+            db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+                if (rows > 0) {
+                    currentSession = rows[0].id;
+                }
+            });
+            if (currentSession > 0) {
+                db.all("SELECT  * from (select ROWID, strftime('%Y',dt,  'localtime') as year, strftime('%m',dt, 'localtime') as month, strftime('%d',dt, 'localtime') as day, strftime('%H',dt, 'localtime') as hour, strftime('%M',dt, 'localtime') as minute, strftime('%S',dt, 'localtime') as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
+                    //    console.log('you requested data' + rows);
+                    //    console.log('error is:', err);
+                    console.log('number of chart rows: ' + rows.length);
+                    response.json(rows);
+                });
+            }
+            else {
+                response.json('{}');
+            }
+            
         });
     }
 
@@ -123,8 +134,20 @@
 
 
     function insertTemperatureHistories(t0, t1, t2, t3) {
+        
         db.serialize(function () {
-            db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3) VALUES (?,?,?,?)', t0, t1, t2, t3);
+            var currentSession = 0;
+            db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+                if (rows > 0) {
+                    currentSession = rows[0].id;
+                }
+            });
+            if (currentSession > 0) {
+                db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID) VALUES (?,?,?,?)', t0, t1, t2, t3, currentSession);
+            }
+            else {
+                console.log('not updating temperatures histories because no current session');
+            }
 
         });
     }
