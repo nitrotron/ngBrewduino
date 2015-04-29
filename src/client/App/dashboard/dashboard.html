@@ -63,34 +63,34 @@
 
 
     <!-- ####################### Main Temperature Infomation ################################## -->
-    <div class="row">
-        <div class="col-md-3 ">
-            <div class="row">
-                <div class="col-xs-6 h1 text-color1">
-                    {{dboardCtrl.thermo.name}}
-                </div>
-                <div class="col-xs-6 h1 text-color1">{{dboardCtrl.thermo.temp | number:1}}</div>
+
+    <div class="col-md-3 ">
+        <div class="row">
+            <div class="col-xs-6 h1 text-color1">
+                {{dboardCtrl.thermo.name}}
             </div>
-            <div class="row">
-                <div class="col-xs-2 h5 text-color4 text-color4-hover  Clickable" ng-click="dboardCtrl.toggleAlarm('highAlarm')">High:</div>
-                <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.clickAlarm('highAlarm')" ng-hide="dboardCtrl.showAlarmForm['highAlarm']">{{dboardCtrl.thermo.highAlarm | number:1}}</div>
-                <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-show="dboardCtrl.showAlarmForm['highAlarm']">
-                    <input type="number" min="0" class="form-control input-sm" id="highAlarm" ng-model="dboardCtrl.highAlarm" ng-blur="dboardCtrl.exitAlarm('highAlarm', dboardCtrl.thermo.id, dboardCtrl.highAlarm)" />
-                </div>
-                <div class="col-xs-2 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.toggleAlarm('lowAlarm')">Low:</div>
-                <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.clickAlarm('lowAlarm')" ng-hide="dboardCtrl.showAlarmForm['lowAlarm']">{{dboardCtrl.thermo.lowAlarm | number:1}}</div>
-                <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-show="dboardCtrl.showAlarmForm['lowAlarm']">
-                    <input type="number" min="0" class="form-control input-sm" id="lowAlarm" ng-model="dboardCtrl.lowAlarm" ng-blur="dboardCtrl.exitAlarm('lowAlarm', dboardCtrl.thermo.id, dboardCtrl.lowAlarm)" />
-                </div>
+            <div class="col-xs-6 h1 text-color1">{{dboardCtrl.thermo.temp | number:1}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 h5 text-color4 text-color4-hover  Clickable" ng-click="dboardCtrl.toggleAlarm('highAlarm')">High:</div>
+            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.clickAlarm('highAlarm')" ng-hide="dboardCtrl.showAlarmForm['highAlarm']">{{dboardCtrl.thermo.highAlarm | number:1}}</div>
+            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-show="dboardCtrl.showAlarmForm['highAlarm']">
+                <input type="number" min="0" class="form-control input-sm" id="highAlarm" ng-model="dboardCtrl.highAlarm" ng-blur="dboardCtrl.exitAlarm('highAlarm', dboardCtrl.thermo.id, dboardCtrl.highAlarm)" />
             </div>
-            <div class="row">
-                <div class="col-xs-2 h5 text-color1">Temp. Velocity</div>
-                <div class="col-xs-4 h5 text-color1">{{dboardCtrl.tempSpeed | number:1}} F/min</div>
-                <div class="col-xs-2 h5 text-color1">ETA to Alarm:</div>
-                <div class="col-xs-4 h5 text-color1">{{dboardCtrl.etaAlarm  | number:1}} minutes</div>
+            <div class="col-xs-2 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.toggleAlarm('lowAlarm')">Low:</div>
+            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.clickAlarm('lowAlarm')" ng-hide="dboardCtrl.showAlarmForm['lowAlarm']">{{dboardCtrl.thermo.lowAlarm | number:1}}</div>
+            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-show="dboardCtrl.showAlarmForm['lowAlarm']">
+                <input type="number" min="0" class="form-control input-sm" id="lowAlarm" ng-model="dboardCtrl.lowAlarm" ng-blur="dboardCtrl.exitAlarm('lowAlarm', dboardCtrl.thermo.id, dboardCtrl.lowAlarm)" />
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-2 h5 text-color1">Temp. Velocity</div>
+            <div class="col-xs-4 h5 text-color1">{{dboardCtrl.tempSpeed | number:1}} F/min</div>
+            <div class="col-xs-2 h5 text-color1">ETA to Alarm:</div>
+            <div class="col-xs-4 h5 text-color1">{{dboardCtrl.etaAlarm  | number:1}} minutes</div>
+        </div>
     </div>
+
 
     <!-- ########################## Chart ####################################################-->
     <div class="col-md-9">
