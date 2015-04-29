@@ -108,6 +108,12 @@
                            "               th.temp1 AS temp1,                              " +
                            "               th.temp2 AS temp2,                              " +
                            "               th.temp3 AS temp3,                              " +
+                           "               th.rimsOnWindow,                                " +
+                           "               th.rimsSetPoint,                                " +
+                           "               th.rimsKp, th.rimsKi, th.rimskd,                " +
+                           "               th.temp3 AS temp3,                              " +
+                           "               th.temp3 AS temp3,                              " +
+                           "               th.temp3 AS temp3,                              " +
                            "               s.sessionName as sessionName                    " +
                            "        FROM   temperaturehistories as th                      " +
                            "        join   Sessions as s on th.sessionid = s.id            " +
@@ -117,6 +123,7 @@
                            "        ORDER  BY id ASC                                    ",
                            { $sessionID: currentSession },
                            function (err, rows) {
+                               console.error(err);
                                console.log('number of chart rows: ' + rows.length);
                                response.json(rows);
                            });
@@ -156,25 +163,27 @@
 
 
 
-    function insertTemperatureHistories(t0, t1, t2, t3) {
-
+    function insertTemperatureHistories(t0, t1, t2, t3, rimsOnWin, rimsSetPoint, kp, ki, kd) {
         db.serialize(function () {
             var currentSession = 0;
+
             db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
-                if (rows > 0) {
+                console.error(err);
+                if (rows.length > 0) {
                     currentSession = rows[0].id;
                 }
+
+                if (currentSession > 0) {
+                    db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID, rimsOnWindow, rimsSetPoint, rimsKp, rimsKi, rimskd) VALUES (?,?,?,?,?,?,?,?,?,?)', t0, t1, t2, t3, currentSession, rimsOnWin, rimsSetPoint, kp, ki, kd);
+                }
+                else {
+                    console.log('not updating temperatures histories because no current session');
+                }
             });
-            if (currentSession > 0) {
-                db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID) VALUES (?,?,?,?)', t0, t1, t2, t3, currentSession);
-            }
-            else {
-                console.log('not updating temperatures histories because no current session');
-            }
+
 
         });
     }
-
 
 
 };
