@@ -88,22 +88,45 @@
         db.serialize(function () {
             var currentSession = 0;
             db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
-                if (rows > 0) {
+                if (rows.length > 0) {
                     currentSession = rows[0].id;
                 }
+
+
+                if (currentSession > 0) {
+                    //db.all("SELECT  * from (select th.ROWID, strftime('%Y',th.dt,  'localtime') as year, strftime('%m',th.dt, 'localtime') as month, strftime('%d',th.dt, 'localtime') as day, strftime('%H',th.dt, 'localtime') as hour, strftime('%M',th.dt, 'localtime') as minute, strftime('%S',th.dt, 'localtime') as second, datetime(th.dt, 'localtime') as dt, th.temp0, th.temp1, th.temp2, th.temp3, s.sessionName FROM TemperatureHistories th join Sesions s on s.id = th.SessionID where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
+                    db.all("SELECT *                                                       " +
+                           "FROM   (SELECT th.id as id,                                    " +
+                           "               Strftime('%Y', th.dt, 'localtime') AS year,     " +
+                           "               Strftime('%m', th.dt, 'localtime') AS month,    " +
+                           "               Strftime('%d', th.dt, 'localtime') AS day,      " +
+                           "               Strftime('%H', th.dt, 'localtime') AS hour,     " +
+                           "               Strftime('%M', th.dt, 'localtime') AS minute,   " +
+                           "               Strftime('%S', th.dt, 'localtime') AS second,   " +
+                           "               Datetime(th.dt, 'localtime')       AS dt,       " +
+                           "               th.temp0 AS temp0,                              " +
+                           "               th.temp1 AS temp1,                              " +
+                           "               th.temp2 AS temp2,                              " +
+                           "               th.temp3 AS temp3,                              " +
+                           "               s.sessionName as sessionName                    " +
+                           "        FROM   temperaturehistories as th                      " +
+                           "        join   Sessions as s on th.sessionid = s.id            " +
+                           "        WHERE  th.sessionid = $sessionID                       " +
+                           "        ORDER  BY id DESC                                      " +
+                           "        LIMIT  300)                                            " +
+                           "        ORDER  BY id ASC                                    ",
+                           { $sessionID: currentSession },
+                           function (err, rows) {
+                               console.log('number of chart rows: ' + rows.length);
+                               response.json(rows);
+                           });
+                }
+                else {
+                    response.json([]);
+                }
             });
-            if (currentSession > 0) {
-                db.all("SELECT  * from (select ROWID, strftime('%Y',dt,  'localtime') as year, strftime('%m',dt, 'localtime') as month, strftime('%d',dt, 'localtime') as day, strftime('%H',dt, 'localtime') as hour, strftime('%M',dt, 'localtime') as minute, strftime('%S',dt, 'localtime') as second, datetime(dt, 'localtime') as dt, temp0, temp1, temp2, temp3 FROM TemperatureHistories where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
-                    //    console.log('you requested data' + rows);
-                    //    console.log('error is:', err);
-                    console.log('number of chart rows: ' + rows.length);
-                    response.json(rows);
-                });
-            }
-            else {
-                response.json('{}');
-            }
-            
+
+
         });
     }
 
@@ -134,7 +157,7 @@
 
 
     function insertTemperatureHistories(t0, t1, t2, t3) {
-        
+
         db.serialize(function () {
             var currentSession = 0;
             db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {

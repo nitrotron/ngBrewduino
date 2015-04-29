@@ -6,6 +6,7 @@
     function chartSrv($http, $interval, $q, settingsSrv) {
         var myCurrentChart = {};
         var autoUpdatesEnabled = false;
+        var chartTitle = 'Temperature';
 
         autoUpdates();
 
@@ -72,7 +73,7 @@
 
 
             chartConfig.options = {
-                'title': 'Temperatures',
+                'title': chartTitle,
                 'titleTextStyle': { 'color': '#D3D3D4' },
                 'isStacked': 'false',
                 'fill': 20,
@@ -149,6 +150,8 @@
                         rows.push(constRowObj(dt, element.temp0,
                             element.temp1, element.temp2, element.temp3));
                     });
+
+                    chartTitle = data[0]['sessionName'];
                 }
                 myCurrentChart.data.rows = rows;
 

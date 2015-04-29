@@ -81,32 +81,28 @@
                 if (currentSession > 0) {
                     //db.all("SELECT  * from (select th.ROWID, strftime('%Y',th.dt,  'localtime') as year, strftime('%m',th.dt, 'localtime') as month, strftime('%d',th.dt, 'localtime') as day, strftime('%H',th.dt, 'localtime') as hour, strftime('%M',th.dt, 'localtime') as minute, strftime('%S',th.dt, 'localtime') as second, datetime(th.dt, 'localtime') as dt, th.temp0, th.temp1, th.temp2, th.temp3, s.sessionName FROM TemperatureHistories th join Sesions s on s.id = th.SessionID where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
                     db.all("SELECT *                                                       " +
-                           "FROM   (SELECT rowid,                                       " +
-                           "               Strftime('%Y', dt, 'localtime') AS year,     " +
-                           "               Strftime('%m', dt, 'localtime') AS month,    " +
-                           "               Strftime('%d', dt, 'localtime') AS day,      " +
-                           "               Strftime('%H', dt, 'localtime') AS hour,     " +
-                           "               Strftime('%M', dt, 'localtime') AS minute,   " +
-                           "               Strftime('%S', dt, 'localtime') AS second,   " +
-                           "               Datetime(dt, 'localtime')       AS dt,       " +
-                           "               temp0 AS temp0,                              " +
-                           "               temp1 AS temp1,                              " +
-                           "               temp2 AS temp2,                              " +
-                           "               temp3 AS temp3                              " +
-                           
-                           "                        FROM   temperaturehistories      " +
-                           
-                           
-                           "                        WHERE  sessionid = $sessionID          " +
-                           "                        ORDER  BY rowid DESC                   " +
-                           "                        LIMIT  300)                            " +
-                           "                        ORDER  BY rowid ASC                    ",
+                           "FROM   (SELECT th.id as id,                                    " +
+                           "               Strftime('%Y', th.dt, 'localtime') AS year,     " +
+                           "               Strftime('%m', th.dt, 'localtime') AS month,    " +
+                           "               Strftime('%d', th.dt, 'localtime') AS day,      " +
+                           "               Strftime('%H', th.dt, 'localtime') AS hour,     " +
+                           "               Strftime('%M', th.dt, 'localtime') AS minute,   " +
+                           "               Strftime('%S', th.dt, 'localtime') AS second,   " +
+                           "               Datetime(th.dt, 'localtime')       AS dt,       " +
+                           "               th.temp0 AS temp0,                              " +
+                           "               th.temp1 AS temp1,                              " +
+                           "               th.temp2 AS temp2,                              " +
+                           "               th.temp3 AS temp3,                              " +
+                           "               s.sessionName as sessionName                    " +
+                           "        FROM   temperaturehistories as th                      " +
+                           "        join   Sessions as s on th.sessionid = s.id            " +
+                           "        WHERE  th.sessionid = $sessionID                       " +
+                           "        ORDER  BY id DESC                                      " +
+                           "        LIMIT  300)                                            " +
+                           "        ORDER  BY id ASC                                    ",
                            { $sessionID: currentSession },
                            function (err, rows) {
-                               //    console.log('you requested data' + rows);
-                               //    console.log('error is:', err);
-                               console.error(err);
-                               console.log('number of chart rows: ' + rows.length);
+                               console.log('number of chart rows: ' + rows.length); 
                                response.json(rows);
                            });
                 }
