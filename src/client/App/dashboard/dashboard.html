@@ -44,13 +44,13 @@
 
     <div id="dashBoardHeader" class="dashBoardHeader  clearfix">
         <div class="row">
-            <div class="col-sm-1 col-xs-12 text-color5 text-color5-hover Clickable"><i class='icon-menu' ng-click="dboardCtrl.openMenu()"></i></div>
+            <div class="col-sm-1 col-xs-12 text-color5 Clickable"><i class='icon-menu' ng-click="dboardCtrl.openMenu()"></i></div>
             <div class="col-sm-5 col-xs-6">
                 <div class="CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
                 </div>
             </div>
 
-            <div class="col-sm-2 col-xs-6 text-color5  text-color5-hover  Clickable" ng-repeat="otherThermo in dboardCtrl.otherThermos | orderBy:'order' " ng-click="dboardCtrl.switchTemps(otherThermo)">
+            <div class="col-sm-2 col-xs-6 text-color5  Clickable" ng-repeat="otherThermo in dboardCtrl.otherThermos | orderBy:'order' " ng-click="dboardCtrl.switchTemps(otherThermo)">
                 <span class="dashboard-minor-title">
                     {{otherThermo.name}}
                 </span>
@@ -72,14 +72,14 @@
             <div class="col-xs-6 h1 text-color1">{{dboardCtrl.thermo.temp | number:1}}</div>
         </div>
         <div class="row">
-            <div class="col-xs-2 h5 text-color4 text-color4-hover  Clickable" ng-click="dboardCtrl.toggleAlarm('highAlarm')">High:</div>
-            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.clickAlarm('highAlarm')" ng-hide="dboardCtrl.showAlarmForm['highAlarm']">{{dboardCtrl.thermo.highAlarm | number:1}}</div>
-            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-show="dboardCtrl.showAlarmForm['highAlarm']">
+            <div class="col-xs-2 h5 text-color4   Clickable" ng-click="dboardCtrl.toggleAlarm('highAlarm')">High:</div>
+            <div class="col-xs-4 h5 text-color4  Clickable" ng-click="dboardCtrl.clickAlarm('highAlarm')" ng-hide="dboardCtrl.showAlarmForm['highAlarm']">{{dboardCtrl.thermo.highAlarm | number:1}}</div>
+            <div class="col-xs-4 h5 text-color4  Clickable" ng-show="dboardCtrl.showAlarmForm['highAlarm']">
                 <input type="number" min="0" class="form-control input-sm" id="highAlarm" ng-model="dboardCtrl.highAlarm" ng-blur="dboardCtrl.exitAlarm('highAlarm', dboardCtrl.thermo.id, dboardCtrl.highAlarm)" />
             </div>
-            <div class="col-xs-2 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.toggleAlarm('lowAlarm')">Low:</div>
-            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-click="dboardCtrl.clickAlarm('lowAlarm')" ng-hide="dboardCtrl.showAlarmForm['lowAlarm']">{{dboardCtrl.thermo.lowAlarm | number:1}}</div>
-            <div class="col-xs-4 h5 text-color4 text-color4-hover Clickable" ng-show="dboardCtrl.showAlarmForm['lowAlarm']">
+            <div class="col-xs-2 h5 text-color4  Clickable" ng-click="dboardCtrl.toggleAlarm('lowAlarm')">Low:</div>
+            <div class="col-xs-4 h5 text-color4  Clickable" ng-click="dboardCtrl.clickAlarm('lowAlarm')" ng-hide="dboardCtrl.showAlarmForm['lowAlarm']">{{dboardCtrl.thermo.lowAlarm | number:1}}</div>
+            <div class="col-xs-4 h5 text-color4  Clickable" ng-show="dboardCtrl.showAlarmForm['lowAlarm']">
                 <input type="number" min="0" class="form-control input-sm" id="lowAlarm" ng-model="dboardCtrl.lowAlarm" ng-blur="dboardCtrl.exitAlarm('lowAlarm', dboardCtrl.thermo.id, dboardCtrl.lowAlarm)" />
             </div>
         </div>
