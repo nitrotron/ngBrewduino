@@ -87,6 +87,8 @@
                         logger.success('Updated chart', newValue);
                     }
                 });
+
+            vm.showBottomButtons = settingsSrv.showBottomButtons;
         }
 
         function addTimer() {

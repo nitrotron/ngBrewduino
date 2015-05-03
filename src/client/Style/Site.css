@@ -825,6 +825,10 @@ div.dashboard-slide-menu {
             text-align: left;
         }
 
+        .bottom-row-buttons span .nonAlarm {
+                color: #7A9F90 !important;
+        }
+
 /* ********************     animations **************************************/
 /* The starting CSS styles for the enter animation */
 .fxFade {

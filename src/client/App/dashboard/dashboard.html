@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    <div class="row bottom-row-buttons">
+    <div class="row bottom-row-buttons" ng-show="dboardCtrl.showBottomButtons===true">
 
         <span class="h3">
             <label ng-click="dboardCtrl.setAlarm()" style="cursor: pointer" ng-class="{'alarmBtn-dashboard': dboardCtrl.alarmBtn === true }"><i class='icon-attention-alt'></i>Alarm</label>
@@ -141,13 +141,13 @@
         </span>
 
         <span class="h3">
-            <label ng-click="dboardCtrl.rimsClick()" style="cursor: pointer" ng-class="{'rimsBtn-dashboard': dboardCtrl.rimsEnable == 1 }"><i class="icon-fire-1"></i>RIMS</label>
+            <label ng-click="dboardCtrl.rimsClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.rimsEnable == 1 }"><i class="icon-fire-1"></i>RIMS</label>
         </span>
         <span class="h3">
-            <label ng-click="dboardCtrl.pumpClick()" style="cursor: pointer" ng-class="{'pumpBtn-dashboard': dboardCtrl.pumpOn == 1  }"><i class="icon-off"></i>Pump</label>
+            <label ng-click="dboardCtrl.pumpClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.pumpOn == 1  }"><i class="icon-off"></i>Pump</label>
         </span>
         <span class="h3">
-            <label ng-click="dboardCtrl.auxClick()" style="cursor: pointer" ng-class="{'auxBtn-dashboard': dboardCtrl.auxOn == 1 }"><i class="icon-off"></i>Aux</label>
+            <label ng-click="dboardCtrl.auxClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.auxOn == 1 }"><i class="icon-off"></i>Aux</label>
         </span>
     </div>
 

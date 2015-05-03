@@ -27,16 +27,17 @@
 
         function activate() {
             vm.settings = {
+                showBottomButtons: settingsSrv.showBottomButtons,
                 showStatusLog: settingsSrv.showStatusLog,
                 showToast: settingsSrv.showToast,
                 thermos: settingsSrv.thermos
             };
 
-            vm.settings.thermos.forEach(function (val,index, array) {
+            vm.settings.thermos.forEach(function (val, index, array) {
                 vm.showThermoName.push(false);
                 vm.showThermoOrder.push(false);
             });
-            
+
         }
 
         function cancel() {
@@ -73,6 +74,7 @@
         function updateSettingSrv(settings) {
             settingsSrv.showStatusLog = settings.showStatusLog;
             settingsSrv.showToast = settings.showToast;
+            settingsSrv.showBottomButtons = settings.showBottomButtons;
         }
     }
 
