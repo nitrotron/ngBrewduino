@@ -43,22 +43,28 @@
     <!-- ########################## Top Row ####################################### -->
 
     <div id="dashBoardHeader" class="dashBoardHeader  clearfix">
-        <div class="row">
-            <div class="col-sm-1 col-xs-12 text-color5 Clickable"><i class='icon-menu' ng-click="dboardCtrl.openMenu()"></i></div>
-            <div class="col-sm-5 col-xs-6">
-                <div class="CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
+        <div class="col-md-3 ">
+            <div class="row">
+                <div class="col-sm-2 col-xs-6 text-color5 Clickable"><i class='icon-menu' ng-click="dboardCtrl.openMenu()"></i></div>
+                <div class="col-sm-10 col-xs-6">
+                    <div class="CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
+                    </div>
                 </div>
             </div>
-
-            <div class="col-sm-2 col-xs-6 text-color5  Clickable" ng-repeat="otherThermo in dboardCtrl.otherThermos | orderBy:'order' " ng-click="dboardCtrl.switchTemps(otherThermo)">
-                <span class="dashboard-minor-title">
-                    {{otherThermo.name}}
-                </span>
-                <span class="dashboard-minor-temp ">
-                    {{otherThermo.temp | number:1}}
-                </span>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-sm-4 col-xs-6 text-color5  Clickable" ng-repeat="otherThermo in dboardCtrl.otherThermos | orderBy:'order' " ng-click="dboardCtrl.switchTemps(otherThermo)">
+                    <span class="dashboard-minor-title">
+                        {{otherThermo.name}}
+                    </span>
+                    <span class="dashboard-minor-temp ">
+                        {{otherThermo.temp | number:1}}
+                    </span>
+                </div>
             </div>
         </div>
+
     </div>
 
 
@@ -84,10 +90,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-2 h5 text-color1">Temp. Velocity</div>
-            <div class="col-xs-4 h5 text-color1">{{dboardCtrl.tempSpeed | number:1}} F/min</div>
-            <div class="col-xs-2 h5 text-color1">ETA to Alarm:</div>
-            <div class="col-xs-4 h5 text-color1">{{dboardCtrl.etaAlarm  | number:1}} minutes</div>
+            <div class="col-xs-6 h5 text-color1">Temp. Velocity:</div>
+            <div class="col-xs-6 h5 text-color1">{{dboardCtrl.tempSpeed | number:1}} F/min</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 h5 text-color1">ETA to Alarm:</div>
+            <div class="col-xs-6 h5 text-color1">{{dboardCtrl.etaAlarm  | number:1}} minutes</div>
         </div>
     </div>
 
@@ -120,6 +128,28 @@
         </div>
     </div>
 
+    <div class="row bottom-row-buttons">
+
+        <span class="h3">
+            <label ng-click="dboardCtrl.setAlarm()" style="cursor: pointer" ng-class="{'alarmBtn-dashboard': dboardCtrl.alarmBtn === true }"><i class='icon-attention-alt'></i>Alarm</label>
+        </span>
+        <span class="h3">
+            <label ng-click="dboardCtrl.addTimer()" style="cursor: pointer">
+                <i class="icon-clock" style="color: white"></i>
+                Timer
+            </label>
+        </span>
+
+        <span class="h3">
+            <label ng-click="dboardCtrl.rimsClick()" style="cursor: pointer" ng-class="{'rimsBtn-dashboard': dboardCtrl.rimsEnable == 1 }"><i class="icon-fire-1"></i>RIMS</label>
+        </span>
+        <span class="h3">
+            <label ng-click="dboardCtrl.pumpClick()" style="cursor: pointer" ng-class="{'pumpBtn-dashboard': dboardCtrl.pumpOn == 1  }"><i class="icon-off"></i>Pump</label>
+        </span>
+        <span class="h3">
+            <label ng-click="dboardCtrl.auxClick()" style="cursor: pointer" ng-class="{'auxBtn-dashboard': dboardCtrl.auxOn == 1 }"><i class="icon-off"></i>Aux</label>
+        </span>
+    </div>
 
     <!-- ############################ Quick link to classic mode #####################################-->
     <div class="col-sm-6">
