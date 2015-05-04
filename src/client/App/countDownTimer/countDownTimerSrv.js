@@ -24,7 +24,7 @@
 
         function doesTimerExist(potentialTimer) {
             timerAry.forEach(function (element, index, array) {
-                if (element.timer > (potentialTimer - 30000) && element.timer < (potentialTimer + 30000)) {
+                if (element.timer <= (potentialTimer + 30000) && element.timer >= (potentialTimer - 30000)) {
                     return true;
                 }
             });
