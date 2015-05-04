@@ -299,6 +299,47 @@
                 whichTemp: responseData.whichThermoAlarm
             };
 
+            if (responseData.timers.length > 0) {
+                var timers = responseData.timers;
+
+                var arduinoDate = new Date();
+                var arduinoTime = responseData.arduinoTimeLong.split(':');
+                arduinoDate.setHours(arduinoTime[0]);
+                arduinoDate.setMinutes(arduinoTime[1]);
+                arduinoDate.setSeconds(arduinoTime[2].split(' ')[0]);
+                arduinoDate.setMilliseconds(0);
+
+                timers.forEach(function (element, index, array) {
+                    var timeLeft = new Date();
+                    var elementSplit = element.split(':');
+                    timeLeft.setHours(elementSplit[0]);
+                    timeLeft.setMinutes(elementSplit[1]);
+                    timeLeft.setSeconds(elementSplit[2]);
+
+                    var timeLeftMs = timeLeft - arduinoDate;
+                    var msec = timeLeftMs;
+                    var hh = Math.floor(msec / 1000 / 60 / 60);
+                    msec -= hh * 1000 * 60 * 60;
+                    var mm = Math.floor(msec / 1000 / 60);
+                    msec -= mm * 1000 * 60;
+                    var ss = Math.floor(msec / 1000);
+                    msec -= ss * 1000;
+
+
+                    var potTimer = new Date();
+                    potTimer.setHours(potTimer.getHours() + hh);
+                    potTimer.setMinutes(potTimer.getMinutes() + mm);
+                    potTimer.setSeconds(potTimer.getSeconds() + ss);
+
+                    if (countDownTimerSrv.doesTimerExist(potTimer) !== true) {
+                        var timerIndex = countDownTimerSrv.getTimers().length + 1;
+                        var myObj = { id: timerIndex, timer: potTimer, label: 'From Arduino', isActive: true };
+                        countDownTimerSrv.addTimer(myObj);
+                    }
+
+                });
+            }
+
         }
 
     }

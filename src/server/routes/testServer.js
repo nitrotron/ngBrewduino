@@ -37,15 +37,15 @@
         "whichThermoAlarm": 1,
         "clearTimers": 1,
         "timers": [
-
+            "18:28:24"
         ],
         "timersNotAllocated": 8,
         "totalTimers": 12,
         "pumpOn": 1,
         "auxOn": 0,
         "rimsEnable": 1,
-        "arduinoTime": 61,
-        "arduinoTimeLong": "0:01:01 1/1/1970",
+        "arduinoTime": 323932,
+        "arduinoTimeLong": "17:58:52 4/1/1970",
         "setPoint": 100.00,
         "windowSize": 0,
         "kp": 2.00,
