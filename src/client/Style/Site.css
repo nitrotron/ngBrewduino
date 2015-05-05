@@ -815,7 +815,7 @@ div.dashboard-slide-menu {
     .bottom-row-buttons span {
         display: table-cell;
         text-align: center;
-        font-size: 12px;
+        font-size: 14px;
     }
 
         .bottom-row-buttons span:last-child {
