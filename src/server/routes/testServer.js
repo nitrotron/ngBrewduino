@@ -41,6 +41,7 @@
         ],
         "timersNotAllocated": 8,
         "totalTimers": 12,
+        "acquireData": 1,
         "pumpOn": 1,
         "auxOn": 0,
         "rimsEnable": 1,
@@ -150,6 +151,7 @@
         stubData.thermometers.forEach(function (element, index, array) {
             element.temp = element.temp + (Math.random() - 0.2);
         });
+        stubData.output = (Math.random());
         insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp, stubData.output, stubData.setPoint, stubData.kp, stubData.ki, stubData.kd);
     }
 

@@ -37,8 +37,8 @@
             console.log('JSON Error:' + e);
         }
 
-        if (jData.hasOwnProperty('DATALOGGING')) {
-            insertTemperatureHistories(jData.DATALOGGING.temp0, jData.DATALOGGING.temp1, jData.DATALOGGING.temp2, jData.DATALOGGING.temp3);
+        if (jData.hasOwnProperty('DATALOGGING')) { 
+            insertTemperatureHistories(jData.DATALOGGING.temp0, jData.DATALOGGING.temp1, jData.DATALOGGING.temp2, jData.DATALOGGING.temp3, jData.DATALOGGING.output, jData.DATALOGGING.setPoint, jData.DATALOGGING.kp, jData.DATALOGGING.ki, jData.DATALOGGING.kd);
         }
         else if (jData.hasOwnProperty('noSensors')) {
             console.log('just closing port');
