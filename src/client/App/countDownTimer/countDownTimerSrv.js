@@ -23,11 +23,12 @@
 
 
         function doesTimerExist(potentialTimer) {
-            timerAry.forEach(function (element, index, array) {
-                if (element.timer <= (potentialTimer + 30000) && element.timer >= (potentialTimer - 30000)) {
+            for (var i = 0; i < timerAry.length; i++) {
+                if (Math.abs(timerAry[i].timer - potentialTimer) <= 30000) {
                     return true;
                 }
-            });
+            }
+
             return false;
         }
 

@@ -815,6 +815,7 @@ div.dashboard-slide-menu {
     .bottom-row-buttons span {
         display: table-cell;
         text-align: center;
+        font-size: 12px;
     }
 
         .bottom-row-buttons span:last-child {
@@ -826,7 +827,7 @@ div.dashboard-slide-menu {
         }
 
         .bottom-row-buttons span .nonAlarm {
-                color: #7A9F90 !important;
+            color: #7A9F90 !important;
         }
 
 /* ********************     animations **************************************/
@@ -874,6 +875,10 @@ div.dashboard-slide-menu {
         width: 33.3333%;
         height: 40px;
     }
+
+    .bottom-row-buttons span {
+        font-size: 14px;
+    }
 }
 
 @media only screen and (min-width: 786px) {
@@ -902,6 +907,10 @@ div.dashboard-slide-menu {
                 top: -20px;
                 bottom: -20px;
             }
+
+    .bottom-row-buttons span {
+        font-size: 18px;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -935,5 +944,9 @@ div.dashboard-slide-menu {
 
     .TemperatureDigitalSmallBottom, .TemperatureDigitalSmallTop {
         font-size: 1.56em;
+    }
+
+    .bottom-row-buttons span {
+        font-size: 24px;
     }
 }
