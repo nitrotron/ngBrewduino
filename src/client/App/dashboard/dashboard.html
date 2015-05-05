@@ -128,6 +128,7 @@
         </div>
     </div>
 
+    <!-- ############################ Optional bottom row #####################################-->
     <div class="row bottom-row-buttons" ng-show="dboardCtrl.showBottomButtons===true">
 
         <span>
@@ -162,7 +163,8 @@
         <div class="text-color1 h6">Last chart update: {{dboardCtrl.lastChartUpdate | date:'mediumTime'}}</div>
     </div>
     <!-- ########################### Debug Status #####################################################-->
-    <div ng-if="dboardCtrl.showStatusLog" ng-include="'App/statusLog/statusLog.html'">
+    <div ng-if="dboardCtrl.showStatusLog" >
+          <pre class="statusLog">{{dboardCtrl.statusInfo | json}}</pre>
     </div>
 </div>
 

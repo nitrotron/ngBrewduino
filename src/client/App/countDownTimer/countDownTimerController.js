@@ -33,7 +33,7 @@
         function startNewTimer(newTimer, newTimerLabel) {
             vm.showAddTimerPanel = false;
             var alarmTime = new Date();
-            alarmTime.setSeconds(alarmTime.getSeconds() + (newTimer*60));
+            alarmTime.setSeconds(alarmTime.getSeconds() + (newTimer * 60));
             var myObj = { id: timerIndex, timer: alarmTime, label: newTimerLabel, isActive: true };
             timerIndex++;
             countDownTimerSrv.addTimer(myObj);
@@ -58,8 +58,14 @@
         }
 
         function getTimer(timer) {
+            updateSnapShot();
             return (timer - dateSnapShot < 0) ? 1 : (timer - dateSnapShot) / 1000;
         }
-              
+
+        function updateSnapShot() {
+            dateSnapShot = new Date();
+            dateSnapShot.setMilliseconds(0);
+        }
+
     }
 })();

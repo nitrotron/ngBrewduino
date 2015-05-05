@@ -48,11 +48,12 @@
     </div>
 
     <br />
-    <div class="text-right" style="width:100%; padding: 15px;">
+    <div class="text-right" style="width: 100%; padding: 15px;">
         <div class="text-color1 h6">Last temperature update: {{brewduino.lastTempUpdate | date:'mediumTime'}}</div>
     </div>
 
-    <div ng-if="brewingThermoItem.showStatusLog" ng-include="'App/statusLog/statusLog.html'">
+    <div ng-if="brewduino.showStatusLog">
+        <pre class="statusLog">{{brewduino.mcData | json}}</pre>
     </div>
 
 </div>

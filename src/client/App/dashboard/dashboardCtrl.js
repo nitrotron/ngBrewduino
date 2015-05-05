@@ -250,6 +250,7 @@
 
         function updateVM(responseData) {
             //vm.mcData = responseData;
+            vm.statusInfo = responseData;
             vm.rimsEnable = responseData.rimsEnable;
             vm.pumpOn = responseData.pumpOn;
             vm.auxOn = responseData.auxOn;
