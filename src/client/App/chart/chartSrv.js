@@ -114,15 +114,30 @@
                 //},
                 'displayExactValues': true,
                 'vAxis': {
-                    'title': 'Temperature unit', 'gridlines': { 'count': 6, 'color': '#D3D3D4' },
+                    //'title': 'Temperature unit',
+                    'gridlines': { 'count': 6, 'color': '#D3D3D4' },
                     'titleTextStyle': { 'color': '#D3D3D4' },
-                    'textStyle': { 'color': '#D3D3D4' }
+                    'textStyle': { 'color': '#D3D3D4' },
+                    '0': { 'title': 'Temps F' },
+                    '1': { 'title': 'rims' },
                 },
                 'hAxis': {
                     'title': 'Date',
                     'gridlines': { 'color': '#D3D3D4' },
                     'titleTextStyle': { 'color': '#D3D3D4' },
                     'textStyle': { 'color': '#D3D3D4' }
+                },
+                'series': {
+                    '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '1': { 'axis': 'rims', 'targetAxisIndex': 0 },
+                    '2': { 'axis': 'rims', 'targetAxisIndex': 0 },
+                    '3': { 'axis': 'rims', 'targetAxisIndex': 1 }
+                },
+                'axis': {
+                    y: {
+                        'Temps': { 'label': 'Temps F' },
+                        'rims': { 'label': 'rims' }
+                    }
                 },
                 'legend': { 'textStyle': { 'color': '#D3D3D4' } },
 
