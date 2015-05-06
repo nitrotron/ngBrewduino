@@ -114,7 +114,7 @@
                 //},
                 'displayExactValues': true,
                 'vAxis': {
-                    //'title': 'Temperature unit',
+                    //'title': 'Temperature unit', 
                     'gridlines': { 'count': 6, 'color': '#D3D3D4' },
                     'titleTextStyle': { 'color': '#D3D3D4' },
                     'textStyle': { 'color': '#D3D3D4' },
@@ -129,8 +129,8 @@
                 },
                 'series': {
                     '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '1': { 'axis': 'rims', 'targetAxisIndex': 0 },
-                    '2': { 'axis': 'rims', 'targetAxisIndex': 0 },
+                    '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '2': { 'axis': 'Temps', 'targetAxisIndex': 1 },
                     '3': { 'axis': 'rims', 'targetAxisIndex': 1 }
                 },
                 'axis': {
