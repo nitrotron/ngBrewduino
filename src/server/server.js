@@ -6,10 +6,10 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-//var compress = require('compression');
+var compress = require('compression');
 //var cors = require('cors');
 //var errorHandler = require('./routes/utils/errorHandler')();
-//var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 //var logger = require('morgan');
 var port = process.env.PORT || 7200;
 var routes;
@@ -20,9 +20,9 @@ var useMock = process.env.USE_MOCK;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-//app.use(compress());            // Compress response data with gzip
+app.use(compress());            // Compress response data with gzip
 //app.use(logger('dev'));
-//app.use(favicon(__dirname + '/favicon.ico'));
+app.use(favicon(__dirname + '/favicon.ico'));
 //app.use(cors());                // enable ALL CORS requests
 //app.use(errorHandler.init);
 
@@ -73,9 +73,10 @@ switch (environment) {
 
     case 'stage':
     case 'build':
+        var oneDay = 86400000;
         console.log('** BUILD **');
         console.log('serving from ' + './build/');
-        app.use('/', express.static('./build/'));
+        app.use('/', express.static('./build/', { maxAge: oneDay }));
         break;
     default:
         console.log('** DEV **');
