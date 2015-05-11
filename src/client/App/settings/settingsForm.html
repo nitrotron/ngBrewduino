@@ -84,7 +84,7 @@
 
                 <div class="col-md-5 col-xs-6" ng-hide="settingsFormCtrl.showThermoOrder[thermo.id]" ng-click="settingsFormCtrl.clickThermoOrder(thermo)">{{thermo.order}}</div>
                 <div class="col-md-5 col-xs-6" ng-show="settingsFormCtrl.showThermoOrder[thermo.id]">
-                    <input type="text" class="form-control input-sm" ng-model="thermo.order" ng-blur="settingsFormCtrl.exitThermoOrder(thermo)" />
+                    <input type="number" class="form-control input-sm" ng-model="thermo.order" ng-blur="settingsFormCtrl.exitThermoOrder(thermo)" />
                 </div>
             </div>
         </div>
