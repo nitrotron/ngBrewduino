@@ -91,6 +91,7 @@ gulp.task('js', ['lint', 'templatecache'], function () {
     var source = [].concat(paths.js, paths.build + 'templates.js');
     return gulp
         .src(source)
+        .pipe(plug.sourcemaps.init())
         .pipe(plug.concat('all.min.js'))
         .pipe(plug.ngAnnotate({
             add: true
@@ -102,6 +103,7 @@ gulp.task('js', ['lint', 'templatecache'], function () {
         .pipe(plug.bytediff.stop())
         //.pipe(plug.sourcemaps.write('./'))
         //.pipe(gulp.dest(paths.build));
+        .pipe(plug.sourcemaps.write())
         .pipe(gulp.dest(paths.build));
 });
 

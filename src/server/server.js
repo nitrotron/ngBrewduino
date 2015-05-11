@@ -18,7 +18,7 @@ var environment = process.env.NODE_ENV;
 var useMock = process.env.USE_MOCK;
 
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(compress());            // Compress response data with gzip
 //app.use(logger('dev'));
@@ -76,7 +76,8 @@ switch (environment) {
         var oneDay = 86400000;
         console.log('** BUILD **');
         console.log('serving from ' + './build/');
-        app.use('/', express.static('./build/', { maxAge: oneDay }));
+        //app.use('/', express.static('./build/', { maxAge: oneDay }));
+        app.use('/', express.static('./build/'));
         break;
     default:
         console.log('** DEV **');
