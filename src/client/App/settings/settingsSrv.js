@@ -21,7 +21,7 @@
         { name: 'RIMS', order: 3, chartEnabled: false, id: 3 },
 
     ];
-    settingsSrv.showBottomButtons = false;
+    settingsSrv.showBottomButtons = true;
     // settingsSrv.thermoNames = ['Mash', 'Kettle','HLT / Kettle2', 'RIMS'];
 
 })();
