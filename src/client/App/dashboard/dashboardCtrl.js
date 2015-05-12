@@ -68,12 +68,9 @@
             if (vm.hasOwnProperty('thermometers') === false || vm.thermometers === undefined) {
                 getStatus();
             }
-            //if (vm.thermometers) {
-            //    getStatus();
-            //}
-
-            getChartData();
-            
+            vm.chart = chartSrv.getChartConfig();
+            vm.chart.view = { columns: getChartColumns() };
+           // getChartData();
 
             brewduionoDataSrv.setAutoUpdates(true);
             chartSrv.setAutoUpdates(true);
@@ -84,6 +81,7 @@
                     updateVM(newValue);
                     logger.success('Updated status', newValue);
                 });
+            
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
                     if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
@@ -92,10 +90,8 @@
                         vm.tempSpeed = chartSrv.getTempSpeed($state.params.id);
                         if (vm.hasOwnProperty('thermo') && vm.thermo.hasOwnProperty('highAlarm') && vm.thermo.hasOwnProperty('lowAlarm')) {
                             vm.etaAlarm = chartSrv.getEtaToAlarm($state.params.id, vm.thermo.highAlarm, vm.thermo.lowAlarm);
-                        } else {
-                            vm.etaAlarm = 0;
                         }
-
+                        
                         logger.success('Updated chart', newValue);
                     }
                 });
@@ -146,9 +142,7 @@
         }
 
         function getChartData() {
-            vm.chart = chartSrv.getChartConfig();
-            vm.chart.view = { columns: getChartColumns() };
-
+          
             if (firstChartUpdate === false) {
                 firstChartUpdate = true;
                 chartSrv.getChartData()
@@ -165,8 +159,8 @@
              .then(function (response) {
                  updateVM(response.data);
 
-                 //vm.chart = chartSrv.getChartConfig();
-                 //vm.chart.view = { columns: getChartColumns() };
+                 vm.chart = chartSrv.getChartConfig();
+                 vm.chart.view = { columns: getChartColumns() };
                  //getChartData();
 
                  //logger.success('Updated status', response.data);
