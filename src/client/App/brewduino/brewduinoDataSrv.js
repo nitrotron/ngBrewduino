@@ -15,6 +15,7 @@
             clearSessionData: clearSessionData,
             getCurrentStatus: getCurrentStatus,
             getStatus: getStatus,
+            restartPort: restartPort,
             sendCmd: sendCmd,
             setAutoUpdates: setAutoUpdates
         };
@@ -63,6 +64,10 @@
             return response;
         }
 
+        function restartPort() {
+            var cmdUrl = '/restartPort';
+            return $http.get(cmdUrl).error(sendCmdFail);
+        }
 
         function sendCmd(whichCmd, args) {
             var cmdUrl = '/sendCommand/' + whichCmd + '/' + args;

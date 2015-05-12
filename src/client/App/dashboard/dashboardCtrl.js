@@ -27,6 +27,7 @@
         vm.closeMenu = closeMenu;
         vm.dbSettingsClick = dbSettingsClick;
         vm.exitAlarm = exitAlarm;
+        vm.hasTempAlarm = hasTempAlarm;
         vm.lastChartUpdate = new Date();
         vm.lastTempUpdate = new Date();
         vm.openMenu = openMenu;
@@ -70,7 +71,7 @@
             }
             vm.chart = chartSrv.getChartConfig();
             vm.chart.view = { columns: getChartColumns() };
-           // getChartData();
+            // getChartData();
 
             brewduionoDataSrv.setAutoUpdates(true);
             chartSrv.setAutoUpdates(true);
@@ -81,7 +82,7 @@
                     updateVM(newValue);
                     logger.success('Updated status', newValue);
                 });
-            
+
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
                     if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
@@ -91,7 +92,7 @@
                         if (vm.hasOwnProperty('thermo') && vm.thermo.hasOwnProperty('highAlarm') && vm.thermo.hasOwnProperty('lowAlarm')) {
                             vm.etaAlarm = chartSrv.getEtaToAlarm($state.params.id, vm.thermo.highAlarm, vm.thermo.lowAlarm);
                         }
-                        
+
                         logger.success('Updated chart', newValue);
                     }
                 });
@@ -141,8 +142,12 @@
             }
         }
 
+        function hasTempAlarm(id) {
+            return (vm.alarm.tempA == 1 && vm.alarm.whichTemp == id);
+        }
+
         function getChartData() {
-          
+
             if (firstChartUpdate === false) {
                 firstChartUpdate = true;
                 chartSrv.getChartData()

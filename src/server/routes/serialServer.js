@@ -37,23 +37,12 @@
             console.log('JSON Error:' + e);
         }
 
-        if (jData.hasOwnProperty('DATALOGGING')) { 
+        if (jData.hasOwnProperty('DATALOGGING')) {
             insertTemperatureHistories(jData.DATALOGGING.temp0, jData.DATALOGGING.temp1, jData.DATALOGGING.temp2, jData.DATALOGGING.temp3, jData.DATALOGGING.output, jData.DATALOGGING.setPoint, jData.DATALOGGING.kp, jData.DATALOGGING.ki, jData.DATALOGGING.kd);
         }
         else if (jData.hasOwnProperty('noSensors')) {
             console.log('just closing port');
-            myPort.close(function (error) {
-                console.log('port should now be closed');
-                sleep.sleep(1);
-                console.log('done sleeping');
-                // lets reopen a port
-                myPort.open(); // = new SerialPort(portName, serialOptions);
-                console.log('done creating new port');
-                // set up event listeners for the serial events:
-                myPort.on('open', showPortOpen);
-                myPort.on('data', saveLatestData);
-                myPort.on('error', showError);
-            });
+            myPort.close(restartPort);
         }
         else {
             serialData = jData;
@@ -66,12 +55,25 @@
         console.log('Serial port error: ' + error);
     }
 
+    function restartPort(error) {
+        console.log('port should now be closed');
+        sleep.sleep(1);
+        console.log('done sleeping');
+        // lets reopen a port
+        myPort.open(); // = new SerialPort(portName, serialOptions);
+        console.log('done creating new port');
+        // set up event listeners for the serial events:
+        myPort.on('open', showPortOpen);
+        myPort.on('data', saveLatestData);
+        myPort.on('error', showError);
+    }
 
     app.get('/getStatus', getStatus);        // handler for /date
     app.get('/getChartData', getChartData);
     app.get('/clearSessionData', clearSessionData);
     app.post('/createNewSession', createNewSession);
     app.get('/sendCommand/:whichCmd/:val', sendCommand);
+    app.get('/restartPort', restartPortAPI);
 
     function getStatus(request, response, next) {
 
@@ -161,6 +163,9 @@
         response.end;
     }
 
+    function restartPortAPI(req, res, next) {
+        restartPort("from API");
+    }
 
 
     function insertTemperatureHistories(t0, t1, t2, t3, rimsOnWin, rimsSetPoint, kp, ki, kd) {

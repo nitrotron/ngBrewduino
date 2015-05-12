@@ -34,7 +34,7 @@
         ],
         "tempAlarmActive": 1,
         "timerAlarmActive": 0,
-        "whichThermoAlarm": 1,
+        "whichThermoAlarm": 0,
         "clearTimers": 1,
         "timers": [
             "18:28:24"
@@ -63,6 +63,7 @@
     app.get('/clearSessionData', clearSessionData);
     app.post('/createNewSession', createNewSession);
     app.get('/sendCommand/:whichCmd/:val', sendCommand);
+    app.get('/restartPort', restartPortAPI);
 
     function getStubData(request, response, next) {
 
@@ -143,6 +144,10 @@
         console.log('request.params.val = ' + request.params.val);
         response.send('success');
         response.end;
+    }
+
+    function restartPortAPI(req, res, next) {
+        console.log('would be resetting the port');
     }
 
     setInterval(randomizeStubData, 10000);

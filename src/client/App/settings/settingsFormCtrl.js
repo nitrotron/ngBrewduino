@@ -20,6 +20,7 @@
         vm.clickThermoOrder = clickThermoOrder;
         vm.exitThermoName = exitThermoName;
         vm.exitThermoOrder = exitThermoOrder;
+        vm.restartPort = restartPort;
         vm.submit = submit;
 
         activate();
@@ -63,6 +64,12 @@
         }
         function exitThermoOrder(thermo) {
             vm.showThermoOrder[thermo.id] = false;
+        }
+
+        function restartPort() {
+            brewduionoDataSrv.restartPort().success(function (response) {
+                logger.warning('Restarting Arduino');
+            });
         }
 
         function submit(settings) {
