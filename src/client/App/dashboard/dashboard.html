@@ -117,9 +117,12 @@
                         <br />
                         <br />
                         <h4>Chart Type:</h4>
-                        <input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="AreaChart" />Area
+                        <label><input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="AreaChart">Area</label>
                         <br />
-                        <input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="LineChart" />Line
+                        <label><input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="LineChart" />Line</label>
+                        <br />
+                        <br />
+                        <div style="cursor:pointer" ng-class="{'nonAlarm': dboardCtrl.showRims == true }" ng-click="dboardCtrl.toggleShowRims()">Show RIMs details</div>
                     </div>
                 </div>
             </div>

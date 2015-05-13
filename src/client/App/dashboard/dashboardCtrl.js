@@ -42,9 +42,11 @@
         vm.showMenu = false;
         vm.showStatusLog = settingsSrv.showStatusLog;
         vm.otherThermos = [];
+        vm.showRims = false;
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
         vm.toggleAlarm = toggleAlarm;
+        vm.toggleShowRims = toggleShowRims;
 
         vm.tempSpeed = 0;
         vm.etaAlarm = 0;
@@ -98,6 +100,7 @@
                 });
 
             vm.showBottomButtons = settingsSrv.showBottomButtons;
+            //chartSrv.enableRims(vm.showRims);
         }
 
         function addTimer() {
@@ -183,9 +186,13 @@
             var rc = [0];
             settingsSrv.thermos.forEach(function (element, index, array) {
                 if (element.chartEnabled || index === Number($state.params.id)) {
-                    rc.push(index + 1);
+                    rc.push(index + 3);
                 }
             });
+            if (vm.showRims) {
+                rc.push(1);
+                rc.push(2);
+            }
             return rc;
         }
 
@@ -260,6 +267,12 @@
         function toggleAlarm(whichAlarm) {
             vm[whichAlarm] = vm.thermo[whichAlarm];
             vm.showAlarmForm[whichAlarm] = !vm.showAlarmForm[whichAlarm];
+        }
+
+        function toggleShowRims() {
+            vm.showRims = !vm.showRims;
+            //chartSrv.enableRims(vm.showRims);
+            vm.chart.view = { columns: getChartColumns() };
         }
 
         function updateVM(responseData) {

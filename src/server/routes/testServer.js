@@ -47,7 +47,7 @@
         "rimsEnable": 1,
         "arduinoTime": 323932,
         "arduinoTimeLong": "17:58:52 4/1/1970",
-        "setPoint": 100.00,
+        "setPoint": 120.00,
         "windowSize": 0,
         "kp": 2.00,
         "ki": 5.00,
@@ -98,9 +98,6 @@
                            "               th.rimsOnWindow,                                " +
                            "               th.rimsSetPoint,                                " +
                            "               th.rimsKp, th.rimsKi, th.rimskd,                " +
-                           "               th.temp3 AS temp3,                              " +
-                           "               th.temp3 AS temp3,                              " +
-                           "               th.temp3 AS temp3,                              " +
                            "               s.sessionName as sessionName                    " +
                            "        FROM   temperaturehistories as th                      " +
                            "        join   Sessions as s on th.sessionid = s.id            " +
@@ -156,7 +153,7 @@
         stubData.thermometers.forEach(function (element, index, array) {
             element.temp = element.temp + (Math.random() - 0.2);
         });
-        stubData.output = (Math.random());
+        stubData.output = (Math.random() * 1000);
         insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp, stubData.output, stubData.setPoint, stubData.kp, stubData.ki, stubData.kd);
     }
 

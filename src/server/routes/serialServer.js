@@ -113,9 +113,6 @@
                            "               th.rimsOnWindow,                                " +
                            "               th.rimsSetPoint,                                " +
                            "               th.rimsKp, th.rimsKi, th.rimskd,                " +
-                           "               th.temp3 AS temp3,                              " +
-                           "               th.temp3 AS temp3,                              " +
-                           "               th.temp3 AS temp3,                              " +
                            "               s.sessionName as sessionName                    " +
                            "        FROM   temperaturehistories as th                      " +
                            "        join   Sessions as s on th.sessionid = s.id            " +

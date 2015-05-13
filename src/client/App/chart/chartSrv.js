@@ -5,12 +5,14 @@
     /* @ngInject */
     function chartSrv($http, $interval, $q, settingsSrv) {
         var myCurrentChart = {};
+        var chartConfig = {};
         var autoUpdatesEnabled = false;
         var chartTitle = 'Temperature';
 
         autoUpdates();
 
         return {
+            enableRims: enableRims,
             getChartConfig: getChartConfig,
             getChartData: getChartData,
             getCurrentData: getCurrentData,
@@ -28,11 +30,51 @@
                 if (autoUpdatesEnabled === true) {
                     getChartData();
                 }
-            }, 60000);
+            }, 6000);
+        }
+
+        function enableRims(rimsOn) {
+            if (rimsOn) {
+                chartConfig.options['series'] = {
+                    '0': { 'axis': 'rims', 'targetAxisIndex': 1 },
+                    '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
+
+                };
+                chartConfig.options['vAxis'] = {
+                    //'title': 'Temperature unit', 
+                    'gridlines': { 'count': 6, 'color': '#D3D3D4' },
+                    'titleTextStyle': { 'color': '#D3D3D4' },
+                    'textStyle': { 'color': '#D3D3D4' },
+                    '0': { 'title': 'Temps F' },
+                    '1': { 'title': 'rims' }
+                };
+            }
+            else {
+                chartConfig.options['series'] = {
+                    '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
+
+                };
+                chartConfig.options['vAxis'] = {
+                    //'title': 'Temperature unit', 
+                    'gridlines': { 'count': 6, 'color': '#D3D3D4' },
+                    'titleTextStyle': { 'color': '#D3D3D4' },
+                    'textStyle': { 'color': '#D3D3D4' }
+                };
+
+            }
         }
 
         function getChartConfig() {
-            var chartConfig = {};
+
             chartConfig.type = 'AreaChart';
             chartConfig.cssStyle = 'height:400px; width:100%; float:left;';
             chartConfig.data = {
@@ -46,6 +88,16 @@
                 'label': 'Time',
                 'type': 'datetime',
                 'p': {}
+            });
+            chartConfig.data.cols.push({
+                'id': 'rimsWin',
+                'label': 'rWindow',
+                'type': 'number'
+            });
+            chartConfig.data.cols.push({
+                'id': 'rimsSetPt',
+                'label': 'rSetPoint',
+                'type': 'number'
             });
             chartConfig.data.cols.push({
                 'id': 't0',
@@ -70,6 +122,7 @@
                 'label': settingsSrv.thermos[3].name,
                 'type': 'number'
             });
+
 
 
             chartConfig.options = {
@@ -114,12 +167,10 @@
                 //},
                 'displayExactValues': true,
                 'vAxis': {
-                    //'title': 'Temperature unit', 
+                    'title': 'Temperature unit', 
                     'gridlines': { 'count': 6, 'color': '#D3D3D4' },
                     'titleTextStyle': { 'color': '#D3D3D4' },
                     'textStyle': { 'color': '#D3D3D4' },
-                    '0': { 'title': 'Temps F' },
-                    '1': { 'title': 'rims' },
                 },
                 'hAxis': {
                     'title': 'Date',
@@ -130,15 +181,17 @@
                 'series': {
                     '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
                     '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '2': { 'axis': 'Temps', 'targetAxisIndex': 1 },
-                    '3': { 'axis': 'rims', 'targetAxisIndex': 1 }
+                    '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+                    '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
                 },
-                'axis': {
-                    y: {
-                        'Temps': { 'label': 'Temps F' },
-                        'rims': { 'label': 'rims' }
-                    }
-                },
+                //'axis': {
+                //    y: {
+                //        'Temps': { 'label': 'Temps F' },
+                //        'rims': { 'label': 'rims' }
+                //    }
+                //},
                 'legend': { 'textStyle': { 'color': '#D3D3D4' } },
 
                 'backgroundColor': '#353E42',
@@ -162,8 +215,8 @@
                     data.forEach(function (element, index, array) {
                         var dt = new Date(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
 
-                        rows.push(constRowObj(dt, element.temp0,
-                            element.temp1, element.temp2, element.temp3));
+                        rows.push(constRowObj(dt, element.rimsOnWindow, element.rimsSetPoint,
+                            element.temp0, element.temp1, element.temp2, element.temp3));
                     });
 
                     chartTitle = data[0]['sessionName'];
@@ -216,10 +269,14 @@
             }
         }
 
-        function constRowObj(time, t0, t1, t2, t3) {
+        function constRowObj(time, onWin, setPt, t0, t1, t2, t3) {
             return {
                 'c': [{
                     'v': time
+                }, {
+                    'v': onWin
+                }, {
+                    'v': setPt
                 }, {
                     'v': t0
                 }, {
