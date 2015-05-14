@@ -2,88 +2,89 @@
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
-1 verbose cli   '--save-dev',
-1 verbose cli   'revReplace' ]
+1 verbose cli   'highcharts-ng',
+1 verbose cli   '--save-dev' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.36
 4 verbose node symlink C:\Program Files\nodejs\\node.exe
 5 warn package.json @ No description
 6 warn package.json @ No repository field.
 7 warn package.json @ No README data
-8 verbose readDependencies using package.json deps
-9 verbose cache add [ 'revReplace', null ]
-10 verbose cache add name=undefined spec="revReplace" args=["revReplace",null]
-11 verbose parsed url { protocol: null,
-11 verbose parsed url   slashes: null,
-11 verbose parsed url   auth: null,
-11 verbose parsed url   host: null,
-11 verbose parsed url   port: null,
-11 verbose parsed url   hostname: null,
-11 verbose parsed url   hash: null,
-11 verbose parsed url   search: null,
-11 verbose parsed url   query: null,
-11 verbose parsed url   pathname: 'revReplace',
-11 verbose parsed url   path: 'revReplace',
-11 verbose parsed url   href: 'revReplace' }
-12 silly lockFile b06530ac-revReplace revReplace
-13 verbose lock revReplace C:\Users\tmetcalf\AppData\Roaming\npm-cache\b06530ac-revReplace.lock
-14 silly lockFile b06530ac-revReplace revReplace
-15 silly lockFile b06530ac-revReplace revReplace
-16 verbose addNamed [ 'revReplace', '' ]
-17 verbose addNamed [ null, '*' ]
-18 silly lockFile 7a43715d-revReplace revReplace@
-19 verbose lock revReplace@ C:\Users\tmetcalf\AppData\Roaming\npm-cache\7a43715d-revReplace.lock
-20 silly addNameRange { name: 'revReplace', range: '*', hasData: false }
-21 verbose request where is /revReplace
-22 verbose request registry https://registry.npmjs.org/
-23 verbose request id e9925a62e8d8fd30
-24 verbose url raw /revReplace
-25 verbose url resolving [ 'https://registry.npmjs.org/', './revReplace' ]
-26 verbose url resolved https://registry.npmjs.org/revReplace
-27 verbose request where is https://registry.npmjs.org/revReplace
-28 info trying registry request attempt 1 at 16:33:47
-29 http GET https://registry.npmjs.org/revReplace
-30 http 404 https://registry.npmjs.org/revReplace
-31 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-31 verbose headers   'content-type': 'application/json',
-31 verbose headers   'cache-control': 'max-age=0',
-31 verbose headers   'content-length': '51',
-31 verbose headers   'accept-ranges': 'bytes',
-31 verbose headers   date: 'Thu, 07 May 2015 20:33:45 GMT',
-31 verbose headers   via: '1.1 varnish',
-31 verbose headers   age: '0',
-31 verbose headers   connection: 'keep-alive',
-31 verbose headers   'x-served-by': 'cache-jfk1034-JFK',
-31 verbose headers   'x-cache': 'MISS',
-31 verbose headers   'x-cache-hits': '0',
-31 verbose headers   'x-timer': 'S1431030825.735510,VS0,VE90' }
-32 silly registry.get cb [ 404,
-32 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-32 silly registry.get     'content-type': 'application/json',
-32 silly registry.get     'cache-control': 'max-age=0',
-32 silly registry.get     'content-length': '51',
-32 silly registry.get     'accept-ranges': 'bytes',
-32 silly registry.get     date: 'Thu, 07 May 2015 20:33:45 GMT',
-32 silly registry.get     via: '1.1 varnish',
-32 silly registry.get     age: '0',
-32 silly registry.get     connection: 'keep-alive',
-32 silly registry.get     'x-served-by': 'cache-jfk1034-JFK',
-32 silly registry.get     'x-cache': 'MISS',
-32 silly registry.get     'x-cache-hits': '0',
-32 silly registry.get     'x-timer': 'S1431030825.735510,VS0,VE90' } ]
-33 silly lockFile 7a43715d-revReplace revReplace@
-34 silly lockFile 7a43715d-revReplace revReplace@
-35 error 404 404 Not Found: revReplace
-35 error 404
-35 error 404 'revReplace' is not in the npm registry.
-35 error 404 You should bug the author to publish it
-35 error 404
-35 error 404 Note that you can also install from a
-35 error 404 tarball, folder, or http url, or git url.
-36 error System Windows_NT 6.1.7601
-37 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save-dev" "revReplace"
-38 error cwd C:\Users\tmetcalf\Documents\GitHub\ngBrewduino\ngBrewduino
-39 error node -v v0.10.36
-40 error npm -v 1.4.28
-41 error code E404
-42 verbose exit [ 1, true ]
+8 warn package.json compress@0.99.0 No repository field.
+9 verbose readDependencies using package.json deps
+10 verbose cache add [ 'highcharts-ng', null ]
+11 verbose cache add name=undefined spec="highcharts-ng" args=["highcharts-ng",null]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: 'highcharts-ng',
+12 verbose parsed url   path: 'highcharts-ng',
+12 verbose parsed url   href: 'highcharts-ng' }
+13 silly lockFile cafad814-highcharts-ng highcharts-ng
+14 verbose lock highcharts-ng C:\Users\tmetcalf\AppData\Roaming\npm-cache\cafad814-highcharts-ng.lock
+15 silly lockFile cafad814-highcharts-ng highcharts-ng
+16 silly lockFile cafad814-highcharts-ng highcharts-ng
+17 verbose addNamed [ 'highcharts-ng', '' ]
+18 verbose addNamed [ null, '*' ]
+19 silly lockFile 36b9d084-highcharts-ng highcharts-ng@
+20 verbose lock highcharts-ng@ C:\Users\tmetcalf\AppData\Roaming\npm-cache\36b9d084-highcharts-ng.lock
+21 silly addNameRange { name: 'highcharts-ng', range: '*', hasData: false }
+22 verbose request where is /highcharts-ng
+23 verbose request registry https://registry.npmjs.org/
+24 verbose request id 860c71986161b401
+25 verbose url raw /highcharts-ng
+26 verbose url resolving [ 'https://registry.npmjs.org/', './highcharts-ng' ]
+27 verbose url resolved https://registry.npmjs.org/highcharts-ng
+28 verbose request where is https://registry.npmjs.org/highcharts-ng
+29 info trying registry request attempt 1 at 12:33:01
+30 http GET https://registry.npmjs.org/highcharts-ng
+31 http 404 https://registry.npmjs.org/highcharts-ng
+32 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+32 verbose headers   'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=0',
+32 verbose headers   'content-length': '51',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Thu, 14 May 2015 16:32:53 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   age: '0',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-iad2130-IAD',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1431621173.675555,VS0,VE89' }
+33 silly registry.get cb [ 404,
+33 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+33 silly registry.get     'content-type': 'application/json',
+33 silly registry.get     'cache-control': 'max-age=0',
+33 silly registry.get     'content-length': '51',
+33 silly registry.get     'accept-ranges': 'bytes',
+33 silly registry.get     date: 'Thu, 14 May 2015 16:32:53 GMT',
+33 silly registry.get     via: '1.1 varnish',
+33 silly registry.get     age: '0',
+33 silly registry.get     connection: 'keep-alive',
+33 silly registry.get     'x-served-by': 'cache-iad2130-IAD',
+33 silly registry.get     'x-cache': 'MISS',
+33 silly registry.get     'x-cache-hits': '0',
+33 silly registry.get     'x-timer': 'S1431621173.675555,VS0,VE89' } ]
+34 silly lockFile 36b9d084-highcharts-ng highcharts-ng@
+35 silly lockFile 36b9d084-highcharts-ng highcharts-ng@
+36 error 404 404 Not Found: highcharts-ng
+36 error 404
+36 error 404 'highcharts-ng' is not in the npm registry.
+36 error 404 You should bug the author to publish it
+36 error 404
+36 error 404 Note that you can also install from a
+36 error 404 tarball, folder, or http url, or git url.
+37 error System Windows_NT 6.1.7601
+38 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "highcharts-ng" "--save-dev"
+39 error cwd C:\Users\tmetcalf\Documents\GitHub\ngBrewduino\ngBrewduino
+40 error node -v v0.10.36
+41 error npm -v 1.4.28
+42 error code E404
+43 verbose exit [ 1, true ]

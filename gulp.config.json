@@ -6,6 +6,7 @@
         "./src/client/3rdParty/script/ng-google-chart.js",
         "./src/client/3rdParty/script/toaster.min.js",
         "./src/client/3rdParty/script/angular-animate.js"
+		"./src/client/3rdParty/script/highcharts-ng.min.js"
     ],
     "htmltemplates": "./src/client/App/**/*.html",
     "build": "./build/",
@@ -19,9 +20,7 @@
     "vendorcss": [
         "./src/client/3rdParty/css/bootstrap.nightly.css",
         "./src/client/3rdParty/css/toaster.min.css",
-	
 		"./src/client/Fonts/fontello-9f2eb6cd/css/fontello.css"
-	   
     ],
 	"fonts": [
 	
