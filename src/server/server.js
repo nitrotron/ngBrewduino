@@ -73,10 +73,12 @@ switch (environment) {
 
     case 'stage':
     case 'build':
-        var oneDay = 86400000;
+        var oneMonth = 86400000 * 30;
         console.log('** BUILD **');
         console.log('serving from ' + './build/');
-        //app.use('/', express.static('./build/', { maxAge: oneDay }));
+        app.use('/script', express.static('./build/script', { maxAge: oneMonth }));
+        app.use('/font', express.static('./build/font', { maxAge: oneMonth }));
+        app.use('/content', express.static('./build/content', { maxAge: oneMonth }));
         app.use('/', express.static('./build/'));
         break;
     default:

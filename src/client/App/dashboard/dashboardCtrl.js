@@ -74,10 +74,10 @@
             vm.chart = chartSrv.getChartConfig();
             vm.chart.view = { columns: getChartColumns() };
             // getChartData();
-
+ 
             brewduionoDataSrv.setAutoUpdates(true);
             chartSrv.setAutoUpdates(true);
-
+ 
 
             $scope.$watch(brewduionoDataSrv.getCurrentStatus,
                 function (newValue, oldValue) {

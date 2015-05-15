@@ -32,7 +32,7 @@ gulp.task('templatecache', function () {
             root: 'App/'
         }))
        .pipe(plug.bytediff.stop())
-       .pipe(gulp.dest(paths.build));
+       .pipe(gulp.dest(paths.build + 'script'));
 });
 
 gulp.task('css', function () {
@@ -88,7 +88,7 @@ gulp.task('lint', function () {
 
 gulp.task('js', ['lint', 'templatecache'], function () {
     log('Bundling, Minifying, and copying MatterClosing JavaScript');
-    var source = [].concat(paths.js, paths.build + 'templates.js');
+    var source = [].concat(paths.js, paths.build + 'script/templates.js');
     return gulp
         .src(source)
         .pipe(plug.sourcemaps.init())
@@ -104,7 +104,7 @@ gulp.task('js', ['lint', 'templatecache'], function () {
         //.pipe(plug.sourcemaps.write('./'))
         //.pipe(gulp.dest(paths.build));
         .pipe(plug.sourcemaps.write())
-        .pipe(gulp.dest(paths.build));
+        .pipe(gulp.dest(paths.build + 'script'));
 });
 
 gulp.task('vendorjs', function () {
@@ -115,7 +115,7 @@ gulp.task('vendorjs', function () {
         .pipe(plug.bytediff.start())
         .pipe(plug.uglify())
         .pipe(plug.bytediff.stop())
-        .pipe(gulp.dest(paths.build));
+        .pipe(gulp.dest(paths.build + 'script'));
 });
 
 
@@ -149,8 +149,8 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function () 
     .pipe(indexFilter) // filter to index.html
         .pipe(inject('content/vendor.min.css', 'inject-vendor'))
         .pipe(inject('content/all.min.css'))
-        .pipe(inject('vendor.min.js', 'inject-vendor'))
-        .pipe(inject('all.min.js'))
+        .pipe(inject('script/vendor.min.js', 'inject-vendor'))
+        .pipe(inject('script/all.min.js'))
         .pipe(gulp.dest(paths.build)) // write the rev files
        .pipe(indexFilter.restore()) // remove filter, back to original stream
 
@@ -159,7 +159,7 @@ gulp.task('rev-and-inject', ['js', 'vendorjs', 'css', 'vendorcss'], function () 
     .pipe(gulp.dest(paths.build)) // write the index.html file changes
     .pipe(plug.rev.manifest()) // create the manifest (must happen last or we screw up the injection)
     .pipe(gulp.dest(paths.build)); // write the manifest
-
+    
     function inject(path, name) {
         var pathGlob = paths.build + path;
         var options = {
