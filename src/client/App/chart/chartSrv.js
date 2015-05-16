@@ -10,6 +10,7 @@
         var chartTitle = 'Temperature';
 
         autoUpdates();
+        activate();
 
         return {
             enableRims: enableRims,
@@ -23,182 +24,154 @@
         };
 
 
+
         function autoUpdates() {
+            //myCurrentChart = getChartConfig();
+            //myCurrentChart.data.rows = getChartData();
+            //$interval(function () {
+            //    if (autoUpdatesEnabled === true) {
+            //        getChartData();
+            //    }
+            //}, 60000);
+        }
+
+        function activate() {
             myCurrentChart = getChartConfig();
-            myCurrentChart.data.rows = getChartData();
-            $interval(function () {
-                if (autoUpdatesEnabled === true) {
-                    getChartData();
-                }
-            }, 60000);
         }
 
         function enableRims(rimsOn) {
-            if (rimsOn) {
-                chartConfig.options['series'] = {
-                    '0': { 'axis': 'rims', 'targetAxisIndex': 1 },
-                    '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
+            //if (rimsOn) {
+            //    chartConfig.options['series'] = {
+            //        '0': { 'axis': 'rims', 'targetAxisIndex': 1 },
+            //        '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
 
-                };
-                chartConfig.options['vAxis'] = {
-                    //'title': 'Temperature unit', 
-                    'gridlines': { 'count': 6, 'color': '#D3D3D4' },
-                    'titleTextStyle': { 'color': '#D3D3D4' },
-                    'textStyle': { 'color': '#D3D3D4' },
-                    '0': { 'title': 'Temps F' },
-                    '1': { 'title': 'rims' }
-                };
-            }
-            else {
-                chartConfig.options['series'] = {
-                    '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
+            //    };
+            //    chartConfig.options['vAxis'] = {
+            //        //'title': 'Temperature unit', 
+            //        'gridlines': { 'count': 6, 'color': '#D3D3D4' },
+            //        'titleTextStyle': { 'color': '#D3D3D4' },
+            //        'textStyle': { 'color': '#D3D3D4' },
+            //        '0': { 'title': 'Temps F' },
+            //        '1': { 'title': 'rims' }
+            //    };
+            //}
+            //else {
+            //    chartConfig.options['series'] = {
+            //        '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
+            //        '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
 
-                };
-                chartConfig.options['vAxis'] = {
-                    //'title': 'Temperature unit', 
-                    'gridlines': { 'count': 6, 'color': '#D3D3D4' },
-                    'titleTextStyle': { 'color': '#D3D3D4' },
-                    'textStyle': { 'color': '#D3D3D4' }
-                };
+            //    };
+            //    chartConfig.options['vAxis'] = {
+            //        //'title': 'Temperature unit', 
+            //        'gridlines': { 'count': 6, 'color': '#D3D3D4' },
+            //        'titleTextStyle': { 'color': '#D3D3D4' },
+            //        'textStyle': { 'color': '#D3D3D4' }
+            //    };
 
-            }
+            //}
         }
 
         function getChartConfig() {
+            chartConfig = {
+                'options': {
+                    'chart': {
+                        'type': 'areaspline'
+                    },
+                    'plotOptions': {
+                        'series': {
+                            'stacking': ''
+                        }
+                    }
+                },
+                'xAxis': {
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        second: '%H:%M:%S',
+                        minute: '%H:%M',
+                        hour: '%H:%M',
+                    },
+                    title: {
+                        text: 'Date'
+                    }
+                },
+                'yAxis': [{
+                    title: {
+                        text: 'Temperatures'
+                    },
+                    min: 0
+                },
+                {
+                    title: {
+                        text: 'RIMs Window'
+                    },
+                    min: 0,
+                    max: 1000,
+                    opposite: true
+                }],
+                'series': [
+    {
+        'name': settingsSrv.thermos[0].name,
+        'data': [
+        ],
+        'id': 0
+    },
+    {
+        'name': settingsSrv.thermos[1].name,
+        'data': [
+        ],
+        'id': 1
+    },
+    {
+        'name': settingsSrv.thermos[2].name,
+        'data': [
+        ],
+        'id': 2
+    },
+    {
+        'name': settingsSrv.thermos[3].name,
+        'data': [
+        ],
+        'id': 3
+    },
+    {
+        'name': 'RIMs Setpoint',
+        'data': [
+        ],
+        'id': 4
+    },
+    {
+        'name': 'RIMS Window',
+        'data': [
+        ],
+        'id': 5,
+        'type': 'column',
+        yAxis: 1,
+    }
+                ],
 
-            chartConfig.type = 'AreaChart';
-            chartConfig.cssStyle = 'height:400px; width:100%; float:left;';
-            chartConfig.data = {
-                'cols': [],
-                'rows': []
+                'title': {
+                    'text': 'Hello'
+                },
+                'credits': {
+                    'enabled': false
+                },
+                'loading': false,
+                'size': {
+                    'width': '',
+                    'height': '400'
+                },
+                'subtitle': {
+                    'text': 'this is a subtitle'
+                }
             };
-
-
-            chartConfig.data.cols.push({
-                'id': 'Time',
-                'label': 'Time',
-                'type': 'datetime',
-                'p': {}
-            });
-            chartConfig.data.cols.push({
-                'id': 'rimsWin',
-                'label': 'rWindow',
-                'type': 'number'
-            });
-            chartConfig.data.cols.push({
-                'id': 'rimsSetPt',
-                'label': 'rSetPoint',
-                'type': 'number'
-            });
-            chartConfig.data.cols.push({
-                'id': 't0',
-                'label': settingsSrv.thermos[0].name,
-                'type': 'number',
-                'p': {}
-            });
-            chartConfig.data.cols.push({
-                'id': 't1',
-                'label': settingsSrv.thermos[1].name,
-                'type': 'number',
-                'p': {}
-            });
-            chartConfig.data.cols.push({
-                'id': 't2',
-                'label': settingsSrv.thermos[2].name,
-                'type': 'number',
-                'p': {}
-            });
-            chartConfig.data.cols.push({
-                'id': 't3',
-                'label': settingsSrv.thermos[3].name,
-                'type': 'number'
-            });
-
-
-
-            chartConfig.options = {
-                'title': chartTitle,
-                'titleTextStyle': { 'color': '#D3D3D4' },
-                'isStacked': 'false',
-                'fill': 20,
-                'curveType': 'function',
-                //'trendlines': {
-                //    '0': {
-                //        'type': 'linear',
-                //        'color': '#67DC2D',
-                //        'lineWidth': 3,
-                //        'opacity': 0.3,
-                //        'showR2': true,
-                //        'visibleInLegend': 'false'
-                //    },
-                //    '1': {
-                //        'type': 'linear',
-                //        'color': '#19fcfc',
-                //        'lineWidth': '3',
-                //        'opacity': '0.3',
-                //        'showR2': 'true',
-                //        'visibleInLegend': 'false'
-                //    },
-                //    '2': {
-                //        'type': 'linear',
-                //        'color': '#FC1919',
-                //        'lineWidth': '3',
-                //        'opacity': '0.3',
-                //        'showR2': 'true',
-                //        'visibleInLegend': 'false'
-                //    },
-                //    '3': {
-                //        'type': 'linear',
-                //        'color': '#FC8B19',
-                //        'lineWidth': '3',
-                //        'opacity': '0.3',
-                //        'showR2': 'true',
-                //        'visibleInLegend': 'false'
-                //    }
-                //},
-                'displayExactValues': true,
-                'vAxis': {
-                    'title': 'Temperature unit', 
-                    'gridlines': { 'count': 6, 'color': '#D3D3D4' },
-                    'titleTextStyle': { 'color': '#D3D3D4' },
-                    'textStyle': { 'color': '#D3D3D4' },
-                },
-                'hAxis': {
-                    'title': 'Date',
-                    'gridlines': { 'color': '#D3D3D4' },
-                    'titleTextStyle': { 'color': '#D3D3D4' },
-                    'textStyle': { 'color': '#D3D3D4' }
-                },
-                'series': {
-                    '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-                    '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
-                },
-                //'axis': {
-                //    y: {
-                //        'Temps': { 'label': 'Temps F' },
-                //        'rims': { 'label': 'rims' }
-                //    }
-                //},
-                'legend': { 'textStyle': { 'color': '#D3D3D4' } },
-
-                'backgroundColor': '#353E42',
-                'colors': ['#67DC2D', '#19fcfc', '#FC1919', '#FC8B19']
-            };
-
-            chartConfig.formatters = {};
 
             return chartConfig;
         }
@@ -210,18 +183,49 @@
 
 
             $http.get(statusUrl).success(function (data) {
-                var rows = [];
+
+                var dataPts0 = [];
+                var dataPts1 = [];
+                var dataPts2 = [];
+                var dataPts3 = [];
+                var dataPts4 = [];
+                var dataPts5 = [];
                 if (data.length > 0) {
                     data.forEach(function (element, index, array) {
-                        var dt = new Date(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
-
-                        rows.push(constRowObj(dt, element.rimsOnWindow, element.rimsSetPoint,
-                            element.temp0, element.temp1, element.temp2, element.temp3));
+                        var dt = Date.UTC(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
+                        dataPts0.push([dt, element.temp0]);
+                        dataPts1.push([dt, element.temp1]);
+                        dataPts2.push([dt, element.temp2]);
+                        dataPts3.push([dt, element.temp3]);
+                        dataPts4.push([dt, element.rimsSetPoint]);
+                        dataPts5.push([dt, element.rimsOnWindow]);
+                        //rows.push(constRowObj(dt, element.rimsOnWindow, element.rimsSetPoint,
+                        //    element.temp0, element.temp1, element.temp2, element.temp3));
                     });
 
                     chartTitle = data[0]['sessionName'];
                 }
-                myCurrentChart.data.rows = rows;
+
+                myCurrentChart.series[0].data = dataPts0;
+                myCurrentChart.series[1].data = dataPts1;
+                myCurrentChart.series[2].data = dataPts2;
+                myCurrentChart.series[3].data = dataPts3;
+                myCurrentChart.series[4].data = dataPts4;
+                myCurrentChart.series[5].data = dataPts5;
+
+                //myCurrentChart.series = [
+                //    {
+                //        'name': settingsSrv.thermos[0].name,
+                //        'data': [
+                //            [Date.UTC(1970, 9, 27), 0],
+                //[Date.UTC(1980, 10, 10), 0.6],
+                //[Date.UTC(1980, 10, 18), 0.7],
+                //[Date.UTC(1980, 11, 2), 0.8],
+                //[Date.UTC(1980, 11, 9), 0.6]
+                //        ],
+                //        'id': 0
+                //    }
+                //];
 
                 //data = rows;
                 deferred.resolve(data);
@@ -232,41 +236,41 @@
         }
 
         function getCurrentData() {
-            return myCurrentChart.data.rows;
+            //return myCurrentChart.data.rows;
         }
         function getCurrentChart() {
             return myCurrentChart;
         }
 
         function getEtaToAlarm(whichThermo, highAlarm, lowAlarm) {
-            var speed = getTempSpeed(whichThermo);
-            var whichT = Number(whichThermo);
-            // currently assuming highAlarm
+            //var speed = getTempSpeed(whichThermo);
+            //var whichT = Number(whichThermo);
+            //// currently assuming highAlarm
 
-            if (myCurrentChart.data.rows.length >= 2) {
-                var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
-                var lastTemp = lastRow.c[whichT + 1].v;
+            //if (myCurrentChart.data.rows.length >= 2) {
+            //    var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
+            //    var lastTemp = lastRow.c[whichT + 1].v;
 
-                var tempDiff = Number(highAlarm) - lastTemp;
+            //    var tempDiff = Number(highAlarm) - lastTemp;
 
-                return tempDiff / speed;
-            }
-            else {
-                return 0;
-            }
+            //    return tempDiff / speed;
+            //}
+            //else {
+            //    return 0;
+            //}
         }
         function getTempSpeed(whichThermo) {
-            if (myCurrentChart.data.rows.length >= 2) {
-                var whichT = Number(whichThermo);
-                var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
-                var secondLastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 2];
-                var tempDiff = lastRow.c[whichT + 1].v - secondLastRow.c[whichT + 1].v;
-                var timeDiff = (new Date(lastRow.c[0].v) - new Date(secondLastRow.c[0].v)) / 60000;
-                return Number(tempDiff) / Number(timeDiff);
-            }
-            else {
-                return 0;
-            }
+            //if (myCurrentChart.data.rows.length >= 2) {
+            //    var whichT = Number(whichThermo);
+            //    var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
+            //    var secondLastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 2];
+            //    var tempDiff = lastRow.c[whichT + 1].v - secondLastRow.c[whichT + 1].v;
+            //    var timeDiff = (new Date(lastRow.c[0].v) - new Date(secondLastRow.c[0].v)) / 60000;
+            //    return Number(tempDiff) / Number(timeDiff);
+            //}
+            //else {
+            //    return 0;
+            //}
         }
 
         function constRowObj(time, onWin, setPt, t0, t1, t2, t3) {
@@ -289,7 +293,7 @@
             };
         }
         function setAutoUpdates(enableUpdates) {
-            autoUpdatesEnabled = enableUpdates;
+            //autoUpdatesEnabled = enableUpdates;
         }
     }
 })();

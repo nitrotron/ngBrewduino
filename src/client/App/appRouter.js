@@ -27,12 +27,17 @@
         .state('rimsSettings', {
             url: '/rimsSettings/:id',
             templateUrl: 'App/rimsSettings/rimsSettingsForm.html'
-            
+
         })
         .state('dbSettings', {
             url: '/dbSettings/:id',
             templateUrl: 'App/dbSettings/dbSettingsForm.html'
 
+        })
+        .state('historyCharts', {
+            url: '/historyCharts/:id',
+            templateUrl: 'App/historyCharts/historyCharts.html',
+            controller: 'historyChartsCtrl as historyChartsCtrl'
         });
     });
 })();

@@ -6,8 +6,9 @@
 
     /* @ngInject */
     function dashboardCtrl($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
-                                 logger, settingsSrv, chartSrv, countDownTimerSrv) {
+                                 logger, settingsSrv, chartGoogleSrv, countDownTimerSrv) {
         var vm = this;
+        var chartSrv = chartGoogleSrv;
         var firstUpdate = false;
         var firstChartUpdate = false;
         var dataChecks = false;
