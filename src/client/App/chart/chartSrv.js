@@ -105,7 +105,7 @@
                 'yAxis': [{
                     title: {
                         text: 'Temperatures'
-                    },
+                    }
 
                 },
                 {
