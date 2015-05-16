@@ -145,7 +145,8 @@
         'name': 'RIMs Setpoint',
         'data': [
         ],
-        'id': 4
+        'id': 4,
+        'visible': false
     },
     {
         'name': 'RIMS Window',
@@ -153,7 +154,8 @@
         ],
         'id': 5,
         'type': 'column',
-        yAxis: 1,
+        'yAxis': 1,
+        'visible': false
     }
                 ],
 
