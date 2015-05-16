@@ -30,7 +30,7 @@
                 if (autoUpdatesEnabled === true) {
                     getChartData();
                 }
-            }, 6000);
+            }, 60000);
         }
 
         function enableRims(rimsOn) {
