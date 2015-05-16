@@ -106,14 +106,12 @@
                     title: {
                         text: 'Temperatures'
                     },
-                    
+
                 },
                 {
                     title: {
                         text: 'RIMs Window'
                     },
-                    min: 0,
-                    max: 1000,
                     opposite: true
                 }],
                 'series': [
