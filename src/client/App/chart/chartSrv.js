@@ -106,7 +106,7 @@
                     title: {
                         text: 'Temperatures'
                     },
-                    min: 0
+                    
                 },
                 {
                     title: {
