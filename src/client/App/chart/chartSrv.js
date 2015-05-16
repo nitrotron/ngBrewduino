@@ -100,13 +100,13 @@
                     },
                     title: {
                         text: 'Date'
-                    },
-                    min: 50
+                    }
                 },
                 'yAxis': [{
                     title: {
                         text: 'Temperatures'
-                    }
+                    },
+                    min: 50
 
                 },
                 {
