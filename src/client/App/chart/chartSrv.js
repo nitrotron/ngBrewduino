@@ -83,7 +83,8 @@
             chartConfig = {
                 'options': {
                     'chart': {
-                        'type': 'areaspline'
+                        'type': 'areaspline',
+                        'zoomType': 'x'
                     },
                     'plotOptions': {
                         'series': {
@@ -99,8 +100,10 @@
                         hour: '%H:%M',
                     },
                     title: {
-                        text: 'Date'
-                    }
+                        text: 'Time'
+                    },
+                    minRange:60000 * 3 // 3 minutes
+
                 },
                 'yAxis': [{
                     title: {
