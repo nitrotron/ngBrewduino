@@ -83,12 +83,15 @@
             chartConfig = {
                 'options': {
                     'chart': {
-                        'type': 'areaspline',
+                        'type': 'spline',
                         'zoomType': 'x'
                     },
                     'plotOptions': {
                         'series': {
-                            'stacking': ''
+                            'stacking': '',
+                            'marker': {
+                                'radius': 2
+                            }
                         }
                     }
                 },
@@ -194,6 +197,8 @@
                 var dataPts3 = [];
                 var dataPts4 = [];
                 var dataPts5 = [];
+                var minY = Infinity;
+                var maxY = -Infinity;
                 if (data.length > 0) {
                     data.forEach(function (element, index, array) {
                         var dt = Date.UTC(element.year, element.month, element.day, element.hour, element.minute, element.second, 0);
@@ -203,6 +208,10 @@
                         dataPts3.push([dt, element.temp3]);
                         dataPts4.push([dt, element.rimsSetPoint]);
                         dataPts5.push([dt, element.rimsOnWindow]);
+                        minY = arrayMin([element.temp0, element.temp1, element.temp2, element.temp3, element.rimsSetPoint, minY]);
+                        maxY = arrayMax([element.temp0, element.temp1, element.temp2, element.temp3, element.rimsSetPoint, maxY]);
+
+                        
                         //rows.push(constRowObj(dt, element.rimsOnWindow, element.rimsSetPoint,
                         //    element.temp0, element.temp1, element.temp2, element.temp3));
                     });
@@ -210,27 +219,16 @@
                     chartTitle = data[0]['sessionName'];
                 }
 
+                
                 myCurrentChart.series[0].data = dataPts0;
                 myCurrentChart.series[1].data = dataPts1;
                 myCurrentChart.series[2].data = dataPts2;
                 myCurrentChart.series[3].data = dataPts3;
                 myCurrentChart.series[4].data = dataPts4;
                 myCurrentChart.series[5].data = dataPts5;
-
-                //myCurrentChart.series = [
-                //    {
-                //        'name': settingsSrv.thermos[0].name,
-                //        'data': [
-                //            [Date.UTC(1970, 9, 27), 0],
-                //[Date.UTC(1980, 10, 10), 0.6],
-                //[Date.UTC(1980, 10, 18), 0.7],
-                //[Date.UTC(1980, 11, 2), 0.8],
-                //[Date.UTC(1980, 11, 9), 0.6]
-                //        ],
-                //        'id': 0
-                //    }
-                //];
-
+                
+                myCurrentChart.yAxis[0].min = minY - ((maxY - minY) * 0.05);
+                
                 //data = rows;
                 deferred.resolve(data);
             });
@@ -299,5 +297,25 @@
         function setAutoUpdates(enableUpdates) {
             //autoUpdatesEnabled = enableUpdates;
         }
+
+        function arrayMin(arr) {
+            var len = arr.length, min = Infinity;
+            while (len--) {
+                if (arr[len] < min) {
+                    min = arr[len];
+                }
+            }
+            return min;
+        };
+
+        function arrayMax(arr) {
+            var len = arr.length, max = -Infinity;
+            while (len--) {
+                if (arr[len] > max) {
+                    max = arr[len];
+                }
+            }
+            return max;
+        };
     }
 })();
