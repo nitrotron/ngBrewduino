@@ -19,6 +19,7 @@
             getCurrentData: getCurrentData,
             getCurrentChart: getCurrentChart,
             getEtaToAlarm: getEtaToAlarm,
+            getSessions: getSessions,
             getTempSpeed: getTempSpeed,
             setAutoUpdates: setAutoUpdates
         };
@@ -81,12 +82,11 @@
         }
 
         function getChartConfig() {
-            // var colors = ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-            //"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"];
+
             chartConfig = {
                 'options': {
                     'chart': {
-                        'type': 'spline',
+                        'type': 'areaspline',
                         'zoomType': 'x',
                         'backgroundColor': {
                             'linearGradient': { x1: 0, y1: 0, x2: 1, y2: 1 },
@@ -98,16 +98,31 @@
                         'plotOptions': {
                             'series': {
                                 'stacking': '',
+                                'dataLabels': {
+                                    'color': '#B0B0B3'
+                                },
+
+
                                 'marker': {
-                                    'radius': 1
+                                    'radius': 2
+                                    //lineColor: '#333'
                                 }
+                            },
+                            boxplot: {
+                                fillColor: '#505053'
+                            },
+                            candlestick: {
+                                lineColor: 'white'
+                            },
+                            errorbar: {
+                                color: 'white'
                             }
 
                         },
                         plotBorderColor: '#606063'
                     },
-                    colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-                                "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"]
+                    colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
+                                '#55BF3B', '#DF5353', '#7798BF', '#aaeeee']
                 },
                 'xAxis': {
                     type: 'datetime',
@@ -219,8 +234,45 @@
                         fontSize: '20px'
                     }
                 },
+                legend: {
+                    itemStyle: {
+                        color: '#E0E0E3'
+                    },
+                    itemHoverStyle: {
+                        color: '#FFF'
+                    },
+                    itemHiddenStyle: {
+                        color: '#606063'
+                    }
+                },
                 'credits': {
-                    'enabled': true
+                    'enabled': true,
+                    style: {
+                        color: '#666'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#707073'
+                    }
+                },
+
+                drilldown: {
+                    activeAxisLabelStyle: {
+                        color: '#F0F0F3'
+                    },
+                    activeDataLabelStyle: {
+                        color: '#F0F0F3'
+                    }
+                },
+
+                navigation: {
+                    buttonOptions: {
+                        symbolStroke: '#DDDDDD',
+                        theme: {
+                            fill: '#505053'
+                        }
+                    }
                 },
                 'loading': false,
                 'size': {
@@ -239,10 +291,19 @@
             return chartConfig;
         }
 
-        function getChartData() {
+        function getChartData( numEntries, session) {
             var statusUrl = '/getChartData';
-
             var deferred = new $q.defer();
+
+            var myEntryNum = numEntries || 300;
+
+           
+
+            statusUrl = statusUrl + '/' + myEntryNum;
+            
+            if (session) {
+                statusUrl = statusUrl + '/' + session;
+            }
 
 
             $http.get(statusUrl).success(function (data) {
@@ -317,6 +378,17 @@
             //    return 0;
             //}
         }
+
+        function getSessions() {
+            var statusUrl = '/getSessions';
+            var deferred = new $q.defer();
+
+            $http.get(statusUrl).success(function (data) {
+                deferred.resolve(data);
+            });
+
+            return deferred.promise;
+        }
         function getTempSpeed(whichThermo) {
             //if (myCurrentChart.data.rows.length >= 2) {
             //    var whichT = Number(whichThermo);
@@ -362,7 +434,7 @@
                 }
             }
             return min;
-        };
+        }
 
         function arrayMax(arr) {
             var len = arr.length, max = -Infinity;
@@ -372,6 +444,6 @@
                 }
             }
             return max;
-        };
+        }
     }
 })();

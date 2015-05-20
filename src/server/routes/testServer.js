@@ -59,10 +59,14 @@
     };
 
     app.get('/getStatus', getStubData);        // handler for /date
+    app.get('/getChartData/:entryCount/:session', getChartData);
+    app.get('/getChartData/:entryCount', getChartData);
     app.get('/getChartData', getChartData);
     app.get('/clearSessionData', clearSessionData);
+    app.get('/getSessions', getSessions);
     app.post('/createNewSession', createNewSession);
     app.get('/sendCommand/:whichCmd/:val', sendCommand);
+
     app.get('/restartPort', restartPortAPI);
 
     function getStubData(request, response, next) {
@@ -74,7 +78,28 @@
     function getChartData(request, response, next) {
         db.serialize(function () {
             var currentSession = 0;
-            db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+
+            var entryLimit = "LIMIT  300)"
+            if (request.params.hasOwnProperty('entryCount') && request.params.entryCount === "all") {
+                entryLimit = ")";
+            }
+            else if (request.params.hasOwnProperty('entryCount') && !isNaN(request.params.entryCount)) {
+                entryLimit = "LIMIT  " + request.params.entryCount + " )"
+                console.log("getting Max Entries")
+            }
+            else {
+                console.log("poops");
+                console.log(request.params.entryCount);
+            }
+
+
+            var sessionSQL = "Select id from Sessions order by id desc limit 1"
+            if (request.params.hasOwnProperty('session')) {
+                sessionSQL = "Select id from Sessions where sessionName = '" + request.params.session + "' order by id desc limit 1";
+                console.log("session is now:" + request.params.session);
+            }
+
+            db.all(sessionSQL, function (err, rows) {
                 if (rows.length > 0) {
                     currentSession = rows[0].id;
                 }
@@ -103,7 +128,7 @@
                            "        join   Sessions as s on th.sessionid = s.id            " +
                            "        WHERE  th.sessionid = $sessionID                       " +
                            "        ORDER  BY id DESC                                      " +
-                           "        LIMIT  300)                                            " +
+                           entryLimit +
                            "        ORDER  BY id ASC                                    ",
                            { $sessionID: currentSession },
                            function (err, rows) {
@@ -133,6 +158,15 @@
 
         console.log('just received sessionName:' + sessionName);
         res.send('Created Session Name: ' + sessionName);
+    }
+     
+    function getSessions(req, res, next) {
+        db.all("SELECT sessionName, id from Sessions  ORDER  BY id DESC", function (err, rows) {
+        //db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+            console.log('number of Sessions rows: ' + rows.length);
+            res.json(rows);
+        });
+
     }
 
     function sendCommand(request, response, next) {

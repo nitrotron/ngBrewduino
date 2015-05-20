@@ -40,7 +40,7 @@ var fs = require('fs');
 var file = './data/' + 'brewduino.db';
 var exists = fs.existsSync(file);
 
-if (!exists) {
+if (!exists) { 
     console.log('Creating DB file.');
     fs.openSync(file, 'w');
 
