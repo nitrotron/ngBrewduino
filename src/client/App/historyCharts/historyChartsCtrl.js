@@ -14,6 +14,7 @@
         activate();
 
         function activate() {
+            chartSrv.setAutoUpdates(false);
             vm.chartTypes = [
                  { type: 'areaspline', text: 'Area Spline' },
                  { type: 'spline', text: 'Spline' },

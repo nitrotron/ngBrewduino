@@ -213,7 +213,7 @@
                                 'name': 'RIMs Setpoint',
                                 'data': [],
                                 'id': 4,
-                                'visible': false
+                                'visible': true
                             },
                             {
                                 'name': 'RIMS Window',
@@ -221,7 +221,7 @@
                                 'id': 5,
                                 'type': 'column',
                                 'yAxis': 1,
-                                'visible': false
+                                'visible': true
                             }
                 ],
 
@@ -315,6 +315,7 @@
                 var dataPts5 = [];
                 var minY = Infinity;
                 var maxY = -Infinity;
+                
                 if (data.length > 0) {
                     data.forEach(function (element, index, array) {
                         var dt = Date.UTC(element.year, element.month - 1, element.day, element.hour, element.minute, element.second, 0);
@@ -340,6 +341,7 @@
                 myCurrentChart.series[5].data = dataPts5;
 
                 myCurrentChart.yAxis[0].min = minY - ((maxY - minY) * 0.05);
+
 
                 myCurrentChart.title.text = chartTitle;
 
