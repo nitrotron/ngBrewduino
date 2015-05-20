@@ -6,9 +6,9 @@
 
     /* @ngInject */
     function dashboardCtrl($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
-                                 logger, settingsSrv, chartGoogleSrv, countDownTimerSrv) {
+                                 logger, settingsSrv, chartSrv, countDownTimerSrv) {
         var vm = this;
-        var chartSrv = chartGoogleSrv;
+        //var chartSrv = chartGoogleSrv;
         var firstUpdate = false;
         var firstChartUpdate = false;
         var dataChecks = false;
@@ -21,6 +21,7 @@
 
         vm.chartTypeArea = true;
         vm.chartTypeLine = false;
+        vm.chart = chartSrv.getCurrentChart();
 
         vm.changeChartType = changeChartType;
         vm.chBxChartChanged = chBxChartChanged;
@@ -72,10 +73,16 @@
             if (vm.hasOwnProperty('thermometers') === false || vm.thermometers === undefined) {
                 getStatus();
             }
-            vm.chart = chartSrv.getChartConfig();
-            vm.chart.view = { columns: getChartColumns() };
+            //TM vm.chart = chartSrv.getChartConfig();
+            //TM vm.chart.view = { columns: getChartColumns() };
             // getChartData();
- 
+            chartSrv.getChartData('300').
+                           then(function (data) {
+                              // vm.chart = data;
+                               vm.chart = chartSrv.getCurrentChart();
+                           });
+
+
             brewduionoDataSrv.setAutoUpdates(true);
             chartSrv.setAutoUpdates(true);
  
@@ -89,7 +96,7 @@
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
                     if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
-                        vm.chart.data.rows = chartSrv.getCurrentData();
+                       // vm.chart.data.rows = chartSrv.getCurrentData();
                         vm.lastChartUpdate = new Date();
                         vm.tempSpeed = chartSrv.getTempSpeed($state.params.id);
                         if (vm.hasOwnProperty('thermo') && vm.thermo.hasOwnProperty('highAlarm') && vm.thermo.hasOwnProperty('lowAlarm')) {
@@ -115,10 +122,10 @@
         }
 
         function changeChartType(chartType) {
-            vm.chart.type = chartType;
+       //     vm.chart.type = chartType;
         }
         function chBxChartChanged(thermo) {
-            vm.chart.view = { columns: getChartColumns() };
+         //   vm.chart.view = { columns: getChartColumns() };
         }
 
         function clickAlarm(whichAlarm) {
@@ -152,15 +159,15 @@
 
         function getChartData() {
 
-            if (firstChartUpdate === false) {
-                firstChartUpdate = true;
-                chartSrv.getChartData()
-                .then(function (data) {
-                    if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
-                        vm.chart.data.rows = data;
-                    }
-                });
-            }
+            //if (firstChartUpdate === false) {
+            //    firstChartUpdate = true;
+            //    chartSrv.getChartData()
+            //    .then(function (data) {
+            //        if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
+            //            vm.chart.data.rows = data;
+            //        }
+            //    });
+            //}
         }
 
         function getStatus() {
@@ -168,8 +175,8 @@
              .then(function (response) {
                  updateVM(response.data);
 
-                 vm.chart = chartSrv.getChartConfig();
-                 vm.chart.view = { columns: getChartColumns() };
+                //TM vm.chart = chartSrv.getChartConfig();
+               //TM  vm.chart.view = { columns: getChartColumns() };
                  //getChartData();
 
                  //logger.success('Updated status', response.data);
@@ -271,9 +278,9 @@
         }
 
         function toggleShowRims() {
-            vm.showRims = !vm.showRims;
-            //chartSrv.enableRims(vm.showRims);
-            vm.chart.view = { columns: getChartColumns() };
+            //vm.showRims = !vm.showRims;
+            ////chartSrv.enableRims(vm.showRims);
+            //vm.chart.view = { columns: getChartColumns() };
         }
 
         function updateVM(responseData) {

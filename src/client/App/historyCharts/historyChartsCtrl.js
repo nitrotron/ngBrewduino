@@ -31,6 +31,7 @@
                     vm.chartConfig = data;
                     vm.chartConfig = chartSrv.getCurrentChart();
                 });
+
             chartSrv.getSessions()
                 .then(function (sessions) {
                     vm.sessions = sessions;

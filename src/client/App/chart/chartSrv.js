@@ -27,14 +27,13 @@
 
 
         function autoUpdates() {
-            //myCurrentChart = getChartConfig();
-            //myCurrentChart.data.rows = getChartData();
-            //$interval(function () {
-            //    if (autoUpdatesEnabled === true) {
-            //        getChartData();
-            //    }
-            //}, 60000);
-
+            myCurrentChart = getChartConfig();
+            getChartData();
+            $interval(function () {
+                if (autoUpdatesEnabled === true) {
+                    getChartData();
+                }
+            }, 6000);
         }
 
         function activate() {
@@ -227,7 +226,7 @@
                 ],
 
                 'title': {
-                    'text': 'Hello',
+                    'text': 'Tempuratures',
                     'style': {
                         color: '#E0E0E3',
                         textTransform: 'uppercase',
@@ -280,7 +279,7 @@
                     'height': '400'
                 },
                 'subtitle': {
-                    'text': 'this is a subtitle',
+                    'text': 'Pinch or Drag Mouse to Zoom',
                     'style': {
                         color: '#E0E0E3',
                         textTransform: 'uppercase'
@@ -291,16 +290,16 @@
             return chartConfig;
         }
 
-        function getChartData( numEntries, session) {
+        function getChartData(numEntries, session) {
             var statusUrl = '/getChartData';
             var deferred = new $q.defer();
 
             var myEntryNum = numEntries || 300;
 
-           
+
 
             statusUrl = statusUrl + '/' + myEntryNum;
-            
+
             if (session) {
                 statusUrl = statusUrl + '/' + session;
             }
@@ -327,10 +326,6 @@
                         dataPts5.push([dt, element.rimsOnWindow]);
                         minY = arrayMin([element.temp0, element.temp1, element.temp2, element.temp3, minY]);
                         maxY = arrayMax([element.temp0, element.temp1, element.temp2, element.temp3, maxY]);
-
-
-                        //rows.push(constRowObj(dt, element.rimsOnWindow, element.rimsSetPoint,
-                        //    element.temp0, element.temp1, element.temp2, element.temp3));
                     });
 
                     chartTitle = data[0]['sessionName'];
@@ -346,7 +341,8 @@
 
                 myCurrentChart.yAxis[0].min = minY - ((maxY - minY) * 0.05);
 
-                //data = rows;
+                myCurrentChart.title.text = chartTitle;
+
                 deferred.resolve(data);
             });
 
@@ -355,28 +351,28 @@
         }
 
         function getCurrentData() {
-            //return myCurrentChart.data.rows;
+            return myCurrentChart.series;
         }
         function getCurrentChart() {
             return myCurrentChart;
         }
 
         function getEtaToAlarm(whichThermo, highAlarm, lowAlarm) {
-            //var speed = getTempSpeed(whichThermo);
-            //var whichT = Number(whichThermo);
-            //// currently assuming highAlarm
+            var speed = getTempSpeed(whichThermo);
+            var whichT = Number(whichThermo);
+            // currently assuming highAlarm
 
-            //if (myCurrentChart.data.rows.length >= 2) {
-            //    var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
-            //    var lastTemp = lastRow.c[whichT + 1].v;
+            if (myCurrentChart.series[0].data.length >= 2) {
+                var lastRow = myCurrentChart.series[whichT].data[myCurrentChart.series[whichT].data.length - 1];
+                var lastTemp = lastRow[1];
 
-            //    var tempDiff = Number(highAlarm) - lastTemp;
+                var tempDiff = Number(highAlarm) - lastTemp;
 
-            //    return tempDiff / speed;
-            //}
-            //else {
-            //    return 0;
-            //}
+                return tempDiff / speed;
+            }
+            else {
+                return 0;
+            }
         }
 
         function getSessions() {
@@ -390,17 +386,17 @@
             return deferred.promise;
         }
         function getTempSpeed(whichThermo) {
-            //if (myCurrentChart.data.rows.length >= 2) {
-            //    var whichT = Number(whichThermo);
-            //    var lastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 1];
-            //    var secondLastRow = myCurrentChart.data.rows[myCurrentChart.data.rows.length - 2];
-            //    var tempDiff = lastRow.c[whichT + 1].v - secondLastRow.c[whichT + 1].v;
-            //    var timeDiff = (new Date(lastRow.c[0].v) - new Date(secondLastRow.c[0].v)) / 60000;
-            //    return Number(tempDiff) / Number(timeDiff);
-            //}
-            //else {
-            //    return 0;
-            //}
+            if (myCurrentChart.series[0].data.length >= 2) {
+                var whichT = Number(whichThermo);
+                var lastRow = myCurrentChart.series[whichT].data[myCurrentChart.series[whichT].data.length - 1];
+                var secondLastRow = myCurrentChart.series[whichT].data[myCurrentChart.series[whichT].data.length - 2];
+                var tempDiff = lastRow[1] - secondLastRow[1];
+                var timeDiff = (new Date(lastRow[0]) - new Date(secondLastRow[0])) / 60000;
+                return Number(tempDiff) / Number(timeDiff);
+            }
+            else {
+                return 0;
+            }
         }
 
         function constRowObj(time, onWin, setPt, t0, t1, t2, t3) {
@@ -423,7 +419,7 @@
             };
         }
         function setAutoUpdates(enableUpdates) {
-            //autoUpdatesEnabled = enableUpdates;
+            autoUpdatesEnabled = enableUpdates;
         }
 
         function arrayMin(arr) {
