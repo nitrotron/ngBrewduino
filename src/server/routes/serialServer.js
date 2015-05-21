@@ -73,6 +73,7 @@
     app.get('/getChartData/:entryCount/:session', getChartData);
     app.get('/getChartData/:entryCount', getChartData);
     app.get('/clearSessionData', clearSessionData);
+    app.get('/getSessions', getSessions);
     app.post('/createNewSession', createNewSession);
     app.get('/sendCommand/:whichCmd/:val', sendCommand);
     app.get('/restartPort', restartPortAPI);
