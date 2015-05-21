@@ -70,6 +70,8 @@
 
     app.get('/getStatus', getStatus);        // handler for /date
     app.get('/getChartData', getChartData);
+    app.get('/getChartData/:entryCount/:session', getChartData);
+    app.get('/getChartData/:entryCount', getChartData);
     app.get('/clearSessionData', clearSessionData);
     app.post('/createNewSession', createNewSession);
     app.get('/sendCommand/:whichCmd/:val', sendCommand);
@@ -86,10 +88,80 @@
     //        response.json(rows);
     //    });
     //}
+    //function getChartData(request, response, next) {
+    //    db.serialize(function () {
+    //        var currentSession = 0;
+    //        db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+    //            if (rows.length > 0) {
+    //                currentSession = rows[0].id;
+    //            }
+
+
+    //            if (currentSession > 0) {
+    //                //db.all("SELECT  * from (select th.ROWID, strftime('%Y',th.dt,  'localtime') as year, strftime('%m',th.dt, 'localtime') as month, strftime('%d',th.dt, 'localtime') as day, strftime('%H',th.dt, 'localtime') as hour, strftime('%M',th.dt, 'localtime') as minute, strftime('%S',th.dt, 'localtime') as second, datetime(th.dt, 'localtime') as dt, th.temp0, th.temp1, th.temp2, th.temp3, s.sessionName FROM TemperatureHistories th join Sesions s on s.id = th.SessionID where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
+    //                db.all("SELECT *                                                       " +
+    //                       "FROM   (SELECT th.id as id,                                    " +
+    //                       "               Strftime('%Y', th.dt, 'localtime') AS year,     " +
+    //                       "               Strftime('%m', th.dt, 'localtime') AS month,    " +
+    //                       "               Strftime('%d', th.dt, 'localtime') AS day,      " +
+    //                       "               Strftime('%H', th.dt, 'localtime') AS hour,     " +
+    //                       "               Strftime('%M', th.dt, 'localtime') AS minute,   " +
+    //                       "               Strftime('%S', th.dt, 'localtime') AS second,   " +
+    //                       "               Datetime(th.dt, 'localtime')       AS dt,       " +
+    //                       "               th.temp0 AS temp0,                              " +
+    //                       "               th.temp1 AS temp1,                              " +
+    //                       "               th.temp2 AS temp2,                              " +
+    //                       "               th.temp3 AS temp3,                              " +
+    //                       "               th.rimsOnWindow,                                " +
+    //                       "               th.rimsSetPoint,                                " +
+    //                       "               th.rimsKp, th.rimsKi, th.rimskd,                " +
+    //                       "               s.sessionName as sessionName                    " +
+    //                       "        FROM   temperaturehistories as th                      " +
+    //                       "        join   Sessions as s on th.sessionid = s.id            " +
+    //                       "        WHERE  th.sessionid = $sessionID                       " +
+    //                       "        ORDER  BY id DESC                                      " +
+    //                       "        LIMIT  300)                                            " +
+    //                       "        ORDER  BY id ASC                                    ",
+    //                       { $sessionID: currentSession },
+    //                       function (err, rows) {
+    //                           console.error(err);
+    //                           console.log('number of chart rows: ' + rows.length);
+    //                           response.json(rows);
+    //                       });
+    //            }
+    //            else {
+    //                response.json([]);
+    //            }
+    //        });
+
+
+    //    });
+    //}
     function getChartData(request, response, next) {
         db.serialize(function () {
             var currentSession = 0;
-            db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+
+            var entryLimit = "LIMIT  300)"
+            if (request.params.hasOwnProperty('entryCount') && request.params.entryCount === "all") {
+                entryLimit = ")";
+            }
+            else if (request.params.hasOwnProperty('entryCount') && !isNaN(request.params.entryCount)) {
+                entryLimit = "LIMIT  " + request.params.entryCount + " )"
+                console.log("getting Max Entries")
+            }
+            else {
+                console.log("poops");
+                console.log(request.params.entryCount);
+            }
+
+
+            var sessionSQL = "Select id from Sessions order by id desc limit 1"
+            if (request.params.hasOwnProperty('session')) {
+                sessionSQL = "Select id from Sessions where sessionName = '" + request.params.session + "' order by id desc limit 1";
+                console.log("session is now:" + request.params.session);
+            }
+
+            db.all(sessionSQL, function (err, rows) {
                 if (rows.length > 0) {
                     currentSession = rows[0].id;
                 }
@@ -118,7 +190,7 @@
                            "        join   Sessions as s on th.sessionid = s.id            " +
                            "        WHERE  th.sessionid = $sessionID                       " +
                            "        ORDER  BY id DESC                                      " +
-                           "        LIMIT  300)                                            " +
+                           entryLimit +
                            "        ORDER  BY id ASC                                    ",
                            { $sessionID: currentSession },
                            function (err, rows) {
@@ -148,6 +220,15 @@
 
         console.log('just received sessionName:' + sessionName);
         res.send('Created Session Name: ' + sessionName);
+    }
+
+    function getSessions(req, res, next) {
+        db.all("SELECT sessionName, id from Sessions  ORDER  BY id DESC", function (err, rows) {
+            //db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+            console.log('number of Sessions rows: ' + rows.length);
+            res.json(rows);
+        });
+
     }
 
     function sendCommand(request, response, next) {
