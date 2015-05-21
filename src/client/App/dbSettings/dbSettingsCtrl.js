@@ -3,13 +3,15 @@
     .controller('dbSettingsCtrl', dbSettingsCtrl);
 
     /* @ngInject */
-    function dbSettingsCtrl($state, brewduionoDataSrv, brewduinoCmdsSrv, dbSettingsSrv, logger) {
+    function dbSettingsCtrl($state, $scope, brewduionoDataSrv, brewduinoCmdsSrv, dbSettingsSrv, logger) {
         var vm = this;
 
         vm.cancel = cancel;
         vm.clearSessionData = clearSessionData;
+        vm.currentSession = ''
         vm.dataLogClick = dataLogClick;
         vm.done = done;
+        vm.newSessionClick = newSessionClick;
         vm.submit = submit;
 
         activate();
@@ -18,6 +20,12 @@
             vm.enableDataLogging = dbSettingsSrv.dataLoggingEnabled;
             vm.createNewSession = false;
             vm.newSessionName = '';
+            if (vm.currentSession === '') {
+                dbSettingsSrv.getCurrentSession()
+                    .then(function (data) {
+                        vm.currentSession = data.sessionName;
+                    });
+            }
         }
 
         function cancel() {
@@ -45,12 +53,17 @@
             $state.go('dashboard', stateParams);
         }
 
+        function newSessionClick() {
+            vm.createNewSession = true;
+        }
 
         function submit(sessionName) {
             dbSettingsSrv.createNewSession(sessionName)
                 .then(function (data) {
                     logger.success('Just created new session:' + sessionName);
-            });
+                    vm.currentSession = sessionName;
+                    vm.createNewSession = false;
+                });
 
         }
 

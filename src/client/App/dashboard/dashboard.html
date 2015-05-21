@@ -45,7 +45,7 @@
     <div id="dashBoardHeader" class="dashBoardHeader  clearfix">
         <div class="col-md-3 ">
             <div class="row">
-                <div class="col-sm-2 col-xs-6 text-color5 Clickable"><i class='icon-menu' ng-click="dboardCtrl.openMenu()"></i></div>
+                <div class="col-sm-2 col-xs-6 text-color5 clickable"><i class='icon-menu' ng-click="dboardCtrl.openMenu()"></i></div>
                 <div class="col-sm-10 col-xs-6">
                     <div class="CountDownTimer2" ng-include="'App/countDownTimer/countDownTimer.html'">
                     </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="col-md-9">
             <div class="row">
-                <div class="col-sm-4 col-xs-6 text-color5  Clickable"  ng-repeat="otherThermo in dboardCtrl.otherThermos | orderBy:'order' " ng-click="dboardCtrl.switchTemps(otherThermo)">
+                <div class="col-sm-4 col-xs-6 text-color5  clickable" ng-repeat="otherThermo in dboardCtrl.otherThermos | orderBy:'order' " ng-click="dboardCtrl.switchTemps(otherThermo)">
                     <span class="dashboard-minor-title" ng-class="{'alarmBtn-dashboard': dboardCtrl.hasTempAlarm(otherThermo.id) }">{{otherThermo.name}}
                     </span>
                     <span class="dashboard-minor-temp " ng-class="{'alarmBtn-dashboard': dboardCtrl.hasTempAlarm(otherThermo.id) }">{{otherThermo.temp | number:1}}
@@ -76,14 +76,14 @@
             <div class="col-xs-6 h1 text-color1" ng-class="{'alarmBtn-dashboard': dboardCtrl.hasTempAlarm(dboardCtrl.thermo.id) }">{{dboardCtrl.thermo.temp | number:1}}</div>
         </div>
         <div class="row">
-            <div class="col-xs-2 h5 text-color4   Clickable" ng-click="dboardCtrl.toggleAlarm('highAlarm')">High:</div>
-            <div class="col-xs-4 h5 text-color4  Clickable" ng-click="dboardCtrl.clickAlarm('highAlarm')" ng-hide="dboardCtrl.showAlarmForm['highAlarm']">{{dboardCtrl.thermo.highAlarm | number:1}}</div>
-            <div class="col-xs-4 h5 text-color4  Clickable" ng-show="dboardCtrl.showAlarmForm['highAlarm']">
+            <div class="col-xs-2 h5 text-color4   clickable" ng-click="dboardCtrl.toggleAlarm('highAlarm')">High:</div>
+            <div class="col-xs-4 h5 text-color4  clickable" ng-click="dboardCtrl.clickAlarm('highAlarm')" ng-hide="dboardCtrl.showAlarmForm['highAlarm']">{{dboardCtrl.thermo.highAlarm | number:1}}</div>
+            <div class="col-xs-4 h5 text-color4  clickable" ng-show="dboardCtrl.showAlarmForm['highAlarm']">
                 <input type="number" min="0" class="form-control input-sm" id="highAlarm" ng-model="dboardCtrl.highAlarm" ng-blur="dboardCtrl.exitAlarm('highAlarm', dboardCtrl.thermo.id, dboardCtrl.highAlarm)" />
             </div>
-            <div class="col-xs-2 h5 text-color4  Clickable" ng-click="dboardCtrl.toggleAlarm('lowAlarm')">Low:</div>
-            <div class="col-xs-4 h5 text-color4  Clickable" ng-click="dboardCtrl.clickAlarm('lowAlarm')" ng-hide="dboardCtrl.showAlarmForm['lowAlarm']">{{dboardCtrl.thermo.lowAlarm | number:1}}</div>
-            <div class="col-xs-4 h5 text-color4  Clickable" ng-show="dboardCtrl.showAlarmForm['lowAlarm']">
+            <div class="col-xs-2 h5 text-color4  clickable" ng-click="dboardCtrl.toggleAlarm('lowAlarm')">Low:</div>
+            <div class="col-xs-4 h5 text-color4  clickable" ng-click="dboardCtrl.clickAlarm('lowAlarm')" ng-hide="dboardCtrl.showAlarmForm['lowAlarm']">{{dboardCtrl.thermo.lowAlarm | number:1}}</div>
+            <div class="col-xs-4 h5 text-color4  clickable" ng-show="dboardCtrl.showAlarmForm['lowAlarm']">
                 <input type="number" min="0" class="form-control input-sm" id="lowAlarm" ng-model="dboardCtrl.lowAlarm" ng-blur="dboardCtrl.exitAlarm('lowAlarm', dboardCtrl.thermo.id, dboardCtrl.lowAlarm)" />
             </div>
         </div>
@@ -103,7 +103,7 @@
         <div class="row">
             <div class="col-sm-10">
                 <!--<div google-chart chart="dboardCtrl.chart" style="{{dboardCtrl.chart.cssStyle}}"></div>-->
-                 <highchart id="chart1" config="dboardCtrl.chart" class="span10"></highchart>
+                <highchart id="chart1" config="dboardCtrl.chart" class="span10"></highchart>
                 &nbsp;
             </div>
             <div class="col-sm-2 ">
@@ -112,18 +112,15 @@
                         Chart Key
                     </div>
                     <div class="panel-body">
-                        <div ng-repeat="thermo in dboardCtrl.chartOtherThermos">
-                            <input type="checkbox" name="chBxChart{{thermo.id}}" ng-model="thermo.chartEnabled" ng-click="dboardCtrl.chBxChartChanged(thermo)" />{{thermo.name}}
-                        </div>
-                        <br />
-                        <br />
                         <h4>Chart Type:</h4>
-                        <label><input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="AreaChart">Area</label>
+                        <label>
+                            <input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.options.chart.type" value="areaspline">Area</label>
                         <br />
-                        <label><input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.type" value="LineChart" />Line</label>
+                        <label>
+                            <input type="radio" name="chartRadio" ng-model="dboardCtrl.chart.options.chart.type" value="spline" />Line</label>
                         <br />
                         <br />
-                        <div style="cursor:pointer" ng-class="{'nonAlarm': dboardCtrl.showRims == true }" ng-click="dboardCtrl.toggleShowRims()">Show RIMs details</div>
+                        <!--<div style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.showRims == true }" ng-click="dboardCtrl.toggleShowRims()">Show RIMs details</div>-->
                     </div>
                 </div>
             </div>
@@ -134,7 +131,9 @@
     <div class="row bottom-row-buttons" ng-show="dboardCtrl.showBottomButtons===true">
 
         <span>
-            <label ng-click="dboardCtrl.setAlarm()" style="cursor: pointer" ng-class="{'alarmBtn-dashboard': dboardCtrl.alarmBtn === true }"><i class='icon-attention-alt'></i><br />Alarm</label>
+            <label ng-click="dboardCtrl.setAlarm()" style="cursor: pointer" ng-class="{'alarmBtn-dashboard': dboardCtrl.alarmBtn === true }"><i class='icon-attention-alt'></i>
+                <br />
+                Alarm</label>
         </span>
         <span>
             <label ng-click="dboardCtrl.addTimer()" style="cursor: pointer">
@@ -145,19 +144,26 @@
         </span>
 
         <span>
-            <label ng-click="dboardCtrl.rimsClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.rimsEnable == 1 }"><i class="icon-fire-1"></i><br />RIMS</label>
+            <label ng-click="dboardCtrl.rimsClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.rimsEnable == 1 }"><i class="icon-fire-1"></i>
+                <br />
+                RIMS</label>
         </span>
         <span>
-            <label ng-click="dboardCtrl.pumpClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.pumpOn == 1  }"><i class="icon-off"></i><br />Pump</label>
+            <label ng-click="dboardCtrl.pumpClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.pumpOn == 1  }"><i class="icon-off"></i>
+                <br />
+                Pump</label>
         </span>
         <span>
-            <label ng-click="dboardCtrl.auxClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.auxOn == 1 }"><i class="icon-off"></i><br />Aux</label>
+            <label ng-click="dboardCtrl.auxClick()" style="cursor: pointer" ng-class="{'nonAlarm': dboardCtrl.auxOn == 1 }"><i class="icon-off"></i>
+                <br />
+                Aux</label>
         </span>
-     </div>
+    </div>
     <!-- ############################ Quick link to classic mode #####################################-->
     <div class="col-sm-6">
-        <a ui-sref="classic" class="text-color2">classic theme</a> <br />
-        <a ui-sref="#/historyCharts/0" class="text-color2">historic charts</a> 
+        <a ui-sref="classic" class="text-color2">classic theme</a>
+        <br />
+        <div class="text-color2 clickable" ng-click="dboardCtrl.goToCharts()">historic charts</div>
     </div>
 
     <!-- ########################### Last updates #####################################################-->
@@ -165,6 +171,7 @@
         <div class="text-color5  h6">Last temperature update: {{dboardCtrl.lastTempUpdate | date:'mediumTime'}}</div>
         <div class="text-color5 h6">Last chart update: {{dboardCtrl.lastChartUpdate | date:'mediumTime'}}</div>
     </div>
+
     <!-- ########################### Debug Status #####################################################-->
     <div ng-if="dboardCtrl.showStatusLog">
         <pre class="statusLog">{{dboardCtrl.statusInfo | json}}</pre>

@@ -24,11 +24,12 @@
         vm.chart = chartSrv.getCurrentChart();
 
         vm.changeChartType = changeChartType;
-        vm.chBxChartChanged = chBxChartChanged;
+        
         vm.clickAlarm = clickAlarm;
         vm.closeMenu = closeMenu;
         vm.dbSettingsClick = dbSettingsClick;
         vm.exitAlarm = exitAlarm;
+        vm.goToCharts = goToCharts;
         vm.hasTempAlarm = hasTempAlarm;
         vm.lastChartUpdate = new Date();
         vm.lastTempUpdate = new Date();
@@ -48,7 +49,7 @@
         vm.switchTemps = switchTemps;
         vm.thermometers = [];
         vm.toggleAlarm = toggleAlarm;
-        vm.toggleShowRims = toggleShowRims;
+        //vm.toggleShowRims = toggleShowRims;
 
         vm.tempSpeed = 0;
         vm.etaAlarm = 0;
@@ -63,11 +64,11 @@
 
 
         function activate() {
-            vm.chartOtherThermos = getOtherTheromosChart();
-            settingsSrv.thermos.forEach(function (element, index, array) {
-                element.chartEnabled = false;
-            });
-            settingsSrv.thermos[Number($state.params.id)].chartEnabled = true;
+          
+            //settingsSrv.thermos.forEach(function (element, index, array) {
+            //    element.chartEnabled = false;
+            //});
+            //settingsSrv.thermos[Number($state.params.id)].chartEnabled = true;
 
             updateVM(brewduionoDataSrv.getCurrentStatus());
             if (vm.hasOwnProperty('thermometers') === false || vm.thermometers === undefined) {
@@ -124,9 +125,7 @@
         function changeChartType(chartType) {
        //     vm.chart.type = chartType;
         }
-        function chBxChartChanged(thermo) {
-         //   vm.chart.view = { columns: getChartColumns() };
-        }
+        
 
         function clickAlarm(whichAlarm) {
             vm[whichAlarm] = vm.thermo[whichAlarm];
@@ -151,6 +150,11 @@
             else {
                 brewduinoCmdsSrv.setLowAlarms(id, alarmValue);
             }
+        }
+
+        function goToCharts() {
+            var stateParams = { id: $state.params.id };
+            $state.go('historyCharts', stateParams);
         }
 
         function hasTempAlarm(id) {
@@ -190,19 +194,19 @@
             vm.showMenu = true;
         }
 
-        function getChartColumns() {
-            var rc = [0];
-            settingsSrv.thermos.forEach(function (element, index, array) {
-                if (element.chartEnabled || index === Number($state.params.id)) {
-                    rc.push(index + 3);
-                }
-            });
-            if (vm.showRims) {
-                rc.push(1);
-                rc.push(2);
-            }
-            return rc;
-        }
+        //function getChartColumns() {
+        //    var rc = [0];
+        //    settingsSrv.thermos.forEach(function (element, index, array) {
+        //        if (element.chartEnabled || index === Number($state.params.id)) {
+        //            rc.push(index + 3);
+        //        }
+        //    });
+        //    //if (vm.showRims) {
+        //    //    rc.push(1);
+        //    //    rc.push(2);
+        //    //}
+        //    return rc;
+        //}
 
         function getOtherThermos() {
             var rc = [];
@@ -277,11 +281,11 @@
             vm.showAlarmForm[whichAlarm] = !vm.showAlarmForm[whichAlarm];
         }
 
-        function toggleShowRims() {
-            //vm.showRims = !vm.showRims;
-            ////chartSrv.enableRims(vm.showRims);
-            //vm.chart.view = { columns: getChartColumns() };
-        }
+      //  function toggleShowRims() {
+      //      //vm.showRims = !vm.showRims;
+      //      ////chartSrv.enableRims(vm.showRims);
+      //      //vm.chart.view = { columns: getChartColumns() };
+      //  }
 
         function updateVM(responseData) {
             //vm.mcData = responseData;

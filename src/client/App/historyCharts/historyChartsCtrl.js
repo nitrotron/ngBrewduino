@@ -2,13 +2,14 @@
     angular.module('app')
         .controller('historyChartsCtrl', historyChartsCtrl);
 
-    function historyChartsCtrl(chartSrv) {
+    function historyChartsCtrl(chartSrv, $state) {
         var vm = this;
         vm.chartTypes = [];
         vm.selectedChartType = {};
         vm.updateChartType = updateChartType;
         vm.updateSession = updateSession;
         vm.chartConfig = chartSrv.getCurrentChart();
+        vm.goToDashboard = goToDashboard;
         vm.sessions = {};
 
         activate();
@@ -37,6 +38,11 @@
                 .then(function (sessions) {
                     vm.sessions = sessions;
                 });
+        }
+
+        function goToDashboard() {
+            var stateParams = { id: $state.params.id };
+            $state.go('dashboard', stateParams);
         }
 
         function updateChartType() {

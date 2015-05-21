@@ -19,6 +19,7 @@
             getChartData: getChartData,
             getCurrentData: getCurrentData,
             getCurrentChart: getCurrentChart,
+            getCurrentSession: getCurrentSession,
             getEtaToAlarm: getEtaToAlarm,
             getSessions: getSessions,
             getTempSpeed: getTempSpeed,
@@ -391,6 +392,18 @@
 
             return deferred.promise;
         }
+
+        function getCurrentSession() {
+            var deferred = new $q.defer();
+            getSessions()
+                .then(function (data) {
+                    var lastOne = data[0];
+                    deferred.resolve(lastOne);
+                });
+
+            return deferred.promise;
+        }
+
         function getTempSpeed(whichThermo) {
             if (myCurrentChart.series[0].data.length >= 2) {
                 var whichT = Number(whichThermo);

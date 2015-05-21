@@ -1,7 +1,16 @@
 ﻿<div ng-controller="dbSettingsCtrl as dbSettingsCtrl" class="container">
     <form name="dbSettings" class="form-horizontal">
         <legend>Database Settings</legend>
+        
         <div class="form-group" ng-hide="dbSettingsCtrl.createNewSession">
+            <div class="col-sm-2 col-xs-1 ">Current Session Name:</div>
+            <div class="col-sm-8 col-xs-10">
+                <em>{{dbSettingsCtrl.currentSession}}</em>
+            </div>
+            <div class="col-sm-2 text-color5 col-xs-1 clickable" ng-click="dbSettingsCtrl.newSessionClick()">Create New Session</div>
+            
+        </div>
+      <!--  <div class="form-group" ng-hide="dbSettingsCtrl.createNewSession">
             <div class="col-md-10 col-md-offset-2">
                 <div class="checkbox">
                     <label>
@@ -10,12 +19,12 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="form-group" ng-show="dbSettingsCtrl.createNewSession">
             <label for="setPoint" class="col-md-2 control-label">New Session Name:</label>
             <div class="col-md-10">
                 <input type="text" class="form-control"
-                       id="newSessionName" placeholder="newSessionName"
+                       id="newSessionName" placeholder="Enter Your Session Name"
                        ng-model="dbSettingsCtrl.newSessionName" />
             </div>
         </div>
@@ -49,7 +58,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <button type="button" class="btn btn-danger btn-block" ng-click="dbSettingsCtrl.done()">
-                    DONE
+                    Return to Dashboard
                 </button>
             </div>
         </div>

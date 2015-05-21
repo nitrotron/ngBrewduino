@@ -5,10 +5,14 @@
         .factory('dbSettingsSrv', dbSettingsSrv);
 
     /* @ngInject */
-    function dbSettingsSrv($http, $q) {
+    function dbSettingsSrv($http, $q, chartSrv) {
         var dataLoggingEnabled = false;
+        var currentSession;
+
+       
         return {
             createNewSession: createNewSession,
+            getCurrentSession: getCurrentSession,
             dataLoggingEnabled: dataLoggingEnabled
         };
 
@@ -18,10 +22,27 @@
 
             $http.post(url, { 'sessionName': sessionName }).success(function (data) {
                 deferred.resolve(data);
+                currentSession = {'sessionName': sessionName};
             })
             .error(function (data, status) {
                 deferred.reject(data);
             });
+
+            return deferred.promise;
+        }
+
+        function getCurrentSession() {
+            var deferred = new $q.defer();
+            if (currentSession) {
+                deferred.resolve(currentSession);
+                return deferred.promise;
+            }
+
+            chartSrv.getCurrentSession()
+                .then(function (data) {
+                    currentSession = data;
+                    deferred.resolve(data);
+                });
 
             return deferred.promise;
         }
