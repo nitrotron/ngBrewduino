@@ -33,6 +33,7 @@
                 if (autoUpdatesEnabled === true) {
                     getChartData();
                 }
+            }, 30000);
         }
 
         function activate() {
