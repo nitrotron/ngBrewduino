@@ -95,7 +95,7 @@
 
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
-                    if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
+                    if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('series')) {
                        // vm.chart.data.rows = chartSrv.getCurrentData();
                         vm.lastChartUpdate = new Date();
                         vm.tempSpeed = chartSrv.getTempSpeed($state.params.id);

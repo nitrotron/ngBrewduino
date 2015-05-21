@@ -9,6 +9,7 @@
         var autoUpdatesEnabled = false;
         var chartTitle = 'Temperature';
 
+
         autoUpdates();
         activate();
 
@@ -315,7 +316,7 @@
                 var dataPts5 = [];
                 var minY = Infinity;
                 var maxY = -Infinity;
-                
+
                 if (data.length > 0) {
                     data.forEach(function (element, index, array) {
                         var dt = Date.UTC(element.year, element.month - 1, element.day, element.hour, element.minute, element.second, 0);
@@ -352,8 +353,10 @@
 
         }
 
-        function getCurrentData() {
-            return myCurrentChart.series;
+        function getCurrentData(series) {
+            var i = (isNaN(series)) ? 0 : series;
+           
+            return myCurrentChart.series[i].data;
         }
         function getCurrentChart() {
             return myCurrentChart;
@@ -376,6 +379,7 @@
                 return 0;
             }
         }
+
 
         function getSessions() {
             var statusUrl = '/getSessions';
