@@ -4,6 +4,7 @@
 
     function historyChartsCtrl(chartSrv, $state) {
         var vm = this;
+        
         vm.chartTypes = [];
         vm.selectedChartType = {};
         vm.updateChartType = updateChartType;
@@ -24,8 +25,11 @@
                  { type: 'column', text: 'Column' }
             ];
 
-            vm.selectedChartType = vm.chartTypes[0];
-
+            var chartTypeID = findCurrentChartTypeID();
+            //vm.selectedChartType = vm.chartTypes[0];
+            if (!isNaN(chartTypeID)) {
+                vm.selectedChartType = vm.chartTypes[chartTypeID];
+            }
 
 
             chartSrv.getChartData('all').
@@ -37,7 +41,19 @@
             chartSrv.getSessions()
                 .then(function (sessions) {
                     vm.sessions = sessions;
+                    if (sessions.length > 0) {
+                        vm.selectedSession = vm.sessions[0];
+                    }
                 });
+        }
+
+        function findCurrentChartTypeID() {
+            for (var i = 0; i < vm.chartTypes.length; i++) {
+                if (vm.chartTypes[i].type === vm.chartConfig.options.chart.type) {
+                    return i;
+                }
+            }
+            return undefined;
         }
 
         function goToDashboard() {
