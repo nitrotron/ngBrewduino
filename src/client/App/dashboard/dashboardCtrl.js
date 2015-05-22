@@ -24,7 +24,7 @@
         vm.chart = chartSrv.getCurrentChart();
 
         vm.changeChartType = changeChartType;
-        
+
         vm.clickAlarm = clickAlarm;
         vm.closeMenu = closeMenu;
         vm.dbSettingsClick = dbSettingsClick;
@@ -64,7 +64,7 @@
 
 
         function activate() {
-          
+
             //settingsSrv.thermos.forEach(function (element, index, array) {
             //    element.chartEnabled = false;
             //});
@@ -79,14 +79,15 @@
             // getChartData();
             chartSrv.getChartData('300').
                            then(function (data) {
-                              // vm.chart = data;
+                               // vm.chart = data;
                                vm.chart = chartSrv.getCurrentChart();
+                               var chart = vm.chart.getHighcharts();
                            });
 
 
             brewduionoDataSrv.setAutoUpdates(true);
             chartSrv.setAutoUpdates(true);
- 
+
 
             $scope.$watch(brewduionoDataSrv.getCurrentStatus,
                 function (newValue, oldValue) {
@@ -97,7 +98,7 @@
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
                     if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('series')) {
-                       // vm.chart.data.rows = chartSrv.getCurrentData();
+                        // vm.chart.data.rows = chartSrv.getCurrentData();
                         vm.lastChartUpdate = new Date();
                         vm.tempSpeed = chartSrv.getTempSpeed($state.params.id);
                         if (vm.hasOwnProperty('thermo') && vm.thermo.hasOwnProperty('highAlarm') && vm.thermo.hasOwnProperty('lowAlarm')) {
@@ -109,7 +110,6 @@
                 });
 
             vm.showBottomButtons = settingsSrv.showBottomButtons;
-            //chartSrv.enableRims(vm.showRims);
         }
 
         function addTimer() {
@@ -123,9 +123,9 @@
         }
 
         function changeChartType(chartType) {
-       //     vm.chart.type = chartType;
+            //     vm.chart.type = chartType;
         }
-        
+
 
         function clickAlarm(whichAlarm) {
             vm[whichAlarm] = vm.thermo[whichAlarm];
@@ -179,8 +179,8 @@
              .then(function (response) {
                  updateVM(response.data);
 
-                //TM vm.chart = chartSrv.getChartConfig();
-               //TM  vm.chart.view = { columns: getChartColumns() };
+                 //TM vm.chart = chartSrv.getChartConfig();
+                 //TM  vm.chart.view = { columns: getChartColumns() };
                  //getChartData();
 
                  //logger.success('Updated status', response.data);
@@ -281,11 +281,7 @@
             vm.showAlarmForm[whichAlarm] = !vm.showAlarmForm[whichAlarm];
         }
 
-      //  function toggleShowRims() {
-      //      //vm.showRims = !vm.showRims;
-      //      ////chartSrv.enableRims(vm.showRims);
-      //      //vm.chart.view = { columns: getChartColumns() };
-      //  }
+
 
         function updateVM(responseData) {
             //vm.mcData = responseData;

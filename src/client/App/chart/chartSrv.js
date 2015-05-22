@@ -14,7 +14,6 @@
         activate();
 
         return {
-            enableRims: enableRims,
             getChartConfig: getChartConfig,
             getChartData: getChartData,
             getCurrentData: getCurrentData,
@@ -42,45 +41,6 @@
             myCurrentChart = getChartConfig();
         }
 
-        function enableRims(rimsOn) {
-            //if (rimsOn) {
-            //    chartConfig.options['series'] = {
-            //        '0': { 'axis': 'rims', 'targetAxisIndex': 1 },
-            //        '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
-
-            //    };
-            //    chartConfig.options['vAxis'] = {
-            //        //'title': 'Temperature unit', 
-            //        'gridlines': { 'count': 6, 'color': '#D3D3D4' },
-            //        'titleTextStyle': { 'color': '#D3D3D4' },
-            //        'textStyle': { 'color': '#D3D3D4' },
-            //        '0': { 'title': 'Temps F' },
-            //        '1': { 'title': 'rims' }
-            //    };
-            //}
-            //else {
-            //    chartConfig.options['series'] = {
-            //        '0': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '1': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '2': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '3': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '4': { 'axis': 'Temps', 'targetAxisIndex': 0 },
-            //        '5': { 'axis': 'Temps', 'targetAxisIndex': 0 }
-
-            //    };
-            //    chartConfig.options['vAxis'] = {
-            //        //'title': 'Temperature unit', 
-            //        'gridlines': { 'count': 6, 'color': '#D3D3D4' },
-            //        'titleTextStyle': { 'color': '#D3D3D4' },
-            //        'textStyle': { 'color': '#D3D3D4' }
-            //    };
-
-            //}
-        }
 
         function getChartConfig() {
 
@@ -96,34 +56,99 @@
                                [1, '#3e3e40']
                             ]
                         },
-                        'plotOptions': {
-                            'series': {
-                                'stacking': '',
-                                'dataLabels': {
-                                    'color': '#B0B0B3'
-                                },
-
-
-                                'marker': {
-                                    'radius': 2
-                                    //lineColor: '#333'
+                    },
+                    'plotOptions': {
+                        'areaspline': {
+                            //'fillColor': {
+                            //    'linearGradient': { x1: 0, y1: 0, x2: 0, y2: 1},
+                            //    'stops': [
+                            //        [0, Highcharts.getOptions().colors[0]],
+                            //        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                            //    ]
+                            //},
+                            'marker': {
+                                'radius': 12
+                            },
+                            'lineWidth': 2,
+                            'states': {
+                                'hover': {
+                                    'lineWidth': 2
                                 }
                             },
-                            boxplot: {
-                                fillColor: '#505053'
-                            },
-                            candlestick: {
-                                lineColor: 'white'
-                            },
-                            errorbar: {
-                                color: 'white'
-                            }
-
+                            'threshold': null
                         },
-                        plotBorderColor: '#606063'
+                        'spline': {
+                            'marker': {
+                                'radius': 12
+                            },
+                            'lineWidth': 2,
+                            'states': {
+                                'hover': {
+                                    'lineWidth': 2
+                                }
+                            },
+                            'threshold': null
+                        },
+                        'series': {
+                            'stacking': '',
+                            'dataLabels': {
+                                'color': '#B0B0B3'
+                            },
+
+
+                            'marker': {
+                                'radius': 2
+                                //lineColor: '#333'
+                            }
+                        },
+                        boxplot: {
+                            fillColor: '#505053'
+                        },
+                        candlestick: {
+                            lineColor: 'white'
+                        },
+                        errorbar: {
+                            color: 'white'
+                        }
+
                     },
+                    plotBorderColor: '#606063',
                     colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee',
-                                '#55BF3B', '#DF5353', '#7798BF', '#aaeeee']
+                                '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+                    labels: {
+                        style: {
+                            color: '#707073'
+                        }
+                    },
+
+                    drilldown: {
+                        activeAxisLabelStyle: {
+                            color: '#F0F0F3'
+                        },
+                        activeDataLabelStyle: {
+                            color: '#F0F0F3'
+                        }
+                    },
+
+                    navigation: {
+                        buttonOptions: {
+                            symbolStroke: '#DDDDDD',
+                            theme: {
+                                fill: '#505053'
+                            }
+                        }
+                    },
+                    legend: {
+                        itemStyle: {
+                            color: '#E0E0E3'
+                        },
+                        itemHoverStyle: {
+                            color: '#FFF'
+                        },
+                        itemHiddenStyle: {
+                            color: '#606063'
+                        }
+                    }
                 },
                 'xAxis': {
                     type: 'datetime',
@@ -235,46 +260,14 @@
                         fontSize: '20px'
                     }
                 },
-                legend: {
-                    itemStyle: {
-                        color: '#E0E0E3'
-                    },
-                    itemHoverStyle: {
-                        color: '#FFF'
-                    },
-                    itemHiddenStyle: {
-                        color: '#606063'
-                    }
-                },
+                
                 'credits': {
                     'enabled': true,
                     style: {
                         color: '#666'
                     }
                 },
-                labels: {
-                    style: {
-                        color: '#707073'
-                    }
-                },
-
-                drilldown: {
-                    activeAxisLabelStyle: {
-                        color: '#F0F0F3'
-                    },
-                    activeDataLabelStyle: {
-                        color: '#F0F0F3'
-                    }
-                },
-
-                navigation: {
-                    buttonOptions: {
-                        symbolStroke: '#DDDDDD',
-                        theme: {
-                            fill: '#505053'
-                        }
-                    }
-                },
+                
                 'loading': false,
                 'size': {
                     'width': '',
@@ -356,7 +349,7 @@
 
         function getCurrentData(series) {
             var i = (isNaN(series)) ? 0 : series;
-           
+
             return myCurrentChart.series[i].data;
         }
         function getCurrentChart() {
