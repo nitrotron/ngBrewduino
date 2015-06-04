@@ -1,4 +1,4 @@
-﻿module.exports = function (app, db) {
+﻿module.exports = function (app, db, fs) {
 
     var stubData = {
         "thermometers": [
@@ -147,9 +147,24 @@
     }
 
     function clearSessionData(req, res, next) {
-        db.serialize(function () {
-            db.run('Delete from TemperatureHistories');
+        
+        db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+            console.error(err);
+            if (rows.length > 0) {
+                currentSession = rows[0].id;
+            }
+
+            if (currentSession > 0) {
+                db.run('Delete from TemperatureHistories where SessionID = $sessionID', { $sessionID: currentSession });
+                console.log('deleting with session id = ' + currentSession);
+            }
+            else {
+                console.log('not updating temperatures histories because no current session');
+            }
         });
+            
+        
+        res.send('Cleared temperature histories');
     }
 
     function createNewSession(req, res, next) {
@@ -179,6 +194,10 @@
 
     function restartPortAPI(req, res, next) {
         console.log('would be resetting the port');
+        var filepath = './src/server/serverReset.js';
+        fs.closeSync(fs.openSync(filepath, 'w'));
+        res.send('Port reset');
+
     }
 
     setInterval(randomizeStubData, 10000);

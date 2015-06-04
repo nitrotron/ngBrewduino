@@ -63,10 +63,10 @@ app.get('/ping', function (req, res, next) {
 });
 
 if (useMock === 'enabled') {
-    routes = require('./routes/testServer.js')(app, db);
+    routes = require('./routes/testServer.js')(app, db, fs);
 }
 else {
-    routes = require('./routes/serialServer.js')(app, db);
+    routes = require('./routes/serialServer.js')(app, db, fs);
 }
 
 switch (environment) {
