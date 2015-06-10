@@ -1,5 +1,7 @@
 ﻿module.exports = function (app, db, fs) {
 
+    var port = process.env.PORT || 7200;
+   
     var stubData = {
         "thermometers": [
            {
@@ -70,7 +72,7 @@
     app.get('/restartPort', restartPortAPI);
 
     function getStubData(request, response, next) {
-
+        console.log('just got a request for status');
         response.send(stubData);
         response.end;
     };
@@ -231,5 +233,8 @@
 
         });
     }
+
+
+   
 
 };

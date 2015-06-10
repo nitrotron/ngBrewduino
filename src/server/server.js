@@ -5,6 +5,7 @@
 
 var express = require('express');
 var app = express();
+var http = require('http');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 //var cors = require('cors');
@@ -95,3 +96,33 @@ app.listen(port, function () {
     '\n__dirname = ' + __dirname +
     '\nprocess.cwd = ' + process.cwd());
 });
+
+
+//HeartBeat
+var heatbeatInterval = 60000;
+var heartbeatStartUpDelay = 60000;
+setTimeout(function () {
+    setInterval(function () {
+        console.log('about to send a heartbeat');
+        var request = http.get('http://localhost:' + port + '/getStatus', function (res) {
+            request.setTimeout(0); //disable timeout on response
+            if ([200, 302].indexOf(res.statusCode) == -1) {
+                console.log('reseting server due to statusCode:' + res.statusCode);
+                var filepath = './src/server/serverReset.js';
+                fs.closeSync(fs.openSync(filepath, 'w'));
+            }
+            else {
+                console.log('[heartbeat]: OK [' + res.statusCode + ']');
+            }
+        }).on('error', function (err) {
+            var filepath = './src/server/serverReset.js';
+            fs.closeSync(fs.openSync(filepath, 'w'));
+        });
+
+        request.setTimeout(10000, function () {
+            console.log('reseting server due to timeout');
+            var filepath = './src/server/serverReset.js';
+            fs.closeSync(fs.openSync(filepath, 'w'));
+        });
+    }, heatbeatInterval);
+}, heartbeatStartUpDelay);

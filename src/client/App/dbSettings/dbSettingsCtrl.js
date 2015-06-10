@@ -8,7 +8,7 @@
 
         vm.cancel = cancel;
         vm.clearSessionData = clearSessionData;
-        vm.currentSession = ''
+        vm.currentSession = '';
         vm.dataLogClick = dataLogClick;
         vm.done = done;
         vm.newSessionClick = newSessionClick;
