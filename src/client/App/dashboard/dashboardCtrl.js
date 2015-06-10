@@ -24,7 +24,7 @@
         vm.chart = chartSrv.getCurrentChart();
 
         vm.changeChartType = changeChartType;
-
+        vm.clearAlarm = clearAlarm;
         vm.clickAlarm = clickAlarm;
         vm.closeMenu = closeMenu;
         vm.dbSettingsClick = dbSettingsClick;
@@ -37,7 +37,6 @@
         vm.pumpClick = pumpClick;
         vm.rimsClick = rimsClick;
         vm.rimsSettingsClick = rimsSettingsClick;
-        vm.setAlarm = setAlarm;
         vm.settingsClick = settingsClick;
 
         vm.showAlarmForm = { highAlarm: false, lowAlarm: false };
@@ -247,19 +246,22 @@
             $state.go('rimsSettings', stateParams);
         }
 
-        function setAlarm() {
+        function clearAlarm() {
             vm.alarmBtn = false;
             brewduinoCmdsSrv.resetAlarm();
+            //if there is a temperature alarm, then reset any temperature alarm
             if (vm.alarm.tempA == 1) {
-                var thermo = vm.thermometers[vm.alarm.whichTemp];
-                if (thermo.highAlarm < thermo.temp) {
-                    brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
-                }
-                else {
-                    brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
-                }
+                vm.thermometers.forEach(function (element, index, array) {
+                    if (element.highAlarm < element.temp) {
+                        brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
+                    }
+                    if (element.lowAlarm > element.temp) {
+                        brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
+                    }
+                });
             }
-            else {
+            // if it's a timer alarm, then just remove it from the list.
+            if (vm.alarm.timeA == 1) {
                 countDownTimerSrv.clearExpired();
             }
         }

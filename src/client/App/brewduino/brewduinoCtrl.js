@@ -37,17 +37,20 @@
 
         function alarmClick(alarm) {
             brewduinoCmdsSrv.resetAlarm();
+            brewduinoCmdsSrv.resetAlarm();
+            //if there is a temperature alarm, then reset any temperature alarm
             if (vm.alarm.tempA == 1) {
-                //var thermo = vm.thermometers[vm.alarm.whichTemp];
-                var thermo = vm.mcData.thermometers[vm.alarm.whichTemp];
-                if (thermo.highAlarm < thermo.temp) {
-                    brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
-                }
-                else {
-                    brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
-                }
+                vm.mcData.thermometers.forEach(function (element, index, array) {
+                    if (element.highAlarm < element.temp) {
+                        brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
+                    }
+                    if (element.lowAlarm > element.temp) {
+                        brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
+                    }
+                });
             }
-            else {
+            // if it's a timer alarm, then just remove it from the list.
+            if (vm.alarm.timeA == 1) {
                 countDownTimerSrv.clearExpired();
             }
         }
