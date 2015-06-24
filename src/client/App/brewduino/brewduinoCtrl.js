@@ -15,8 +15,8 @@
         vm.pumpClick = pumpClick;
         vm.predicate = 'order';
         vm.rimsClick = rimsClick;
-        
-        
+
+
         activate();
 
         function activate() {
@@ -37,22 +37,22 @@
 
         function alarmClick(alarm) {
             brewduinoCmdsSrv.resetAlarm();
-            brewduinoCmdsSrv.resetAlarm();
+            //brewduinoCmdsSrv.resetAlarm();
             //if there is a temperature alarm, then reset any temperature alarm
-            if (vm.alarm.tempA == 1) {
-                vm.mcData.thermometers.forEach(function (element, index, array) {
-                    if (element.highAlarm < element.temp) {
-                        brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
-                    }
-                    if (element.lowAlarm > element.temp) {
-                        brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
-                    }
-                });
-            }
+            //if (vm.alarm.tempA == 1) {
+            //    vm.mcData.thermometers.forEach(function (element, index, array) {
+            //        if (element.highAlarm < element.temp) {
+            //            brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
+            //        }
+            //        if (element.lowAlarm > element.temp) {
+            //            brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
+            //        }
+            //    });
+            //}
             // if it's a timer alarm, then just remove it from the list.
-            if (vm.alarm.timeA == 1) {
-                countDownTimerSrv.clearExpired();
-            }
+            //if (vm.alarm.timeA == 1) {
+            countDownTimerSrv.clearExpired();
+            //}
         }
 
         function auxClick(aux) {
@@ -75,7 +75,7 @@
             //brewduionoDataSrv.currentStatus.pumpOn = pump;
             //vm.mcData.pumpOn = pump;
             brewduinoCmdsSrv.setPumpsPower(pump);
-            
+
         }
         function rimsClick(rims) {
             //brewduionoDataSrv.currentStatus.rimsEnable = rims;
@@ -84,12 +84,12 @@
         }
 
 
-     
+
 
 
         function updateVM(responseData) {
             vm.mcData = responseData;
-            vm.alarmBtn = (responseData.tempAlarmActive === 1|| responseData.timerAlarmActive === 1 ) ? true : false;
+            vm.alarmBtn = (responseData.tempAlarmActive === 1 || responseData.timerAlarmActive === 1) ? true : false;
             vm.mcData.auxOn = (responseData.auxOn === 1) ? true : false;
             vm.mcData.rimsEnable = (responseData.rimsEnable === 1) ? true : false;
             vm.mcData.pumpOn = (responseData.pumpOn === 1) ? true : false;
