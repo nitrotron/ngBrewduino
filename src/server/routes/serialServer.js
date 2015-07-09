@@ -255,18 +255,18 @@
         myPort.write(fullCmd, function (err, result) {
             if(err){
                 console.log('write failed');
-                response.sendStatus('Failure');
-                response.end;
+                //response.sendStatus('Failure');
+                //response.end;
             }
             else {
                 if (result) {
                     console.log('success, got the following result: ' + result);
-                    response.sendStatus(result);
+                    //response.sendStatus(result);
 
                 }
                 else {
                     console.log('success with no callback results');
-                    response.sendStatus('success');
+                    //response.sendStatus('success');
                 }
                 //response.end;
             }
