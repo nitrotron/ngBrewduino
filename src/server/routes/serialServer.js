@@ -252,9 +252,27 @@
         console.log('request.params.whichCmd = ' + request.params.whichCmd);
         console.log('request.params.val = ' + request.params.val);
         var fullCmd = request.params.whichCmd + ',' + request.params.val + ';';
-        myPort.write(fullCmd);
-        response.send('success');
-        response.end;
+        myPort.write(fullCmd, function (err, result) {
+            if(err){
+                console.log('write failed');
+                response.send('Failure');
+                response.end;
+            }
+            else {
+                if (result) {
+                    console.log('success, got the following result' + result);
+                    response.send(result);
+
+                }
+                else {
+                    console.log('success with no callback results');
+                    response.send('success');
+                }
+                response.end;
+            }
+        });
+        //response.send('success');
+        //response.end;
     }
 
     function restartPortAPI(req, res, next) {
