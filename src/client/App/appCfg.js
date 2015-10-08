@@ -7,6 +7,9 @@
     angular.module('app')
         .value('basePortUrl', basePortUrl);
         
-       
+      
+    var socket = io();
+    angular.module('app')
+        .value('socket', socket);
 }
 )();

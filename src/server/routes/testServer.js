@@ -1,7 +1,7 @@
-﻿module.exports = function (app, db, fs) {
+﻿module.exports = function (app, db, fs, io) {
 
     var port = process.env.PORT || 7200;
-   
+
     var stubData = {
         "thermometers": [
            {
@@ -73,10 +73,11 @@
 
     function getStubData(request, response, next) {
         console.log('just got a request for status');
+        io.emit('status', stubData);
         response.send(stubData);
         response.end;
     };
-
+      
     function getChartData(request, response, next) {
         db.serialize(function () {
             var currentSession = 0;
@@ -149,7 +150,7 @@
     }
 
     function clearSessionData(req, res, next) {
-        
+
         db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
             console.error(err);
             if (rows.length > 0) {
@@ -164,8 +165,8 @@
                 console.log('not updating temperatures histories because no current session');
             }
         });
-            
-        
+
+
         res.send('Cleared temperature histories');
     }
 
@@ -176,10 +177,10 @@
         console.log('just received sessionName:' + sessionName);
         res.send('Created Session Name: ' + sessionName);
     }
-     
+
     function getSessions(req, res, next) {
         db.all("SELECT sessionName, id from Sessions  ORDER  BY id DESC", function (err, rows) {
-        //db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
+            //db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
             console.log('number of Sessions rows: ' + rows.length);
             res.json(rows);
         });
@@ -234,7 +235,16 @@
         });
     }
 
+    io.on('connection', function (socket) {
+        socket.emit('status', stubData);
+        console.log('a user connected');
+        socket.on('disconnect', function () {
+            console.log('user disconnected');
+        });
+    });
 
-   
+
+
+
 
 };
