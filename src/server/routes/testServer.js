@@ -77,6 +77,9 @@
         response.send(stubData);
         response.end;
     };
+
+
+    
       
     function getChartData(request, response, next) {
         db.serialize(function () {
@@ -109,7 +112,6 @@
 
 
                 if (currentSession > 0) {
-                    //db.all("SELECT  * from (select th.ROWID, strftime('%Y',th.dt,  'localtime') as year, strftime('%m',th.dt, 'localtime') as month, strftime('%d',th.dt, 'localtime') as day, strftime('%H',th.dt, 'localtime') as hour, strftime('%M',th.dt, 'localtime') as minute, strftime('%S',th.dt, 'localtime') as second, datetime(th.dt, 'localtime') as dt, th.temp0, th.temp1, th.temp2, th.temp3, s.sessionName FROM TemperatureHistories th join Sesions s on s.id = th.SessionID where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
                     db.all("SELECT *                                                       " +
                            "FROM   (SELECT th.id as id,                                    " +
                            "               Strftime('%Y', th.dt, 'localtime') AS year,     " +
@@ -137,7 +139,13 @@
                            function (err, rows) {
                                console.error(err);
                                console.log('number of chart rows: ' + rows.length);
-                               response.json(rows);
+                               if (response.json === 'function') {
+                                   response.json(rows);
+                               }
+                               else {
+                                   response = JSON.stringify(rows);
+                                   console.log(response);
+                               }
                            });
                 }
                 else {
@@ -205,12 +213,16 @@
 
     setInterval(randomizeStubData, 10000);
 
+    var stubDataUpdateCount = 0;
     function randomizeStubData() {
         stubData.thermometers.forEach(function (element, index, array) {
             element.temp = element.temp + (Math.random() - 0.2);
         });
         stubData.output = (Math.random() * 1000);
-        insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp, stubData.output, stubData.setPoint, stubData.kp, stubData.ki, stubData.kd);
+        io.emit('status', stubData);
+        if (stubDataUpdateCount % 3 == 0) {
+            insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp, stubData.output, stubData.setPoint, stubData.kp, stubData.ki, stubData.kd);
+        }
     }
 
     function insertTemperatureHistories(t0, t1, t2, t3, rimsOnWin, rimsSetPoint, kp, ki, kd) {
@@ -225,6 +237,12 @@
 
                 if (currentSession > 0) {
                     db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID, rimsOnWindow, rimsSetPoint, rimsKp, rimsKi, rimskd) VALUES (?,?,?,?,?,?,?,?,?,?)', t0, t1, t2, t3, currentSession, rimsOnWin, rimsSetPoint, kp, ki, kd);
+                    var chartResponse = {}, chartRequest={};
+                    chartRequest.params = {};
+
+                    getChartData(chartRequest,chartResponse);
+                    console.log("Chart response" + chartResponse);
+                    io.emit('chartData', chartResponse); 
                 }
                 else {
                     console.log('not updating temperatures histories because no current session');

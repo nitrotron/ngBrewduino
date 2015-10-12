@@ -3,7 +3,7 @@
       .factory('chartSrv', chartSrv);
 
     /* @ngInject */
-    function chartSrv($http, $interval, $q, settingsSrv) {
+    function chartSrv($http, $interval, $q, settingsSrv, socket, logger) {
         var myCurrentChart = {};
         var chartConfig = {};
         var autoUpdatesEnabled = false;
@@ -11,6 +11,7 @@
 
 
         autoUpdates();
+        socket.on('chartData',updateChart );
         activate();
 
         return {
@@ -30,11 +31,11 @@
         function autoUpdates() {
             myCurrentChart = getChartConfig();
             getChartData();
-            $interval(function () {
-                if (autoUpdatesEnabled === true) {
-                    getChartData();
-                }
-            }, 30000);
+            //$interval(function () {
+            //    if (autoUpdatesEnabled === true) {
+            //        getChartData();
+            //    }
+            //}, 30000);
         }
 
         function activate() {
@@ -301,51 +302,14 @@
 
 
             $http.get(statusUrl).success(function (data) {
-
-                var dataPts0 = [];
-                var dataPts1 = [];
-                var dataPts2 = [];
-                var dataPts3 = [];
-                var dataPts4 = [];
-                var dataPts5 = [];
-                var minY = Infinity;
-                var maxY = -Infinity;
-
-                if (data.length > 0) {
-                    data.forEach(function (element, index, array) {
-                        var dt = Date.UTC(element.year, element.month - 1, element.day, element.hour, element.minute, element.second, 0);
-                        dataPts0.push([dt, element.temp0]);
-                        dataPts1.push([dt, element.temp1]);
-                        dataPts2.push([dt, element.temp2]);
-                        dataPts3.push([dt, element.temp3]);
-                        dataPts4.push([dt, element.rimsSetPoint]);
-                        dataPts5.push([dt, element.rimsOnWindow]);
-                        minY = arrayMin([element.temp0, element.temp1, element.temp2, element.temp3, minY]);
-                        maxY = arrayMax([element.temp0, element.temp1, element.temp2, element.temp3, maxY]);
-                    });
-
-                    chartTitle = data[0]['sessionName'];
-                }
-
-
-                myCurrentChart.series[0].data = dataPts0;
-                myCurrentChart.series[1].data = dataPts1;
-                myCurrentChart.series[2].data = dataPts2;
-                myCurrentChart.series[3].data = dataPts3;
-                myCurrentChart.series[4].data = dataPts4;
-                myCurrentChart.series[5].data = dataPts5;
-
-                myCurrentChart.yAxis[0].min = minY - ((maxY - minY) * 0.05);
-
-
-                myCurrentChart.title.text = chartTitle;
-
+                updateChart(data);
                 deferred.resolve(data);
             });
 
             return deferred.promise;
 
         }
+
 
         function getCurrentData(series) {
             var i = (isNaN(series)) ? 0 : series;
@@ -452,6 +416,49 @@
                 }
             }
             return max;
+        }
+
+        function updateChart(data) {
+
+            var dataPts0 = [];
+            var dataPts1 = [];
+            var dataPts2 = [];
+            var dataPts3 = [];
+            var dataPts4 = [];
+            var dataPts5 = [];
+            var minY = Infinity;
+            var maxY = -Infinity;
+
+            if (data.length > 0) {
+                data.forEach(function (element, index, array) {
+                    var dt = Date.UTC(element.year, element.month - 1, element.day, element.hour, element.minute, element.second, 0);
+                    dataPts0.push([dt, element.temp0]);
+                    dataPts1.push([dt, element.temp1]);
+                    dataPts2.push([dt, element.temp2]);
+                    dataPts3.push([dt, element.temp3]);
+                    dataPts4.push([dt, element.rimsSetPoint]);
+                    dataPts5.push([dt, element.rimsOnWindow]);
+                    minY = arrayMin([element.temp0, element.temp1, element.temp2, element.temp3, minY]);
+                    maxY = arrayMax([element.temp0, element.temp1, element.temp2, element.temp3, maxY]);
+                });
+
+                chartTitle = data[0]['sessionName'];
+            }
+
+
+            myCurrentChart.series[0].data = dataPts0;
+            myCurrentChart.series[1].data = dataPts1;
+            myCurrentChart.series[2].data = dataPts2;
+            myCurrentChart.series[3].data = dataPts3;
+            myCurrentChart.series[4].data = dataPts4;
+            myCurrentChart.series[5].data = dataPts5;
+
+            myCurrentChart.yAxis[0].min = minY - ((maxY - minY) * 0.05);
+
+
+            myCurrentChart.title.text = chartTitle;
+
+           
         }
     }
 })();

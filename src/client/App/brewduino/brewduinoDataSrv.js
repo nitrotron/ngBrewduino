@@ -35,11 +35,11 @@
         };
 
         function autoUpdates() {
-            $interval(function () {
-                if (autoUpdatesEnabled === true) {
-                    getStatus();
-                }
-            }, 150000000);
+            //$interval(function () {
+            //    if (autoUpdatesEnabled === true) {
+            //        getStatus();
+            //    }
+            //}, 150000000);
         }
 
         function getCurrentStatus() {
