@@ -5,15 +5,13 @@
 
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
+var http = require('http');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 //var cors = require('cors');
 //var errorHandler = require('./routes/utils/errorHandler')();
 var favicon = require('serve-favicon');
 //var logger = require('morgan');
-
-
 var port = process.env.PORT || 7200;
 var routes;
 
@@ -65,6 +63,12 @@ app.get('/ping', function (req, res, next) {
     res.send('pong');
 });
 
+if (useMock === 'enabled') {
+    routes = require('./routes/testServer.js')(app, db, fs);
+}
+else {
+    routes = require('./routes/serialServer.js')(app, db, fs);
+}
 
 switch (environment) {
 
@@ -86,52 +90,39 @@ switch (environment) {
         break;
 }
 
-//app.listen(port, function () {
-//    console.log('Express server listening on port ' + port);
-//    console.log('env = ' + app.get('env') +
-//    '\n__dirname = ' + __dirname +
-//    '\nprocess.cwd = ' + process.cwd());
-//});
-
-
-var io = require('socket.io')(http);
-http.listen(port);
-
-if (useMock === 'enabled') {
-    routes = require('./routes/testServer.js')(app, db, fs, io);
-}
-else {
-    routes = require('./routes/serialServer.js')(app, db, fs, io);
-}
-
-
+app.listen(port, function () {
+    console.log('Express server listening on port ' + port);
+    console.log('env = ' + app.get('env') +
+    '\n__dirname = ' + __dirname +
+    '\nprocess.cwd = ' + process.cwd());
+});
 
 
 //HeartBeat
-//////////var heatbeatInterval = 60000;
-//////////var heartbeatStartUpDelay = 60000;
-//////////setTimeout(function () {
-//////////    setInterval(function () {
-//////////        console.log('about to send a heartbeat');
-//////////        var request = http.get('http://localhost:' + port + '/getStatus', function (res) {
-//////////            request.setTimeout(0); //disable timeout on response
-//////////            if ([200, 302].indexOf(res.statusCode) == -1) {
-//////////                console.log('reseting server due to statusCode:' + res.statusCode);
-//////////                var filepath = './src/server/serverReset.js';
-//////////                fs.closeSync(fs.openSync(filepath, 'w'));
-//////////            }
-//////////            else {
-//////////                console.log('[heartbeat]: OK [' + res.statusCode + ']');
-//////////            }
-//////////        }).on('error', function (err) {
-//////////            var filepath = './src/server/serverReset.js';
-//////////            fs.closeSync(fs.openSync(filepath, 'w'));
-//////////        });
+var heatbeatInterval = 60000;
+var heartbeatStartUpDelay = 60000;
+setTimeout(function () {
+    setInterval(function () {
+        console.log('about to send a heartbeat');
+        var request = http.get('http://localhost:' + port + '/getStatus', function (res) {
+            request.setTimeout(0); //disable timeout on response
+            if ([200, 302].indexOf(res.statusCode) == -1) {
+                console.log('reseting server due to statusCode:' + res.statusCode);
+                var filepath = './src/server/serverReset.js';
+                fs.closeSync(fs.openSync(filepath, 'w'));
+            }
+            else {
+                console.log('[heartbeat]: OK [' + res.statusCode + ']');
+            }
+        }).on('error', function (err) {
+            var filepath = './src/server/serverReset.js';
+            fs.closeSync(fs.openSync(filepath, 'w'));
+        });
 
-//////////        request.setTimeout(10000, function () {
-//////////            console.log('reseting server due to timeout');
-//////////            var filepath = './src/server/serverReset.js';
-//////////            fs.closeSync(fs.openSync(filepath, 'w'));
-//////////        });
-//////////    }, heatbeatInterval);
-//////////}, heartbeatStartUpDelay);
+        request.setTimeout(10000, function () {
+            console.log('reseting server due to timeout');
+            var filepath = './src/server/serverReset.js';
+            fs.closeSync(fs.openSync(filepath, 'w'));
+        });
+    }, heatbeatInterval);
+}, heartbeatStartUpDelay);

@@ -1,4 +1,4 @@
-﻿module.exports = function (app, db, fs, io) {
+﻿module.exports = function (app, db, fs) {
 
     var sleep = require('sleep');
     var serialport = require('serialport');
@@ -280,7 +280,7 @@
         console.log('Resetting the Server');
         var filepath = './src/server/serverReset.js';
         fs.closeSync(fs.openSync(filepath, 'w'));
-        res.send('Port reset'); 
+        res.send('Port reset');
     }
 
 

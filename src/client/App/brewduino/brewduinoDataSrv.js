@@ -6,24 +6,10 @@
     angular.module('app')
         .factory('brewduionoDataSrv', brewduionoDataSrv);
 
-    function brewduionoDataSrv($http, logger, settingsSrv, $interval, socket) {
+    function brewduionoDataSrv($http, logger, settingsSrv, $interval) {
         var myCurrentStatus = {};
         var autoUpdatesEnabled = false;
-        socket.on('status', function (data) {
-            logger.info('Recieved message on socket', data);
-            data.thermometers.forEach(function (element, index, array) {
-                element.name = settingsSrv.thermos[index].name;
-                element.order = settingsSrv.thermos[index].order;
-                if (element.hasOwnProperty('highAlarm') === true) {
-                    element.highAlarm = Number(element.highAlarm.toFixed(1));
-                }
-                if (element.hasOwnProperty('lowAlarm') === true) {
-                    element.lowAlarm = Number(element.lowAlarm.toFixed(1));
-                }
-            });
 
-            myCurrentStatus = data;
-        });
         autoUpdates();
         return {
             clearSessionData: clearSessionData,
@@ -39,7 +25,7 @@
                 if (autoUpdatesEnabled === true) {
                     getStatus();
                 }
-            }, 150000000);
+            }, 15000);
         }
 
         function getCurrentStatus() {
@@ -100,10 +86,6 @@
         function setAutoUpdates(enableUpdates) {
             autoUpdatesEnabled = enableUpdates;
         }
-
-
-        
-        
     }
 }
 )();
