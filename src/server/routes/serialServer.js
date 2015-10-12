@@ -79,7 +79,7 @@
     app.get('/restartPort', restartPortAPI);
 
     function getStatus(request, response, next) {
-        console.log("just returning getStatus; ");
+
         response.send(serialData);
         response.end;
     };
