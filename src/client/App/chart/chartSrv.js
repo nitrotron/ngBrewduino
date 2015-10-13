@@ -429,6 +429,7 @@
             var minY = Infinity;
             var maxY = -Infinity;
 
+            data = JSON.parse(data);
             if (data.length > 0) {
                 data.forEach(function (element, index, array) {
                     var dt = Date.UTC(element.year, element.month - 1, element.day, element.hour, element.minute, element.second, 0);
