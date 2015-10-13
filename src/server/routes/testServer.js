@@ -79,8 +79,8 @@
     };
 
 
-    
-      
+
+
     function getChartData(request, response, next) {
         db.serialize(function () {
             var currentSession = 0;
@@ -144,7 +144,7 @@
                                }
                                else {
                                    response = JSON.stringify(rows);
-                                   console.log(response);
+                                   io.emit('chartData', response);
                                }
                            });
                 }
@@ -237,12 +237,12 @@
 
                 if (currentSession > 0) {
                     db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID, rimsOnWindow, rimsSetPoint, rimsKp, rimsKi, rimskd) VALUES (?,?,?,?,?,?,?,?,?,?)', t0, t1, t2, t3, currentSession, rimsOnWin, rimsSetPoint, kp, ki, kd);
-                    var chartResponse = {}, chartRequest={};
+                    var chartResponse = {}, chartRequest = {};
                     chartRequest.params = {};
 
-                    getChartData(chartRequest,chartResponse);
-                    console.log("Chart response" + chartResponse);
-                    io.emit('chartData', chartResponse); 
+                    getChartData(chartRequest, chartResponse);
+                    
+                   
                 }
                 else {
                     console.log('not updating temperatures histories because no current session');
