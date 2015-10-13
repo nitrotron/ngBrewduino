@@ -18,6 +18,7 @@
 </head>
 <body ng-controller="appCtrl as appCtrl">
     <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
+   
     <!--<div ng-include="'App/brewduino/brewduino.html'"></div>-->
     <div ui-view></div>
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
@@ -32,6 +33,7 @@
     <script src="3rdParty/script/angular-ui-router.js"></script>
     <script src="3rdParty/script/ng-google-chart.js"></script>
     <script src="3rdParty/script/highcharts-ng.js"></script>
+     <script src="3rdParty/script/socket.io.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
     <script src='App/app.js'></script>

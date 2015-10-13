@@ -1,4 +1,4 @@
-﻿module.exports = function (app, db, fs) {
+﻿module.exports = function (app, db, fs, io) {
 
     var sleep = require('sleep');
     var serialport = require('serialport');
@@ -84,7 +84,7 @@
         response.end;
     };
 
-    
+
     function getChartData(request, response, next) {
         db.serialize(function () {
             var currentSession = 0;
@@ -227,7 +227,7 @@
         console.log('Resetting the Server');
         var filepath = './src/server/serverReset.js';
         fs.closeSync(fs.openSync(filepath, 'w'));
-        res.send('Port reset');
+        res.send('Port reset'); 
     }
 
 
