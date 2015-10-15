@@ -88,11 +88,12 @@
             chartSrv.setAutoUpdates(true);
 
 
-            $scope.$watch(brewduionoDataSrv.getCurrentStatus,
-                function (newValue, oldValue) {
-                    updateVM(newValue);
-                    logger.success('Updated status', newValue);
-                });
+            //$scope.$watch(brewduionoDataSrv.getCurrentStatus,
+            //    function (newValue, oldValue) {
+            //        updateVM(newValue);
+            //        logger.success('Updated status', newValue);
+            //    });
+            brewduionoDataSrv.subscribe(updateVM, 'status');
 
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
@@ -287,6 +288,8 @@
 
         function updateVM(responseData) {
             //vm.mcData = responseData;
+            console.log('got responsedata');
+            logger.info('Successful getStatus', responseData);
             vm.statusInfo = responseData;
             vm.rimsEnable = responseData.rimsEnable;
             vm.pumpOn = responseData.pumpOn;
@@ -377,6 +380,7 @@
 
                 });
             }
+            console.log('Done responsedata');
 
         }
 

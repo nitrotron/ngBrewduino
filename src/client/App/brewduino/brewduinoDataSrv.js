@@ -8,7 +8,13 @@
 
     function brewduionoDataSrv($http, logger, settingsSrv, $interval, socket) {
         var myCurrentStatus = {};
+        var dataSubscribers = {
+            status: []
+        };
+
         var autoUpdatesEnabled = false;
+
+
         socket.on('status', function (data) {
             logger.info('Recieved message on socket', data);
             data.thermometers.forEach(function (element, index, array) {
@@ -23,24 +29,29 @@
             });
 
             myCurrentStatus = data;
+            emit(data, 'status');
         });
-        autoUpdates();
+
+
+        //autoUpdates();
         return {
             clearSessionData: clearSessionData,
             getCurrentStatus: getCurrentStatus,
             getStatus: getStatus,
             restartPort: restartPort,
             sendCmd: sendCmd,
-            setAutoUpdates: setAutoUpdates
+            setAutoUpdates: setAutoUpdates,
+            subscribe: subscribe,
+            unsubscribe: unsubscribe
         };
 
-        function autoUpdates() {
-            //$interval(function () {
-            //    if (autoUpdatesEnabled === true) {
-            //        getStatus();
-            //    }
-            //}, 150000000);
-        }
+        // function autoUpdates() {
+        //     //$interval(function () {
+        //     //    if (autoUpdatesEnabled === true) {
+        //     //        getStatus();
+        //     //    }
+        //     //}, 150000000);
+        // }
 
         function getCurrentStatus() {
             return myCurrentStatus;
@@ -101,9 +112,42 @@
             autoUpdatesEnabled = enableUpdates;
         }
 
+        function subscribe(func, type) {
+            type = type || 'status'; // default to status
+            if (typeof dataSubscribers[type] === 'undefined') {
+                dataSubscribers[type] = [];
+            }
+            dataSubscribers[type].push(func);
+        }
 
-        
-        
+        function unsubscribe(func, type) {
+            visitSubscribers('unsubscribe', func, type);
+        }
+
+        function emit(msg, type) {
+            visitSubscribers('emit', msg, type);
+        }
+
+        function visitSubscribers(action, arg, type) {
+            var emitType = type || 'status';
+            var consumers = dataSubscribers[emitType];
+            var i;
+            for (i = 0; i < consumers.length; i += 1) {
+                if (action === 'emit') {
+                    consumers[i](arg);
+                } else {
+                    if (consumers[i] === arg) {
+                        consumers.splice(i, 1);
+                    }
+                }
+
+            }
+        }
+
+
+
+
+
     }
 }
 )();

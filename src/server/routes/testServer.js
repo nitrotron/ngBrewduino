@@ -219,8 +219,10 @@
             element.temp = element.temp + (Math.random() - 0.2);
         });
         stubData.output = (Math.random() * 1000);
+        console.log("Updating data");
         io.emit('status', stubData);
-        if (stubDataUpdateCount % 3 == 0) {
+        stubDataUpdateCount++;
+        if (stubDataUpdateCount % 10 == 0) {
             insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp, stubData.output, stubData.setPoint, stubData.kp, stubData.ki, stubData.kd);
         }
     }
