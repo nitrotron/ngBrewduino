@@ -35,6 +35,9 @@
         socket.on('statusX', function (data) {
             //logger.info('gotA statusX',data);
         });
+        socket.on('newTimer', function (data) {
+            emit(data, 'newTimer');
+        });
 
 
         //autoUpdates();

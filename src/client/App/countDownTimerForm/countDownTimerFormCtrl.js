@@ -3,7 +3,7 @@
     .controller('countDownTimerFormCtrl', countDownTimerFormCtrl);
 
     /* @ngInject */
-    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimerSrv, logger) {
+    function countDownTimerFormCtrl($state, brewduinoCmdsSrv, countDownTimerSrv, logger, socket) {
         var vm = this;
 
         vm.addTimer = addTimer;
@@ -17,10 +17,14 @@
             timerIndex++;
             countDownTimerSrv.addTimer(myObj);
             //dateSnapShot = new Date();
+            
+            var socketObject = { timer: newTimer, label: newTimerLabel };
+            socket.emit('createTimer', socketObject);
             brewduinoCmdsSrv.setTimer(newTimer);
             
-            
+          
             logger.success('Added Timer ' + newTimer + ' Minutes', newTimer);
+
 
            //return back to the dashboard
             var stateParams = { id:  $state.params.id };

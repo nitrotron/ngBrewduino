@@ -97,7 +97,7 @@
             return brewduionoDataSrv.sendCmd(cmds.startLogging, 1);
         }
         function stopLogging() {
-            return brewduionoDataSrv.sendCmd(cmds.stopLogging,1);
+            return brewduionoDataSrv.sendCmd(cmds.stopLogging, 1);
         }
 
         function sendCommandFailed(command, args) {

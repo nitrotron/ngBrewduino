@@ -6,7 +6,7 @@
 
     /* @ngInject */
     function dashboardCtrl($state, $scope, brewduinoCmdsSrv, brewduionoDataSrv,
-                                 logger, settingsSrv, chartSrv, countDownTimerSrv) {
+                                 logger, settingsSrv, chartSrv, countDownTimerSrv, socket) {
         var vm = this;
         //var chartSrv = chartGoogleSrv;
         var firstUpdate = false;
@@ -68,6 +68,7 @@
                 getStatus();
             }
             
+            
             chartSrv.getChartData('300').
                            then(function (data) {
                                // vm.chart = data;
@@ -79,15 +80,12 @@
             brewduionoDataSrv.setAutoUpdates(true);
             chartSrv.setAutoUpdates(true);
 
-
-            //$scope.$watch(brewduionoDataSrv.getCurrentStatus,
-            //    function (newValue, oldValue) {
-            //        updateVM(newValue);
-            //        //logger.success('Updated status', newValue);
-            //    });
+          
             brewduionoDataSrv.subscribe(updateVM, 'status');
+            brewduionoDataSrv.subscribe(updateTimer, 'newTimer');
             $scope.$on('$destroy', function () {
                 brewduionoDataSrv.unsubscribe(updateVM, 'status');
+                brewduionoDataSrv.unsubscribe(updateTimer, 'newTimer');
             });
 
             $scope.$watch(chartSrv.getCurrentData,
@@ -231,7 +229,23 @@
             vm.showAlarmForm[whichAlarm] = !vm.showAlarmForm[whichAlarm];
         }
 
+        function updateTimer(newTimerObject) {
+            logger.info("Got a new timer", newTimerObject);
+            if (newTimerObject.hasOwnProperty('timer') && countDownTimerSrv.doesTimerExist(newTimerObject.timer) !== true) {
+                var timerIndex = countDownTimerSrv.getTimers().length + 1;
+                var alarmTime = new Date();
+                alarmTime.setSeconds(alarmTime.getSeconds() + (newTimerObject.timer * 60));
+                var myObj = { id: timerIndex, timer: alarmTime, label: newTimerObject.label, isActive: true };
+                countDownTimerSrv.addTimer(myObj);
+            }
 
+            //TODO this is an antipattern, but not sure how to get around it at this time.
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+
+
+        }
 
         function updateVM(responseData) {
             //vm.mcData = responseData;

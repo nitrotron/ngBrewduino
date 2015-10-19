@@ -211,7 +211,7 @@
 
     }
 
-    setInterval(randomizeStubData, 10000);
+    setInterval(randomizeStubData, 100000);
 
     var stubDataUpdateCount = 0;
     function randomizeStubData() {
@@ -265,8 +265,13 @@
 
         socket.on('getStatus', function (from) {
             console.log('received a msg' + from);
-            socket.emit('statuss', stubData);
+            socket.emit('status', stubData);
 
+        });
+
+        socket.on('createTimer', function (timerObj) {
+            console.log('Looks like a new timer was created');
+            socket.broadcast.emit('newTimer', timerObj);
         });
     });
 
