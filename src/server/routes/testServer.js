@@ -211,7 +211,7 @@
 
     }
 
-    setInterval(randomizeStubData, 1000000);
+    setInterval(randomizeStubData, 10000);
 
     var stubDataUpdateCount = 0;
     function randomizeStubData() {

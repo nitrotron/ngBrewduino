@@ -5,7 +5,7 @@
 (function () {
     angular.module('app')
     .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/classic');
+        $urlRouterProvider.otherwise('/dashboard/1');
 
         $stateProvider
             .state('classic', {

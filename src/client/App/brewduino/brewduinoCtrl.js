@@ -21,18 +21,28 @@
 
         function activate() {
             vm.mcData = brewduionoDataSrv.currentStatus;
-            getStatus();
+            //getStatus();
+            updateVM(brewduionoDataSrv.getCurrentStatus());
+            if (vm.hasOwnProperty('thermometers') === false || vm.thermometers === undefined) {
+                getStatus();
+            }
             //.then(function (response) {
             //    vm.showStatusLog = settingsSrv.showStatusLog;
 
             //    logger.info('Now viewing Classic theme');
             //});
+
             brewduionoDataSrv.setAutoUpdates(true);
-            $scope.$watch(brewduionoDataSrv.getCurrentStatus,
-               function (newValue, oldValue) {
-                   updateVM(newValue);
-                   logger.success('Updated status', newValue);
-               });
+            brewduionoDataSrv.subscribe(updateVM, 'status');
+            $scope.$on('$destroy', function () {
+                brewduionoDataSrv.unsubscribe(updateVM, 'status');
+            });
+
+            //$scope.$watch(brewduionoDataSrv.getCurrentStatus,
+            //   function (newValue, oldValue) {
+            //       updateVM(newValue);
+            //       logger.success('Updated status', newValue);
+            //   });
         }
 
         function alarmClick(alarm) {
@@ -100,6 +110,12 @@
                 timeA: responseData.timerAlarmActive,
                 whichTemp: responseData.whichThermoAlarm
             };
+
+
+            //TODO this is an antipattern, but not sure how to get around it at this time.
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
         }
     }
 

@@ -63,19 +63,11 @@
 
 
         function activate() {
-
-            //settingsSrv.thermos.forEach(function (element, index, array) {
-            //    element.chartEnabled = false;
-            //});
-            //settingsSrv.thermos[Number($state.params.id)].chartEnabled = true;
-
             updateVM(brewduionoDataSrv.getCurrentStatus());
             if (vm.hasOwnProperty('thermometers') === false || vm.thermometers === undefined) {
                 getStatus();
             }
-            //TM vm.chart = chartSrv.getChartConfig();
-            //TM vm.chart.view = { columns: getChartColumns() };
-            // getChartData();
+            
             chartSrv.getChartData('300').
                            then(function (data) {
                                // vm.chart = data;
@@ -91,9 +83,12 @@
             //$scope.$watch(brewduionoDataSrv.getCurrentStatus,
             //    function (newValue, oldValue) {
             //        updateVM(newValue);
-            //        logger.success('Updated status', newValue);
+            //        //logger.success('Updated status', newValue);
             //    });
             brewduionoDataSrv.subscribe(updateVM, 'status');
+            $scope.$on('$destroy', function () {
+                brewduionoDataSrv.unsubscribe(updateVM, 'status');
+            });
 
             $scope.$watch(chartSrv.getCurrentData,
                 function (newValue, oldValue) {
@@ -162,51 +157,17 @@
         }
 
         function getChartData() {
-
-            //if (firstChartUpdate === false) {
-            //    firstChartUpdate = true;
-            //    chartSrv.getChartData()
-            //    .then(function (data) {
-            //        if (vm.hasOwnProperty('chart') && vm.chart.hasOwnProperty('data')) {
-            //            vm.chart.data.rows = data;
-            //        }
-            //    });
-            //}
         }
 
         function getStatus() {
             return brewduinoCmdsSrv.getStatus()
-             //.then(function (response) {
-             //    updateVM(response.data);
-
-             //    //TM vm.chart = chartSrv.getChartConfig();
-             //    //TM  vm.chart.view = { columns: getChartColumns() };
-             //    //getChartData();
-
-             //    //logger.success('Updated status', response.data);
-             //    return response;
-             //}, function (reason) {
-             //    logger.error('Unsuccessful with getting status', reason);
-             //});
         }
 
         function openMenu() {
             vm.showMenu = true;
         }
 
-        //function getChartColumns() {
-        //    var rc = [0];
-        //    settingsSrv.thermos.forEach(function (element, index, array) {
-        //        if (element.chartEnabled || index === Number($state.params.id)) {
-        //            rc.push(index + 3);
-        //        }
-        //    });
-        //    //if (vm.showRims) {
-        //    //    rc.push(1);
-        //    //    rc.push(2);
-        //    //}
-        //    return rc;
-        //}
+       
 
         function getOtherThermos() {
             var rc = [];
@@ -250,21 +211,7 @@
         function clearAlarm() {
             vm.alarmBtn = false;
             brewduinoCmdsSrv.resetAlarm();
-            //if there is a temperature alarm, then reset any temperature alarm
-            //if (vm.alarm.tempA == 1) {
-            //    vm.thermometers.forEach(function (element, index, array) {
-            //        if (element.highAlarm < element.temp) {
-            //            brewduinoCmdsSrv.setHighAlarms(vm.alarm.whichTemp, 255);
-            //        }
-            //        if (element.lowAlarm > element.temp) {
-            //            brewduinoCmdsSrv.setLowAlarms(vm.alarm.whichTemp, 32);
-            //        }
-            //    });
-            //}
-            // if it's a timer alarm, then just remove it from the list.
-            //if (vm.alarm.timeA == 1) {
             countDownTimerSrv.clearExpired();
-            //}
         }
 
         function settingsClick() {
@@ -289,7 +236,7 @@
         function updateVM(responseData) {
             //vm.mcData = responseData;
             console.log('got responsedata');
-            logger.info('Successful getStatus', responseData);
+            //logger.info('Successful getStatus', responseData);
             vm.statusInfo = responseData;
             vm.rimsEnable = responseData.rimsEnable;
             vm.pumpOn = responseData.pumpOn;
@@ -380,6 +327,13 @@
 
                 });
             }
+
+            //TODO this is an antipattern, but not sure how to get around it at this time.
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+
+            
             console.log('Done responsedata');
 
         }
