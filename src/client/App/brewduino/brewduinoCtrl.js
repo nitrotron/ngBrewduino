@@ -21,12 +21,12 @@
 
         function activate() {
             vm.mcData = brewduionoDataSrv.currentStatus;
-            getStatus()
-            .then(function (response) {
-                vm.showStatusLog = settingsSrv.showStatusLog;
+            getStatus();
+            //.then(function (response) {
+            //    vm.showStatusLog = settingsSrv.showStatusLog;
 
-                logger.info('Now viewing Classic theme');
-            });
+            //    logger.info('Now viewing Classic theme');
+            //});
             brewduionoDataSrv.setAutoUpdates(true);
             $scope.$watch(brewduionoDataSrv.getCurrentStatus,
                function (newValue, oldValue) {
@@ -62,12 +62,12 @@
         }
 
         function getStatus() {
-            return brewduinoCmdsSrv.getStatus(vm.mcData)
-             .then(function (response) {
-                 vm.mcData = response.data;
-                 logger.info('Resolved Data', vm.mcData);
-                 return response;
-             });
+            return brewduinoCmdsSrv.getStatus(vm.mcData);
+             //.then(function (response) {
+             //    vm.mcData = response.data;
+             //    logger.info('Resolved Data', vm.mcData);
+             //    return response;
+             //});
 
         }
 

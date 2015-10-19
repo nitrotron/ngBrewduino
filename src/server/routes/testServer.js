@@ -60,7 +60,7 @@
         "outputTime": 60442
     };
 
-    app.get('/getStatus', getStubData);        // handler for /date
+    //app.get('/getStatus', getStubData);        // handler for /date
     app.get('/getChartData/:entryCount/:session', getChartData);
     app.get('/getChartData/:entryCount', getChartData);
     app.get('/getChartData', getChartData);
@@ -211,7 +211,7 @@
 
     }
 
-    setInterval(randomizeStubData, 10000);
+    setInterval(randomizeStubData, 1000000);
 
     var stubDataUpdateCount = 0;
     function randomizeStubData() {
@@ -261,10 +261,16 @@
         socket.on('disconnect', function () {
             console.log('user disconnected');
         });
+
+
+        socket.on('getStatus', function (from) {
+            console.log('received a msg' + from);
+            socket.emit('statuss', stubData);
+
+        });
     });
 
 
 
 
-
-};
+    };

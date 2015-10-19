@@ -32,6 +32,10 @@
             emit(data, 'status');
         });
 
+        socket.on('statusX', function (data) {
+            logger.info('gotA statusX',data)
+        });
+
 
         //autoUpdates();
         return {
@@ -58,22 +62,24 @@
         }
 
         function getStatus() {
-            var statusUrl = '/getStatus';
-            return $http.get(statusUrl).success(function (data) {
-                data.thermometers.forEach(function (element, index, array) {
-                    element.name = settingsSrv.thermos[index].name;
-                    element.order = settingsSrv.thermos[index].order;
-                    if (element.hasOwnProperty('highAlarm') === true) {
-                        element.highAlarm = Number(element.highAlarm.toFixed(1));
-                    }
-                    if (element.hasOwnProperty('lowAlarm') === true) {
-                        element.lowAlarm = Number(element.lowAlarm.toFixed(1));
-                    }
-                });
+            //var statusUrl = '/getStatus';
+            //return $http.get(statusUrl).success(function (data) {
+            //    data.thermometers.forEach(function (element, index, array) {
+            //        element.name = settingsSrv.thermos[index].name;
+            //        element.order = settingsSrv.thermos[index].order;
+            //        if (element.hasOwnProperty('highAlarm') === true) {
+            //            element.highAlarm = Number(element.highAlarm.toFixed(1));
+            //        }
+            //        if (element.hasOwnProperty('lowAlarm') === true) {
+            //            element.lowAlarm = Number(element.lowAlarm.toFixed(1));
+            //        }
+            //    });
 
-                myCurrentStatus = data;
-            })
-            .error(getStatusFailed);
+            //    myCurrentStatus = data;
+            //})
+            //.error(getStatusFailed);
+
+            socket.emit('getStatus', {});
         }
 
         function clearSessionData() {

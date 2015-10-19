@@ -176,18 +176,18 @@
 
         function getStatus() {
             return brewduinoCmdsSrv.getStatus()
-             .then(function (response) {
-                 updateVM(response.data);
+             //.then(function (response) {
+             //    updateVM(response.data);
 
-                 //TM vm.chart = chartSrv.getChartConfig();
-                 //TM  vm.chart.view = { columns: getChartColumns() };
-                 //getChartData();
+             //    //TM vm.chart = chartSrv.getChartConfig();
+             //    //TM  vm.chart.view = { columns: getChartColumns() };
+             //    //getChartData();
 
-                 //logger.success('Updated status', response.data);
-                 return response;
-             }, function (reason) {
-                 logger.error('Unsuccessful with getting status', reason);
-             });
+             //    //logger.success('Updated status', response.data);
+             //    return response;
+             //}, function (reason) {
+             //    logger.error('Unsuccessful with getting status', reason);
+             //});
         }
 
         function openMenu() {
