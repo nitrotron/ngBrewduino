@@ -211,7 +211,7 @@
 
     }
 
-    setInterval(randomizeStubData, 100000);
+    setInterval(randomizeStubData, 10000);
 
     var stubDataUpdateCount = 0;
     function randomizeStubData() {
@@ -222,7 +222,7 @@
         console.log("Updating data");
         io.emit('status', stubData);
         stubDataUpdateCount++;
-        if (stubDataUpdateCount % 10 == 0) {
+        if (stubDataUpdateCount % 4 == 0) {
             insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp, stubData.output, stubData.setPoint, stubData.kp, stubData.ki, stubData.kd);
         }
     }
@@ -238,13 +238,12 @@
                 }
 
                 if (currentSession > 0) {
-                    db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID, rimsOnWindow, rimsSetPoint, rimsKp, rimsKi, rimskd) VALUES (?,?,?,?,?,?,?,?,?,?)', t0, t1, t2, t3, currentSession, rimsOnWin, rimsSetPoint, kp, ki, kd);
-                    var chartResponse = {}, chartRequest = {};
-                    chartRequest.params = {};
+                    db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID, rimsOnWindow, rimsSetPoint, rimsKp, rimsKi, rimskd) VALUES (?,?,?,?,?,?,?,?,?,?)', [t0, t1, t2, t3, currentSession, rimsOnWin, rimsSetPoint, kp, ki, kd], function () {
+                        var chartResponse = {}, chartRequest = {};
+                        chartRequest.params = {};
 
-                    getChartData(chartRequest, chartResponse);
-                    
-                   
+                        getChartData(chartRequest, chartResponse);
+                    });
                 }
                 else {
                     console.log('not updating temperatures histories because no current session');

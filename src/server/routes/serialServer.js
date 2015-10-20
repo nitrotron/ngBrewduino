@@ -11,7 +11,7 @@
         parser: serialport.parsers.readline('\r\n') // return and newline generate data event
     };
     var serialData = {};                     // variable to save latest data from serial port
-
+    var chartData = {};
     // open the serial port:
     var myPort = new SerialPort(portName, serialOptions);
 
@@ -48,6 +48,8 @@
             serialData = jData;
         }
 
+        io.emit('status', serialData);
+
     }
 
     // this is called when the serial port has an error:
@@ -80,6 +82,7 @@
 
     function getStatus(request, response, next) {
         console.log("just returning getStatus; ");
+        io.emit('status', serialData);
         response.send(serialData);
         response.end;
     };
@@ -116,7 +119,6 @@
 
 
                 if (currentSession > 0) {
-                    //db.all("SELECT  * from (select th.ROWID, strftime('%Y',th.dt,  'localtime') as year, strftime('%m',th.dt, 'localtime') as month, strftime('%d',th.dt, 'localtime') as day, strftime('%H',th.dt, 'localtime') as hour, strftime('%M',th.dt, 'localtime') as minute, strftime('%S',th.dt, 'localtime') as second, datetime(th.dt, 'localtime') as dt, th.temp0, th.temp1, th.temp2, th.temp3, s.sessionName FROM TemperatureHistories th join Sesions s on s.id = th.SessionID where SessionID = $sessionID order by ROWID desc limit 300) order by ROWID asc", { $sessionID: currentSession }, function (err, rows) {
                     db.all("SELECT *                                                       " +
                            "FROM   (SELECT th.id as id,                                    " +
                            "               Strftime('%Y', th.dt, 'localtime') AS year,     " +
@@ -144,7 +146,15 @@
                            function (err, rows) {
                                console.error(err);
                                console.log('number of chart rows: ' + rows.length);
-                               response.json(rows);
+                               chartData = JSON.stringify(rows);
+                               if (response.json === 'function') {
+                                   response.json(rows);
+                               }
+                               else {
+                                   response = chartData;
+                                   io.emit('chartData', response);
+                               }
+                               
                            });
                 }
                 else {
@@ -242,7 +252,13 @@
                 }
 
                 if (currentSession > 0) {
-                    db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID, rimsOnWindow, rimsSetPoint, rimsKp, rimsKi, rimskd) VALUES (?,?,?,?,?,?,?,?,?,?)', t0, t1, t2, t3, currentSession, rimsOnWin, rimsSetPoint, kp, ki, kd);
+                    db.run('INSERT INTO TemperatureHistories (temp0, temp1, temp2, temp3, SessionID, rimsOnWindow, rimsSetPoint, rimsKp, rimsKi, rimskd) VALUES (?,?,?,?,?,?,?,?,?,?)', [t0, t1, t2, t3, currentSession, rimsOnWin, rimsSetPoint, kp, ki, kd], function () {
+                        var chartResponse = {}, chartRequest = {};
+                        chartRequest.params = {};
+
+                        getChartData(chartRequest, chartResponse);
+
+                    });
                 }
                 else {
                     console.log('not updating temperatures histories because no current session');
@@ -252,6 +268,30 @@
 
         });
     }
+    io.on('connection', function (socket) {
+        socket.emit('status', serialData);
+        console.log('a user connected');
+        socket.on('disconnect', function () {
+            console.log('user disconnected');
+        });
 
+
+        socket.on('getStatus', function (from) {
+            console.log('received a msg' + from);
+            socket.emit('status', serialData);
+
+        });
+
+        socket.on('getChartData', function (from) {
+            console.log('received a msg' + from);
+            socket.emit('chartData', chartData);
+
+        });
+
+        socket.on('createTimer', function (timerObj) {
+            console.log('Looks like a new timer was created');
+            socket.broadcast.emit('newTimer', timerObj);
+        });
+    });
 
 };
