@@ -11,7 +11,11 @@
 
 
         autoUpdates();
-        socket.on('chartData',updateChart );
+        socket.on('chartData', function (data) {
+            if (autoUpdatesEnabled) {
+                updateChart(data);
+            }
+        });
         activate();
 
         return {
@@ -261,14 +265,14 @@
                         fontSize: '20px'
                     }
                 },
-                
+
                 'credits': {
                     'enabled': true,
                     style: {
                         color: '#666'
                     }
                 },
-                
+
                 'loading': false,
                 'size': {
                     'width': '',
@@ -285,6 +289,11 @@
 
             return chartConfig;
         }
+
+        //function getChartData(numEntries, session) {
+        //    socket.emit('getChartData', [numEntries, session]);
+        //}
+
 
         function getChartData(numEntries, session) {
             var statusUrl = '/getChartData';
@@ -428,8 +437,9 @@
             var dataPts5 = [];
             var minY = Infinity;
             var maxY = -Infinity;
-
-            data = JSON.parse(data);
+            if (Array.isArray(data) === false) {
+                data = JSON.parse(data);
+            }
             if (data.length > 0) {
                 data.forEach(function (element, index, array) {
                     var dt = Date.UTC(element.year, element.month - 1, element.day, element.hour, element.minute, element.second, 0);
@@ -459,7 +469,7 @@
 
             myCurrentChart.title.text = chartTitle;
 
-           
+
         }
     }
 })();

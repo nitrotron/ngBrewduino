@@ -60,7 +60,7 @@
         "outputTime": 60442
     };
 
-    //app.get('/getStatus', getStubData);        // handler for /date
+    app.get('/getStatus', getStubData);        // handler for /date
     app.get('/getChartData/:entryCount/:session', getChartData);
     app.get('/getChartData/:entryCount', getChartData);
     app.get('/getChartData', getChartData);
@@ -82,16 +82,19 @@
 
 
     function getChartData(request, response, next) {
+        console.log('just got a getChartData Request');
         db.serialize(function () {
             var currentSession = 0;
 
             var entryLimit = "LIMIT  300)"
+            console.log('has entry count =' + request.params.hasOwnProperty('entryCount'));
             if (request.params.hasOwnProperty('entryCount') && request.params.entryCount === "all") {
                 entryLimit = ")";
+                console.log("getting Max Entries");
             }
             else if (request.params.hasOwnProperty('entryCount') && !isNaN(request.params.entryCount)) {
                 entryLimit = "LIMIT  " + request.params.entryCount + " )"
-                console.log("getting Max Entries")
+                console.log("gettting " + request.params.entryCount + "  entries");
             }
             else {
                 console.log("poops");
@@ -139,10 +142,12 @@
                            function (err, rows) {
                                console.error(err);
                                console.log('number of chart rows: ' + rows.length);
-                               if (response.json === 'function') {
+                               if (typeof response.json === 'function') {
+                                   console.log('looks like a function');
                                    response.json(rows);
                                }
                                else {
+                                   console.log('looks like NOT a function:'+ response.json);
                                    response = JSON.stringify(rows);
                                    io.emit('chartData', response);
                                }
@@ -272,6 +277,8 @@
             console.log('Looks like a new timer was created');
             socket.broadcast.emit('newTimer', timerObj);
         });
+
+
     });
 
 

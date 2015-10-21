@@ -8,6 +8,7 @@
     var portName = '/dev/ttyACM0';
     var serialOptions = {                       // serial communication options
         baudRate: 9600,                       // data rate: 9600 bits per second
+        buffersize: 6536,
         parser: serialport.parsers.readline('\r\n') // return and newline generate data event
     };
     var serialData = {};                     // variable to save latest data from serial port
@@ -95,10 +96,11 @@
             var entryLimit = "LIMIT  300)"
             if (request.params.hasOwnProperty('entryCount') && request.params.entryCount === "all") {
                 entryLimit = ")";
+                console.log("getting Max Entries")
             }
             else if (request.params.hasOwnProperty('entryCount') && !isNaN(request.params.entryCount)) {
                 entryLimit = "LIMIT  " + request.params.entryCount + " )"
-                console.log("getting Max Entries")
+                console.log("gettting " + request.params.entryCount + "  entries");
             }
             else {
                 console.log("poops");
@@ -147,7 +149,7 @@
                                console.error(err);
                                console.log('number of chart rows: ' + rows.length);
                                chartData = JSON.stringify(rows);
-                               if (response.json === 'function') {
+                               if (typeof response.json === 'function') {
                                    response.json(rows);
                                }
                                else {
