@@ -6,7 +6,8 @@
         "./src/client/3rdParty/script/ng-google-chart.js",
         "./src/client/3rdParty/script/toaster.min.js",
         "./src/client/3rdParty/script/angular-animate.js",
-		"./src/client/3rdParty/script/highcharts-ng.min.js"
+        "./src/client/3rdParty/script/highcharts-ng.min.js",
+        "./src/client/3rdParty/script/socket.io.js"
     ],
     "htmltemplates": "./src/client/App/**/*.html",
     "build": "./build/",

@@ -158,7 +158,7 @@
         }
 
         function getStatus() {
-            return brewduinoCmdsSrv.getStatus()
+            return brewduinoCmdsSrv.getStatus();
         }
 
         function openMenu() {
@@ -230,7 +230,7 @@
         }
 
         function updateTimer(newTimerObject) {
-            logger.info("Got a new timer", newTimerObject);
+            logger.info('Got a new timer', newTimerObject);
             if (newTimerObject.hasOwnProperty('timer') && countDownTimerSrv.doesTimerExist(newTimerObject.timer) !== true) {
                 var timerIndex = countDownTimerSrv.getTimers().length + 1;
                 var alarmTime = new Date();
