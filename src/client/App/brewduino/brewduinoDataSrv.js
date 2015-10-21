@@ -6,6 +6,7 @@
     angular.module('app')
         .factory('brewduionoDataSrv', brewduionoDataSrv);
 
+    /* @ngInject */
     function brewduionoDataSrv($http, logger, settingsSrv, $interval, socket, $rootScope) {
         var myCurrentStatus = {};
         var dataSubscribers = {
