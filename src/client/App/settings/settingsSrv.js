@@ -9,8 +9,8 @@
     settingsSrv.showStatusLog = false;
     settingsSrv.showToast = {
         error: true,
-        info: true,
-        success: true,
+        info: false,
+        success: false,
         warning: true
 
     };
