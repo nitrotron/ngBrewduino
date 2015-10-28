@@ -8,7 +8,7 @@
     var portName = '/dev/ttyACM0';
     var serialOptions = {                       // serial communication options
         baudRate: 9600,                       // data rate: 9600 bits per second
-        buffersize: 6536,
+        bufferSize: 6536,
         parser: serialport.parsers.readline('\r\n') // return and newline generate data event
     };
     var serialData = {};                     // variable to save latest data from serial port

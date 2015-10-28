@@ -601,7 +601,7 @@ body {
         box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.05), 0 2px 5px rgba(255, 255, 255, 0.1);
     }
 
-    .switch input:checked ~ label {
+    .switch input:checked + label {
         /* Button */
         color: #9abb82;
         /*color: #6291d0;*/
