@@ -1,5 +1,5 @@
 ﻿var serialport = require('serialport'),// include the library
-   SerialPort = serialport.SerialPort, // make a local instance of it
+   SerialPort = serialport, // make a local instance of it
    // get port name from the command line:
    portName = process.argv[2];
 

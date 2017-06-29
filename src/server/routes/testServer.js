@@ -35,7 +35,7 @@
                "isRims": 1
            }
         ],
-        "tempAlarmActive": 1,
+        "tempAlarmActive": 0,
         "timerAlarmActive": 0,
         "whichThermoAlarm": 0,
         "clearTimers": 1,
@@ -220,10 +220,73 @@
     setInterval(randomizeStubData, 10000);
 
     var stubDataUpdateCount = 0;
+
+    function iftttAlarm(statusData) {
+        var http = require("http");
+        var options = {
+            hostname: 'maker.ifttt.com',
+            port: 80,
+            path: '/trigger/brewduino_alarm/with/key/[CHANGE THIS KEY]',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        var req = http.request(options, function (res) {
+            console.log('Status: ' + res.statusCode);
+            console.log('Headers: ' + JSON.stringify(res.headers));
+            res.setEncoding('utf8');
+            console.log("request Creation");
+            res.on('data', function (body) {
+                console.log('Body: ' + body);
+            });
+        });
+        req.on('error', function (e) {
+            console.log('problem with request: ' + e.message);
+        });
+        console.log("past errors"); 
+        // write data to request body
+        var alarmType = '';
+        var alarmMsg = '';
+        
+        if (statusData.tempAlarmActive === 1) {
+            alarmType = 'Temperature Alarm-' + statusData.whichThermoAlarm;
+            alarmMsg = 'Current Temperature: ' + statusData.thermometers[statusData.whichThermoAlarm].temp +
+                ', High Alarm: ' + statusData.thermometers[statusData.whichThermoAlarm].highAlarm +
+                ', Low Alarm: ' + statusData.thermometers[statusData.whichThermoAlarm].highAlarm;
+            //for (var i = 0; i < statusData.thermometers.length; i++) {
+            //    if (statusData.thermometers[i].temp >= statusData.thermometers[i].highAlarm) {
+            //        alarmType + alarmType + i + '-HIGH';
+            //        alarmThreshold = statusData.thermometers[i].highAlarm;
+            //        alarmValue = statusData.thermometers[i].temp ;
+            //        break;
+            //    }
+            //    else if (statusData.thermometers[i].temp <= statusData.thermometers[i].lowAlarm) {
+            //        alarmType + alarmType + i + '-LOW';
+            //        alarmThreshold = statusData.thermometers[i].lowAlarm;
+            //        alarmValue = statusData.thermometers[i].temp ;
+            //        break;
+            //    }
+            //}
+        } 
+        if (statusData.timerAlarmActive === 1) {
+            alarmType = 'Timer Alarm';
+        }
+        var httpData = '{"value1": "' + alarmType + '","value2": "' + alarmMsg + '","value3":""}';
+        console.log('Data: ' + httpData);
+        req.write(httpData);
+        req.end();
+        console.log("sending request");
+    }
     function randomizeStubData() {
         stubData.thermometers.forEach(function (element, index, array) {
             element.temp = element.temp + (Math.random() - 0.2);
         });
+        if (stubData.tempAlarmActive === 0) {
+            stubData.tempAlarmActive = 1;
+            stubData.whichThermoAlarm = 2;
+            iftttAlarm(stubData);
+        }
         stubData.output = (Math.random() * 1000);
         console.log("Updating data");
         io.emit('status', stubData);
@@ -231,6 +294,7 @@
         if (stubDataUpdateCount % 4 == 0) {
             insertTemperatureHistories(stubData.thermometers[0].temp, stubData.thermometers[1].temp, stubData.thermometers[2].temp, stubData.thermometers[3].temp, stubData.output, stubData.setPoint, stubData.kp, stubData.ki, stubData.kd);
         }
+        
     }
 
     function insertTemperatureHistories(t0, t1, t2, t3, rimsOnWin, rimsSetPoint, kp, ki, kd) {

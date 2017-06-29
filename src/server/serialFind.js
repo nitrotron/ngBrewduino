@@ -1,5 +1,5 @@
 ﻿var serialport = require("serialport");
-var SerialPort = serialport.SerialPort;
+var SerialPort = serialport;
  
 // list serial ports:
 serialport.list(function (err, ports) {

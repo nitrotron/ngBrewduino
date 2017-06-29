@@ -1,12 +1,13 @@
 ﻿module.exports = function (app, db, fs, io) {
-      
+
 
     var sleep = require('sleep');
     var serialport = require('serialport');
     // configure the serial port:
-    var SerialPort = serialport.SerialPort;     // make a local instance of serialport
+    var SerialPort = serialportt;     // make a local instance of serialport
     //portName = process.argv[2],             // get serial port name from the command line
     var portName = '/dev/ttyACM0';
+    portName = 'COM4';
     var serialOptions = {                       // serial communication options
         baudRate: 9600,                       // data rate: 9600 bits per second
         bufferSize: 6536,
@@ -27,6 +28,7 @@
     function showPortOpen() {
         console.log('port open. Data rate: ' + myPort.options.baudRate);
     }
+   
 
     // this is called when new data comes into the serial port:
     function saveLatestData(data) {
@@ -50,7 +52,7 @@
             serialData = jData;
         }
 
-        io.emit('status', serialData);
+        io.emit('status', getSerialData());
 
     }
 
@@ -84,7 +86,7 @@
 
     function getStatus(request, response, next) {
         console.log("just returning getStatus; ");
-        io.emit('status', serialData);
+        io.emit('status', getSerialData());
         response.send(serialData);
         response.end;
     };
@@ -157,7 +159,7 @@
                                    response = chartData;
                                    io.emit('chartData', response);
                                }
-                               
+
                            });
                 }
                 else {
@@ -213,7 +215,7 @@
         console.log('request.params.val = ' + request.params.val);
         var fullCmd = request.params.whichCmd + ',' + request.params.val + ';';
         myPort.write(fullCmd, function (err, result) {
-            if(err){
+            if (err) {
                 console.log('write failed');
                 //response.sendStatus('Failure');
                 //response.end;
@@ -240,8 +242,60 @@
         console.log('Resetting the Server');
         var filepath = './src/server/serverReset.js';
         fs.closeSync(fs.openSync(filepath, 'w'));
-        res.send('Port reset'); 
+        res.send('Port reset');
     }
+
+    function getSerialData() {
+        if (serialData.tempAlarmActive == 1 || serialData.timerAlarmActive == 1) {
+            iftttAlarm(serialData);
+        }
+        return serialData;
+    }
+    function iftttAlarm(statusData) {
+        var http = require("http");
+        var options = {
+            hostname: 'maker.ifttt.com',
+            port: 80,
+            path: '/trigger/brewduino_alarm/with/key/[CHANGE THIS KEY]',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        var req = http.request(options, function (res) {
+            console.log('Status: ' + res.statusCode);
+            console.log('Headers: ' + JSON.stringify(res.headers));
+            res.setEncoding('utf8');
+            console.log("request Creation");
+            res.on('data', function (body) {
+                console.log('Body: ' + body);
+            });
+        });
+        req.on('error', function (e) {
+            console.log('problem with request: ' + e.message);
+        });
+        console.log("past errors");
+        // write data to request body
+        var alarmType = '';
+        var alarmMsg = '';
+
+        if (statusData.tempAlarmActive === 1) {
+            alarmType = 'Temperature Alarm-' + statusData.whichThermoAlarm;
+            alarmMsg = 'Current Temperature: ' + statusData.thermometers[statusData.whichThermoAlarm].temp +
+                ', High Alarm: ' + statusData.thermometers[statusData.whichThermoAlarm].highAlarm +
+                ', Low Alarm: ' + statusData.thermometers[statusData.whichThermoAlarm].highAlarm;
+        }
+        if (statusData.timerAlarmActive === 1) {
+            alarmType = 'Timer Alarm';
+        }
+        var httpData = '{"value1": "' + alarmType + '","value2": "' + alarmMsg + '","value3":""}';
+        console.log('Data: ' + httpData);
+        req.write(httpData);
+        req.end();
+        console.log("sending request");
+    }
+
+
 
 
     function insertTemperatureHistories(t0, t1, t2, t3, rimsOnWin, rimsSetPoint, kp, ki, kd) {
