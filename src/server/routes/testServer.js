@@ -40,7 +40,7 @@
         "whichThermoAlarm": 0,
         "clearTimers": 1,
         "timers": [
-            "18:28:24"
+            
         ],
         "timersNotAllocated": 8,
         "totalTimers": 12,
@@ -110,7 +110,7 @@
             }
 
             db.all(sessionSQL, function (err, rows) {
-                if (rows.length > 0) {
+                if (rows !== undefined && rows.length > 0) {
                     currentSession = rows[0].id;
                 }
 
@@ -194,8 +194,8 @@
 
     function getSessions(req, res, next) {
         db.all("SELECT sessionName, id from Sessions  ORDER  BY id DESC", function (err, rows) {
-            //db.all("Select id from Sessions order by id desc limit 1", function (err, rows) {
-            console.log('number of Sessions rows: ' + rows.length);
+            var l = (rows) ? rows.length : 0;
+            console.log('number of Sessions rows: ' + l);
             res.json(rows);
         });
 
@@ -254,20 +254,6 @@
             alarmMsg = 'Current Temperature: ' + statusData.thermometers[statusData.whichThermoAlarm].temp +
                 ', High Alarm: ' + statusData.thermometers[statusData.whichThermoAlarm].highAlarm +
                 ', Low Alarm: ' + statusData.thermometers[statusData.whichThermoAlarm].highAlarm;
-            //for (var i = 0; i < statusData.thermometers.length; i++) {
-            //    if (statusData.thermometers[i].temp >= statusData.thermometers[i].highAlarm) {
-            //        alarmType + alarmType + i + '-HIGH';
-            //        alarmThreshold = statusData.thermometers[i].highAlarm;
-            //        alarmValue = statusData.thermometers[i].temp ;
-            //        break;
-            //    }
-            //    else if (statusData.thermometers[i].temp <= statusData.thermometers[i].lowAlarm) {
-            //        alarmType + alarmType + i + '-LOW';
-            //        alarmThreshold = statusData.thermometers[i].lowAlarm;
-            //        alarmValue = statusData.thermometers[i].temp ;
-            //        break;
-            //    }
-            //}
         } 
         if (statusData.timerAlarmActive === 1) {
             alarmType = 'Timer Alarm';
@@ -282,10 +268,10 @@
         stubData.thermometers.forEach(function (element, index, array) {
             element.temp = element.temp + (Math.random() - 0.2);
         });
-        if (stubData.tempAlarmActive === 0) {
+        if (stubData.tempAlarmActive === 0 && Math.random() < 0.05) {
             stubData.tempAlarmActive = 1;
-            stubData.whichThermoAlarm = 2;
-            iftttAlarm(stubData);
+            stubData.whichThermoAlarm = Math.floor(Math.random() * 3);
+            // iftttAlarm(stubData);
         }
         stubData.output = (Math.random() * 1000);
         console.log("Updating data");

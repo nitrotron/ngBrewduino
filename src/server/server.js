@@ -11,7 +11,7 @@ var compress = require('compression');
 //var cors = require('cors');
 //var errorHandler = require('./routes/utils/errorHandler')();
 var favicon = require('serve-favicon');
-//var logger = require('morgan');
+
 
 
 var port = process.env.PORT || 7200;
